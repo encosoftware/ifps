@@ -1,0 +1,103 @@
+<div class="cargo-details-container">
+    <perfect-scrollbar>
+        <div class="cargo-id">
+            {{details.cargoId}}
+        </div>
+        <div class="row cargo-maindata-container">
+            <div class="col">
+                <div class="data-type-title">{{'Cargo.contractingParty' | translate}}</div>
+                <div><b>{{details.contract.name}}</b></div>
+                <div>{{details.contract.address}}</div>
+                <div>{{details.contract.email}}</div>
+                <div>{{details.contract.person}}</div>
+                <div>{{details.contract.phone}}</div>
+            </div>
+            <div class="col">
+                <div class="data-type-title">{{'Cargo.supplier' | translate}}</div>
+                <div><b>{{details.supplier.name}}</b></div>
+                <div>{{details.supplier.address}}</div>
+                <div>{{details.supplier.email}}</div>
+                <div>{{details.supplier.person}}</div>
+                <div>{{details.supplier.phone}}</div>
+            </div>
+            <div class="col">
+                <div class="data-type-title">{{'Cargo.shipping' | translate}}</div>
+                <div><b>{{details.shipping.address}}</b></div>
+                <div>{{details.shipping.name}}</div>
+                <div>{{details.shipping.phone}}</div>
+                <div>{{details.shipping.notes}}</div>
+            </div>
+        </div>
+        <table cdk-table [dataSource]="details.products" class="table-standard" #table>
+
+            <ng-container cdkColumnDef="material">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.material' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <b>{{row.material}}</b>
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="name">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.name' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.name}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="workingNr">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.workingNr' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.workingNr}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="arrived">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.arrived' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.arrived}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="refused">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.refused' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.refused}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="cell">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.cell' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <ng-select [items]="cells" highlightColor="#9575cd" highlightTextColor="#fff" [clearable]="false"
+                        bindLabel="name" bindValue="id" [(ngModel)]="row.cellId">
+                    </ng-select>
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row
+                *cdkHeaderRowDef="['material', 'name', 'workingNr', 'arrived', 'refused', 'cell'];sticky:true;">
+            </tr>
+
+            <tr cdk-row *cdkRowDef="let row; columns: ['material', 'name', 'workingNr', 'arrived', 'refused', 'cell']">
+            </tr>
+
+        </table>
+        <div class="d-flex justify-content-end u-button-padding">
+            <button mat-button matRipple class="btn btn-text-only u-margin-btn-right"
+                (click)="cancel()">{{'Cargo.cancel' | translate}}</button>
+            <button mat-button matRipple class="btn btn-primary u-margin-btn-right" [disabled]="isEmptyInputField()"
+                (click)="submit()">{{'Cargo.done' | translate}}</button>
+        </div>
+    </perfect-scrollbar>
+
+</div>

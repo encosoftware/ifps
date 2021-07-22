@@ -1,0 +1,5 @@
+<div [ngClass]="{ 'selected': isSelected, 'sick-day': isSickLeave,'doday':isDayOff,'selectSick':isSelected && isSickLeave,'selectDayoff':isSelected && isDayOff }"
+  class="calendar-cell-cal" (click)="selected()">
+  {{dateFormated}}
+  
+</div>

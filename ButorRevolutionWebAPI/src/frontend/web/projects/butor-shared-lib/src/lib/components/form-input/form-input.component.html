@@ -1,0 +1,13 @@
+<!-- <butor-form-input append="hun" appendIcon="icon icon-clear"></butor-form-input> -->
+<div class="input-wrapper">
+        <input [type]="type" class="input-control has-inside" [placeholder]="placeholder" [name]="name" [value]="value"
+                [disabled]="disabled" (input)="onChangeControl($event.target.value)" [ngClass]="classAddInput" [class.has-inside-number]="webshop"  #numInput/>
+        <div class="input-arrow" *ngIf="type === 'number' && webshop" [ngClass]="classAddInputArrow">
+                <i class="icon icon-blackarrow_black_up" (click)="incrase()"></i>
+                <i class="icon icon-blackarrow_black_down" (click)="decrease()"></i>
+        </div>
+        <span class="inside" [ngClass]="classAddInside"><i class="icon icon-search"></i></span>
+        <span *ngIf="append" class="append-input-span">{{append}}</span>
+        <ng-content></ng-content>
+        <span *ngIf="appendIcon" class="append-input-span"><i [class]="appendIcon"></i></span>
+</div>

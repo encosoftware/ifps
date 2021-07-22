@@ -1,0 +1,11 @@
+<div class="layout">
+  <div class="layout-header">
+    <app-header *webshopMyRefreshOnChange="translate.onLangChange | async"></app-header>
+  </div>
+  <div class="layout-content">
+    <router-outlet *webshopMyRefreshOnChange="translate.onLangChange | async"></router-outlet>
+  </div>
+  <div class="layout-footer">
+    <app-footer *webshopMyRefreshOnChange="translate.onLangChange | async"></app-footer>
+  </div>
+</div>

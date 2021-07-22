@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'WebshopFurnitureUnits.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewWFurnitureUnit()"
+      *butorClaims="claimPolicyEnum[claimPolicyEnum.UpdateFurnitureUnits]">{{'WebshopFurnitureUnits.Buttons.addNewUnits' | translate}}
+    </button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="wFurnitureUnitsForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+        <!-- Code Definition -->
+        <ng-container cdkColumnDef="code">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'WebshopFurnitureUnits.Labels.code' | translate}}" cType='filter'>
+              <butor-form-input name="code" formControlName="code"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+        </ng-container>
+        <!-- Description Definition -->
+        <ng-container cdkColumnDef="description">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'WebshopFurnitureUnits.Labels.description' | translate}}" cType='filter'>
+              <butor-form-input name="description" formControlName="description"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="price">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'WebshopFurnitureUnits.Labels.price' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.price}} </td>
+        </ng-container>
+        <!-- clearFilter Definition -->
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'WebshopFurnitureUnits.Buttons.clearFilters' | translate}}</a> </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-btn-hamburger>
+              <butor-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-edit"
+                [buttonText]="this.translate.instant('Venues.buttons.Edit')"
+                (click)="editWFurnitureUnit(row.id, row.furnitureUnitId)"
+                *butorClaims="claimPolicyEnum[claimPolicyEnum.UpdateFurnitureUnits]"></butor-btn-hamburger-inside>
+              <butor-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                [buttonText]="translate.instant('Users.EditUser.buttons.Delete')" (click)="deleteWFurnitureUnit(row.id)"
+                *butorClaims="claimPolicyEnum[claimPolicyEnum.DeleteFurnitureUnits]">
+              </butor-btn-hamburger-inside>
+            </butor-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row *cdkHeaderRowDef="['code', 'description', 'price', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row *cdkRowDef="let row; columns: ['code', 'description', 'price', 'clearFilter']"
+          (click)="editWFurnitureUnit(row.id, row.furnitureUnitId)">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!hasError && dataSource.items.length === 0" class="no-data-row">
+        {{'WebshopFurnitureUnits.Labels.noRecord' | translate}}</div>
+
+    </form>
+  </perfect-scrollbar>
+</div>

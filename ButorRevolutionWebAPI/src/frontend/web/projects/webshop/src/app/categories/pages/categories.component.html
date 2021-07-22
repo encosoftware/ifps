@@ -1,0 +1,13 @@
+<h1 class="categories-main-name">{{name}}</h1>
+<div class="categories-container">
+  <div class="categories">
+    <figure *ngFor="let categorie of categories" class="sub-categories">
+      <div class="sub-categories-box"
+       [routerLink]="['/units',categorie.id]" 
+       >
+        <img [webshopImage]="categorie.image" class="sub-categories-images">
+      </div>
+      <figcaption class="sub-categories-name">{{categorie.name}}</figcaption>
+    </figure>
+  </div>
+</div>

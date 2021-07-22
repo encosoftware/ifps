@@ -1,0 +1,136 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Materials.APPLIANCES.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right"
+      *butorClaims="claimPolicyEnum[2]">{{'Materials.APPLIANCES.buttons.ImportFile' | translate}}</button>
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" *butorClaims="claimPolicyEnum[2]"
+      (click)="addNewAppliance()">{{'Materials.APPLIANCES.buttons.AddNewAppliance' | translate}}</button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="applianceListForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+        <ng-container cdkColumnDef="code">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.APPLIANCES.FilterLabel.CODE' | translate}}" cType='filter'>
+              <butor-form-input formControlName="code" name="code"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-tooltip [template]="appliancetool">{{row.code}}</butor-tooltip>
+            <ng-template #appliancetool>
+              <div class="container">
+                <div class="row">
+                  <div class="col u-p-l-1">
+                    <figure class="profile-sml">
+                      <img
+                        [src]="baseUrl | pictureSrc : row.picture ? row.picture.containerName: null : row.picture ? row.picture.fileName : null"
+                        class="profile__pic">
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <div class="row tooltip-title">{{row.code}}</div>
+                    <div class="row tooltip-bottom">{{row.description}}</div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="description">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.APPLIANCES.FilterLabel.DESCRIPTION' | translate}}" cType='filter'>
+              <butor-form-input formControlName="description" name="description"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="category">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.APPLIANCES.FilterLabel.CATEGORY' | translate}}" cType='filter'>
+              <ng-select name="categoryId" formControlName="categoryId" [items]="appliancesCategories"
+                highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="options" bindValue="value"
+                [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.category}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="brand">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.APPLIANCES.FilterLabel.Brand' | translate}}" cType='filter'>
+              <butor-form-input formControlName="brand" name="brand"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.brand}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="hanaCode">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="HANACODE" cType='filter'>
+              <butor-form-input formControlName="hanaCode"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.hanaCode}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="purchasingPrice">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.APPLIANCES.FilterLabel.Netcost' | translate}}">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.purchasingPrice }} {{ row.purchasingCurrency }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="sellPrice">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.APPLIANCES.FilterLabel.sellprice' | translate}}">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.sellPrice }} {{ row.sellingCurrency }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="far fa-times-circle"></i>{{'Materials.APPLIANCES.buttons.ClearFilter' | translate}}</a>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-btn-hamburger>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[2]" textColor="#4D41FF"
+                iconClass="icon icon-edit" [buttonText]="this.translate.instant('Materials.APPLIANCES.buttons.Edit')"
+                (click)="this.editAppliance(row.id, false)"></butor-btn-hamburger-inside>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[3]" textColor="#FF4141"
+                iconClass="icon icon-delete"
+                [buttonText]="this.translate.instant('Materials.APPLIANCES.buttons.Delete')"
+                (click)="deleteAppliance(row.id)"></butor-btn-hamburger-inside>
+            </butor-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['code', 'description', 'category', 'brand', 'purchasingPrice', 'sellPrice', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row
+          *cdkRowDef="let row; columns: ['code', 'description', 'category', 'brand', 'purchasingPrice', 'sellPrice', 'clearFilter']"
+          (click)="editAppliance(row.id, false)">
+        </tr>
+      </table>
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+
+      <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+    </form>
+  </perfect-scrollbar>
+</div>

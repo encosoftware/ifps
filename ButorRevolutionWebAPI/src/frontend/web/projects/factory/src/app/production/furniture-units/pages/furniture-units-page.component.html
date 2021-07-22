@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-between u-margin-top">
+    <h3>{{'FurnitureUnits.title' | translate}}</h3>
+    <div class="d-flex justify-content-between">
+    </div>
+</div>
+<div class="scroll-container">
+    <perfect-scrollbar>
+        <form [formGroup]="furnitureUnitsForm" class="scroll-form">
+            <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+                <!-- Image Definition -->
+                <!-- <ng-container cdkColumnDef="img">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'FurnitureUnits.img' | translate}}" cType='filter'>
+                        <butor-form-input name="img" formControlName="img"></butor-form-input>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.img}} </td>
+            </ng-container> -->
+                <!-- Description Definition -->
+                <ng-container cdkColumnDef="description">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'FurnitureUnits.description' | translate}}" cType='filter'>
+                            <butor-form-input name="description" formControlName="description"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+                </ng-container>
+                <!-- Category Definition -->
+                <ng-container cdkColumnDef="category">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'FurnitureUnits.category' | translate}}" cType='filter'>
+                            <ng-select name="category" formControlName="category" [items]="categoryDropdown"
+                                highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name" bindValue="id"
+                                [clearable]="false">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.category}} </td>
+                </ng-container>
+                <!-- Code Definition -->
+                <ng-container cdkColumnDef="code">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'FurnitureUnits.code' | translate}}" cType='filter'>
+                            <butor-form-input name="code" formControlName="code"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+                </ng-container>
+                <!-- Uploaded Definition -->
+                <ng-container cdkColumnDef="isUploaded">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'FurnitureUnits.isUploaded' | translate}}" cType='filter'>
+                            <butor-form-checkbox style="margin-left: 1.1rem;" name="isUploaded"
+                                formControlName="isUploaded"></butor-form-checkbox>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <div *ngIf="row.isUploaded">
+                            <i class="icon icon-check_circle green-check-circle"></i>
+                        </div>
+                        <div *ngIf="!row.isUploaded">
+                            <i class="icon icon-clear red-check-circle"></i>
+                        </div>
+                    </td>
+                </ng-container>
+                <!-- Upload Button Definition -->
+                <ng-container cdkColumnDef="upload">
+                    <td cdk-cell *cdkCellDef="let row">
+                        <input style="display: none;" #fileInput type="file" (change)="onFileSelected(row.id, $event)">
+                         <button *ngIf="!row.isUploaded" (click)="fileInput.click()" mat-button matRipple
+                            class="btn btn-primary u-margin-btn-right">{{'FurnitureUnits.upload' | translate}}
+                        </button> </td>
+                </ng-container>
+                <!-- Clear Filter Definition -->
+                <ng-container cdkColumnDef="clearFilter">
+                    <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a " (click)="clearFilter()"><i
+                                class="icon icon-clear"></i>{{'FurnitureUnits.clearFilters' | translate}}</a>
+                    </th>
+                </ng-container>
+                <!-- Header and Row Declarations -->
+                <tr cdk-header-row
+                    *cdkHeaderRowDef="['description', 'category', 'code', 'isUploaded', 'clearFilter'];sticky:true;">
+                </tr>
+                <tr cdk-row *cdkRowDef="let row; columns: ['description','category', 'code','isUploaded','upload']">
+                </tr>
+            </table>
+            <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+                [pageIndex]="dataSource.pageIndex"
+                [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+            </mat-paginator>
+            <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+            <div *ngIf="!hasError && dataSource.items.length === 0" class="no-data-row">
+                {{'FurnitureUnits.noRecord' | translate}}</div>
+        </form>
+    </perfect-scrollbar>
+</div>

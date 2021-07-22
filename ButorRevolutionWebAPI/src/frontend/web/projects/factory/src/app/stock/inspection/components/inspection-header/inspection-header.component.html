@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between">
+    <h2>{{'Inspection.title' | translate }}</h2>
+</div>
+<table cdk-table [dataSource]="dataSource" class="table-standard" #table>
+
+    <ng-container cdkColumnDef="date">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Inspection.date' | translate }}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"><b>{{row.date | date:'y.MM.d.'}}</b></td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="stock">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Inspection.stock' | translate }}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{row.stock}}</td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="delegation">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Inspection.delegation' | translate }}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"><span
+                *ngFor="let item of row.delegation; let index = index;">{{item}}{{index === row.delegation.length - 1 ? '' : ','}}</span>
+        </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="['date', 'stock', 'delegation'];sticky:true;">
+    </tr>
+
+    <tr cdk-row *cdkRowDef="let row; columns: ['date', 'stock','delegation']">
+    </tr>
+
+</table>

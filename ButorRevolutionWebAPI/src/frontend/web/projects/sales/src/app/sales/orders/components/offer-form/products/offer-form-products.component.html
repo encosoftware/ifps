@@ -1,0 +1,626 @@
+<div class="offer-form-price-sum-container">
+    <div class="row services-container">
+        <div class="col-4">
+            <div class="row">
+                <div class="col">
+                    <div style="display: flex; align-items: center;">
+                        <butor-form-checkbox style="padding-bottom: 1rem;" #assemblyCheckbox></butor-form-checkbox>
+                        <div class="price-category-title">{{'Orders.offerForm.products.assembly' | translate}}</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="offer-form-price-value">{{ prices.assemblyPrice }} {{ prices.assemblyCurrency }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div style="display: flex; align-items: center;">
+                        <butor-form-checkbox style="padding-bottom: 1rem;" #installationCheckbox></butor-form-checkbox>
+                        <div class="price-category-title">{{'Orders.offerForm.products.installation' | translate}}</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div *ngIf="installationService.basicFeePrice" class="offer-form-price-value">{{ prices.installationPrice }} {{ prices.installationCurrency }} ({{'Orders.offerForm.products.basicFee' | translate}} {{ installationService.basicFeePrice }}
+                        {{ installationService.basicFeeCurrency }})
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div style="display: flex; align-items: center;">
+                        <butor-form-checkbox style="padding-bottom: 1rem;" #shippingCheckbox></butor-form-checkbox>
+                        <div class="price-category-title">{{'Orders.offerForm.shipping' | translate}}</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div *ngIf="shippingService.basicFeePrice" class="offer-form-price-value">{{ prices.shippingPrice }} {{ prices.shippingCurrency }} ({{'Orders.offerForm.products.basicFee' | translate}} {{ shippingService.basicFeePrice }}
+                        {{ shippingService.basicFeeCurrency }})
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{'Orders.offerForm.products.distance' | translate}}
+                </div>
+                <div class="col">
+                    <ng-select placeholder="Choose" highlightColor="#9575cd" highlightTextColor="#fff"
+                        bindLabel="description" bindValue="id" [items]="distanceDropDown"
+                        (change)="changeDistance($event)" [clearable]="false" [(ngModel)]="shippingPriceId">
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col price-category-title">{{'Orders.offerForm.products.products' | translate}}</div>
+                <div class="col offer-form-price-value">{{ prices.productsPrice }} {{ prices.productsCurrency }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div style="display: flex; align-items: center;">
+                        <butor-form-checkbox style="padding-bottom: 1rem;" #vatCheckbox></butor-form-checkbox>
+                        <div class="price-category-title">{{'Orders.offerForm.products.vat' | translate}}</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="offer-form-price-value">{{ prices.vatPrice }} {{ prices.vatCurrency }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="price-category-title">{{'Orders.offerForm.products.total' | translate}}</div>
+            <div class="total-price">{{ prices.totalPrice }} {{ prices.totalCurrency }}</div>
+        </div>
+    </div>
+    <div class="offer-information">
+        A szerelési árajánlat nem tartalmazza a víz, villany, gáz és a légtechnikai bekötések költségeit. Vállalási
+        határidő: 4-6 hét. Teljeskörű bútorgarancia: 3 év.
+    </div>
+</div>
+
+<div class="row under-line">
+    <div class="col d-flex justify-content-between u-p">
+        <label class="popup-title">
+            {{'Orders.offerForm.products.TopCabinets' | translate}}
+        </label>
+        <button mat-button class="btn btn-primary" (click)="addTopCabinet()" type="button">{{'Orders.offerForm.products.buttons.AddTopCabinet' | translate}}</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table cdk-table [dataSource]="topCabinetDataSource" class="table-standard table-bc"
+            *ngIf="topCabinetDataSource">
+
+            <ng-container cdkColumnDef="src">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <img src="{{ row.src }}" class="img-small">
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="name">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.name' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"><b>{{ row.name }}</b></td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="code">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.code' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="width">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.width' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.width }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="depth">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.depth' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.depth }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="height">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.height' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.height }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="price">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.price' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.quantity' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.quantity }}
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="subtotal">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.subtotal' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"><b>{{ row.subtotal }} {{ row.subtotalCurrency }}</b></td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="menu">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <butor-btn-hamburger>
+                        <butor-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                            buttonText="{{'Orders.buttons.delete' | translate}}" (click)="deleteCabinet(row.unitId)">
+                        </butor-btn-hamburger-inside>
+                    </butor-btn-hamburger>
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row
+                *cdkHeaderRowDef="['src','name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal', 'menu'];">
+            </tr>
+
+            <tr cdk-row
+                *cdkRowDef="let row; columns: ['src','name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal', 'menu']">
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="row under-line">
+    <div class="col d-flex justify-content-between u-p">
+        <label class="popup-title">
+            {{'Orders.offerForm.products.BaseCabinets' | translate}}
+        </label>
+        <div>
+            <button mat-button class="btn btn-primary" (click)="addBaseCabinet()" type="button">
+                {{'Orders.offerForm.products.buttons.AddBaseCabinet' | translate}}</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table cdk-table [dataSource]="baseCabinetDataSource" class="table-standard table-bc"
+            *ngIf="baseCabinetDataSource">
+
+            <ng-container cdkColumnDef="src">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <img src="{{ row.src }}" class="img-small">
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="name">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.name' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.name }} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="code">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.code' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="width">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.width' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.width }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="depth">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.depth' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.depth }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="height">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.height' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.height }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="price">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.price' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.quantity' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.quantity }}
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="subtotal">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.subtotal' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.subtotal }} {{ row.subtotalCurrency }}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="menu">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <butor-btn-hamburger>
+                        <butor-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                            buttonText="{{'Orders.buttons.delete' | translate}}" (click)="deleteCabinet(row.unitId)">
+                        </butor-btn-hamburger-inside>
+                    </butor-btn-hamburger>
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row
+                *cdkHeaderRowDef="['src','name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal', 'menu'];">
+            </tr>
+
+            <tr cdk-row
+                *cdkRowDef="let row; columns: ['src','name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal', 'menu']">
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="row under-line">
+    <div class="col d-flex justify-content-between u-p">
+        <label class="popup-title">
+            {{'Orders.offerForm.products.TallCabinets' | translate}}
+        </label>
+        <button mat-button class="btn btn-primary" (click)="addTallCabinet()" type="button">{{'Orders.offerForm.products.buttons.AddTallCabinet' | translate}}</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table cdk-table [dataSource]="tallCabinetDataSource" class="table-standard table-bc"
+            *ngIf="tallCabinetDataSource">
+
+            <ng-container cdkColumnDef="src">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <img src="{{ row.src }}" class="img-small">
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="name">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.name' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"><b>{{ row.name }}</b></td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="code">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.code' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="width">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.width' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.width }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="depth">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.depth' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.depth }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="height">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.height' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.height }} mm
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="price">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.price' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.quantity' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.quantity }}
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="subtotal">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.subtotal' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"><b>{{ row.subtotal }} {{ row.subtotalCurrency }}</b></td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="menu">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <butor-btn-hamburger>
+                        <butor-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                            buttonText="{{'Orders.buttons.delete' | translate}}" (click)="deleteCabinet(row.unitId)">
+                        </butor-btn-hamburger-inside>
+                    </butor-btn-hamburger>
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row
+                *cdkHeaderRowDef="['src','name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal', 'menu'];">
+            </tr>
+
+            <tr cdk-row
+                *cdkRowDef="let row; columns: ['src','name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal', 'menu']">
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="row under-line">
+    <div class="col d-flex justify-content-between u-p">
+        <label class="popup-title">
+            {{'Orders.offerForm.products.Appliances' | translate}}
+        </label>
+        <button mat-button class="btn btn-primary" (click)="addApplience()" type="button">{{'Orders.offerForm.products.buttons.AddAppliance' | translate}}</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table cdk-table [dataSource]="appliancesDataSource" class="table-standard table-bc"
+            *ngIf="appliancesDataSource">
+
+            <ng-container cdkColumnDef="src">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <img src="{{ row.src }}" class="img-small">
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="name">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.name' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"><b>{{ row.name }}</b></td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="code">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.code' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="price">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.price' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.quantity' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.quantity }}
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="subtotal">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.subtotal' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.subtotal }} {{ row.subtotalCurrency }}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="menu">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <butor-btn-hamburger>
+                        <butor-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                            buttonText="{{'Orders.buttons.delete' | translate}}" (click)="deleteAppli(row.id)">
+                        </butor-btn-hamburger-inside>
+                    </butor-btn-hamburger>
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row *cdkHeaderRowDef="['src','name', 'code', 'price', 'quantity', 'subtotal', 'menu'];">
+            </tr>
+
+            <tr cdk-row *cdkRowDef="let row; columns: ['src','name', 'code', 'price', 'quantity', 'subtotal', 'menu']">
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="row under-line">
+    <div class="col d-flex justify-content-between u-p">
+        <label class="popup-title">
+            {{'Orders.offerForm.products.Accessories' | translate}}
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table cdk-table [dataSource]="accessoriesDataSource" class="table-standard table-bc"
+            *ngIf="accessoriesDataSource">
+
+            <ng-container cdkColumnDef="src">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <img src="{{ row.src }}" class="img-small">
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="name">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.name' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.name }} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="code">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.code' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="price">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.price' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.quantity' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    {{ row.quantity }}
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="subtotal">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Orders.offerForm.products.tableHeader.subtotal' | translate}}"
+                        cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{ row.subtotal }} {{ row.subtotalCurrency }}</td>
+            </ng-container>
+
+            <tr cdk-header-row *cdkHeaderRowDef="['src','name', 'code', 'price', 'quantity', 'subtotal'];">
+            </tr>
+
+            <tr cdk-row *cdkRowDef="let row; columns: ['src','name', 'code', 'price', 'quantity', 'subtotal']">
+            </tr>
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{
+  "api_config": {
+    "api_config_path": "../data/api_config.json",
+    "login_data": {
+      "email": "enco@enco.hu",
+      "password": "password",
+      "rememberMe": true
+    }
+  },
+  "recommend_param": {
+    "apriori_args": {
+      "min_support": 0.2,
+      "min_confidence": 0.6
+    },
+    "trend_args": {
+      "from_date": "2015-01-01"
+    }
+  },
+  "recommend_service": {
+    "host": "localhost",
+    "port": 5001
+  }
+}

@@ -1,0 +1,333 @@
+@import "../../../../scss/variables";
+@import '../../../../scss/font/scss/favicons';
+
+
+
+#menu_container {
+    position: relative;
+}
+
+
+
+.container__menu {
+    background-color: $color-bc-menu;
+    color: $color-menu;
+    font-size: 1.6rem;
+    padding: 0;
+    height: 100%;
+    max-height: 100%;
+    min-height: 100vh;
+    position: relative;
+
+    &--small {
+        position: absolute;
+        left: 2rem;
+        background-color: $color-bc-menu;
+        z-index: 2;
+
+    }
+
+    .active {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    &-title {
+        display: flex;
+        flex-direction: column;
+        padding-left: 2rem;
+
+        &--close {
+            display: none;
+        }
+
+    }
+
+    .profile-sml {
+        width: 3.7rem;
+        height: 3.7rem;
+        margin: 1.8rem 0;
+
+        &__pic {
+            width: 100%;
+            height: 100%;
+            clip-path: circle(50% at 50% 50%);
+            position: relative;
+            backface-visibility: hidden;
+
+        }
+
+        // top: 50%;
+        // transform: translateY(-50%);
+    }
+
+    &-section {
+        display: flex;
+        justify-content: center;
+
+        &-header {
+            display: flex;
+            align-items: center;
+            padding: 1.8rem 3rem;
+
+            hr {
+                display: none;
+            }
+
+            &-close-menu {
+                display: flex;
+                align-items: center;
+                flex-direction: column-reverse;
+
+                .container__menu-iconmenu {
+                    font-size: 2rem;
+                    color: $color-white-primary;
+                    margin: 1rem 0;
+                }
+
+            }
+        }
+    }
+
+    &-name {
+        color: rgba(255, 255, 255, 1);
+        white-space: nowrap;
+    }
+
+    &-role {
+        line-height: 1.5rem;
+        white-space: nowrap;
+
+    }
+
+    &-iconmenu {
+        font-size: 2rem;
+        color: $color-white-primary;
+        margin: 1rem 0;
+        margin-left: auto;
+    }
+
+
+
+    .menu__title {
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-left: 3.6rem;
+
+        &--close {
+            display: none;
+        }
+    }
+
+    &-ul {
+        list-style: none;
+        margin-bottom: 2rem;
+        width: 100%;
+
+       
+
+        &-open {
+            list-style: none;
+            padding-left: 7.5rem;
+
+            &:first-child {}
+        }
+    }
+
+    &-li {
+        &-open {}
+    }
+
+    &-a {
+        padding: 0.84rem 3rem;
+
+        &-header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            padding-bottom: 2.5rem;
+        }
+
+        &--close {
+            padding: 0.84rem;
+            display: flex;
+            justify-content: center;
+
+            span {
+                display: none;
+            }
+            &,
+            &:link,
+            &:active {
+                text-decoration: none;
+                color: $color-menu;
+
+            }
+
+            i {
+                font-size: 2rem;
+            }
+            &-prod {
+                padding: 0.84rem;
+                display: flex;
+                justify-content: center;
+    
+                span {
+                    display: none;
+                }
+                &:active,
+                &:hover {
+                    background-color: rgba(0, 29, 45, 1);
+                    text-decoration: none;
+                }
+            }
+
+            &:active,
+            &:hover {
+                background-color: rgba(0, 29, 45, 1);
+                color: $color-white-primary !important;
+                text-decoration: none;
+            }
+
+            &,
+            &:link,
+            &:active {
+                text-decoration: none;
+                color: $color-menu;
+
+            }
+
+            i {
+                font-size: 2rem;
+            }
+        }
+
+    
+        &:active,
+        &:hover {
+            background-color: rgba(0, 29, 45, 1);
+            color: $color-white-primary !important;
+            text-decoration: none;
+        }
+
+        &-open {
+
+            &,
+            &:link,
+            &:active {
+                text-decoration: none;
+                color: $color-menu;
+
+            }
+
+            span {
+                font-size: 1.3rem;
+                // margin-left: 4.3rem;
+                font-weight: 600;
+            }
+        }
+
+
+        &,
+        &:link {
+            font-size: 1.6rem;
+            color: $color-menu;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+        }
+
+        span {
+            font-size: 1.6rem;
+            margin-left: 1.9rem;
+            flex-grow: 2;
+        }
+
+        i {
+            font-size: 2rem;
+        }
+
+    }
+}
+
+footer {
+    padding: 0.84rem 3rem;
+    font-size: 1.3rem;
+    line-height: 1.56rem;
+
+}
+
+.language {
+    display: flex;
+    padding-bottom: 0.75rem;
+
+    button {
+        background: transparent;
+        border: none;
+        outline: none;
+
+        & {
+            text-decoration: none;
+            color: $color-menu;
+            padding-right: .7rem;
+            border-right: 1px solid $color-menu;
+            font-size: 1.3rem;
+            line-height: normal;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+
+            &:not(:first-child) {
+                padding-left: .7rem;
+            }
+
+            &:last-child {
+                border: none;
+            }
+
+        }
+    }
+}
+
+.logout {
+    cursor: pointer;
+}
+
+.activate {
+    color: $color-white-primary !important;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid $color-menu;
+    padding: 0;
+    width: 100%;
+}
+
+.upload-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 2.5rem;
+
+    div {
+        padding-top: 1rem;
+    }
+
+
+}
+
+/deep/ .mat-progress-bar-fill::after {
+    background-color: rgba(0, 186, 255, 1);
+}
+
+/deep/ .mat-progress-bar-buffer {
+    background-color: rgba(248, 247, 255, 1);
+}

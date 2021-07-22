@@ -1,0 +1,92 @@
+<div class="conatiner">
+    <div class="dialog-title">
+        {{ title }}
+    </div>
+    <form [formGroup]="decorboardForm">
+        <div class="row">
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.CODE' | translate}}">
+                    <butor-form-input [(ngModel)]="decorboard.code" formControlName="code" #codeInput name="code">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.DESCRIPTION' | translate}}">
+                    <butor-form-input [(ngModel)]="decorboard.description" formControlName="description"
+                        name="description">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.CATEGORY' | translate}}">
+                    <ng-select name="category" formControlName="category" [items]="categories" highlightColor="#9575cd"
+                        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false"
+                        [(ngModel)]="selectedCategory" (change)="categoryChange()">
+                    </ng-select>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.Picture' | translate}}">
+                    <butor-upload-pic [name]="decorboard.picture.fileName" [folder]="decorboard.picture.containerName"
+                        (nameOutput)="getFileName($event)" (folderOutput)="getFolderName($event)" *ngIf="!isLoading">
+                    </butor-upload-pic>
+                </butor-form-field>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.Length' | translate}}">
+                            <butor-form-input name="length" type="number" [(ngModel)]="decorboard.length"
+                                formControlName="length" append="mm">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.Width' | translate}}">
+                            <butor-form-input name="width" type="number" [(ngModel)]="decorboard.width"
+                                formControlName="width" append="mm">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field
+                            label="{{'Materials.DECORBOARDS.newDecorboard.labels.Thickness' | translate}}">
+                            <butor-form-input name="thickness" type="number" [(ngModel)]="decorboard.thickness"
+                                formControlName="thickness" append="mm">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.Fiberheading' | translate}}">
+                    <butor-form-checkbox
+                        label="{{'Materials.DECORBOARDS.newDecorboard.labels.Fiberheading' | translate}}"
+                        formControlName="fiberHeadingIsChecked">
+                    </butor-form-checkbox>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.Purchasingprice' | translate}}">
+                    <div class="row">
+                        <div class="col-9">
+                            <butor-form-input name="purchasingPrice" type="number"
+                                [(ngModel)]="decorboard.purchasingPrice" formControlName="purchasingPrice">
+                            </butor-form-input>
+                        </div>
+                        <div class="col-3">
+                            <ng-select name="currency" formControlName="currency" [items]="currencies"
+                                highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="options" bindValue="value"
+                                [clearable]="false" [(ngModel)]="selectedCurrency" (change)="currencyChange()">
+                            </ng-select>
+                        </div>
+                    </div>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.DECORBOARDS.newDecorboard.labels.Transactionprice' | translate}}">
+                    <butor-form-input type="number" [(ngModel)]="decorboard.transactionPrice"
+                        formControlName="transactionPrice" name="transactionPrice" append="%"></butor-form-input>
+                </butor-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button mat-button matRipple class="btn btn-text-only u-margin-btn-right"
+                    (click)="cancel()">{{'Materials.DECORBOARDS.newDecorboard.buttons.Cancel' | translate}}</button>
+                <button mat-button matRipple class="btn btn-primary u-margin-btn-right" [disabled]="decorboardForm.invalid || !decorboard.picture.fileName"
+                    (click)="addNewDecorboard()">{{'Materials.DECORBOARDS.newDecorboard.buttons.Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

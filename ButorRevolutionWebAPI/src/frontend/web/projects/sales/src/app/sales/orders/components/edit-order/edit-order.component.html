@@ -1,0 +1,114 @@
+<form [formGroup]="editOrderForm">
+    <mat-dialog-content>
+        <div class="container">
+            <h3>{{'Orders.editOrder.title' | translate}}</h3>
+            <butor-form-field label="{{'Orders.editOrder.orderName' | translate}}">
+                {{f.orderName.value}}
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.editOrder.currentStatus' | translate}}">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="statuses" bindLabel="translation"
+                    bindValue="id" formControlName="currentStatusId" [clearable]="false"></ng-select>
+                <div *ngIf="submitted && f.currentStatusId.errors" class="error">
+                    <div *ngIf="f.currentStatusId.errors.required">{{'Orders.editOrder.error.state' | translate}}</div>
+                </div>
+            </butor-form-field>
+            <div class="row">
+                <div class="col-5">
+                    <butor-form-field label="{{'Orders.editOrder.statusDeadline' | translate}}">
+                        <div style="display: flex;">
+                            <i class="icon icon-appointments_active" (click)="current_picker.open()"></i>
+                            <input class="datepicker-input" [matDatepicker]="current_picker" placeholder="{{'Orders.editOrder.placeholder.date' | translate}}"
+                                (click)="current_picker.open()" formControlName="statusDeadline" [min]="minDate">
+                        </div>
+                        <div *ngIf="submitted && f.statusDeadline.errors" class="error">
+                            <div *ngIf="f.statusDeadline.errors.required">{{'Orders.editOrder.error.deadline' | translate}}</div>
+                        </div>
+                        <mat-datepicker #current_picker></mat-datepicker>
+                    </butor-form-field>
+                </div>
+                <div class="col-7">
+                    <butor-form-field label="{{'Orders.editOrder.responsible' | translate}}">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="sales" bindLabel="name"
+                            bindValue="id" formControlName="responsibleId" [clearable]="false"></ng-select>
+                    </butor-form-field>
+                </div>
+            </div>
+            <butor-form-field label="{{'Orders.editOrder.customer' | translate}}">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="customers" bindLabel="name"
+                    bindValue="id" formControlName="customerId" (search)="searchCustomers($event.term)"
+                    placeholder="{{'Orders.editOrder.placeholder.customer' | translate}}" [clearable]="false"></ng-select>
+                <div *ngIf="submitted && f.customerId.errors" class="error">
+                    <div *ngIf="f.customerId.errors.required">{{'Orders.editOrder.error.customer' | translate}}</div>
+                </div>
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.editOrder.shippingAddress' | translate}}">
+            </butor-form-field>
+            <div class="row">
+                <div class="col-4">
+                    <butor-form-field>
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries"
+                            bindLabel="translation" bindValue="id" formControlName="countryId" placeholder="{{'Orders.editOrder.placeholder.country' | translate}}"
+                            [clearable]="false">
+                        </ng-select>
+                        <div *ngIf="submitted && f.countryId.errors" class="error">
+                            <div *ngIf="f.countryId.errors.required">{{'Orders.editOrder.error.country' | translate}}</div>
+                        </div>
+                    </butor-form-field>
+                </div>
+                <div class="col-3">
+                    <butor-form-field>
+                        <butor-form-input formControlName="postCode" placeholder="{{'Orders.editOrder.placeholder.postcode' | translate}}"></butor-form-input>
+                        <div *ngIf="submitted && f.postCode.errors" class="error">
+                            <div *ngIf="f.postCode.errors.required">{{'Orders.editOrder.error.postcode' | translate}}</div>
+                        </div>
+                    </butor-form-field>
+                </div>
+                <div class="col-5">
+                    <butor-form-field>
+                        <butor-form-input formControlName="city" placeholder="{{'Orders.editOrder.placeholder.city' | translate}}"></butor-form-input>
+                        <div *ngIf="submitted && f.city.errors" class="error">
+                            <div *ngIf="f.city.errors.required">{{'Orders.editOrder.error.city' | translate}}</div>
+                        </div>
+                    </butor-form-field>
+                </div>
+                <div class="col-12">
+                    <butor-form-field>
+                        <butor-form-input formControlName="address" placeholder="{{'Orders.editOrder.placeholder.address' | translate}}"></butor-form-input>
+                        <div *ngIf="submitted && f.address.errors" class="error">
+                            <div *ngIf="f.address.errors.required">{{'Orders.editOrder.error.address' | translate}}</div>
+                        </div>
+                    </butor-form-field>
+                </div>
+            </div>
+            <butor-form-field label="{{'Orders.editOrder.sales' | translate}}">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="sales" bindLabel="name"
+                    bindValue="id" formControlName="salesId" [clearable]="false"></ng-select>
+                <div *ngIf="submitted && f.salesId.errors" class="error">
+                    <div *ngIf="f.salesId.errors.required">{{'Orders.editOrder.error.sales' | translate}}</div>
+                </div>
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.editOrder.deadline' | translate}}">
+            </butor-form-field>
+            <div class="row">
+                <div class="col-5">
+                    <butor-form-field>
+                        <div style="display: flex;">
+                            <i class="icon icon-appointments_active" (click)="picker.open()"></i>
+                            <input class="datepicker-input" [matDatepicker]="picker" placeholder="Choose a date"
+                                (click)="picker.open()" formControlName="deadline" [min]="minDate">
+                        </div>
+                        <div *ngIf="submitted && f.deadline.errors" class="error">
+                            <div *ngIf="f.deadline.errors.required">{{'Orders.editOrder.error.deadline' | translate}}</div>
+                        </div>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </butor-form-field>
+                </div>
+            </div>
+
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="d-flex justify-content-end u-margin-top button-wrapper">
+        <button mat-button class="btn btn-text-only u-margin-btn-right" (click)="cancel()">{{'Orders.editOrder.cancel' | translate}}</button>
+        <button mat-button class="btn btn-primary" (click)="save()">{{'Orders.editOrder.save' | translate}}</button>
+    </mat-dialog-actions>
+</form>

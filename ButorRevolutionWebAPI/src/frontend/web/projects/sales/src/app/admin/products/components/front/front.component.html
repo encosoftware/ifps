@@ -1,0 +1,129 @@
+<mat-dialog-content>
+    <div class="container" *ngIf="!isLoading">
+        <h3>{{'products.editProducts.Front.AddFront.title' | translate}}</h3>
+        <form [formGroup]="frontForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-6">
+                    <butor-form-field label="{{'products.editProducts.Front.AddFront.labels.Name' | translate}}">
+                        <butor-form-input formControlName="name"></butor-form-input>
+                        <div *ngIf="submitted && f.name.errors" class="input-error">
+                            <div *ngIf="f.name.errors.required">Name is required</div>
+                        </div>
+                    </butor-form-field>
+                    <butor-form-field
+                        label="{{'products.editProducts.Front.AddFront.labels.Materialcode' | translate}}">
+                        <ng-select formControlName="code" highlightColor="#9575cd" highlightTextColor="#fff"
+                            [items]="materials" bindLabel="code" bindValue="id" (change)="changeMaterial($event.id)">
+                        </ng-select>
+                        <div *ngIf="submitted && f.code.errors" class="input-error">
+                            <div *ngIf="f.code.errors.required">Code is required</div>
+                        </div>
+                    </butor-form-field>
+                    <butor-form-field label="{{'products.editProducts.Front.AddFront.labels.Description' | translate}}">
+                        <img *ngIf="currentMaterial.src !== '' && currentMaterial.src !== undefined"
+                            src="{{currentMaterial.src}}" alt="Material" height="120" width="120">
+                        <butor-form-textarea formControlName="materialDescription"
+                            [(ngModel)]="currentMaterial.description" [disabled]="true"></butor-form-textarea>
+                    </butor-form-field>
+                    <div class="row" formGroupName="size">
+                        <div class="col-5">
+                            <butor-form-field
+                                label="{{'products.editProducts.Front.AddFront.labels.Width' | translate}}">
+                                <butor-form-input append="mm" type="number" formControlName="width">
+                                </butor-form-input>
+                                <div *ngIf="submitted && f.size.controls.width.errors" class="input-error">
+                                    <div *ngIf="f.size.controls.width.errors.required">Width is required</div>
+                                </div>
+                            </butor-form-field>
+                        </div>
+                        <div class="col-5">
+                            <butor-form-field
+                                label="{{'products.editProducts.Front.AddFront.labels.Height' | translate}}">
+                                <butor-form-input append="mm" type="number" formControlName="height">
+                                </butor-form-input>
+                                <div *ngIf="submitted && f.size.controls.height.errors" class="input-error">
+                                    <div *ngIf="f.size.controls.height.errors.required">Height is required</div>
+                                </div>
+                            </butor-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <butor-form-field
+                                label="{{'products.editProducts.Front.AddFront.labels.Amount' | translate}}">
+                                <butor-form-input append="db" type="number" formControlName="amount">
+                                </butor-form-input>
+                                <div *ngIf="submitted && f.amount.errors" class="input-error">
+                                    <div *ngIf="f.amount.errors.required">Amount is required</div>
+                                </div>
+                            </butor-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" formGroupName="edging">
+                    <butor-form-field label="{{'products.editProducts.Front.AddFront.labels.Edging' | translate}}">
+                        <butor-form-checkbox
+                            label="{{'products.editProducts.Front.AddFront.labels.allside' | translate}}"
+                            [value]="checkBoxAble" (change)="toggleDisabled($event)">
+                        </butor-form-checkbox>
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" formControlName="all" (change)="changeAll($event.id)">
+                        </ng-select>
+                        <div *ngIf="submitted && f.edging.controls.all.errors" class="input-error">
+                            <div *ngIf="f.edging.controls.all.errors.required">Edging material is required</div>
+                        </div>
+                        <label class="form-label-sm"
+                            [ngStyle]="{'color': checkBoxAble ? 'rgba(0, 0, 0, .4)': 'rgba(0, 0, 0, 1)'}">{{'products.editProducts.Front.AddFront.labels.Top' | translate}}
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils"
+                                bindLabel="code" bindValue="id" formControlName="top">
+                            </ng-select>
+                            <div *ngIf="submitted && f.edging.controls.top.errors" class="input-error">
+                                <div *ngIf="f.edging.controls.top.errors.required">Top material is required</div>
+                            </div>
+                        </label>
+                        <label class="form-label-sm"
+                            [ngStyle]="{'color': checkBoxAble ? 'rgba(0, 0, 0, .4)': 'rgba(0, 0, 0, 1)'}">{{'products.editProducts.Front.AddFront.labels.Bottom' | translate}}
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils"
+                                bindLabel="code" bindValue="id" formControlName="bottom">
+                            </ng-select>
+                            <div *ngIf="submitted && f.edging.controls.bottom.errors" class="input-error">
+                                <div *ngIf="f.edging.controls.bottom.errors.required">Bottom material is required</div>
+                            </div>
+                        </label>
+                        <label class="form-label-sm"
+                            [ngStyle]="{'color': checkBoxAble ? 'rgba(0, 0, 0, .4)': 'rgba(0, 0, 0, 1)'}">{{'products.editProducts.Front.AddFront.labels.Right' | translate}}
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils"
+                                bindLabel="code" bindValue="id" formControlName="right">
+                            </ng-select>
+                            <div *ngIf="submitted && f.edging.controls.right.errors" class="input-error">
+                                <div *ngIf="f.edging.controls.right.errors.required">Right material is required</div>
+                            </div>
+                        </label>
+                        <label class="form-label-sm"
+                            [ngStyle]="{'color': checkBoxAble ? 'rgba(0, 0, 0, .4)': 'rgba(0, 0, 0, 1)'}">{{'products.editProducts.Front.AddFront.labels.Left' | translate}}
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils"
+                                bindLabel="code" bindValue="id" formControlName="left">
+                            </ng-select>
+                            <div *ngIf="submitted && f.edging.controls.left.errors" class="input-error">
+                                <div *ngIf="f.edging.controls.left.errors.required">Left material is required</div>
+                            </div>
+                        </label>
+                    </butor-form-field>
+                </div>
+            </div>
+
+            <butor-form-field>
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()"
+                                type="button">{{'products.editProducts.Front.AddFront.buttons.Cancel' | translate}}</button>
+                            <button class="btn btn-primary" mat-button matRipple
+                                type="submit">{{'products.editProducts.Front.AddFront.buttons.Save' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </butor-form-field>
+        </form>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,140 @@
+<div class="d-flex justify-content-between">
+    <h3>{{'OrderScheduling.title' | translate}}</h3>
+    <button mat-button matRipple class="btn btn-primary" [disabled]="isSelectedItem()" (click)="optimisation()"
+        *factoryClaims="claimPolicyEnum[14]">{{'OrderScheduling.optimisation' | translate}}</button>
+</div>
+<div class="scroll-container">
+    <perfect-scrollbar>
+        <form [formGroup]="orderSchedulingForm" class="scroll-form">
+            <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+                <ng-container cdkColumnDef="checkbox">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <div *ngIf="dataSource.items.length > 0" class="table-checkbox-container">
+                            <label class="form__checkbox-group" (click)="$event.stopPropagation();">
+                                <input [(ngModel)]="allChecked" [ngModelOptions]="{standalone: true}"
+                                    class="form__checkbox-input" type="checkbox"
+                                    (change)="toggleAllCheckbox($event.target.checked)">
+                                <span [attr.class]="checkmarkClass"></span>
+                            </label>
+                        </div>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <div *ngIf="row.selectable === true">
+                            <butor-form-checkbox [(ngModel)]="row.isSelected" [ngModelOptions]="{standalone: true}"
+                                (change)="toggleCheckbox()">
+                            </butor-form-checkbox>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="orderName">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'OrderScheduling.orderName' | translate}}" cType='filter'>
+                            <butor-form-input formControlName="orderName"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        {{row.orderName}}
+                    </td>
+
+                </ng-container>
+
+                <ng-container cdkColumnDef="workingNr">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'OrderScheduling.workingNr' | translate}}" cType='filter'>
+                            <butor-form-input formControlName="workingNr"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.workingNr}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="statusId">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'OrderScheduling.currentStatus' | translate}}" cType='filter'>
+                            <ng-select [items]="statusesDropDown" highlightColor="#9575cd" highlightTextColor="#fff"
+                                formControlName="statusId" [clearable]="false" bindLabel="name" bindValue="id">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <span
+                            [ngClass]="{'order-scheduling-status': (row.selectable === false && row.showStatus === false),
+                                      'order-scheduling-status-blue': (row.selectable === false && row.showStatus === true),
+                                      'order-scheduling-status-green': (row.selectable === true && row.showStatus === false)}">
+                            {{row.status}}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <!-- <ng-container cdkColumnDef="estimatedProcessTime">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'OrderScheduling.estimatedProcessTime' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <ng-container *ngIf="row.showTime === true">
+                        {{row.estimatedProcessTime | secToHourMinSec | date:'HH:mm:ss'}}</ng-container>
+                </td>
+            </ng-container> -->
+
+                <ng-container cdkColumnDef="deadline">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'OrderScheduling.deadline' | translate}}" cType='filter'>
+                            <ng-select [items]="deadlineDropdown" highlightColor="#9575cd" highlightTextColor="#fff"
+                                formControlName="deadline" [clearable]="false" bindLabel="name" bindValue="toDate">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        {{row.deadline | date:'y.MM.dd'}}
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="clearFilter">
+                    <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                                class="icon icon-clear"></i>{{'OrderScheduling.clearFilter' | translate}}</a> </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <factory-new-window *ngIf="row.showStatus" [template]="factory">
+                            <button mat-button matRipple class="btn btn-primary"
+                                type="button">{{'OrderScheduling.status' | translate}}</button>
+                        </factory-new-window>
+                        <ng-template #factory>
+                            <factory-under-production [orderId]="row.orderId"
+                                (deleteItem)="deleteFromProdDetails($event)">
+                            </factory-under-production>
+                        </ng-template>
+                        <button *ngIf="row.selectable" mat-button matRipple class="btn btn-primary" type="button"
+                            (click)="freeUp(row.orderId)">{{'OrderScheduling.FreeUp' | translate}}</button>
+                        <button *ngIf="row.showOrderMaterial" mat-button matRipple class="btn btn-primary" type="button"
+                            (click)="orderMaterials(row.orderId)">{{'OrderScheduling.OrderMaterials' | translate}}</button>
+                        <button *ngIf="row.showReserve" mat-button matRipple class="btn btn-primary" type="button"
+                            (click)="reserve(row.orderId)">{{'OrderScheduling.Reserve' | translate}}</button>
+                        <button style="margin-left: 1rem;" mat-button matRipple class="btn btn-primary" (click)="printQrCode(row.orderId)">
+                            {{'OrderScheduling.button.printQRCode' | translate}}
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr cdk-header-row
+                    *cdkHeaderRowDef="['checkbox','orderName', 'workingNr', 'statusId',  'deadline', 'clearFilter'];sticky:true;">
+                </tr>
+
+                <tr cdk-row
+                    *cdkRowDef="let row; columns: ['checkbox','orderName', 'workingNr', 'statusId',  'deadline', 'clearFilter']">
+                </tr>
+
+            </table>
+
+            <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+                [pageIndex]="dataSource.pageIndex"
+                [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+            </mat-paginator>
+
+            <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+            <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}
+            </div>
+
+        </form>
+    </perfect-scrollbar>
+</div>

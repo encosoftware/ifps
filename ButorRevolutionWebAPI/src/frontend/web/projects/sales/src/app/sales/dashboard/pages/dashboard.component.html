@@ -1,0 +1,38 @@
+<butor-layout-two-col>
+  <butor-layout-panel-right>
+    <butor-panel [templateAction]='titleAppointment' [templateTop]='bodyAppointment'>
+      <ng-template #titleAppointment>
+        <div class="d-flex justify-content-between">
+          <div class="panel-header">
+            {{currentDate | date:'yyyy MM. dd.'}}
+          </div>
+          <div>
+            <button class="arrow-button" mat-button matRipple (click)="previousDay()">
+              <i class="icon icon-blackarrow_black_left"></i>
+            </button>
+            <button class="arrow-button" mat-button matRipple (click)="nextDay()">
+              <i class="icon icon-blackarrow_black_right"></i>
+            </button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #bodyAppointment>
+        <butor-appointments [appointmentsDataSource]="appointmentsDataSource"></butor-appointments>
+      </ng-template>
+    </butor-panel>
+  </butor-layout-panel-right>
+  <butor-layout-panel-left>
+    <mat-tab-group class="tab-group left" disableRipple>
+      <mat-tab label="{{'Dashboard.myTickets' | translate}}">
+        <perfect-scrollbar>
+          <butor-tickets [ticketsDataSource]="ownTicketsDataSource"></butor-tickets>
+        </perfect-scrollbar>
+      </mat-tab>
+      <mat-tab label="{{'Dashboard.allTickets' | translate}}" class="popup-title">
+        <perfect-scrollbar>
+          <butor-tickets [ticketsDataSource]="allTicketsDataSource"></butor-tickets>
+        </perfect-scrollbar>
+      </mat-tab>
+    </mat-tab-group>
+  </butor-layout-panel-left>
+</butor-layout-two-col>

@@ -1,0 +1,56 @@
+<form [formGroup]="newVenueForm" (ngSubmit)="onSubmit()">
+    <h3>
+        {{'Venues.NewVenues.title' | translate}}
+    </h3>
+    <butor-form-field label="{{'Venues.NewVenues.labels.Name' | translate}}">
+        <butor-form-input formControlName="name" name="name"></butor-form-input>
+    </butor-form-field>
+    <butor-form-field label="{{'Venues.NewVenues.labels.PhoneNumber' | translate}}">
+        <butor-form-input formControlName="phone" name="phone"></butor-form-input>
+    </butor-form-field>
+    <butor-form-field label="{{'Venues.NewVenues.labels.Email' | translate}}">
+        <butor-form-input formControlName="email" name="email"></butor-form-input>
+    </butor-form-field>
+    <butor-form-field label="{{'Venues.NewVenues.labels.Address' | translate}}">
+        <div class="row">
+            <div class="col-4">
+                <butor-form-field>
+                    <ng-select *ngIf="countries" highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries"
+                        bindLabel="translation" bindValue="id" formControlName="saCountry" placeholder="{{'Venues.NewVenues.Placeholders.Country' | translate}}" name="saCountry"></ng-select>
+                </butor-form-field>
+            </div>
+            <div class="col-3">
+                <butor-form-field>
+                    <butor-form-input formControlName="saPostCode" placeholder="{{'Venues.NewVenues.Placeholders.Postcode' | translate}}" name="Postcode">
+                    </butor-form-input>
+                    <div *ngIf="submitted && f.saPostCode.errors" class="error">
+                        <div *ngIf="f.saPostCode.errors.required">Postcode is required</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-5">
+                <butor-form-field>
+                    <butor-form-input formControlName="saCity" placeholder="{{'Venues.NewVenues.Placeholders.City' | translate}}" name="City"></butor-form-input>
+                    <div *ngIf="submitted && f.saCity.errors" class="error">
+                        <div *ngIf="f.saCity.errors.required">City is required</div>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+    </butor-form-field>
+    <butor-form-field>
+        <butor-form-input formControlName="shoppingAdress" placeholder="{{'Venues.NewVenues.Placeholders.Address' | translate}}" name="Address"></butor-form-input>
+        <div *ngIf="submitted && f.shoppingAdress.errors" class="error">
+            <div *ngIf="f.shoppingAdress.errors.required">Address is required</div>
+        </div>
+    </butor-form-field>
+    <div class="row u-margin-top">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()"
+                    type="button">{{'Venues.NewVenues.buttons.Cancel' | translate}}</button>
+                <button class="btn btn-primary" mat-button matRipple type="submit" [disabled]="!newVenueForm.valid">{{'Venues.NewVenues.buttons.Add' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</form>

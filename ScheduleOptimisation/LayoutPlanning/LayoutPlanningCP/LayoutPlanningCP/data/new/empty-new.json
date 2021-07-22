@@ -1,0 +1,872 @@
+{
+  "orderDetails": [
+    {
+      "guid": "1212-asaasd-1212",
+      "orderName": "Generated 0",
+      "deadline": "2019-10-20"
+    },
+    {
+      "guid": "5555-lkjlkj-5555",
+      "orderName": "Generated 1",
+      "deadline": "2019-10-21"
+    }
+  ],
+  "concreteFurnitureUnits": [
+    {
+      "id": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "FU self",
+      "componentIds": [],
+      "accessories": 18,
+      "cfuProductionStatus": 2
+    },
+    {
+      "id": 3,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "FU self",
+      "componentIds": [],
+      "accessories": 18,
+      "cfuProductionStatus": 2
+    },
+    {
+      "id": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "FU self",
+      "componentIds": [],
+      "accessories": 18,
+      "cfuProductionStatus": 2
+    },
+    {
+      "id": 5,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "FU self",
+      "componentIds": [],
+      "accessories": 18,
+      "cfuProductionStatus": 2
+    }
+  ],
+  "concreteFurnitureComponents": [
+    {
+      "id": 3,
+      "concreteFurnitureUnitId": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "Back",
+      "width": 884,
+      "length": 344,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 0
+    },
+    {
+      "id": 4,
+      "concreteFurnitureUnitId": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "Left_Side",
+      "width": 320,
+      "length": 360,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 5,
+      "concreteFurnitureUnitId": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "Right_Side",
+      "width": 320,
+      "length": 360,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 6,
+      "concreteFurnitureUnitId": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "Floor",
+      "width": 320,
+      "length": 864,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 7,
+      "concreteFurnitureUnitId": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "ceiling",
+      "width": 320,
+      "length": 864,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 8,
+      "concreteFurnitureUnitId": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "Shelf",
+      "width": 277,
+      "length": 863,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 9,
+      "concreteFurnitureUnitId": 2,
+      "orderGuid": "1212-asaasd-1212",
+      "name": "Front",
+      "width": 356,
+      "length": 896,
+      "boardGuid": "24-qwertz",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 10,
+      "concreteFurnitureUnitId": 3,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right_Side",
+      "width": 320,
+      "length": 720,
+      "boardGuid": "24-qwertz",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 34,
+      "concreteFurnitureUnitId": 3,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 282,
+      "length": 720,
+      "boardGuid": "24-qwertz",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 35,
+      "concreteFurnitureUnitId": 3,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 302,
+      "length": 282,
+      "boardGuid": "24-qwertz",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 36,
+      "concreteFurnitureUnitId": 3,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "ceiling",
+      "width": 302,
+      "length": 282,
+      "boardGuid": "24-qwertz",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 37,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 38,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 39,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Inside",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 40,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 502.5,
+      "length": 464,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 41,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Left",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 42,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 44,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 45,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 502.5,
+      "length": 464,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 46,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Left",
+      "width": 90,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 47,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right",
+      "width": 90,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 48,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 90,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 49,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Inside",
+      "width": 90,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 50,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 502.5,
+      "length": 464,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 51,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Front",
+      "width": 140,
+      "length": 596,
+      "boardGuid": "24-qwertz",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 52,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Left",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 53,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Front",
+      "width": 746,
+      "length": 596,
+      "boardGuid": "24-qwertz",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 54,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Inside",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 11,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right_Side",
+      "width": 560,
+      "length": 2070,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 1
+    },
+    {
+      "id": 12,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 517,
+      "length": 564,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 1
+    },
+    {
+      "id": 13,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "ceiling",
+      "width": 517,
+      "length": 564,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 1
+    },
+    {
+      "id": 14,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Shelf_fix",
+      "width": 517,
+      "length": 564,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 1
+    },
+    {
+      "id": 15,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Shelf_fix0",
+      "width": 517,
+      "length": 564,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 1
+    },
+    {
+      "id": 16,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Shelf",
+      "width": 497,
+      "length": 564,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 17,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Left",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 18,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 19,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 20,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Inside",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 21,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 502.5,
+      "length": 464,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 22,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Left",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 23,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right",
+      "width": 100,
+      "length": 500,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 24,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Inside",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 25,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 584,
+      "length": 720,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 30,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Left_Side",
+      "width": 560,
+      "length": 2070,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 31,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back0",
+      "width": 584,
+      "length": 751,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 32,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 100,
+      "length": 502.5,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 33,
+      "concreteFurnitureUnitId": 4,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 502.5,
+      "length": 464,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 26,
+      "concreteFurnitureUnitId": 5,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Back",
+      "width": 434,
+      "length": 720,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 27,
+      "concreteFurnitureUnitId": 5,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Left_Side",
+      "width": 560,
+      "length": 720,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 28,
+      "concreteFurnitureUnitId": 5,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Right_Side",
+      "width": 560,
+      "length": 720,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 29,
+      "concreteFurnitureUnitId": 5,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Floor",
+      "width": 517,
+      "length": 414,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 55,
+      "concreteFurnitureUnitId": 5,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Shelf",
+      "width": 497,
+      "length": 413,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    },
+    {
+      "id": 43,
+      "concreteFurnitureUnitId": 5,
+      "orderGuid": "5555-lkjlkj-5555",
+      "name": "Front_Stretcher",
+      "width": 100,
+      "length": 414,
+      "boardGuid": "25-asdfgh",
+      "foilNumber": 4,
+      "cncDistance": 2000,
+      "cncHoles": 12,
+      "cfcProductionStatus": 2
+    }
+  ],
+  "boards": [
+    {
+      "guid": "25-asdfgh",
+      "width": 4000,
+      "length": 2700,
+      "thickness": 18,
+      "hasFiberDirection": false
+    },
+    {
+      "guid": "24-qwertz",
+      "width": 4000,
+      "length": 2700,
+      "thickness": 18,
+      "hasFiberDirection": true
+    }
+  ],
+  "workstations": {
+    "layoutWorkstations": [
+      {
+        "id": 2,
+        "name": "Cutting station 1",
+        "type": 1,
+        "cuttingSecPerComponent": 200,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 8,
+          "minute": 30
+        }
+      }
+    ],
+    "cncWorkstations": [
+      {
+        "id": 4,
+        "name": "CNC station 1",
+        "type": 2,
+        "distancePerSec": 70,
+        "secPerHole": 30,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 9,
+          "minute": 0
+        }
+      },
+      {
+        "id": 5,
+        "name": "CNC station 2",
+        "type": 2,
+        "distancePerSec": 70,
+        "secPerHole": 30,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 9,
+          "minute": 20
+        }
+      },
+      {
+        "id": 12,
+        "name": "CNC station 3",
+        "type": 2,
+        "distancePerSec": 50,
+        "secPerHole": 20,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 9,
+          "minute": 25
+        }
+      }
+    ],
+    "edgingWorkstations": [
+      {
+        "id": 6,
+        "name": "Edging station 1",
+        "type": 3,
+        "secPerEdge": 150,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 9,
+          "minute": 15
+        }
+      },
+      {
+        "id": 7,
+        "name": "Edging station 2",
+        "type": 3,
+        "secPerEdge": 115,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 9,
+          "minute": 0
+        }
+      }
+    ],
+    "sortingWorkstations": [
+      {
+        "id": 11,
+        "name": "Sorting station 1",
+        "type": 4,
+        "sortingSecPerComponent": 185,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 10,
+          "minute": 0
+        }
+      }
+    ],
+    "assemblyWorkstations": [
+      {
+        "id": 8,
+        "name": "Assembly station 1",
+        "type": 5,
+        "assemblySecPerComponent": 76,
+        "secPerAccessory": 7,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 10,
+          "minute": 20
+        }
+      }
+    ],
+    "packingWorkstations": [
+      {
+        "id": 10,
+        "name": "Packing station 1",
+        "type": 6,
+        "packingSecPerComponent": 235,
+        "lastPlanEnd": {
+          "date": "2019-10-29",
+          "hour": 10,
+          "minute": 30
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+//Colors
+$color-background:rgba(248, 247, 255, 1);
+$color-white-primary:rgba(255, 255, 255, 1);
+$color-shadow:rgba(184, 179, 255, 0.24);
+$color-routing:rgba(184, 179, 255, 1);
+$color-danger:rgba(255, 65, 65, 1);
+$color-message:rgba(184, 179, 255, 1);
+
+$color-font-primary:rgba(0, 0, 0, 1);
+$color-font-header-title:rgba(184, 179, 255, 1);
+
+$color-table-hr:rgba(204, 204, 204, 1);
+
+$color-menu-background:rgba(0, 40, 62, 1);
+$color-menu-hr:rgba(77, 105, 120, 1);
+$color-menu-selected:rgba(0, 29, 45, 1);
+$color-icons:rgba(77, 65, 255, 1);
+$color-select-icon:rgba(51, 51, 51, 1);
+
+$color-input-border-filter:rgba(230, 228, 255, 1);
+$color-input-border:rgba(214, 214, 214, 1);
+
+$color-input-background:rgba(248, 248, 248, 1);
+
+$color-btn-primary:rgba(77, 65, 255, 1);
+$color-btn-primary-focused:rgba(29, 15, 236, 1);
+$color-btn-primary-disabled:rgba(230, 228, 255, 1);
+$color-btn-primary-lightblue:rgba(0, 186, 255, 1);
+$color-btn-primary-green:rgba(63, 217, 109, 1);
+$color-btn-primary-red:rgba(255, 65, 65, 1);
+
+
+$color-btn-text-focused:rgba(230, 228, 255, 1);
+$color-btn-text-textcolor-focused:rgba(29, 15, 236, 1);
+$color-btn-text-disabled:rgba(230, 228, 255, 1);
+
+$color-popup-border:rgba(230, 228, 255, 1);
+
+
+$color-error:rgba(255, 94, 94, 1);
+
+$color-table-hover:rgba(248, 247, 255, 1);
+
+$table-header-color:rgba(184, 179, 255, 1);
+$table-border-color:rgba(184, 179, 255, 0.24);
+
+$tab-color-inactive:rgba(184, 179, 255, 1);
+
+$calendar-header-color:rgba(77,65,255,0.4);
+
+//Menu
+
+$color-bc-menu:rgba(0, 40, 62, 1);
+$color-menu:rgba(248, 247, 255, 0.3);
+//Font
+$btn-font-family: 'Poppins',
+sans-serif;
+$btn-font-weight:600;
+
+$font-family-primary: 'Poppins',
+sans-serif;
+$font-size-header-panel:1.8rem;
+//borders
+$btn-border-width:0.2rem;
+$btn-border-radius: 5px;
+$calendar-border-radius: 3px;
+$input-border-radius: 6px;
+$input-border-radius-filter: 20px;
+
+//padding
+
+$padding-btn:.7rem 2rem;
+$padding-role:.6rem;
+$padding-btn-hamburger: 1rem 0.5rem;
+
+$box-shadow-box: 0 .4rem 0.5rem rgba(black, .2);
+$box-shadow-box-span: 0 0 1rem rgba(#B8B3FF, 0.3);
+$box-shadow-box-u: 0 0 .4rem .1rem #B8B3FF;
+$box-shadow-box-cell: 0 0 .4rem .1rem rgba(0, 0, 0, 0.16);
+$layout-body-bread-padding-btm:3rem;

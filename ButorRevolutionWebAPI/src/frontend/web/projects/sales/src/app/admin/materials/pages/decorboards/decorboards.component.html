@@ -1,0 +1,126 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Materials.DECORBOARDS.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right"
+      *butorClaims="claimPolicyEnum[2]">{{'Materials.DECORBOARDS.buttons.ImportFile' | translate}}</button>
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewDecorboard()"
+      *butorClaims="claimPolicyEnum[2]">{{'Materials.DECORBOARDS.buttons.Addnewdecorboard' | translate}}</button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="decorboardListForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+        <ng-container cdkColumnDef="code">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.DECORBOARDS.FilterLabel.CODE' | translate}}" cType='filter'>
+              <butor-form-input formControlName="code" name="code"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-tooltip [template]="decorboardtool">{{row.code}}</butor-tooltip>
+            <ng-template #decorboardtool>
+              <div class="container">
+                <div class="row">
+                  <div class="col u-p-l-1">
+                    <figure class="profile-sml">
+                      <img
+                        [src]="baseUrl | pictureSrc : row.picture ? row.picture.containerName: null : row.picture ? row.picture.fileName : null"
+                        class="profile__pic">
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <div class="row tooltip-title">{{row.code}}</div>
+                    <div class="row tooltip-bottom">{{row.description}}</div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="description">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.DECORBOARDS.FilterLabel.DESCRIPTION' | translate}}" cType='filter'>
+              <butor-form-input formControlName="description" name="description"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="category">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.DECORBOARDS.FilterLabel.CATEGORY' | translate}}" cType='filter'>
+              <ng-select formControlName="categoryId" [items]="decorboardCategories" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false" name="category">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.category}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="size">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.DECORBOARDS.FilterLabel.Size' | translate}}">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{ row.length }}x{{ row.width }}x{{ row.thickness }} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="transactionPrice">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.DECORBOARDS.FilterLabel.Transactionprice' | translate}}">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.transactionPrice }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="purchasingPrice">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.DECORBOARDS.FilterLabel.Purchasingprice' | translate}}">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.purchasingPrice }} {{ row.currency }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="far fa-times-circle"></i>{{'Materials.DECORBOARDS.buttons.ClearFilter' | translate}}</a>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-btn-hamburger>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[2]" textColor="#4D41FF"
+                iconClass="icon icon-edit" [buttonText]="this.translate.instant('Materials.DECORBOARDS.buttons.Edit')"
+                (click)="this.editDecorboard(row.id, false)"></butor-btn-hamburger-inside>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[3]" textColor="#FF4141"
+                iconClass="icon icon-delete"
+                [buttonText]="this.translate.instant('Materials.DECORBOARDS.buttons.Delete')"
+                (click)="deleteDecorboard(row.id)"></butor-btn-hamburger-inside>
+            </butor-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['code', 'description', 'category', 'size', 'transactionPrice', 'purchasingPrice', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row
+          *cdkRowDef="let row; columns: ['code', 'description', 'category', 'size', 'transactionPrice', 'purchasingPrice','clearFilter']"
+          (click)="editDecorboard(row.id, false)">
+        </tr>
+      </table>
+
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+    </form>
+  </perfect-scrollbar>
+</div>

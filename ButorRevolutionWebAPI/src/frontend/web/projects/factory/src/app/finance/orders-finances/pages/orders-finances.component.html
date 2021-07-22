@@ -1,0 +1,115 @@
+<div class="d-flex justify-content-between u-margin-top">
+    <h3>{{'Orders.title' | translate}}</h3>
+</div>
+<div class="scroll-container">
+    <perfect-scrollbar>
+        <form [formGroup]="orderFiltersForm" class="scroll-form">
+            <table cdk-table [dataSource]="dataSource.items" class="table-standard">
+
+                <ng-container cdkColumnDef="orderId">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Orders.tableHeader.orderName' | translate}}" cType='filter'>
+                            <butor-form-input formControlName="orderId"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <b>{{row.orderId}}</b>
+                    </td>
+                </ng-container>
+                <ng-container cdkColumnDef="currentStatus">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Orders.tableHeader.currentStatus' | translate}}" cType='filter'>
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="statusesDropDown"
+                                formControlName="currentStatus" [clearable]="false" bindLabel="name" bindValue="id">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> <span class="order-status">{{row.currentStatus}}</span> </td>
+                </ng-container>
+
+
+                <ng-container cdkColumnDef="workingNr">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Orders.tableHeader.workingNumber' | translate}}" cType='filter'>
+                            <butor-form-input formControlName="workingNr"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <b>{{row.workingNumber}}</b>
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="statusDeadline">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Orders.tableHeader.statusDeadline' | translate}}" cType='filter'>
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff"
+                                [items]="statusdeadlineDropdown" formControlName="statusDeadline" [clearable]="false"
+                                bindLabel="name" bindValue="toDate">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.statusDeadline | date:'y.MM.dd'}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="deadline">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Orders.tableHeader.deadline' | translate}}" cType='filter'>
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="deadlineDropdown"
+                                formControlName="deadline" [clearable]="false" bindLabel="name" bindValue="toDate">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.deadline | date:'y.MM.dd'}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="customer">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Orders.tableHeader.customer' | translate}}" cType='filter'>
+                            <butor-form-input formControlName="customer"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.responsible}} </td>
+
+                </ng-container>
+                <ng-container cdkColumnDef="amount">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Orders.tableHeader.amount' | translate}}" cType='filter'>
+                            <butor-form-input type="number" formControlName="amount"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.amount.value}} {{row.amount.currency}} </td>
+                </ng-container>
+
+
+                <ng-container cdkColumnDef="clearFilter">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <a class="btns btns-icon-a" (click)="clearFilter()">
+                            <i class="icon icon-clear"></i>{{'Orders.tableHeader.clearFilters' | translate}}</a>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                    </td>
+                </ng-container>
+
+                <tr cdk-header-row
+                    *cdkHeaderRowDef="['orderId', 'currentStatus', 'workingNr', 'statusDeadline','deadline', 'customer', 'amount', 'clearFilter'];sticky:true;">
+                </tr>
+
+                <tr cdk-row
+                    *cdkRowDef="let row; columns: ['orderId', 'currentStatus', 'workingNr', 'statusDeadline','deadline', 'customer', 'amount', 'clearFilter']"
+                    [routerLink]="['/finance/orders', row.id]">
+                </tr>
+
+            </table>
+
+            <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+                [pageIndex]="dataSource.pageIndex"
+                [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+            </mat-paginator>
+
+            <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+            <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}
+            </div>
+        </form>
+
+    </perfect-scrollbar>
+</div>

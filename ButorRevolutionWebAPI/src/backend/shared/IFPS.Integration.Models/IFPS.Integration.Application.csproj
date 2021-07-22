@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Configurations>Debug;Release;WebtestRelease</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="FluentValidation" Version="8.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\factory\IFPS.Factory.Application\IFPS.Factory.Application.csproj" />
+    <ProjectReference Include="..\..\lib\ENCO.DDD\ENCO.DDD.csproj" />
+    <ProjectReference Include="..\..\factory\IFPS.Factory.Domain\IFPS.Factory.Domain.csproj" />
+    <ProjectReference Include="..\..\factory\IFPS.Factory.EF\IFPS.Factory.EF.csproj" />
+    <ProjectReference Include="..\..\sales\IFPS.Sales.Domain\IFPS.Sales.Domain.csproj" />
+    <ProjectReference Include="..\..\sales\IFPS.Sales.EF\IFPS.Sales.EF.csproj" />
+  </ItemGroup>
+
+</Project>

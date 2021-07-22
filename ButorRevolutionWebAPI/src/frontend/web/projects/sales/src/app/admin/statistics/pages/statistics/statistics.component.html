@@ -1,0 +1,95 @@
+<butor-layout-one-col title="{{'Statistics.title' | translate}}">
+  <butor-layout-one-col-actions>
+
+  </butor-layout-one-col-actions>
+  <butor-layout-panel-center >
+    <butor-panel [template]="statistics" [templateTop]="statisticstop" *ngIf="!isLoading">
+      <ng-template #statisticstop>
+        <butor-statistics-header [salesPerson]="salesPersonStatistics.summary"></butor-statistics-header>
+      </ng-template>
+      <ng-template #statistics>
+
+        <perfect-scrollbar>
+          <div class="row">
+            <div class="col">
+              <form [formGroup]="staticsFiltersForm" class="flex-cont">
+                <butor-form-field label="{{'Statistics.FilterLabel.Name' | translate}}" cType='filter'>
+                  <butor-form-input formControlName="name" name="name"></butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Statistics.FilterLabel.AddedOn' | translate}}" cType='filter'>
+                  <input class="datepicker-input" [matDatepicker]="picker1" (click)="picker1.open()"
+                     name="dateFirst" formControlName="from" />
+                  <mat-datepicker #picker1></mat-datepicker>
+                </butor-form-field>
+                  <butor-form-field label="{{'Statistics.FilterLabel.Addedto' | translate}}" cType='filter'>
+                  <input class="datepicker-input" formControlName="to" [matDatepicker]="picker2" (click)="picker2.open()"
+                    name="dateFirst" />
+                  <mat-datepicker #picker2></mat-datepicker>
+                </butor-form-field>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <table cdk-table [dataSource]="salesPersonStatistics.salesPersons" class="table-standard table-bc">
+
+                <ng-container cdkColumnDef="name">
+                  <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Statistics.FilterLabel.Name' | translate}}" cType='filter'>
+                    </butor-form-field>
+                  </th>
+                  <td cdk-cell *cdkCellDef="let row">
+                    {{row.name}}
+                  </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="offers">
+                  <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Statistics.FilterLabel.numberOfOffers' | translate}}" cType='filter'>
+                    </butor-form-field>
+                  </th>
+                  <td cdk-cell *cdkCellDef="let row"> {{row.numberOfOffers}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="contracts">
+                  <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Statistics.FilterLabel.numberOfContracts' | translate}}" cType='filter'>
+                    </butor-form-field>
+                  </th>
+                  <td cdk-cell *cdkCellDef="let row"> {{row.numberOfContracts}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="efficiency">
+                  <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Statistics.FilterLabel.efficiency' | translate}}" cType='filter'>
+                    </butor-form-field>
+                  </th>
+                  <td cdk-cell *cdkCellDef="let row"> {{row.efficiency}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="total">
+                  <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Statistics.FilterLabel.total' | translate}}" cType='filter'>
+                    </butor-form-field>
+                  </th>
+                  <td cdk-cell *cdkCellDef="let row"> {{row.total.value}} {{row.total.currency}} </td>
+                </ng-container>
+
+                <tr cdk-header-row *cdkHeaderRowDef="['name','offers', 'contracts', 'efficiency', 'total'];">
+                </tr>
+
+                <tr cdk-row *cdkRowDef="let row; columns: ['name','offers', 'contracts', 'efficiency', 'total']"
+                  (click)="openFront(row.id)">
+                </tr>
+
+              </table>
+              <div *ngIf="hasError && !salesPersonStatistics" class="no-data-row">{{ error }}</div>
+            </div>
+          </div>
+        </perfect-scrollbar>
+
+
+      </ng-template>
+    </butor-panel>
+  </butor-layout-panel-center>
+</butor-layout-one-col>

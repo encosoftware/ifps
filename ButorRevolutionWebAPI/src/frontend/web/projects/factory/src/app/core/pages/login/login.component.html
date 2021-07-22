@@ -1,0 +1,32 @@
+<div class="layout-login">
+  <div class="background-div">
+    <img class="login-header" src="/assets/icons/logo.png">
+  </div>
+  <div class="tab-login" *ngIf="!isLoading">
+      <h3 class="login-title">{{ 'login.welcome' | translate }}</h3>
+    <mat-tab-group class="tab-group-login" disableRipple>
+      <mat-tab label="{{'login.title' | translate}}">
+        <form #login="ngForm" (submit)="loginUser(login)">
+          <div class="login-mat-tab">
+            <butor-form-field label="{{'login.Email' | translate}}">
+              <butor-form-input name="emailL" [(ngModel)]="emailLogin" type="email" #emailL="ngModel" required
+                (change)="validPassEmail()"></butor-form-input>
+              <div *ngIf="!emailL.invalid">
+                <span class="error" *ngIf="(passOrUser && login.valid)">{{'login.error.wrongEmailPass' | translate}}</span>
+              </div>
+            </butor-form-field>
+            <butor-form-field label="{{'login.Password' | translate}}">
+              <butor-form-input name="password" [(ngModel)]="passwordLogin" type="password" required></butor-form-input>
+            </butor-form-field>
+            <div class="d-flex justify-content-between">
+              <button mat-button class="btn" type="button"
+                (click)="openDialog()">{{'login.forget' | translate}}</button>
+              <button mat-button class="btn btn-primary" type="submit"
+                [disabled]="!login.valid">{{'login.login' | translate}}</button>
+            </div>
+          </div>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

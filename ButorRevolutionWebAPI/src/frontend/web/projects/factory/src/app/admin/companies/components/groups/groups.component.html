@@ -1,0 +1,47 @@
+<div class="body-mat" style="text-align: right;">
+  <button mat-button class="btn btn-primary" (click)="openDialog()" *factoryClaims="claimPolicyEnum[5]">
+    {{'Companies.EditCompany.Employees.Groups.buttons.addNewGroup' | translate}}
+  </button>
+</div>
+<perfect-scrollbar style="height:calc(100% - 4rem);">
+  <table cdk-table [dataSource]="userTeamGroup" class="table-standard table-bc" #table>
+    <!-- Name Definition -->
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'Companies.EditCompany.Employees.Groups.FilterLabel.Name' | translate}}"
+          cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+    <!-- Members Definition -->
+    <ng-container cdkColumnDef="members">
+      <th cdk-header-cell *cdkHeaderCellDef width="80%">
+        <butor-form-field label="{{'Companies.EditCompany.Employees.Groups.FilterLabel.Members' | translate}}"
+          cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+        <ng-container *ngFor="let user of row.users">
+          <span class="asd">{{user.name}}</span>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Delete button -->
+    <ng-container cdkColumnDef="delete">
+      <th cdk-header-cell *cdkHeaderCellDef width="80%">
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+        <button mat-button class="btn btn-primary-red" (click)="deleteGroup(row)">{{'Companies.buttons.Delete' | translate}}</button>
+      </td>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <tr cdk-header-row *cdkHeaderRowDef="['name', 'members', 'delete'];sticky:true;">
+    </tr>
+
+    <tr cdk-row *cdkRowDef="let row; columns: ['name', 'members', 'delete'];">
+    </tr>
+  </table>
+</perfect-scrollbar>

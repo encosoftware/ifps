@@ -1,0 +1,151 @@
+<ng-container *ngIf="isLoading">
+  <perfect-scrollbar>
+    <h3>{{'Webshop.Account.orderDetails' | translate}}</h3>
+    <div class="row">
+      <!-- <div class="col-4">
+          <h4>CONTRACTING PARTY</h4>
+          <div>{{ cargo.contractingCompany.companyName }}</div>
+          <div>
+            {{ cargo.contractingCompany.address.postCode }}, {{ cargo.contractingCompany.address.city }}
+            {{ cargo.contractingCompany.address.address }}
+          </div>
+          <div>
+            {{ cargo.contractingCompany.email }}
+          </div>
+          <div>
+            {{ cargo.contractingCompany.contactPersonName }}
+          </div>
+          <div>
+            {{ cargo.contractingCompany.phone }}
+          </div>
+        </div>
+        <div class="col-4">
+          <h4>SUPPLIER</h4>
+          <div>{{ cargo.supplierCompany.companyName }}</div>
+          <div>
+            {{ cargo.supplierCompany.address.postCode }}, {{ cargo.supplierCompany.address.city }}
+            {{ cargo.supplierCompany.address.address }}
+          </div>
+          <div>
+            {{ cargo.supplierCompany.email }}
+          </div>
+          <div>
+            {{ cargo.supplierCompany.contactPersonName }}
+          </div>
+          <div>
+            {{ cargo.supplierCompany.phone }}
+          </div>
+        </div>
+        <div class="col-4">
+          <h4>SHIPPING</h4>
+          <div>
+            {{ cargo.shipping.address.postCode }}, {{ cargo.shipping.address.city }} {{ cargo.shipping.address.address }}
+          </div>
+          <div>
+            {{ cargo.shipping.name }}
+          </div>
+          <div>
+            {{ cargo.shipping.phone }}
+          </div>
+          <div>
+            {{ cargo.shipping.note }}
+          </div>
+        </div> -->
+      <table cdk-table [dataSource]="viewOrderDetails.orderedFurnitureUnits"
+        class="table-standard table-standard-no-bc">
+
+        <ng-container cdkColumnDef="product">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            {{'Webshop.Account.product' | translate}}
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <div class="basket-list-list-product">
+              <img class="basket-list-list-product-img" [webshopImage]="row.image" alt="">
+              <div class="basket-list-list-product-description">
+                <span class="basket-list-list-product-description-span">
+                  {{row.name}}
+                </span>
+                <p class="basket-list-list-product-description-p">
+                  {{row.description}}
+                </p>
+                <p class="basket-list-list-product-description-p">
+                  {{row.depth}} x {{row.width}} x
+                  {{row.height}}
+                </p>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="Unitprice">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            {{'Webshop.Account.unitPrice' | translate}}
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <div class="left-price">
+              {{row.unitPrice.value}} {{row.unitPrice.currency}}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="quantity">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            {{'Webshop.Account.quantity' | translate}}
+          </th>
+          <td cdk-cell *cdkCellDef="let row;let i = index">
+            {{row.quantity}}
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="total">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            {{'Webshop.Account.total' | translate}}
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <div class="left-price">
+              {{row.subTotal.value}}
+              {{row.subTotal.currency}}
+            </div>
+          </td>
+        </ng-container>
+
+
+        <tr cdk-header-row *cdkHeaderRowDef="['product', 'Unitprice', 'quantity', 'total'];sticky:true;">
+        </tr>
+
+        <tr cdk-row *cdkRowDef="let row;let i = index; columns: ['product', 'Unitprice', 'quantity', 'total']; ">
+        </tr>
+      </table>
+      <div class="billing-section">
+        <div class="billing-section-prices-section" *ngIf="viewOrderDetails.total.deliveryPrice.value">
+          <div class="billing-section-prices-name">
+            {{'Webshop.Account.shipping' | translate}}
+          </div>
+          <div class="billing-section-prices-price">
+            {{ viewOrderDetails.total.deliveryPrice.value }} {{viewOrderDetails.total.deliveryPrice.currency }}
+          </div>
+        </div>
+        <div class="billing-section-prices-section">
+          <div class="billing-section-prices-name">
+            {{'Webshop.Account.subtotal' | translate}}
+          </div>
+          <div class="billing-section-prices-price">
+            {{ viewOrderDetails.total.subtotal.value }} {{ viewOrderDetails.total.subtotal.currency }}
+          </div>
+        </div>
+        <div class="billing-section-prices-section">
+          <div class="billing-section-prices-name-total">
+            {{'Webshop.Account.total' | translate}}
+          </div>
+          <div class="billing-section-prices-price-total">
+            {{ (viewOrderDetails.total.deliveryPrice.value ? viewOrderDetails.total.deliveryPrice.value : 0) + viewOrderDetails.total.subtotal.value }}
+            {{viewOrderDetails.total.deliveryPrice.currency }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </perfect-scrollbar>
+
+</ng-container>

@@ -1,0 +1,42 @@
+<div class="container">
+  <h3>{{'products.editProducts.Accessories.AddAccessories.title' | translate}}</h3>
+  <form [formGroup]="accessoryForm">
+    <butor-form-field label="{{'products.editProducts.Accessories.AddAccessories.labels.Name' | translate}}">
+      <butor-form-input formControlName="name" name="name"></butor-form-input>
+      <div *ngIf="submitted && f.name.errors" class="input-error">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'products.editProducts.Accessories.AddAccessories.labels.Materialcode' | translate}}">
+      <ng-select formControlName="materialId" highlightColor="#9575cd" highlightTextColor="#fff" [items]="materials"
+        bindLabel="code" bindValue="id" name="materialCode">
+      </ng-select>
+      <div *ngIf="submitted && f.materialId.errors" class="input-error">
+        <div *ngIf="f.materialId.errors.required">Material code is required</div>
+      </div>
+    </butor-form-field>
+    <div class="row">
+      <div class="col-5">
+        <butor-form-field label="{{'products.editProducts.Accessories.AddAccessories.labels.Amount' | translate}}">
+          <butor-form-input type="number" append="db" formControlName="amount" name="amount"></butor-form-input>
+          <div *ngIf="submitted && f.amount.errors" class="input-error">
+            <div *ngIf="f.amount.errors.required">Amount is required</div>
+          </div>
+        </butor-form-field>
+      </div>
+    </div>
+
+    <butor-form-field>
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+              (click)="cancel()">{{'products.editProducts.Accessories.AddAccessories.buttons.Cancel' | translate}}</button>
+            <button class="btn btn-primary" mat-button matRipple
+              (click)="onSubmit()">{{'products.editProducts.Accessories.AddAccessories.buttons.Save' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </butor-form-field>
+  </form>
+</div>

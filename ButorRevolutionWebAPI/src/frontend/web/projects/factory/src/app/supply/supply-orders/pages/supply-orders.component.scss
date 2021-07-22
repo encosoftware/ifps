@@ -1,0 +1,72 @@
+@import "../../../../scss/variables";
+.table-standard tbody td {
+    padding: 1.8rem, 0.8rem, 1.8rem, 1.6rem;
+}
+
+.table-checkbox-container {
+  padding-top: 3.8rem;
+  padding-left: 1rem;
+}
+
+.label-checkbox {
+  display: inline-flex;
+}
+.checkbox-header {
+  font-weight: 100;
+}
+
+.boxCheck {
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid $color-icons;
+  border-radius: $btn-border-radius;
+  background-color: $color-background;
+  margin-right: 1.4rem;
+  box-sizing: border-box;
+}
+.c {
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid $color-icons;
+  border-radius: $btn-border-radius;
+  display: inline-block;
+  position: relative;
+  background-color: $color-background;
+
+  &::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f00c";
+    font-weight: 900;
+    display: block;
+    color: $color-icons;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+.b {
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid $color-icons;
+  border-radius: $btn-border-radius;
+  display: inline-block;
+  position: relative;
+  background-color: $color-background;
+
+  &::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f068";
+    font-weight: 900;
+    display: block;
+    color: $color-icons;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,10 @@
+<div *ngIf="!isLoading" class="layout-bread">
+  <div class="layout-body-bread">
+    <div class="panel-top">
+      <ng-container [cdkPortalOutlet]="top.topContent"></ng-container>
+    </div>
+    <div class="panel-bottom">
+      <ng-container [cdkPortalOutlet]="bottom.bottomContent"></ng-container>
+    </div>
+  </div>
+</div>

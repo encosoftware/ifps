@@ -1,0 +1,12 @@
+{
+    "searchSettings": {
+        "leftoverThreshold": 500,
+        "leftoverStep": 100,
+        "maxTimeInSeconds": 900,
+        "areaMultiplier": 0.1,
+        "leftoverLengthMultiplier": 0.9,
+        "parallelWorkerNum": 4,
+        "detailedSolverLogs": false,
+        "logDir": "C:/Users/modli.bendeguz/Documents/enco/butoros/ScheduleOptimisation/LayoutPlanning/LayoutPlanningCP/LayoutPlanningCP/logs"
+    }
+}

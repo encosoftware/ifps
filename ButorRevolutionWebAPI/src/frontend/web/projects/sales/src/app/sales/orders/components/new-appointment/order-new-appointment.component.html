@@ -1,0 +1,139 @@
+<div class="container">
+  <h3>{{data.data ? ('Appointments.EditAppointment.Title' | translate) : ('Appointments.NewAppointment.Title' | translate) }}</h3>
+  <form [formGroup]="editAppointmentForm">
+    <div class="row">
+      <div class="col-6">
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Name' | translate}}">
+          <butor-form-input formControlName="subject"></butor-form-input>
+          <div *ngIf="submitted && f.subject.errors" class="input-error">
+            <div *ngIf="f.subject.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.NameError' | translate}}</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Type' | translate}}">
+          <ng-select formControlName="categoryId" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name"
+            bindValue="id" [clearable]="false" [items]="appointmentTypes">
+          </ng-select>
+          <div *ngIf="submitted && f.categoryId.errors" class="input-error">
+            <div *ngIf="f.categoryId.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.TypeError' | translate}}</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Time' | translate}}">
+          <div style="display: flex;padding-bottom: 1rem;">
+            <i class="icon icon-appointments_active" (click)="picker.open()"></i>
+            <input formControlName="date" class="datepicker-input" [matDatepicker]="picker" placeholder="Choose a date"
+              (click)="picker.open()" />
+            <mat-datepicker #picker></mat-datepicker>
+            <ng-select class="from-time-input" highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect"
+              bindLabel="name" bindValue="name" [clearable]="false" formControlName="from">
+            </ng-select>
+            <ng-select class="to-time-input" highlightColor="#9575cd" highlightTextColor="#fff" [items]="toDateSelect"
+              bindLabel="name" bindValue="name" [clearable]="false" formControlName="to">
+            </ng-select>
+          </div>
+          <div *ngIf="submitted && (f.date.errors || f.from.errors || f.to.errors)" class="input-error">
+            <div>{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.TimeError' | translate}}</div>
+          </div>
+          <div *ngIf="submitted && (!isDatesCorrect)" class="input-error">
+            <div>{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.TimeError' | translate}}</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Order' | translate}}">
+          <ng-select formControlName="orderId" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name"
+            bindValue="id" [clearable]="false" [items]="ordersList" #orderIdDom>
+          </ng-select>
+          <div *ngIf="submitted && f.orderId.errors" class="input-error">
+            <div *ngIf="f.orderId.errors.required">Appointment type is required</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Customer' | translate}}">
+          <ng-select formControlName="customerId" [clearable]="false" highlightColor="#9575cd" highlightTextColor="#fff"
+            bindLabel="name" bindValue="id" (search)="searchCustomers($event.term)" [items]="customers"
+            placeholder="{{'Orders.appointments.NewAppointment.AppointmentModal.CustomerDropdown.Label' | translate}}" [openOnEnter]="false" #customerIdDom>
+          </ng-select>
+          <div *ngIf="submitted && f.customerId.errors" class="input-error">
+            <div *ngIf="f.customerId.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.CustomerError' | translate}}</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Participant' | translate}}">
+          <ng-select formControlName="partnerId" [clearable]="false" highlightColor="#9575cd" highlightTextColor="#fff"
+            bindLabel="name" bindValue="id" [items]="participants" (change)="salesChange($event)">
+          </ng-select>
+          <div *ngIf="submitted && f.partnerId.errors" class="input-error">
+            <div *ngIf="f.partnerId.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.ParticipantError' | translate}}</div>
+          </div>
+        </butor-form-field>
+
+      </div>
+      <div class="col-6">
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Venue' | translate}}">
+          <ng-select [items]="venues" formControlName="venueId" highlightColor="#9575cd" [clearable]="false"
+            highlightTextColor="#fff" bindLabel="name" bindValue="id" (change)="venueChanged($event.id)">
+          </ng-select>
+          <div *ngIf="submitted && f.venueId.errors" class="input-error">
+            <div *ngIf="f.venueId.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.VenueError' | translate}}</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.MeetingRoom' | translate}}">
+          <ng-select formControlName="meetingRoomId" [clearable]="false" highlightColor="#9575cd"
+            highlightTextColor="#fff" bindLabel="name" bindValue="id" [items]="meetingRooms">
+          </ng-select>
+          <div *ngIf="submitted && f.meetingRoomId.errors" class="input-error">
+            <div *ngIf="f.meetingRoomId.errors.required">Meeting room is required</div>
+          </div>
+        </butor-form-field>
+        <div class="new-address-container">
+          <butor-form-checkbox label="{{'Orders.appointments.NewAppointment.AppointmentModal.NewAddress' | translate}}" formControlName="isNewAddress">
+          </butor-form-checkbox>
+        </div>
+        <div formGroupName="address" class="row">
+          <div class="col-4">
+            <butor-form-field>
+              <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries" bindLabel="name"
+                bindValue="id" placeholder="{{'Orders.appointments.NewAppointment.AppointmentModal.NewAddressValues.Country' | translate}}" formControlName="countryId" [clearable]="false"></ng-select>
+              <div *ngIf="submitted && addressForm.countryId.errors" class="input-error">
+                <div *ngIf="addressForm.countryId.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.CountryError' | translate}}</div>
+              </div>
+            </butor-form-field>
+          </div>
+          <div class="col-3">
+            <butor-form-field>
+              <butor-form-input formControlName="postCode" placeholder="{{'Orders.appointments.NewAppointment.AppointmentModal.NewAddressValues.Postcode' | translate}}"></butor-form-input>
+              <div *ngIf="submitted && addressForm.postCode.errors" class="input-error">
+                <div *ngIf="addressForm.postCode.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.PostcodeError' | translate}}</div>
+              </div>
+            </butor-form-field>
+          </div>
+          <div class="col-5">
+            <butor-form-field>
+              <butor-form-input formControlName="city" placeholder="{{'Orders.appointments.NewAppointment.AppointmentModal.NewAddressValues.City' | translate}}"></butor-form-input>
+              <div *ngIf="submitted && addressForm.city.errors" class="input-error">
+                <div *ngIf="addressForm.city.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.CityError' | translate}}</div>
+              </div>
+            </butor-form-field>
+          </div>
+          <div class="col-12">
+            <butor-form-field>
+              <butor-form-input formControlName="address" placeholder="{{'Orders.appointments.NewAppointment.AppointmentModal.NewAddressValues.Address' | translate}}"></butor-form-input>
+              <div *ngIf="submitted && addressForm.address.errors" class="input-error">
+                <div *ngIf="addressForm.address.errors.required">{{'Orders.appointments.NewAppointment.AppointmentModal.ErrorMessages.AddressError' | translate}}</div>
+              </div>
+            </butor-form-field>
+          </div>
+        </div>
+        <butor-form-field label="{{'Orders.appointments.NewAppointment.AppointmentModal.Notes' | translate}}">
+          <butor-form-textarea formControlName="notes"></butor-form-textarea>
+        </butor-form-field>
+      </div>
+    </div>
+  </form>
+  <butor-form-field>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()">{{'Orders.appointments.NewAppointment.AppointmentModal.Buttons.Cancel' | translate}}</button>
+          <button class="btn btn-primary" mat-button matRipple (click)="save()">{{'Orders.appointments.NewAppointment.AppointmentModal.Buttons.Save' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </butor-form-field>
+</div>

@@ -1,0 +1,38 @@
+<table cdk-table [dataSource]="ticketsDataSource" class="table-standard table-bc">
+  
+  <ng-container cdkColumnDef="orderId">
+    <th cdk-header-cell *cdkHeaderCellDef>
+      <butor-form-field label="{{'Dashboard.orderId' | translate}}" cType='filter'>
+      </butor-form-field>
+    </th>
+    <td cdk-cell *cdkCellDef="let row">
+      {{row.orderName}}
+    </td>
+  </ng-container>
+  <ng-container cdkColumnDef="customer">
+    <th cdk-header-cell *cdkHeaderCellDef>
+      <butor-form-field label="{{'Dashboard.customer' | translate}}" cType='filter'>
+      </butor-form-field>
+    </th>
+    <td cdk-cell *cdkCellDef="let row"> {{row.customer}} </td>
+  </ng-container>
+  <ng-container cdkColumnDef="status">
+    <th cdk-header-cell *cdkHeaderCellDef>
+      <butor-form-field label="{{'Dashboard.status' | translate}}" cType='filter'>
+      </butor-form-field>
+    </th>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="status-table"> 
+        <i class="icon icon-exclamation-point"></i>
+        <div class="status">{{row.status}}</div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="['orderId', 'customer','status'];sticky:true;">
+  </tr>
+
+  <tr cdk-row *cdkRowDef="let row; columns: ['orderId', 'customer', 'status']" [routerLink]="['/sales/orders', row.id]">
+  </tr>
+
+</table>

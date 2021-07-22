@@ -1,0 +1,108 @@
+<mat-dialog-content *ngIf="!isLoading">
+    <div class="d-flex justify-content-between preview-container">
+        <div class="preview-name">{{offerName}}</div>
+        <div class="d-flex">
+            <button class="btn btn-primary" mat-button matRipple type="button"
+                (click)="sendToCustomer()">{{'Orders.preview.sendToCustomer' | translate}}</button>
+        </div>
+    </div>
+    <div id="ccc">
+        <div class="row general-container">
+            <div class="row contract-details-container">
+                <div class="col">
+                    <div class="contract-details-maingroup">{{'Orders.ContractForm.producer' | translate}}</div>
+                    <butor-form-field label="{{'Orders.ContractForm.name' | translate}}">
+                        <div style="padding-bottom: 1.5rem;">{{contract.producer.name}}</div>
+                    </butor-form-field>
+                    <butor-form-field label="{{'Orders.ContractForm.correspondentAddress' | translate}}">
+                        {{contract.producer.correspondentAddress}}
+                    </butor-form-field>
+                    <butor-form-field label="{{'Orders.ContractForm.taxNumber' | translate}}">
+                        {{contract.producer.tax}}
+                    </butor-form-field>
+                    <butor-form-field label="{{'Orders.ContractForm.bankAccount' | translate}}">
+                        {{contract.producer.bankAccount}}
+                    </butor-form-field>
+                    <butor-form-field label="{{'Orders.ContractForm.additional' | translate}}">
+                        {{contract.additionalPoints}}
+                    </butor-form-field>
+                    <butor-form-field label="{{'Orders.ContractForm.contractDate' | translate}}">
+                        {{contract.date | date: dateFormat}}
+                    </butor-form-field>
+                </div>
+                <div class="col">
+                    <div class="contract-details-maingroup">{{'Orders.ContractForm.customer' | translate}}</div>
+                    <butor-form-field label="{{'Orders.ContractForm.name' | translate}}">
+                        <div style="padding-bottom: 1.5rem;">{{contract.customer.name}}</div>
+                    </butor-form-field>
+                    <butor-form-field label="{{'Orders.ContractForm.correspondentAddress' | translate}}">
+                        {{contract.customer.correspondentAddress}}
+                    </butor-form-field>
+                    <butor-form-field label="{{'Orders.ContractForm.shippingAddress' | translate}}">
+                        {{contract.customer.shippingAddress}}
+                    </butor-form-field>
+                </div>
+                <div class="col">
+                    <div class="contract-details-maingroup">{{'Orders.ContractForm.financialDetails' | translate}}</div>
+                    <div class="row u-padding-bottom">
+                        <div class="col-8">
+                            <div class="financial-name">{{'Orders.ContractForm.netCost' | translate}}</div>
+                        </div>
+                        <div class="col-8">
+                            <div>{{contract.financial.netCost}} {{contract.financial.currency}}</div>
+                        </div>
+                    </div>
+                    <div class="row u-padding-bottom">
+                        <div class="col-8">
+                            <div class="financial-name">{{'Orders.ContractForm.vat' | translate}}</div>
+                        </div>
+                        <div class="col-8">
+                            <div>{{contract.financial.vat}} {{contract.financial.currency}}</div>
+                        </div>
+                    </div>
+                    <div class="row u-padding-bottom">
+                        <div class="col-8">
+                            <div class="financial-name">{{'Orders.ContractForm.grossCost' | translate}}</div>
+                        </div>
+                        <div class="col-8">
+                            <div>{{contract.financial.gross}} {{contract.financial.currency}}</div>
+                        </div>
+                    </div>
+                    <div class="row u-padding-bottom">
+                        <div class="col-8">
+                            <div class="financial-name">{{'Orders.ContractForm.serviceCost' | translate}}</div>
+                        </div>
+                        <div class="col-8">
+                            <div>{{contract.financial.serviceCost}} {{contract.financial.currency}}</div>
+                        </div>
+                    </div>
+                    <div class="row u-padding-bottom">
+                        <div class="col-8">
+                            <div class="financial-name">{{'Orders.ContractForm.firstPayment' | translate}}</div>
+                        </div>
+                        <div class="col-8">
+                            <div class="no-wrap">
+                                {{'Orders.ContractForm.dueOn' | translate}}
+                                {{contract.financial.firstPaymentDate | date: dateFormat}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row u-padding-bottom">
+                        <div class="col-8">
+                            <div class="financial-name">{{'Orders.ContractForm.secondPayment' | translate}}</div>
+                        </div>
+                        <div class="col-8">
+                            <div class="no-wrap">
+                                {{'Orders.ContractForm.dueOn' | translate}}
+                                {{contract.financial.secondPaymentDate | date: dateFormat}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contract-container" style="width:100%;">
+                    <butor-contract-html [data]="this.data.contract"></butor-contract-html>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="dialog-title">
+    {{ title }}
+  </div>
+  <form [formGroup]="webshopFurnitureUnitForm" (ngSubmit)="onSubmit()">
+    <butor-form-field label="{{'WebshopFurnitureUnits.Labels.furnitureUnit' | translate}}">
+      <ng-select name="furnitureUnit" formControlName="furnitureUnitId" [items]="furnitureUnits" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="code" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.furnitureUnit.errors" class="input-error">
+        <div *ngIf="f.furnitureUnit.errors.required">FurnitureUnit is required</div>
+      </div>
+    </butor-form-field>
+    <ng-container *ngIf="details">
+      <butor-form-field label="{{'WebshopFurnitureUnits.Labels.code' | translate}}" *ngIf="details.code">
+        <butor-form-input formControlName="code" [disabled]="true"></butor-form-input>
+        <div *ngIf="submitted && f.code.errors" class="input-error">
+          <div *ngIf="f.code.errors.required">FurnitureUnit is required</div>
+        </div>
+      </butor-form-field>
+    </ng-container>
+    <ng-container *ngIf="details">
+      <butor-form-field label="{{'WebshopFurnitureUnits.Labels.description' | translate}}" *ngIf="details.description">
+        {{details ? details.description : ''}}
+      </butor-form-field>
+    </ng-container>
+    <butor-form-field label="{{'WebshopFurnitureUnits.Labels.price' | translate}}" *ngIf="details">
+      <div class="flex">
+        <butor-form-input name="price" formControlName="priceValue" [type]="'number'"></butor-form-input>
+        <ng-select formControlName="priceCurrency" [items]="currencies" highlightColor="#9575cd"
+          highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+        </ng-select>
+      </div>
+
+      <div *ngIf="submitted && f.price.errors" class="input-error">
+        <div *ngIf="f.price.errors.required">FurnitureUnit is required</div>
+      </div>
+    </butor-form-field>
+    <ng-container *ngIf="details">
+      <butor-multi-upload-pic [folder]="details? details.imageDetailsDto[0].containerName: undefined"
+        (multiPics)="getFileName($event)" [images]="details? details.imageDetailsDto: undefined"
+        *ngIf="details.imageDetailsDto">
+      </butor-multi-upload-pic>
+    </ng-container>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()">{{'WebshopFurnitureUnits.Buttons.cancel' | translate}}</button>
+      <button class="btn btn-primary" mat-button matRipple type="submit"
+        [disabled]="webshopFurnitureUnitForm.invalid">{{'WebshopFurnitureUnits.Buttons.save' | translate}}</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,64 @@
+.preview-container {
+    padding: 3rem 2.5rem 2.2rem 2.5rem;
+}
+
+:host /deep/ .contract-details-container{
+    padding: 2.7rem;
+    background-color: #F8F7FF;
+
+    .contract-details-maingroup{
+        font-size: 1.8rem;
+        font-weight: 600;
+        padding-bottom: 2.4rem;
+    }
+
+    .input-control{
+        max-width: 9rem;
+    }
+
+    .u-padding-bottom{
+        padding-bottom: 3rem;
+    }
+
+    .financial-name{
+        font-weight: 600;
+    }
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+
+.general-container {
+    padding: 4rem 1rem;
+    margin: 0;
+
+    .general-container-col {
+        padding-right: 10%;
+
+        .general-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding-bottom: 4rem;
+        }
+
+        .general-item {
+            padding-bottom: 1.5rem;
+        }
+
+        .gengeral-category-name {
+            font-weight: 600;
+        }
+    }
+}
+
+.preview-name {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.contract-container {
+    width: 100%;
+    text-align: center;
+}

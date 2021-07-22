@@ -1,0 +1,25 @@
+{
+	"root": "https://localhost:44395/api/",
+	"customer": "customers",
+	"material": {
+		"get": "decorboards/code",
+		"post": "decorboards/fromfile"
+	},
+	"furniture_unit": {
+		"get": "furnitureunits/datageneration",
+		"post": "furnitureunits/file"
+	},
+	"furniture_component_by_unit_id": "furniturecomponents/{furnitureUnitId}/datageneration/components",
+	"furniture_component": "furniturecomponents/{id}/sequence",
+	"order": "orders",
+	"appliance": {
+		"get": "appliances/datageneration",
+		"post": "appliances/fromfile"
+	},
+	"image": "images",
+	"drill": "sequences/drill",
+	"rectangle": "sequences/rectangle",
+	"login": "account/login",
+	"refresh": "account/refresh",
+	"logout": "account/logout"
+}

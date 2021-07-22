@@ -1,0 +1,115 @@
+<h3>{{'MeetingRooms.title' | translate}}</h3>
+<butor-layout-two-col>
+  <butor-layout-panel-right>
+    <butor-panel [templateTop]="tableRoom">
+      <ng-template #tableRoom>
+        <table cdk-table [dataSource]="dataSource" class="table-standard table-bc-no-hover" #table>
+
+          <ng-container cdkColumnDef="name">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'MeetingRooms.name' | translate}}" cType='filter'>
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+ 
+          <ng-container cdkColumnDef="status">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'MeetingRooms.status' | translate}}" cType='filter'>
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row">
+                <span *ngIf="row.status" class="meeting-room-reserved">{{'MeetingRooms.StatusValue.Booked' | translate}}
+                </span>
+                <span *ngIf="!row.status" class="meeting-room-free">{{'MeetingRooms.StatusValue.Available' | translate}}
+                </span>
+            </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="venue">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'MeetingRooms.venue' | translate}}" cType='filter'>
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.venue}} </td>
+          </ng-container>
+
+          <tr cdk-header-row *cdkHeaderRowDef="['name', 'status', 'venue'];sticky:true;">
+          </tr>
+
+          <tr cdk-row *cdkRowDef="let row; columns: ['name', 'status', 'venue']"
+            [class.active]="selectedMeetingRoomId === row.id" (click)="showAppointments(row.id)">
+          </tr>
+
+        </table>
+      </ng-template>
+    </butor-panel>
+  </butor-layout-panel-right>
+  <butor-layout-panel-left>
+    <butor-panel *ngIf="selectedMeetingRoom">
+      <div class="meeting-rooms-header">
+        <div class="meeting-room-name">
+          <h3>{{selectedMeetingRoom.name}}</h3>
+        </div>
+        <div class="meeting-room-locations">
+          <span class="location">{{selectedMeetingRoom.venue}}</span>
+          <span class="location">{{selectedMeetingRoom.address}}</span>
+        </div>
+      </div>
+
+      <div class="appointment-title-action">
+        <span class="date"> {{ viewDate | date: 'yyyy MMMM':'': translateService.currentLang  }}</span>
+        <a style="cursor: pointer;" class="calendar-page" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (click)="loadData()">
+          <i class="icon icon-blackarrow_black_left"></i></a>
+        <a style="cursor: pointer;" class="calendar-page" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (click)="loadData()">
+          <i class="icon icon-blackarrow_black_right"></i></a>
+        <button class="btn btn-border" mat-button matRipple mwlCalendarToday [(viewDate)]="viewDate" (click)="loadData()">{{'MeetingRooms.Today' | translate}}</button>
+        <button *ngIf="excludeDays.length !== 0" class="btn btn-border" mat-button matRipple (click)="showWeekendDays()"
+          style="margin-left: 2.75rem">{{'MeetingRooms.ShowWeekends' | translate}}</button>
+        <button *ngIf="excludeDays.length === 0" class="btn btn-border" mat-button matRipple (click)="showWeekendDays()"
+          style="margin-left: 2.75rem">{{'MeetingRooms.HideWeekends' | translate}}</button>
+      </div>
+
+      <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" [refresh]="refresh" [dayStartHour]="8"
+        [dayEndHour]="20" [eventTemplate]="eventsTemp" [headerTemplate]="headerCalendar"
+        [excludeDays]="this.excludeDays">
+      </mwl-calendar-week-view>
+      <ng-template #headerCalendar let-days="days">
+        <div class="cal-day-headers">
+          <div class="cal-header" [ngClass]="{
+          'cal-past': item.date | dateTest:'past',
+          'cal-weekend':item.date | dateTest:'weekend', 
+          'cal-today':item.date | dateTest:'today',
+          'cal-future':item.date | dateTest:'future'}" *ngFor="let item of days">
+            <b>{{item.date | date:'EEE':'': translateService.currentLang}} </b>
+            <br>
+            <span> {{item.date | date:'d'}}</span>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #eventsTemp let-weekEvent="weekEvent">
+        <butor-event-info [event]="weekEvent.event" [detailsTemplate]="eventDetails"></butor-event-info>
+        <ng-template #eventDetails let-event="event">
+          <div class="tooltipBox">
+            <div class="appointment">
+              <div class="appointment-header">
+                <div class="day">{{event.start | date:'dd'}}</div>
+                <div class="month">{{event.start | date:'MMMM'}}</div>
+                <div class="time">{{event.start | date:'HH:mm'}} - {{event.end | date:'HH:mm'}}</div>
+              </div>
+              <div class="appointment_body">
+                <div class="appointment_body-title">{{event.title}}</div>
+                <div class="appointment_body-author">{{event.meta.customerName}}</div>
+                <div class="appointment_body-address"><i class="icon icon-POI"></i>
+                  {{event.meta.address.postCode}} {{event.meta.address.city}}, {{event.meta.address.address}}
+                </div>
+                <div class="appointment_body-note"><i class="icon icon-menu"></i>{{'MeetingRooms.Notes' | translate}}: {{event.meta.notes}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+
+    </butor-panel>
+  </butor-layout-panel-left>
+</butor-layout-two-col>

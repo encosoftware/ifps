@@ -1,0 +1,46 @@
+<butor-layout-two-row>
+    <butor-layout-panel-top>
+        <butor-order-header *ngIf="!isLoading" [basicInfo]="orderBasics"></butor-order-header>
+    </butor-layout-panel-top>
+    <butor-layout-panel-bottom>
+        <div class="offer-title-container">
+            <div class="offer-title">{{'Orders.offerForm.title' | translate}}</div>
+        </div>
+        <butor-layout-one-col>
+            <butor-layout-panel-center>
+                <mat-tab-group class="col tab-group left" disableRipple (selectedTabChange)="hideOrShowButtons($event)">
+                    <mat-tab label="{{'Orders.offerForm.products.title' | translate}}">
+                        <perfect-scrollbar *ngIf="!isLoading">
+                            <butor-order-offerform-products [topCabinetDataSource]="topCabinetList"
+                                [baseCabinetDataSource]="baseCabinetList" [tallCabinetDataSource]="tallCabinetList"
+                                [accessoriesDataSource]="accessoriesList" [appliancesDataSource]="appliancesList"
+                                [prices]="productPrices" [shippingService]="shippingService"
+                                [assemblyService]="assemblyService" [installationService]="installationService"
+                                [distanceDropDown]="distanceDropDown" [isVatRequired]="isVatRequired"
+                                (reload)="getReload($event)">
+                            </butor-order-offerform-products>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                    <mat-tab label="{{'Orders.offerForm.generalInformation.title' | translate}}">
+                        <perfect-scrollbar *ngIf="!isLoading">
+                            <butor-order-offerform-general [generalInfo]="generalInfo" [topCabinet]="topCabinet"
+                                [baseCabinet]="baseCabinet" [tallCabinet]="tallCabinet" [submitted]="submitted"
+                                [companies]="companyDropDown" (generalOutput)="getGeneralInfo($event)"
+                                (topOutput)="getTopCabinet($event)" (tallOutput)="getTallCabinet($event)"
+                                (baseOutput)="getBaseCabinet($event)">
+                            </butor-order-offerform-general>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                    <mat-tab disabled>
+                        <ng-template mat-tab-label>
+                            <button *ngIf="isShowAllButtons && previewIsActive" mat-button class="btn btn-border"
+                                (click)="openPreview()">{{'Orders.offerForm.products.preview' | translate}}</button>
+                            <button *ngIf="!isShowAllButtons" mat-button class="btn btn-primary"
+                                (click)="saveOffer()">{{'Orders.offerForm.save' | translate}}</button>
+                        </ng-template>
+                    </mat-tab>
+                </mat-tab-group>
+            </butor-layout-panel-center>
+        </butor-layout-one-col>
+    </butor-layout-panel-bottom>
+</butor-layout-two-row>

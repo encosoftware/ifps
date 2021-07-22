@@ -1,0 +1,332 @@
+<perfect-scrollbar style="max-height: 100vh;">
+  <div class="container-fluid container__menu" id="menu_container">
+
+    <div
+      [ngClass]="{'container__menu-section-header':isMenuOpen,'container__menu-section-header-close-menu':!isMenuOpen}">
+      <figure class="profile-sml" (click)="openProfile()">
+        <img [src]="previewUrl ? previewUrl :'/assets/icons/photoplaceholder_.jpg'" class="profile-sml__pic">
+      </figure>
+
+      <div [ngClass]="{'container__menu-title':isMenuOpen,'container__menu-title--close':!isMenuOpen}"
+        (click)="openProfile()">
+        <div class="container__menu-name">{{userName}}</div>
+        <div class="container__menu-role">{{roleName}}</div>
+      </div>
+      <hr>
+
+      <div class="container__menu-iconmenu">
+        <i class="icon icon-menu" (click)="onToggleMenuBar()"></i>
+      </div>
+    </div>
+
+    <span [ngClass]="{'menu__title':isMenuOpen,'menu__title--close':!isMenuOpen}"
+      *factoryClaims="[claimPolicyEnum[7],claimPolicyEnum[4],claimPolicyEnum[1],claimPolicyEnum[10]]">{{'Menu.Admin.Title' | translate }}</span>
+    <hr *factoryClaims="[claimPolicyEnum[7],claimPolicyEnum[4],claimPolicyEnum[1],claimPolicyEnum[10]]">
+
+    <div class="container__menu-section"
+      *factoryClaims="[claimPolicyEnum[7],claimPolicyEnum[4],claimPolicyEnum[1],claimPolicyEnum[10]]">
+      <ul class="container__menu-ul"
+        *factoryClaims="[claimPolicyEnum[7],claimPolicyEnum[4],claimPolicyEnum[1],claimPolicyEnum[10]]">
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[7]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/admin/users" routerLinkActive="active">
+            <i class="icon icon-users_active"></i>
+            <span>{{'Menu.Admin.Users' | translate}}</span>
+
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[1]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/admin/roles" routerLinkActive="active">
+            <i class="icon icon-roles_active"></i>
+            <span>{{'Menu.Admin.Roles' | translate}}</span>
+
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[4]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/admin/companies" routerLinkActive="active">
+            <i class="icon icon-companies_active"></i>
+            <span>{{'Menu.Admin.Companies' | translate}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <span [ngClass]="{'menu__title':isMenuOpen,'menu__title--close':!isMenuOpen}"
+      *factoryClaims="[claimPolicyEnum[33],claimPolicyEnum[30]]">{{'Menu.Supply.Title' | translate }}</span>
+    <hr *factoryClaims="[claimPolicyEnum[33],claimPolicyEnum[30]]">
+    <div class="container__menu-section" *factoryClaims="[claimPolicyEnum[33],claimPolicyEnum[30]]">
+      <ul class="container__menu-ul" *factoryClaims="[claimPolicyEnum[33],claimPolicyEnum[30]]">
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[33]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/supply/orders" routerLinkActive="active">
+            <i class="icon icon-required-materialsicon_required_materials_active"></i>
+            <span>{{'Menu.Supply.RequiredMaterial' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[10]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/admin/material-packages" routerLinkActive="active">
+            <i class="icon icon-icon_materialpackages"></i>
+            <span>{{'Menu.Supply.MaterialPackages' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[30]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/supply/cargo" routerLinkActive="active">
+            <i class="icon icon-cargo_inactive"></i>
+            <span>{{'Menu.Supply.Cargo' | translate}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <span [ngClass]="{'menu__title':isMenuOpen,'menu__title--close':!isMenuOpen}"
+      *factoryClaims="[claimPolicyEnum[43],claimPolicyEnum[40],claimPolicyEnum[49],claimPolicyEnum[46],claimPolicyEnum[52],claimPolicyEnum[30]]">{{'Menu.Stock.Title' | translate }}</span>
+    <hr
+      *factoryClaims="[claimPolicyEnum[43],claimPolicyEnum[40],claimPolicyEnum[49],claimPolicyEnum[46],claimPolicyEnum[52],claimPolicyEnum[30]]">
+    <div class="container__menu-section"
+      *factoryClaims="[claimPolicyEnum[43],claimPolicyEnum[40],claimPolicyEnum[49],claimPolicyEnum[46],claimPolicyEnum[52],claimPolicyEnum[30]]">
+      <ul class="container__menu-ul"
+        *factoryClaims="[claimPolicyEnum[43],claimPolicyEnum[40],claimPolicyEnum[49],claimPolicyEnum[46],claimPolicyEnum[52],claimPolicyEnum[30]]">
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[49]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/stock/stocks" routerLinkActive="active">
+            <i class="icon icon-stocksicon_stocks_inactive"></i>
+            <span>{{'Menu.Stock.Storages' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[46]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/stock/cells" routerLinkActive="active">
+            <i class="icon icon-cellsicon_cells_active"></i>
+            <span>{{'Menu.Stock.Cells' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[43]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/stock/stockeditems" routerLinkActive="active">
+            <i class="icon icon-stocked-itemsicon_stocked-items_inactive"></i>
+            <span>{{'Menu.Stock.StockedItems' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[30]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/stock/cargo" routerLinkActive="active">
+            <i class="icon icon-cargo_inactive"></i>
+            <span>{{'Menu.Stock.Cargo' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[40]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/stock/inspection" routerLinkActive="active">
+            <i class="icon icon-inspectionicon_inspection_inactive"></i>
+            <span>{{'Menu.Stock.Inspection' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[52]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/stock/statistics" routerLinkActive="active">
+            <i class="icon icon-icon_statistics"></i>
+            <span>{{'Menu.Stock.Statistics' | translate}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <span [ngClass]="{'menu__title':isMenuOpen,'menu__title--close':!isMenuOpen}"
+      *factoryClaims="[claimPolicyEnum[13],claimPolicyEnum[15],claimPolicyEnum[16],claimPolicyEnum[17],claimPolicyEnum[18],claimPolicyEnum[19],claimPolicyEnum[20],claimPolicyEnum[23],claimPolicyEnum[26],claimPolicyEnum[29]]">{{'Menu.Production.Title' | translate }}</span>
+    <hr
+      *factoryClaims="[claimPolicyEnum[13],claimPolicyEnum[15],claimPolicyEnum[16],claimPolicyEnum[17],claimPolicyEnum[18],claimPolicyEnum[19],claimPolicyEnum[20],claimPolicyEnum[23],claimPolicyEnum[26],claimPolicyEnum[29]]">
+    <div class="container__menu-section"
+      *factoryClaims="[claimPolicyEnum[13],claimPolicyEnum[15],claimPolicyEnum[16],claimPolicyEnum[17],claimPolicyEnum[18],claimPolicyEnum[19],claimPolicyEnum[20],claimPolicyEnum[23],claimPolicyEnum[26],claimPolicyEnum[29]]">
+      <ul class="container__menu-ul"
+        *factoryClaims="[claimPolicyEnum[13],claimPolicyEnum[15],claimPolicyEnum[16],claimPolicyEnum[17],claimPolicyEnum[18],claimPolicyEnum[19],claimPolicyEnum[20],claimPolicyEnum[23],claimPolicyEnum[26],claimPolicyEnum[29]]">
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[13]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/production/order-scheduling" routerLinkActive="active">
+            <i class="icon icon-order-schedulingicon_order-scheduling_inactive"></i>
+            <span>{{'Menu.Production.OrderScheduling' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[15]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/production/optimizations" routerLinkActive="active">
+            <i class="icon icon-icon_optimisations"></i>
+            <span>{{'Menu.Production.Optimizations' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" id="plan">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}" *ngIf="isMenuOpen"
+            routerLinkActive="active" (click)="productionToggleMenu()">
+            <i class="icon icon-materials_active"></i>
+            <span>{{'Menu.Production.Plans' | translate }}</span>
+            <i [ngClass]="{'icon-blackarrow_black_down':!isProductionOpenBigMenu,'icon-blackarrow_black_up':isProductionOpenBigMenu}"
+              [ngStyle]="{'display':isMenuOpen ? 'block':'none'} " class="icon" style="font-size: 0.5rem"></i>
+          </a>
+          <ul class="container__menu-ul-open" *ngIf="isProductionOpenBigMenu">
+            <li class="container__menu-li" *factoryClaims="claimPolicyEnum[16]">
+              <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                routerLink="/production/cuttings" routerLinkActive="active">
+                <i class="icon icon-cuttingsicon_cuttings_inactive"></i>
+                <span>{{'Menu.Production.Cuttings' | translate}}</span>
+              </a>
+            </li>
+            <li class="container__menu-li" *factoryClaims="claimPolicyEnum[17]">
+              <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                routerLink="/production/cnc" routerLinkActive="active">
+                <i class="icon icon-cncicon_cnc_inactive"></i>
+                <span>{{'Menu.Production.Cnc' | translate}}</span>
+              </a>
+            </li>
+            <li class="container__menu-li" *factoryClaims="claimPolicyEnum[18]">
+              <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                routerLink="/production/edgebanding" routerLinkActive="active">
+                <i class="icon icon-icon_edgebanding"></i>
+                <span>{{'Menu.Production.Edgebanding' | translate}}</span>
+              </a>
+            </li>
+            <li class="container__menu-li" *factoryClaims="claimPolicyEnum[29]">
+              <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                routerLink="/production/sorting" routerLinkActive="active">
+                <i class="icon icon-icon_workload-01"></i>
+                <span>{{'Menu.Production.Sorting' | translate}}</span>
+              </a>
+            </li>
+            <li class="container__menu-li" *factoryClaims="claimPolicyEnum[19]">
+              <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                routerLink="/production/assembly" routerLinkActive="active">
+                <i class="icon icon-assemblyicon_assembly_inactive"></i>
+                <span>{{'Menu.Production.Assembly' | translate}}</span>
+              </a>
+            </li>
+            <li class="container__menu-li" *factoryClaims="claimPolicyEnum[29]">
+              <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                routerLink="/production/packing" routerLinkActive="active">
+                <i class="icon icon-icon_workload-01"></i>
+                <span>{{'Menu.Production.Packing' | translate}}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[20]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/production/cameras" routerLinkActive="active">
+            <i class="icon icon-icon_cameras"></i>
+            <span>{{'Menu.Production.Cameras' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" id="machine" *factoryClaims="claimPolicyEnum[26]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}" *ngIf="isMenuOpen"
+            routerLinkActive="active" (click)="machineToggleMenu()">
+            <i class="icon icon-materials_active"></i>
+            <span>{{'Menu.Production.Machines' | translate}}</span>
+            <i [ngClass]="{'icon-blackarrow_black_down':!isMachineMenuBigOpen,'icon-blackarrow_black_up':isMachineMenuBigOpen}"
+              [ngStyle]="{'display':isMenuOpen ? 'block':'none'} " class="icon" style="font-size: 0.5rem"></i>
+          </a>
+          <ul class="container__menu-ul-open" *ngIf="isMachineMenuBigOpen">
+            <li class="container__menu-li-open">
+              <a class="container__menu-a-open" routerLink="/production/machines/cncs" routerLinkActive="active">
+                <span>CNC</span>
+              </a>
+
+            </li>
+            <li class="container__menu-li-open">
+              <a class="container__menu-a-open" routerLink="/production/machines/cuttings" routerLinkActive="active">
+                <span>{{'Menu.Production.Cuttings' | translate}}</span>
+              </a>
+
+            </li>
+            <li class="container__menu-li-open">
+              <a class="container__menu-a-open" routerLink="/production/machines/edgings" routerLinkActive="active">
+                <span>{{'Menu.Production.Edgebanding' | translate}}</span>
+              </a>
+
+            </li>
+          </ul>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[23]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/production/workstations" routerLinkActive="active">
+            <i class="icon icon-icon_workstations"></i>
+            <span>{{'Menu.Production.Workstations' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[29]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/production/workload" routerLinkActive="active">
+            <i class="icon icon-icon_workload-01"></i>
+            <span>{{'Menu.Production.Workload' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[54]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/production/furniture-units" routerLinkActive="active">
+            <i class="icon icon-icon_workload-01"></i>
+            <span>{{'Menu.Production.FurnitureUnits' | translate}}</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+    <span [ngClass]="{'menu__title':isMenuOpen,'menu__title--close':!isMenuOpen}"
+      *factoryClaims="[claimPolicyEnum[35],claimPolicyEnum[38],claimPolicyEnum[39]]">{{'Menu.Finance.Title' | translate }}</span>
+    <hr *factoryClaims="[claimPolicyEnum[35],claimPolicyEnum[38],claimPolicyEnum[39]]">
+    <div class="container__menu-section" *factoryClaims="[claimPolicyEnum[35],claimPolicyEnum[38],claimPolicyEnum[39]]">
+      <ul class="container__menu-ul" *factoryClaims="[claimPolicyEnum[35],claimPolicyEnum[38],claimPolicyEnum[39]]">
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[35]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/finance/general-expenses" routerLinkActive="active">
+            <i class="icon icon-general_expences"></i>
+            <span>{{'Menu.Finance.GeneralExpenses' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[35]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/finance/general-rules" routerLinkActive="active">
+            <i class="icon icon-general-feeicon_general_fee_rules"></i>
+            <span>{{'Menu.Finance.GeneralRules' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[38]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/finance/orders" routerLinkActive="active">
+            <i class="icon icon-ordersicon_orders_inactive"></i>
+            <span>{{'Menu.Finance.Orders' | translate}}</span>
+          </a>
+        </li>
+        <li class="container__menu-li" *factoryClaims="claimPolicyEnum[39]">
+          <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+            routerLink="/finance/statistics" routerLinkActive="active">
+            <i class="icon icon-icon_statistics"></i>
+            <span>{{'Menu.Finance.Statistics' | translate}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <footer>
+      <div class="language" *ngIf="isMenuOpen">
+        <ng-container *ngFor="let lng of lngAll">
+          <button type="button" (click)="switchLanguage(lng)" [class.activate]="lng === language"
+            [disabled]="lng === language">
+            {{lng | languagePipe}}
+          </button>
+        </ng-container>
+      </div>
+      <div class="copyright" *ngIf="isMenuOpen">
+        © 2020 Integrated Furniture Production System
+      </div>
+    </footer>
+    <hr>
+    <div class="container__menu-section logout">
+      <ul class="container__menu-ul">
+        <li class="container__menu-li">
+          <a (click)="logout()" *ngIf="!!token"
+            [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}">
+            <i class="icon icon-log-outicon_log-out_inactive"></i>
+            <span>{{'Menu.Logout' | translate }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</perfect-scrollbar>

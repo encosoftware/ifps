@@ -1,0 +1,28 @@
+<div class="container">
+  <h3>{{'Companies.EditCompany.Employees.Groups.NewGroups.MainTitle' | translate}}</h3>
+  <label class="input-label u-margin-top">{{'Companies.EditCompany.Employees.Groups.NewGroups.labels.Name' | translate}}
+    <input type="text" class="input-control" [(ngModel)]="newGroup.name" name="name">
+  </label>
+  <label
+    class="input-label u-margin-top">{{'Companies.EditCompany.Employees.Groups.NewGroups.labels.UserTeamType' | translate}}
+    <ng-select [items]="userTeamTypes" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name"
+      bindValue="id" [clearable]="false" [(ngModel)]="newGroup.userTeamType" (change)="typeChanged($event)">
+    </ng-select>
+  </label>
+  <label
+    class="input-label u-margin-top">{{'Companies.EditCompany.Employees.Groups.NewGroups.labels.Users' | translate}}
+    <ng-select [items]="employees" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name" bindValue="id"
+      [multiple]="true" (change)="employeeChange()" [clearable]="false" [(ngModel)]="employeesIds">
+    </ng-select>
+  </label>
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-end u-margin-top">
+        <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+          (click)="cancel()">{{'Companies.EditCompany.Employees.Groups.NewGroups.buttons.Cancel' | translate}}</button>
+        <button class="btn btn-primary" mat-button matRipple
+          (click)="addNewGroup()">{{'Companies.EditCompany.Employees.Groups.NewGroups.buttons.Add' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

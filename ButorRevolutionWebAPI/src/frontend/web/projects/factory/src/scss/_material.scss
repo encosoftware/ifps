@@ -1,0 +1,101 @@
+.mat-tab-label-content {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $tab-color-inactive;
+    opacity: 1;
+  }
+  
+  div.mat-tab-label {
+    height: auto;
+    padding: 0;
+    padding-right: 5rem !important;
+    opacity: 1 !important;
+    min-width: auto;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $tab-color-inactive;
+    opacity: 1;
+    font-family: "Poppins", sans-serif;
+    border: none !important;
+    outline: none !important;
+  }
+  
+  .tab-group {
+    border: 0;
+    height: 100% !important;
+    display: flex;
+    flex: auto;
+  }
+  
+  .mat-tab-label-active {
+    .mat-tab-label {
+      border: none !important;
+    }
+  
+    .mat-tab-label-content {
+      color: black;
+      opacity: 1 !important;
+    }
+  }
+  
+  .mat-tab-header {
+    border: none !important;
+  }
+  
+  .mat-ink-bar {
+    height: 0px !important;
+    display: hidden;
+  }
+  
+  .body-mat {
+    padding: 2.3rem;
+  }
+  
+  .mat-paginator {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    box-shadow: $box-shadow-box;
+  }
+  
+  .expansion-panel-span {
+    display: block;
+    padding-left: 3.5rem;
+    font-size: 1.5rem;
+    line-height: 2.3rem;
+    height: 2.1rem;
+  }
+  
+  .mat-expansion-panel-header {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  .mat-expansion-panel-header {
+    align-items: flex-start !important;
+  }
+  
+  .mat-snack-bar-container {
+    background-color: #00283E;
+    font-family: $btn-font-family;
+    font-size: 1.6rem;
+    font-weight: normal;
+    color: white;
+    box-shadow: 0 .2rem 1.1rem rgba(black, .36);
+    border-radius: 4px;
+    border: 1px solid #707070;
+  }
+  
+  .mat-tree-node {
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid $table-border-color;
+    padding: 1.5rem 3rem;
+    &:hover {
+      background-color: $color-table-hover;
+      cursor: pointer;
+    }
+  }
+  .mat-dialog-container {
+    overflow: visible !important;
+  }
+  
+  

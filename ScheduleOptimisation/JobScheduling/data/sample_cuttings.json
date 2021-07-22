@@ -1,0 +1,76 @@
+{
+    "layoutPlans": [
+        {
+            "boardGuid": "12121212",
+            "componentIds": [
+                3,
+                4,
+                10,
+                30,
+                31,
+                32,
+                50,
+                51,
+                60,
+                61,
+                62,
+                63
+            ],
+            "orderGuids": [
+                "0123534526765612",
+                "1111222233334444"
+            ],
+            "cuttings": [
+                {
+                    "componentId": 119,
+                    "length": 2070,
+                    "topLeftX": 0,
+                    "topLeftY": 0,
+                    "width": 584
+                },
+                {
+                    "componentId": 117,
+                    "length": 2070,
+                    "topLeftX": 584,
+                    "topLeftY": 0,
+                    "width": 560
+                }
+            ]
+        },
+        {
+            "boardGuid": "12121212",
+            "componentIds": [
+                5,
+                6,
+                8,
+                9,
+                11,
+                52,
+                53,
+                55,
+                56,
+                57
+            ],
+            "orderGuids": [
+                "7345324545332413",
+                "1111222233334444"
+            ],
+            "cuttings": [
+                {
+                    "componentId": 171,
+                    "length": 964,
+                    "topLeftX": 0,
+                    "topLeftY": 864,
+                    "width": 542
+                },
+                {
+                    "componentId": 58,
+                    "length": 864,
+                    "topLeftX": 0,
+                    "topLeftY": 0,
+                    "width": 517
+                }
+            ]
+        }
+    ]
+}

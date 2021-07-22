@@ -1,0 +1,283 @@
+.right-p {
+    padding-right: 10.3rem;
+
+}
+
+.bottom-p {
+    margin-bottom: 1.7rem;
+
+}
+
+.purchase {
+    display: flex;
+    margin: 0 auto;
+    width: 80%;
+    &-main-name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 4.3rem;
+    }
+
+    &-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &-boxs {
+            display: flex;
+            padding: 3rem 0;
+
+        }
+
+        &-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #D6D6D6;
+            border-radius: 5px;
+            width: 15.0rem;
+            height: 8.0rem;
+            margin-right: 2rem;
+        }
+        &-contact {
+            &-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-top: 1rem;
+
+            }
+
+            &-column {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+
+                butor-form-field {
+                    flex: 1;
+                    margin-top: -2rem;
+                }
+            }
+        }
+
+        &-list {
+            width: 100%;
+
+            &-ul {
+                list-style-type: none;
+            }
+
+            &-item {
+                padding-bottom: 5.2rem;
+
+                h2 {
+                    text-align: left;
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    letter-spacing: 0;
+                    color: #000000;
+                    text-transform: uppercase;
+                }
+
+                hr {
+                    margin: 1rem 0 0 0;
+                }
+            }
+
+            button {
+                margin-bottom: 5.6rem;
+            }
+
+            table {
+                margin-bottom: 4rem;
+            }
+        }
+
+        &-total {
+            min-width: 33.6rem;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.09);
+            border-radius: 5px;
+            padding: 2.8rem;
+            margin-left: 7rem;
+            height: fit-content;
+
+            &-cost{
+                button{
+                    width: 100%;
+                }
+            }
+            &-header {
+                font-size: 2.5rem;
+                line-height: 3.8rem;
+                color: rgba(0, 29, 45, 1);
+                font-weight: 700;
+                padding-bottom: 2.8rem;
+            }
+
+            &-promo {
+                line-height: 2.1rem;
+                font-size: 1.4rem;
+                padding-bottom: 3.7rem;
+
+                &-label {
+                    display: flex;
+                    flex-direction: row;
+
+                    butor-form-input {
+                        flex: 1;
+                    }
+
+                    button {
+                        margin-left: 1.3rem;
+                        width: 3.6rem;
+                        height: 3.6rem;
+                        flex: 1;
+                    }
+                }
+            }
+
+            &-Subtotal {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding-bottom: 0.8rem;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            &-Coupon {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding-bottom: 0.8rem;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            &-delivery {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding-bottom: 1.8rem;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            &-totalpay {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding: 2rem 0 0 0;
+                font-weight: 700;
+                color: rgba(0, 0, 0, 1);
+
+            }
+        }
+    }
+
+    &-delivery {
+        h2 {
+            line-height: 2.7rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 1);
+            padding-bottom: 1.5rem;
+        }
+
+        &-p {
+            line-height: 2.1rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 1);
+            padding-bottom: 4.3rem;
+        }
+
+        &-boxs {
+            display: flex;
+
+        }
+
+        &-box {
+            border: 1px solid rgba(214, 214, 214, 1);
+            border-radius: 5px;
+            padding: 2.6rem 3.1rem;
+            margin-right: 2rem;
+
+            h3 {
+                font-size: 1.5rem;
+                line-height: 2.3rem;
+                font-weight: 700;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            &-p {
+                font-size: 1.4rem;
+                line-height: 2.1rem;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+
+    &-terms {
+        display: flex;
+        flex-direction: column;
+
+        &-check {
+            display: flex;
+            flex-direction: row;
+            margin-top: 1.2rem;
+
+            &:last-child {}
+        }
+
+    }
+
+}
+
+:host /deep/ .input-white {
+    &-total {
+        background-color: white !important;
+    }
+
+    &-post {
+        max-width: 20rem;
+        background-color: white !important;
+        height: 4rem;
+    }
+
+    &-contact {
+        background-color: white !important;
+        height: 4rem;
+    }
+
+    background-color: white !important;
+    max-width: 5rem;
+}
+:host /deep/ .ng-select {
+    .ng-select-container {
+        background-color: white;
+        .ng-value-container {
+            color: black;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.3rem;
+        }
+    }
+
+    .ng-dropdown-panel {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.3rem;
+        background-color: white;
+    }
+}
+
+.postal {
+    display: flex;
+
+    button {
+        margin-left: 2.3rem;
+    }
+}

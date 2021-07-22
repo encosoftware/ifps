@@ -1,0 +1,88 @@
+<div class="basic-wrapper">
+<div [formGroup]="basicInfoForm">
+    <div class="basic-header">
+      <figure class="profile-big">
+        <img [src]="previewUrl" class="profile__pic" (click)="fileInput.click()" alt='profile'> 
+      </figure>
+      <input style="display: none;" #fileInput type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+    <butor-form-field label="{{'Users.EditUser.BasicInfo.labels.Name' | translate}}">
+      <butor-form-input formControlName="name" name="name"></butor-form-input>
+      <span class="error"
+        *ngIf="(basicInfoForm.get('name').touched || basicInfoForm.get('name').dirty) && basicInfoForm.get('name').hasError('required')">{{'Users.EditUser.BasicInfo.error.nameReq' | translate}}</span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.EditUser.BasicInfo.labels.Roles' | translate}}">
+      <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="roles" [multiple]="true" bindLabel="name"
+        formControlName="roles" bindValue="id" name="roles">
+
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <div class="role">
+            <div class="image-icons">
+            </div>
+            <span class="role-text">{{item.name}}</span>
+            <a class="role-link" (click)="clear(item)"><i class="icon icon-clear"></i></a>
+          </div>
+        </ng-template>
+      </ng-select>
+      <span class="error"
+        *ngIf="(basicInfoForm.get('roles').touched || basicInfoForm.get('roles').dirty) && basicInfoForm.get('roles').hasError('required')">{{'Users.EditUser.BasicInfo.error.roleReq' | translate}}</span>
+    </butor-form-field>
+    <butor-card-wrapper>
+      <!-- <butor-cards title="any" formControlName="roles"></butor-cards> -->
+    </butor-card-wrapper>
+    <butor-form-field label="{{'Users.EditUser.BasicInfo.labels.Company' | translate}}">
+      <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="company" bindLabel="name"
+        formControlName="company" bindValue="id" name="company">
+      </ng-select>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.EditUser.BasicInfo.labels.PhoneNumber' | translate}}">
+      <butor-form-input formControlName="phone" name="phone"></butor-form-input>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.EditUser.BasicInfo.labels.Email' | translate}}">
+      <butor-form-input formControlName="email" name="email"></butor-form-input>
+      <span class="error"
+        *ngIf="(basicInfoForm.get('email').touched || basicInfoForm.get('email').dirty) && basicInfoForm.get('email').hasError('required')">{{'Users.EditUser.BasicInfo.error.emailReq' | translate}}</span>
+      <span class="error"
+        *ngIf="(basicInfoForm.get('email').touched || basicInfoForm.get('email').dirty) && basicInfoForm.get('email').hasError('email')">{{'Users.EditUser.BasicInfo.error.emailFormat' | translate}}</span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.EditUser.BasicInfo.labels.Address' | translate}}">
+    </butor-form-field>
+    <div class="row" formGroupName="address">
+      <div class="col-4">
+        <butor-form-field>
+          <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries" bindLabel="name"
+            bindValue="id" formControlName="countryId" [clearable]="false" placeholder="Country" name="countryId"></ng-select>
+          <span class="error"
+            *ngIf="(basicInfoForm.get('address').get('countryId').touched || basicInfoForm.get('address').get('countryId').dirty) && basicInfoForm.get('address').get('countryId').hasError('required')">{{'Users.EditUser.BasicInfo.error.countryReq' | translate}}</span>
+        </butor-form-field>
+      </div>
+      <div class="col-3">
+        <butor-form-field>
+          <butor-form-input formControlName="postCode" type="number" placeholder="Postcode" name="postcode"></butor-form-input>
+          <span class="error"
+            *ngIf="(basicInfoForm.get('address').get('postCode').touched || basicInfoForm.get('address').get('postCode').dirty) && basicInfoForm.get('address').get('postCode').hasError('required')">{{'Users.EditUser.BasicInfo.error.postcodeReq' | translate}}</span>
+
+        </butor-form-field>
+      </div>
+      <div class="col-5">
+        <butor-form-field>
+          <butor-form-input formControlName="city" placeholder="City" name="city"></butor-form-input>
+          <span class="error"
+            *ngIf="(basicInfoForm.get('address').get('city').touched || basicInfoForm.get('address').get('city').dirty) && basicInfoForm.get('address').get('city').hasError('required')">{{'Users.EditUser.BasicInfo.error.cityReq' | translate}}</span>
+
+        </butor-form-field>
+      </div>
+      <div class="col-12">
+        <butor-form-field>
+          <butor-form-input formControlName="address" placeholder="Address" name="address"></butor-form-input>
+          <span class="error"
+            *ngIf="(basicInfoForm.get('address').get('address').touched || basicInfoForm.get('address').get('address').dirty) && basicInfoForm.get('address').get('address').hasError('required')">{{'Users.EditUser.BasicInfo.error.addressReq' | translate}}</span>
+        </butor-form-field>
+      </div>
+    </div>
+    <butor-form-field label="{{'Users.EditUser.BasicInfo.labels.Language' | translate}}">
+      <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="language" bindLabel="name" bindValue="id"
+        formControlName="language" name="language"></ng-select>
+    </butor-form-field>
+  </div>
+</div>

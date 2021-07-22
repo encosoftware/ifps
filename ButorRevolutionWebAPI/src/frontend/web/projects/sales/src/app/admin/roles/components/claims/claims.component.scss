@@ -1,0 +1,34 @@
+.mat-expansion-panel-header-title{
+    display: flex;
+    flex-grow: 3;
+    margin-right: 16px;
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modul-description{
+    font-size: 15px;
+    padding-left: 30px;
+}
+
+.form__checkbox-label{
+  font-weight: 600;
+}
+
+.mat-expansion-panel-header {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  align-items: center !important;
+}
+
+.concrete-claim {
+  padding-left: 16px;
+}

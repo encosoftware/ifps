@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-between u-margin-top">
+    <h3>{{'StockedItems.title' | translate}}</h3>
+    <div class="d-flex justify-content-between">
+        <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="downloadCsv()"
+            *factoryClaims="claimPolicyEnum[44]">{{'csvDownload' | translate}}</button>
+        <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="eject()"
+            [disabled]="isDisable()" *factoryClaims="claimPolicyEnum[44]">{{'StockedItems.eject' | translate}}</button>
+        <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="reserve()"
+            [disabled]="isDisable()"
+            *factoryClaims="claimPolicyEnum[44]">{{'StockedItems.reserve' | translate}}</button>
+        <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewStockedItem()"
+            *factoryClaims="claimPolicyEnum[44]">{{'StockedItems.addNewItem' | translate}}</button>
+    </div>
+</div>
+
+<div class="scroll-container">
+    <perfect-scrollbar>
+        <form [formGroup]="stockedItemsForm" class="scroll-form">
+            <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+                <ng-container cdkColumnDef="checkbox">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <div *ngIf="dataSource.items.length > 0" class="table-checkbox-container">
+                            <label class="form__checkbox-group" (click)="$event.stopPropagation();">
+                                <input [(ngModel)]="allChecked" [ngModelOptions]="{standalone: true}"
+                                    class="form__checkbox-input" type="checkbox"
+                                    (change)="toggleAllCheckbox($event.target.checked)">
+                                <span [attr.class]="checkmarkClass"></span>
+                            </label>
+                        </div>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <div>
+                            <butor-form-checkbox [(ngModel)]="row.isSelected" [ngModelOptions]="{standalone: true}"
+                                (change)="toggleCheckbox()">
+                            </butor-form-checkbox>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="description">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'StockedItems.description' | translate}}" cType='filter'>
+                            <butor-form-input name="description" formControlName="description"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> <b>{{row.description}}</b> </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="code">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'StockedItems.code' | translate}}" cType='filter'>
+                            <butor-form-input name="code" formControlName="code"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="cellName">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'StockedItems.cellName' | translate}}" cType='filter'>
+                            <butor-form-input name="cellName" formControlName="cellName"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.cellName}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="cellMeta">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'StockedItems.cellMetaData' | translate}}" cType='filter'>
+                            <butor-form-input name="cellMeta" formControlName="cellMeta"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.cellMeta}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="quantity">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'StockedItems.quantity' | translate}}" cType='filter'>
+                            <butor-form-input name="quantity" formControlName="quantity" type="number">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.quantity}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="order">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'StockedItems.order' | translate}}" cType='filter'>
+                            <butor-form-input formControlName="order"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.order}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="clearFilter">
+                    <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                                class="icon icon-clear"></i>{{'StockedItems.clearFilter' | translate}}</a> </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <factory-btn-hamburger>
+                            <factory-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-edit"
+                                *factoryClaims="claimPolicyEnum[44]" buttonText="{{'StockedItems.edit' | translate}}"
+                                (click)="this.editStockedItem(row.id)">
+                            </factory-btn-hamburger-inside>
+                            <factory-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                                *factoryClaims="claimPolicyEnum[45]" buttonText="{{'StockedItems.delete' | translate}}"
+                                (click)="deleteButton(row.id)">
+                            </factory-btn-hamburger-inside>
+                        </factory-btn-hamburger>
+                    </td>
+                </ng-container>
+
+                <tr cdk-header-row
+                    *cdkHeaderRowDef="['checkbox', 'description', 'code', 'cellName', 'cellMeta', 'quantity', 'clearFilter'];sticky:true;">
+                </tr>
+
+                <tr cdk-row
+                    *cdkRowDef="let row; columns: ['checkbox', 'description', 'code', 'cellName', 'cellMeta', 'quantity', 'clearFilter']"
+                    (click)="editStockedItem(row.id)">
+                </tr>
+
+            </table>
+
+            <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+                [pageIndex]="dataSource.pageIndex"
+                [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+            </mat-paginator>
+
+            <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+            <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}
+            </div>
+
+        </form>
+    </perfect-scrollbar>
+</div>

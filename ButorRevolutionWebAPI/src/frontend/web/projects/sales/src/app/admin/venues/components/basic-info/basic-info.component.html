@@ -1,0 +1,87 @@
+<div class="basic-wrapper">
+    <div [formGroup]="form">
+        <butor-form-field label="{{'Venues.EditVenue.basicInfo.labels.Name' | translate}}">
+            <butor-form-input formControlName="name" name="name"></butor-form-input>
+            <div *ngIf="submitted && f.name.errors" class="error">
+                <div *ngIf="f.name.errors.required">Name is required</div>
+            </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Venues.EditVenue.basicInfo.labels.PhoneNumber' | translate}}">
+            <butor-form-input formControlName="phone" name="phone"></butor-form-input>
+            <div *ngIf="submitted && f.phone.errors" class="error">
+                <div *ngIf="f.phone.errors.required">Phone is required</div>
+            </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Venues.EditVenue.basicInfo.labels.Email' | translate}}">
+            <butor-form-input formControlName="email" name="email"></butor-form-input>
+            <div *ngIf="submitted && f.email.errors" class="error">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Invalid email format</div>
+            </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Venues.EditVenue.basicInfo.labels.Address' | translate}}">
+            <div class="row">
+                <div class="col-4">
+                    <butor-form-field>
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries"
+                            bindLabel="translation" bindValue="id" formControlName="saCountry" name="country"
+                            [clearable]="false" placeholder="Country">
+                        </ng-select>
+                    </butor-form-field>
+                </div>
+                <div class="col-3">
+                    <butor-form-field>
+                        <butor-form-input formControlName="saPostCode" placeholder="Postcode" name="postcode">
+                        </butor-form-input>
+                        <div *ngIf="submitted && f.saPostCode.errors" class="error">
+                            <div *ngIf="f.saPostCode.errors.required">Postcode is required</div>
+                        </div>
+                    </butor-form-field>
+                </div>
+                <div class="col-5">
+                    <butor-form-field>
+                        <butor-form-input formControlName="saCity" placeholder="City" name="city">
+                        </butor-form-input>
+                        <div *ngIf="submitted && f.saCity.errors" class="error">
+                            <div *ngIf="f.saCity.errors.required">City is required</div>
+                        </div>
+                    </butor-form-field>
+                </div>
+            </div>
+        </butor-form-field>
+        <butor-form-field>
+            <butor-form-input formControlName="shoppingAddress" placeholder="Address" name="address"></butor-form-input>
+            <div *ngIf="submitted && f.shoppingAddress.errors" class="error">
+                <div *ngIf="f.shoppingAddress.errors.required">Address is required</div>
+            </div>
+        </butor-form-field>
+    </div>
+    <butor-form-field label="{{'Venues.EditVenue.basicInfo.labels.OpeningHours' | translate}}">
+        <div *ngFor="let item of basicInfo.openingHours;let openIndex=index;" class="row u-margin-top-btn-sm"
+            role="time">
+            <div class="col-4">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dayTypes" bindLabel="translation"
+                    bindValue="dayType" [(ngModel)]="item.dayType" name="day" (change)="dayChanged($event, openIndex)"
+                    [clearable]="false">
+                </ng-select>
+            </div>
+            <div class="col-3">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect" bindLabel="name"
+                    bindValue="name" [clearable]="false" [(ngModel)]="item.from" name="from">
+                </ng-select>
+            </div>
+            <div class="col-3">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect" bindLabel="name"
+                    bindValue="name" [clearable]="false" [(ngModel)]="item.to" name="to">
+                </ng-select>
+            </div>
+            <div class="col-1">
+                <i class="icon icon-clear red-check-circle" (click)="deleteOpeningHour(openIndex)"
+                    style="cursor: pointer;"></i>
+            </div>
+        </div>
+        <button type="button" class="btn btn-text-only" mat-button matRipple role="newAdd" (click)="addNewHours()">
+            {{'Venues.EditVenue.basicInfo.labels.AddNew' | translate}}
+        </button>
+    </butor-form-field>
+</div>

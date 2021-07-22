@@ -1,0 +1,14 @@
+
+## Linkek a 2D bin packing megoldására (kódok és publikációk)
+
+https://www.info.ucl.ac.be/~yde/Papers/thesis-pschaus2009.pdf
+
+https://github.com/ssbothwell/greedypacker/blob/master/greedypacker/shelf.py
+
+https://stackoverflow.com/questions/8880975/is-there-a-c-source-lib-to-solve-2d-bin-packing-with-a-rectangular-bin-not-sq
+
+https://en.wikipedia.org/wiki/Bin_packing_problem
+
+http://www.numdam.org/article/RO_2012__46_1_41_0.pdf
+
+http://pds25.egloos.com/pds/201504/21/98/RectangleBinPack.pdf

@@ -1,0 +1,128 @@
+<form *ngIf="materials" #f="ngForm" name="form">
+  <table *ngIf="materials.length > 0" cdk-table [dataSource]="materials" class="table-standard">
+
+    <ng-container cdkColumnDef="material">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.material' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.materialCode}}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.name' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="materialPackage">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.materialPackage' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row; let i = index">
+        <ng-select style="width: 15rem;" [items]="row.materialPackages" highlightColor="#9575cd"
+          highlightTextColor="#fff" bindLabel="name" bindValue="id" [(ngModel)]="row.selectedPackageId"
+          (change)="materialPackageChange(row.materialCode,$event,f)" name="selectPack" [clearable]="false" required>
+        </ng-select>
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="price">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.price' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row; let i = index">
+        {{row.materialPackagesSelected ? row.materialPackagesSelected.price.value : ''}}
+        {{row.materialPackagesSelected ? row.materialPackagesSelected.price.currency : ''}}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="packageSize">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.packageSize' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row; let i = index">
+        {{row.materialPackagesSelected ? row.materialPackagesSelected.packageSize : '0'}}
+
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="requiredAmount">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.requiredAmount' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.requiredAmount}}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="stockedAmount">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.stockedAmount' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.stockedAmount}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="minAmount">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.minAmount' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.minAmount}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="advisedAmount">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.advisedAmount' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.advisedAmount}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="underOrderAmount">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.underOrderAmount' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.underOrderAmount}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="orderdAmount">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        <butor-form-field label="{{'CreateCargo.materials.orderAmount' | translate}}" cType='filter'>
+        </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row;let i = index">
+        <butor-form-input style="width: 1rem;" [(ngModel)]="row.orderdAmount" name="orderAm-{{i}}" required
+          amountValidator packageSize="{{row.materialPackagesSelected?.packageSize}}" minAmount="{{row.minAmount}}"
+          (ngModelChange)="orderModelChange(f,i,row.orderdAmount)" #orderAm="ngModel" orderAmount type="number">
+        </butor-form-input>
+        <div *ngIf="orderAm.invalid && (orderAm.dirty || orderAm.touched)">
+          <div *ngIf="orderAm.errors.orderAmount" class="input-error">
+            {{'CreateCargo.materials.OrderAmountError' | translate}}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="['material', 'name', 'materialPackage', 'price','orderdAmount','packageSize','requiredAmount', 
+    'stockedAmount', 'minAmount','advisedAmount','underOrderAmount'];sticky:true;">
+    </tr>
+
+    <tr cdk-row *cdkRowDef="let row; columns: ['material', 'name', 'materialPackage', 'price', 'orderdAmount','packageSize', 'requiredAmount', 
+    'stockedAmount', 'minAmount','advisedAmount','underOrderAmount']">
+    </tr>
+
+  </table>
+</form>
+
+<div *ngIf="materials.length == 0" class="empty-label">
+  {{'CreateCargo.materials.noMaterial' | translate}}
+</div>

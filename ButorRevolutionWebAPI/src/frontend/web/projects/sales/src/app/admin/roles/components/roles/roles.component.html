@@ -1,0 +1,12 @@
+<div class="bsd" *ngFor="let division of model">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
+            <mat-panel-title>
+                {{division.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let role of division.roles">
+            <div class="sub-role" (click)="selectRole(role.id)" [class.active]="selectedRole === role.id">{{role.name}}</div>
+        </ng-container>
+    </mat-expansion-panel>
+</div>

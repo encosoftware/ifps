@@ -1,0 +1,44 @@
+<div class="container">
+  <div *ngIf="!id" class="dialog-title">
+    {{'Workstations.newWorkstation.title' | translate}}
+  </div>
+  <div *ngIf="id" class="dialog-title">
+    {{'Workstations.editWorkstation' | translate}}
+  </div>
+  <form [formGroup]="workstationForm" (ngSubmit)="onSubmit()">
+    <butor-form-field label="{{'Workstations.name' | translate}}">
+      <butor-form-input formControlName="name"></butor-form-input>
+      <div *ngIf="submitted && f.name.errors" class="input-error">
+        <div *ngIf="f.name.errors.required">{{'Workstations.newWorkstation.nameReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Workstations.optimalCrew' | translate}}">
+      <butor-form-input formControlName="optimalCrew" type="number"></butor-form-input>
+      <div *ngIf="submitted && f.optimalCrew.errors" class="input-error">
+        <div *ngIf="f.optimalCrew.errors.required">{{'Workstations.newWorkstation.optReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Workstations.machine' | translate}}">
+      <ng-select formControlName="machine" [items]="machines" highlightColor="#9575cd" highlightTextColor="#fff"
+        bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.machine.errors" class="input-error">
+        <div *ngIf="f.machine.errors.required">{{'Workstations.newWorkstation.machineReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Workstations.type' | translate}}">
+      <ng-select formControlName="type" [items]="types" highlightColor="#9575cd" highlightTextColor="#fff"
+        bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.type.errors" class="input-error">
+        <div *ngIf="f.type.errors.required">{{'Workstations.newWorkstation.typeReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+        (click)="cancel()">{{'Workstations.newWorkstation.cancel' | translate}}</button>
+      <button class="btn btn-primary" mat-button matRipple
+        type="submit">{{'Workstations.newWorkstation.save' | translate}}</button>
+    </div>
+  </form>
+</div>

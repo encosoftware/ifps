@@ -1,0 +1,23 @@
+
+<form [formGroup]="newProductForm" *ngIf="!isLoading">
+  <h3>{{ title }}</h3>
+  <butor-form-field label="{{'Orders.offerForm.products.NewProducts.Cabinet' | translate}}">
+    <ng-select formControlName="cabinet" [items]="items" highlightColor="#9575cd" highlightTextColor="#fff"
+      bindLabel="code" bindValue="id" [clearable]="false">
+    </ng-select>
+    <div *ngIf="submitted && f.cabinet.errors" class="error">
+      <div *ngIf="f.cabinet.errors.required">{{'Orders.offerForm.products.NewProducts.ErrorMessages.CabinetError' | translate}}</div>
+    </div>
+  </butor-form-field>
+  <butor-form-field label="{{'Orders.offerForm.products.NewProducts.Quantity' | translate}}">
+    <butor-form-input formControlName="quantity" type="number"></butor-form-input>
+    <div *ngIf="submitted && f.quantity.errors" class="error">
+      <div *ngIf="f.quantity.errors.required">{{'Orders.offerForm.products.NewProducts.ErrorMessages.QuantityError' | translate}}</div>
+    </div>
+  </butor-form-field>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()"
+      type="button">{{'Orders.offerForm.products.NewProducts.Buttons.Cancel' | translate}}</button>
+    <button mat-button class="btn btn-primary" (click)="addCabinet()">{{'Orders.offerForm.products.NewProducts.Buttons.Save' | translate}}</button>
+  </div>
+</form>

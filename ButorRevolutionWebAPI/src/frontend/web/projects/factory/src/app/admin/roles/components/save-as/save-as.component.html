@@ -1,0 +1,28 @@
+<form [formGroup]="newRoleForm">
+    <div class="container">
+        <h3>{{'Roles.SaveAs.title' | translate}}</h3>
+        <butor-form-field label="{{'Roles.SaveAs.category' | translate}}">
+            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="divisions" bindLabel="name"
+                bindValue="id" formControlName="divisionId" [clearable]="false"></ng-select>
+            <div *ngIf="submitted && f.divisionId.errors" class="error">
+                <div *ngIf="f.divisionId.errors.required">{{'Roles.SaveAs.catReq' | translate}}</div>
+            </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Roles.SaveAs.name' | translate}}">
+            <butor-form-input formControlName="name" name="name"></butor-form-input>
+            <div *ngIf="submitted && f.name.errors" class="error">
+                <div *ngIf="f.name.errors.required">{{'Roles.SaveAs.nameReq' | translate}}</div>
+            </div>
+        </butor-form-field>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-end u-margin-top">
+                    <button mat-button class="btn btn-text-only u-margin-btn-right"
+                        (click)="cancel()">{{'Roles.SaveAs.cancel' | translate}}</button>
+                    <button mat-button class="btn btn-primary"
+                        (click)="save()">{{'Roles.buttons.Save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

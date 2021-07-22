@@ -1,0 +1,128 @@
+<butor-layout-two-row *ngIf="!isLoading">
+  <butor-layout-panel-top>
+    <h3>{{ newCargo.cargoDetailsBeforeSaveCargo.cargoName }}</h3>
+    <table cdk-table [dataSource]="cargoDetailsBeforeSaveCargo" class="table-standard table-bc-no-border">
+
+      <ng-container cdkColumnDef="cargoId">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'CreateCargo.tableHeader.cargoId' | translate}}" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row">
+          <b>{{row.cargoName}}</b>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="bookedBy">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'CreateCargo.tableHeader.bookedBy' | translate}}" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.bookedBy}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="created">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'CreateCargo.tableHeader.created' | translate}}" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.createdOn | date:"y.MM.dd"}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="supplier">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'CreateCargo.tableHeader.supplier' | translate}}" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.supplierName}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="netCost">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'CreateCargo.tableHeader.netCost' | translate}}" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.netCost.value | number}} {{row.netCost.currency}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="vat">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'CreateCargo.tableHeader.vat' | translate}}" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.vat.value | number}} {{row.vat.currency}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="totalGross">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'CreateCargo.tableHeader.totalCost' | translate}}" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.totalGrossCost.value | number }}
+            {{row.totalGrossCost.currency}}</b> </td>
+      </ng-container>
+
+      <tr cdk-header-row
+        *cdkHeaderRowDef="['cargoId', 'bookedBy', 'created', 'supplier', 'netCost', 'vat', 'totalGross'];sticky:true;">
+      </tr>
+
+      <tr cdk-row
+        *cdkRowDef="let row; columns: ['cargoId', 'bookedBy', 'created', 'supplier', 'netCost', 'vat', 'totalGross']"
+        [routerLink]="['/supply/orders/create', row.id]">
+      </tr>
+
+    </table>
+  </butor-layout-panel-top>
+  <butor-layout-panel-bottom>
+    <h2>{{'CreateCargo.form.title' | translate}}</h2>
+    <butor-layout-one-col>
+      <butor-layout-panel-center>
+        <mat-tab-group disableRipple>
+          <mat-tab label="{{'CreateCargo.form.materials' | translate}}">
+            <ng-container *ngIf="!isLoading">
+                <factory-supply-materials [materials]="newCargo.materials" (isEmpty)="getIsMaterialEmpty($event)"
+                  (isValid)="getIsMaterialValid($event)" (materialsSet)="getMaterial($event)">
+                </factory-supply-materials>
+            </ng-container>
+          </mat-tab>
+          <mat-tab label="{{'CreateCargo.form.additionals' | translate}}" class="popup-title">
+            <factory-order-additionals *ngIf="!isLoading" [additionals]="newCargo.additionals"
+              (isEmpty)="getIsAdditionalsEmpty($event)" (isValid)="getIsAdditionalsValid($event)"
+              (setAdditionals)="getAdditionals($event)">
+            </factory-order-additionals>
+          </mat-tab>
+          <mat-tab label="{{'CreateCargo.form.shipping' | translate}}" class="popup-title">
+            <div class="body-mat">
+              <factory-order-shipping (shippingOutput)="getShipping($event)" (isValid)="getIsValid($event)"
+                [submitted]="submitted"></factory-order-shipping>
+            </div>
+          </mat-tab>
+
+          <mat-tab disabled>
+            <ng-template style="margin-left: auto;" mat-tab-label>
+              <button mat-button matRipple class="btn btn-border u-margin-btn-right">
+                Export
+              </button>
+            </ng-template>
+          </mat-tab>
+          <mat-tab disabled *ngIf="cargoId !== 0">
+            <ng-template mat-tab-label>
+              <button mat-button matRipple class="btn btn-border u-margin-btn-right" (click)="openPreview()">
+                {{'CreateCargo.form.preview' | translate}}
+              </button>
+            </ng-template>
+          </mat-tab>
+          <mat-tab disabled>
+            <ng-template mat-tab-label>
+              <button mat-button matRipple class="btn btn-primary" (click)="saveCargo()"
+                [disabled]="!isValid || !isMaterialValid  || isMaterialEmpty">
+                {{'CreateCargo.form.saveCargo' | translate}}
+              </button>
+            </ng-template>
+          </mat-tab>
+
+        </mat-tab-group>
+      </butor-layout-panel-center>
+    </butor-layout-one-col>
+  </butor-layout-panel-bottom>
+</butor-layout-two-row>

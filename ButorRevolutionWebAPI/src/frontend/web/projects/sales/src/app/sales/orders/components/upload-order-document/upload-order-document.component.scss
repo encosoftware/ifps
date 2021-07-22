@@ -1,0 +1,48 @@
+i {
+    padding-right: 0.8rem;
+    color: #4D41FF;
+}
+
+.file-label{
+    padding-bottom: 1.8rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.empty-file-label{
+    padding-bottom: 1.4rem;
+    font-size: 1.5rem;
+    color: #D6D6D6;
+}
+
+.upload-label-input {
+    font-size: 1.5rem;
+    color: #4D41FF;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.uploaded-file-container{
+    display: flex;
+}
+
+.upload-progress-container{
+    flex: 1;
+}
+
+.delete-icon{
+    padding: 0;
+    cursor: pointer;
+}
+
+.large-icon{
+    font-size: 3.5rem;
+    padding-right: 1rem;
+}
+
+.upload-data-container{
+    font-size: 1.3rem;
+    color: #D6D6D6;
+    font-style: italic;
+    padding-top: 0.5rem;
+}

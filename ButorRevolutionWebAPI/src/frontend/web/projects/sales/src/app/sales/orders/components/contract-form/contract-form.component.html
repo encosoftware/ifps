@@ -1,0 +1,131 @@
+<form [formGroup]="createContractForm">
+    <div class="row button-container-padding">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button *ngIf="isPreviewButtonVisible" mat-button class="btn btn-border u-margin-btn-right"
+                    (click)="openPreview()">{{'Orders.offerForm.products.preview' | translate}}</button>
+                <button mat-button class="btn btn-text-only u-margin-btn-right"
+                    (click)="cancel()">{{'Orders.ContractForm.Buttons.Cancel' | translate}}</button>
+                <button mat-button class="btn btn-primary" [disabled]="!isSaveButtonEnabled"
+                    (click)="saveContract()">{{'Orders.ContractForm.Buttons.Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row contract-details-container">
+        <div class="col">
+            <div class="contract-details-maingroup">{{'Orders.ContractForm.producer' | translate}}</div>
+            <butor-form-field label="{{'Orders.ContractForm.name' | translate}}">
+                <div style="padding-bottom: 1.5rem;">{{contract.producer.name}}</div>
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.ContractForm.correspondentAddress' | translate}}">
+                {{contract.producer.correspondentAddress}}
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.ContractForm.taxNumber' | translate}}">
+                {{contract.producer.tax}}
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.ContractForm.bankAccount' | translate}}">
+                {{contract.producer.bankAccount}}
+            </butor-form-field>
+        </div>
+        <div class="col">
+            <div class="contract-details-maingroup">{{'Orders.ContractForm.customer' | translate}}</div>
+            <butor-form-field label="{{'Orders.ContractForm.name' | translate}}">
+                <div style="padding-bottom: 1.5rem;">{{contract.customer.name}}</div>
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.ContractForm.correspondentAddress' | translate}}">
+                {{contract.customer.correspondentAddress}}
+            </butor-form-field>
+            <butor-form-field label="{{'Orders.ContractForm.shippingAddress' | translate}}">
+                {{contract.customer.shippingAddress}}
+            </butor-form-field>
+        </div>
+        <div class="col">
+            <div class="contract-details-maingroup">{{'Orders.ContractForm.financialDetails' | translate}}</div>
+            <div class="row u-padding-bottom">
+                <div class="col-4">
+                    <div class="financial-name">{{'Orders.ContractForm.netCost' | translate}}</div>
+                </div>
+                <div class="col-8">
+                    <div>{{contract.financial.netCost}} {{contract.financial.currency}}</div>
+                </div>
+            </div>
+            <div class="row u-padding-bottom">
+                <div class="col-4">
+                    <div class="financial-name">{{'Orders.ContractForm.vat' | translate}}</div>
+                </div>
+                <div class="col-8">
+                    <div>{{contract.financial.vat}} {{contract.financial.currency}}</div>
+                </div>
+            </div>
+            <div class="row u-padding-bottom">
+                <div class="col-4">
+                    <div class="financial-name">{{'Orders.ContractForm.grossCost' | translate}}</div>
+                </div>
+                <div class="col-8">
+                    <div>{{contract.financial.gross}} {{contract.financial.currency}}</div>
+                </div>
+            </div>
+            <div class="row u-padding-bottom">
+                <div class="col-4">
+                    <div class="financial-name">{{'Orders.ContractForm.serviceCost' | translate}}</div>
+                </div>
+                <div class="col-8">
+                    <div>{{contract.financial.serviceCost}} {{contract.financial.currency}}</div>
+                </div>
+            </div>
+            <div class="row u-padding-bottom">
+                <div class="col-4">
+                    <div class="financial-name">{{'Orders.ContractForm.firstPayment' | translate}}</div>
+                </div>
+                <div class="col-8">
+                    <div style="display: flex;">
+                        <butor-form-input formControlName="firstPayment" type="number"
+                            append="{{'Orders.ContractForm.dueOn' | translate}}">
+                        </butor-form-input>
+                        <input matInput class="datepicker-input-short" name='firstPaymentDate'
+                            formControlName="firstPaymentDate" [matDatepicker]="picker2"
+                            placeholder="{{'Orders.newOrder.chooseDate' | translate}}" (click)="picker2.open()"
+                            [min]="dateMin">
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="row u-padding-bottom">
+                <div class="col-4">
+                    <div class="financial-name">{{'Orders.ContractForm.secondPayment' | translate}}</div>
+                </div>
+                <div class="col-8">
+                    <div style="display: flex;">
+                        <butor-form-input formControlName="secondPayment" type="number"
+                            append="{{'Orders.ContractForm.dueOn' | translate}}">
+                        </butor-form-input>
+                        <input matInput class="datepicker-input-short" name='secondPaymentDate'
+                            formControlName="secondPaymentDate" [matDatepicker]="picker3"
+                            placeholder="{{'Orders.newOrder.chooseDate' | translate}}" (click)="picker3.open()"
+                            [min]="dateMin">
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contract-container" style="width:100%;">
+        <butor-contract-html></butor-contract-html>
+    </div>
+    <div class="big-container-padding">
+        <butor-form-field label="{{'Orders.ContractForm.additional' | translate}}">
+            <textarea formControlName="additional" class="form-textarea"></textarea>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.ContractForm.contractDate' | translate}}">
+            <div style="display: flex;">
+                <div style="display: flex;">
+                    <i class="icon icon-appointments_active" (click)="picker.open()"></i>
+                    <input matInput class="datepicker-input" name='contractDate' formControlName="contractDate"
+                        [matDatepicker]="picker" placeholder="{{'Orders.newOrder.chooseDate' | translate}}"
+                        (click)="picker.open()" [min]="dateMin">
+                </div>
+                <mat-datepicker #picker></mat-datepicker>
+            </div>
+        </butor-form-field>
+    </div>
+</form>

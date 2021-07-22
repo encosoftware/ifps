@@ -1,0 +1,75 @@
+<div class="container">
+    <h3>{{title}}</h3>
+    <form [formGroup]="newRuleForm">
+
+        <butor-form-field label="{{'GeneralRules.editRule.name' | translate}}">
+            <butor-form-input formControlName="name"></butor-form-input>
+            <div *ngIf="submitted && f.name.errors" class="error">
+                <div *ngIf="f.name.errors.required">{{'GeneralRules.editRule.nameReq' | translate}}</div>
+            </div>
+        </butor-form-field>
+
+        <div class="row">
+            <div class="col-4">
+                <butor-form-field label="{{'GeneralRules.editRule.starting' | translate}}">
+                    <input class="datepicker-input" formControlName="startDate" [matDatepicker]="picker"
+                        (click)="picker.open()" />
+                    <mat-datepicker #picker></mat-datepicker>
+                    <div *ngIf="submitted && f.startDate.errors" class="error">
+                        <div *ngIf="f.startDate.errors.required">{{'GeneralRules.editRule.dateReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'GeneralRules.editRule.frequency' | translate}}">
+                    <butor-form-input type="number" formControlName="frequency"></butor-form-input>
+                    <div *ngIf="submitted && f.frequency.errors" class="error">
+                        <div *ngIf="f.frequency.errors.required">{{'GeneralRules.editRule.frequencyReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-4" style="margin-top: auto;">
+                <butor-form-field label="{{'GeneralRules.editRule.frequencyType' | translate}}">
+                    <ng-select [items]="frequencies" formControlName="frequencyTypeId" highlightColor="#9575cd"
+                        highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false">
+                    </ng-select>
+                    <div *ngIf="submitted && f.frequencyTypeId.errors" class="error">
+                        <div *ngIf="f.frequencyTypeId.errors.required">{{'GeneralRules.editRule.frequencyTypeReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+        <butor-form-checkbox label="{{'GeneralRules.editRule.fixAmount' | translate}}" formControlName="isFixed">
+        </butor-form-checkbox>
+        <div class="row">
+            <div class="col-3">
+                <butor-form-field label="{{'GeneralRules.editRule.amount' | translate}}">
+                    <butor-form-input formControlName="amountValue"></butor-form-input>
+                    <div *ngIf="submitted && f.amountValue.errors" class="error">
+                        <div *ngIf="f.amountValue.errors.required">{{'GeneralRules.editRule.amountReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-3">
+                <butor-form-field label="{{'GeneralRules.editRule.currency' | translate}}">
+                    <ng-select [items]="currencies" formControlName="amountCurrencyId" highlightColor="#9575cd"
+                        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+                    </ng-select>
+                    <div *ngIf="submitted && f.amountCurrencyId.errors" class="error">
+                        <div *ngIf="f.amountCurrencyId.errors.required">{{'GeneralRules.editRule.currencyReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end u-margin-top">
+                <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+                    (click)="cancel()">{{'GeneralRules.editRule.cancel' | translate}}</button>
+                <button class="btn btn-primary" mat-button matRipple
+                    (click)="addNewRule()">{{'GeneralRules.editRule.save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+i{
+    padding-right: 7px;
+    color: #4D41FF;
+    font-size: 15px !important;
+}
+
+.datepicker-input{
+        border-radius: 6px;
+        margin-bottom: 0;
+        border: 1px solid #d6d6d6;
+        background-color: #f8f8f8;
+        width: 100%;
+        font-family: "Poppins", sans-serif;
+        width: 33%;
+        margin-right: 7px;
+}
+
+.from-time-input{
+    width: 33%;
+    padding-right: 15px;
+}
+
+.to-time-input{
+    width: 33%;
+}
+
+.new-address-container {
+    padding-top: 2rem;
+
+    .form__checkbox-label{
+        font-weight: 600 !important;
+    }
+}
+
+.new-address-label {
+    padding-left: 2rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,88 @@
+Az ütemezéshez szükséges adatok
+
+---------
+DATA JSON
+
+Orders
+- ID
+- name
+
+CFUs
+- ID
+- name
+- order ID
+
+CFCs
+- ID
+- name
+- CFU ID
+- order ID
+- boardI ID
+- topFoil
+- rightFoil
+- bottomFoil
+- leftFoil
+- width
+- length
+
+Boards
+- ID
+- width
+- length
+- thickness
+- hasFiberDirection
+
+Workstations (only the active!)
+- ID
+- name
+- type
+
+-------------
+CUTTINGS JSON
+
+LayoutPlans
+- board ID
+- component IDs [vector]
+- cuttings [vector]
+	- component ID
+	- length
+	- width
+	- topLeftX
+	- topLeftY
+
+
+
+2019.10.15.
+Két féle mûködési mód:
+A) - csupa új order, ez esetben minden ws-en megnézzük az elsõ szabad percet és így 
+beütemezzük õket folytatólagosan
+
+B) - kiválaszthatok több order-t, amelyekbõl elég ha az egyik már be van ütemezve
+Ekkor minden plan megy a kukába ami az adott pillanat (datetime.now()) utánra van 
+ütemezve, meg kell nézni a valódi állapotát a rendelések plan-jeinek és a még nem 
+készeket hozzávenni az új megrendelésekhez tartozókhoz és a mostani pillanattól 
+kezdve újraszámolni az egészet
+
+Továbbra is igaz, hogy két napnál több idõre nem tervezünk, mert úgysem ér semmit. Ez
+gyakorlatban úgy néz ki, hogy:
+Black jack stratégiával megtippeljük, határidõ szerinti sorrendben, hogy az adott orderek
+mennyi idõt vesznek igénybe (egy configból kapott átlag segítségével) és maximum addig
+veszünk ordereket, amíg a két napot nem lépjük túl. Ekkor az egész tervezetet mentjük db-be
+és a ki nem választott ordereket eldobjuk (a felületen is látszik, hogy nem lettek beütemezve)
+
+A célfüggvényt úgy kell megfogalmazni hogy szorgalmazzuk a korábbi megrendelések minél
+elõbbi elkészülését - tehát a megrendelésekhez tartozó határidõket be kell küldeni a tervezõ
+modulba
+
+
+2019.10.16.
+Shiftszám és hossz módosítás csak olyan esetben lehetséges, ha épp nincs betervezve semmi, vagy
+teljes újraütemezést kér a user egy már beütemezett order kiválasztásával. Egyébként csak azt
+lehet használni, ami a már beütemezett ordereknél be lett állítva
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Optimization.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="optimizationForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+        <!-- ShiftNumber Definition -->
+        <ng-container cdkColumnDef="shiftNumber">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Optimization.shiftNumber' | translate}}" cType='filter'>
+              <butor-form-input name="shiftNumber" formControlName="shiftNumber" type="number"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.shiftNumber}} {{'Optimization.Shift' | translate}}</td>
+        </ng-container>
+        <!-- ShiftLength Definition -->
+        <ng-container cdkColumnDef="shiftLength">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Optimization.shiftLength' | translate}}" cType='filter'>
+              <butor-form-input name="shiftLength" formControlName="shiftLength" type="number"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.shiftLength}} {{'Optimization.Hour' | translate}}</td>
+        </ng-container>
+        <!-- Type Definition -->
+        <ng-container cdkColumnDef="startedAt">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Optimization.startedAt' | translate}}" cType='filter'>
+              <ng-select [items]="startedAtDropdown" highlightColor="#9575cd" highlightTextColor="#fff"
+                formControlName="startedAt" [clearable]="false" bindLabel="name" bindValue="toDate">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.startedAt | date:'y. LLL dd. HH:mm'}} </td>
+        </ng-container>
+        <!-- clearFilter Definition -->
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'Optimization.clearFilter' | translate}}</a> </th>
+          <td style="display: flex; justify-content: flex-end;" cdk-cell *cdkCellDef="let row">
+            <button mat-button matRipple (click)="getLayoutZipFile(row.id)" class="btn btn-primary u-margin-btn-right">
+              {{'Optimization.DownloadZip' | translate}}
+            </button>
+            <button mat-button matRipple (click)="getScheduleZipFile(row.id)" class="btn btn-primary u-margin-btn-right">
+              {{'Optimization.ScheduleHtml' | translate}}
+            </button>            
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row *cdkHeaderRowDef="['shiftNumber', 'shiftLength', 'startedAt', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row *cdkRowDef="let row; columns: ['shiftNumber', 'shiftLength', 'startedAt', 'clearFilter']">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+
+    </form>
+  </perfect-scrollbar>
+</div>

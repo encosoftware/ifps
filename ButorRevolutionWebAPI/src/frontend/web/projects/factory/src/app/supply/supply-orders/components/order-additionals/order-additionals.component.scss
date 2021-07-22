@@ -1,0 +1,33 @@
+.btn-text-only {
+    color: red;
+}
+
+:host /deep/ .table-standard thead tr th {
+    background-color: white !important;
+    padding-bottom: 0 !important;
+    vertical-align: top !important;
+}
+
+:host /deep/ .table-bc-no-border tbody tr td {
+    border-bottom: 0.5px solid #E5E5E5 !important;
+}
+
+.empty-label{
+    display: flex;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #b8b3ff;
+}
+
+:host /deep/ .form-group.filter .form-label {
+    white-space: normal;
+}
+
+:host /deep/ .input-control {
+    width: 70% !important;
+}
+
+:host /deep/ .input-wrapper {
+    width: 70% !important;
+}

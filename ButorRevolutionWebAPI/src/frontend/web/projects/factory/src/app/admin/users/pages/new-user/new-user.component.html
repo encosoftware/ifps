@@ -1,0 +1,58 @@
+<form #f="ngForm" (submit)="onSubmit(f)" style="height:100%">
+<butor-layout-two-col title="{{'Users.EditUser.title' | translate}}" *ngIf="isLoading">
+        <butor-layout-two-col-actions>
+            <div class="btn-group">
+                <button mat-button class="btn" type="button" [routerLink]="['/admin/users']">{{'Users.EditUser.buttons.Cancel' | translate}}</button>
+                <button mat-button class="btn btn-border" (click)="deleteUser()"  *factoryClaims="claimPolicyEnum[9]"
+                    type="button">{{'Users.EditUser.buttons.Delete' | translate}}</button>
+                    <ng-container  *factoryClaims="claimPolicyEnum[8]">
+                        <button *ngIf="editUser.isActivated" mat-button class="btn btn-border" type="button"
+                            (click)="activateToggle()" >{{'Users.EditUser.buttons.Deactivate' | translate}}</button>
+                        <button *ngIf="!editUser.isActivated" mat-button class="btn btn-border" type="button"
+                            (click)="activateToggle()"  >{{'Users.EditUser.buttons.Activate' | translate}}</button>
+                    </ng-container>
+                <button mat-button class="btn btn-primary" type="submit"  *factoryClaims="claimPolicyEnum[8]"
+                    [disabled]="!(f.valid && editUser.basicInfo.image ? !!editUser.basicInfo.image.fileName: false)">{{'Users.EditUser.buttons.Save' | translate}}</button>
+
+            </div>
+        </butor-layout-two-col-actions>
+        <butor-layout-panel-right>
+            <butor-panel title="{{'Users.EditUser.PanelHeader.BasicInfo' | translate}}">
+                <butor-basic-info [(ngModel)]="editUser.basicInfo" (ngModelChange)="basicInfoChange($event)"
+                    name="basicInfo"></butor-basic-info>
+            </butor-panel>
+        </butor-layout-panel-right>
+        <butor-layout-panel-left>
+            <mat-tab-group class="tab-group left" disableRipple>
+                <mat-tab label="{{'Users.EditUser.PanelHeader.Claims' | translate}}">
+                    <perfect-scrollbar>
+                        <butor-claims [(ngModel)]="editUser.claims" [model]="claims" [claimsID]="editUser.claims"
+                            name="claims" (isTemplateLoad)="isTemplateLoad($event)">
+                        </butor-claims>
+                    </perfect-scrollbar>
+                </mat-tab>
+                <mat-tab label="{{'Users.EditUser.PanelHeader.DaysOff' | translate}}" class="popup-title"
+                    *ngIf="isTemplateAppears | notinclude: 'Customer' ">
+                    <perfect-scrollbar>
+                        <div class="body-mat">
+                            <butor-days-off *ngIf="editUser.daysoff" [(ngModel)]="editUser.daysoff" name="daysoff">
+                            </butor-days-off>
+                        </div>
+                    </perfect-scrollbar>
+                </mat-tab>
+                <mat-tab label="{{'Users.EditUser.PanelHeader.Notification' | translate}}" class="popup-title"
+                    *ngIf="isTemplateAppears | include: 'Customer'">
+                    <perfect-scrollbar>
+                        <div class="body-mat">
+                            <butor-notifications [(ngModel)]="editUser.notifications" [model]="notifications"
+                                name="notifications">
+                            </butor-notifications>
+                        </div>
+                    </perfect-scrollbar>
+                </mat-tab>
+            </mat-tab-group>
+        </butor-layout-panel-left>
+
+    </butor-layout-two-col>
+</form>
+

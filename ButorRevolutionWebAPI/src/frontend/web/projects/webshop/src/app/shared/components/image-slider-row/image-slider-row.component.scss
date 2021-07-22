@@ -1,0 +1,118 @@
+.details {
+    grid-area: detailsX;
+
+}
+
+.btn-up {
+    grid-area: btnUp;
+
+}
+
+.btn-down {
+    grid-area: btnDown;
+
+}
+
+.images-list {
+    grid-area: list;
+
+}
+
+
+.image-line {
+
+    &-slider {
+
+        display: grid;
+        grid-template-columns: 10rem auto 10rem;
+        grid-template-areas:
+            "btnUp list  btnDown"
+            ". detailsX .";
+
+        &-up,
+        &-down {
+            border: none;
+            background-color: transparent;
+            width: fit-content;
+            outline: none;
+
+        }
+
+        &-button {
+
+            &-up {
+                display: grid;
+                justify-content: center;
+            }
+
+            &-down {
+                display: grid;
+                justify-content: center;
+
+            }
+
+        }
+
+    }
+
+    &-list {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        grid-gap: 6rem;
+
+        &-elements {
+            list-style-type: none;
+
+            &-name {
+                font-size: 1.6rem;
+                color: rgba(0, 29, 45, 1);
+                line-height: 2.5rem;
+                font-weight: 700;
+            }
+
+            &-details {
+                font-size: 1.6rem;
+                color: rgba(0, 29, 45, 1);
+                line-height: 2.5rem;
+            }
+        }
+
+        &-a {
+            cursor: pointer;
+        }
+
+        &-image {
+            width: 20.3rem;
+            height: 20.3rem;
+            border-radius: 0.5rem;
+            box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.09);
+            background-color: rgba(229, 229, 229, 1);
+            margin: 1rem 0;
+        }
+    }
+
+
+    &-viewer {
+        box-shadow: 0px 0px 35px #00000017;
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 5px;
+        width: 51rem;
+        height: 51rem;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin-left: 7.5rem;
+        padding: 2rem;
+
+        &-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    &-container {
+        display: grid;
+        align-items: center;
+    }
+}

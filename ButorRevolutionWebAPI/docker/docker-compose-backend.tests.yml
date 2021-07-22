@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  ifps.api.test:
+    image: ifps.api.test:latest
+    container_name: ifps.api.test
+    ports:
+      - "5120:80"   
+    build:
+      context: ../src/backend/
+      dockerfile: ifps.api.test.Dockerfile
+

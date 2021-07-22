@@ -1,0 +1,109 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'EdgingMachine.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewEdgingMachine()"
+      *factoryClaims="claimPolicyEnum[27]">{{'EdgingMachine.newButton' | translate}}
+    </button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="edgingMachineForm" class="scroll-form">
+      <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+        <!-- Machine Name Definition -->
+        <ng-container cdkColumnDef="machineName">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'EdgingMachine.tableHeader.machineName' | translate}}" cType='filter'>
+              <butor-form-input name="machineName" formControlName="machineName"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.machineName}} </td>
+        </ng-container>
+        <!-- Software Version Definition -->
+        <ng-container cdkColumnDef="softwareVersion">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'EdgingMachine.tableHeader.softwareVersion' | translate}}" cType='filter'>
+              <butor-form-input name="softwareVersion" formControlName="softwareVersion"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.softwareVersion}} </td>
+        </ng-container>
+        <!-- Serial Number Definition -->
+        <ng-container cdkColumnDef="serialNumber">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'EdgingMachine.tableHeader.serialNumber' | translate}}" cType='filter'>
+              <butor-form-input name="serialNumber" formControlName="serialNumber"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.serialNumber}} </td>
+        </ng-container>
+        <!-- Code Definition -->
+        <ng-container cdkColumnDef="code">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'EdgingMachine.tableHeader.code' | translate}}" cType='filter'>
+              <butor-form-input name="code" formControlName="code"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+        </ng-container>
+        <!-- Year Of Manufacture Definition -->
+        <ng-container cdkColumnDef="yearOfManufacture">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'EdgingMachine.tableHeader.yearOfManufacture' | translate}}" cType='filter'>
+              <butor-form-input name="yearOfManufacture" type="number" formControlName="yearOfManufacture">
+              </butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.yearOfManufacture}} </td>
+        </ng-container>
+        <!-- Brand Definition -->
+        <ng-container cdkColumnDef="brandId">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'EdgingMachine.tableHeader.brand' | translate}}" cType='filter'>
+              <ng-select formControlName="brandId" [items]="suppliers" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false" name="brandId">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.brandName}} </td>
+        </ng-container>
+        <!-- clearFilter Definition -->
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'EdgingMachine.tableHeader.clearFilters' | translate}}</a> </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <factory-btn-hamburger>
+              <factory-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-edit"
+                [buttonText]="this.translate.instant('EdgingMachine.edit')" (click)="editEdgingMachine(row.id)">
+              </factory-btn-hamburger-inside>
+              <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[6]" textColor="#FF4141"
+                iconClass="icon icon-delete" [buttonText]="this.translate.instant('EdgingMachine.delete')"
+                (click)="deleteEdgingMachine(row.id)"></factory-btn-hamburger-inside>
+            </factory-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['machineName', 'softwareVersion', 'serialNumber', 'code', 'yearOfManufacture', 'brandId', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row
+          *cdkRowDef="let row; columns: ['machineName', 'softwareVersion', 'serialNumber', 'code', 'yearOfManufacture', 'brandId', 'clearFilter']"
+          (click)="editEdgingMachine(row.id)">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+
+    </form>
+  </perfect-scrollbar>
+</div>

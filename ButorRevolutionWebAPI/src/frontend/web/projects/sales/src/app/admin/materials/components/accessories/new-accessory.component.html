@@ -1,0 +1,74 @@
+<div class="container" *ngIf="!isLoading">
+    <div class="dialog-title">
+        {{ title }}
+    </div>
+    <form [formGroup]="accessoryForm">
+        <div class="row">
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.CODE' | translate}}">
+                    <butor-form-input name="code" formControlName="code"></butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.DESCRIPTION' | translate}}">
+                    <butor-form-input name="description" formControlName="description">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.Category' | translate}}">
+                    <ng-select formControlName="category" [items]="categories" highlightColor="#9575cd"
+                        highlightTextColor="#fff" name="category" bindLabel="options" bindValue="value" [clearable]="false"
+                       (change)="categoryChange()">
+                    </ng-select>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.Picture' | translate}}">
+                    <butor-upload-pic *ngIf="showPictureComponent" [name]="accessory.picture.fileName" [folder]="accessory.picture.containerName"
+                        (nameOutput)="getFileName($event)" (folderOutput)="getFolderName($event)">
+                    </butor-upload-pic>
+                </butor-form-field>
+            </div>
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.Purchasingprice' | translate}}">
+                    <div class="row">
+                        <div class="col-9">
+                            <butor-form-input type="number"
+                                formControlName="purchasingPrice"
+                                name="number">
+                            </butor-form-input>
+                        </div>
+                        <div class="col-3">
+                            <ng-select formControlName="currency" [items]="currencies" highlightColor="#9575cd"
+                                highlightTextColor="#fff" name="currency" bindLabel="options" bindValue="value" [clearable]="false"
+                                (change)="currencyChange()"></ng-select>
+                        </div>
+                    </div>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.Transactionprice' | translate}}">
+                    <butor-form-input type="number"
+                        formControlName="transactionPrice" name="transactionPrice" append="%"></butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.Properties' | translate}}">
+                    <butor-form-field>
+                        <butor-form-checkbox
+                            label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.Optional' | translate}}"
+                            formControlName="optionalIsChecked">
+                        </butor-form-checkbox>
+                    </butor-form-field>
+                    <butor-form-field>
+                        <butor-form-checkbox
+                            label="{{'Materials.ACCESSORIES.NEWACCESSORY.labels.RequiredForA' | translate}}"
+                            formControlName="assemblyIsChecked">
+                        </butor-form-checkbox>
+                    </butor-form-field>
+                </butor-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+                    (click)="cancel()">{{'Materials.ACCESSORIES.NEWACCESSORY.buttons.Cancel' | translate}}</button>
+                <button class="btn btn-primary" mat-button matRipple [disabled]="accessoryForm.invalid || !accessory.picture.fileName"
+                    (click)="addNewAccessory()">{{'Materials.ACCESSORIES.NEWACCESSORY.buttons.Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

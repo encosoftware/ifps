@@ -1,0 +1,179 @@
+@import "../../../../scss/variables";
+:host /deep/ .events {
+  width: calc(100% - 5px);
+  height: calc(100% - 5px);
+  margin: 1px;
+  padding: 7px 9px;
+  line-height: 25px;
+  background-color: #F8F7FF;
+  border-radius: 5px;
+  border: 1px solid #E6E4FF;
+  position: relative;
+  z-index: 999;
+  cursor: default;
+  overflow: hidden;
+
+  &_title {
+    font-family: $font-family-primary;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+  &_subtitle {
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: #B8B3FF;
+  }
+}
+.appointment-title-action {
+  padding-bottom: 0.9rem;
+}
+.date {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.3rem;
+  margin-right: 2.75rem;
+}
+
+.calendar-page {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.3rem;
+  margin-right: 2.75rem;
+}
+
+i{
+  cursor: pointer;
+}
+
+:host /deep/ .cal-day-column:nth-child(-n+3){
+  .tooltipBox {
+    position: absolute;
+    background-color: $color-white-primary;
+    border-radius: 5px;
+    border: 1px solid $color-input-border;
+    padding: 1rem;
+    top:3px;
+    left: calc(100% + 0.5rem);
+    cursor: default;
+    z-index: 999;
+  }
+}
+
+:host /deep/ .cal-day-column:not(:nth-child(-n+3)) {
+  .tooltipBox {
+    position: absolute;
+    background-color: $color-white-primary;
+    border-radius: 5px;
+    border: 1px solid $color-input-border;
+    padding: 1rem;
+    top:3px;
+    right: calc(100% + 0.5rem);
+    cursor: default;
+    z-index: 999;
+  }
+}
+
+.appointment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.2rem;
+  border-bottom: 1px solid #e5e5e5;
+  &-header {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    .day {
+      font-size: 2.5rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+    }
+    .month {
+      color: $color-message;
+      font-size: 1.3rem;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+    }
+    .time {
+      font-size: 1.3rem;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &_body {
+    margin-left: 1.5rem;
+    white-space: nowrap;
+    &-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    &-author {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    &-address {
+      font-size: 1.3rem;
+      font-weight: 400;
+      i {
+        color: rgba(77, 65, 255, 1);
+        font-size: inherit;
+        margin-right: 1.3rem;
+      }
+    }
+    &-note {
+      font-size: 1.3rem;
+      font-weight: 400;
+      i {
+        color: rgba(77, 65, 255, 1);
+        font-size: inherit;
+        margin-right: 1.3rem;
+      }
+    }
+  }
+}
+
+.cal-event-container.cal-draggable.cal-ends-within-day:hover {
+  z-index: 2;
+}
+
+.calendar-day-headers{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -js-display: flex;
+  display: flex;
+  padding-left: 70px;
+  border: none;
+}
+
+.calendar-header{
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  border: none;
+}
+
+.tooltip-button-edit {
+ cursor: pointer;
+ color:#4D41FF;
+ font-weight: 600;
+}
+
+.tooltip-button-delete {
+  cursor: pointer;
+  color:#FF4141;
+  font-weight: 600;
+}
+
+.u-big-padding-bottom {
+  padding-bottom:2.5rem;
+}
+
+:host /deep/ .panel-body {
+  height: 85vh !important;
+}

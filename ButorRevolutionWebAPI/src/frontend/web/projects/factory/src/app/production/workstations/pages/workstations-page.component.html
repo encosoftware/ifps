@@ -1,0 +1,115 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Workstations.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewWorkstation()"
+      *factoryClaims="claimPolicyEnum[24]">{{'Workstations.addNewWorkstation' | translate}}
+    </button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="workstationForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+        <!-- Name Definition -->
+        <ng-container cdkColumnDef="name">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Workstations.name' | translate}}" cType='filter'>
+              <butor-form-input formControlName="name"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+        <!-- Optimal Crew Definition -->
+        <ng-container cdkColumnDef="optimalCrew">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Workstations.optimalCrew' | translate}}" cType='filter'>
+              <butor-form-input formControlName="optimalCrew" type="number"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.optimalCrew}} </td>
+        </ng-container>
+        <!-- machine Definition -->
+        <ng-container cdkColumnDef="machine">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Workstations.machine' | translate}}" cType='filter'>
+              <ng-select formControlName="machine" [items]="machineDd" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.machine}} </td>
+        </ng-container>
+        <!-- Type Definition -->
+        <ng-container cdkColumnDef="type">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Workstations.type' | translate}}" cType='filter'>
+              <ng-select formControlName="type" [items]="types" highlightColor="#9575cd" highlightTextColor="#fff"
+                bindLabel="name" bindValue="id" [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.type}} </td>
+        </ng-container>
+        <!-- Status Definition -->
+        <ng-container cdkColumnDef="status">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Workstations.status' | translate}}" cType='filter'>
+              <ng-select formControlName="status" [items]="statuses" highlightColor="#9575cd" highlightTextColor="#fff"
+                bindLabel="options" bindValue="value" [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.statusText}} </td>
+        </ng-container>
+        <!-- clearFilter Definition -->
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'Workstations.clearFilter' | translate}}</a> </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <factory-btn-hamburger>
+              <ng-container *ngIf="row.status">
+                <factory-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-edit"
+                  [buttonText]="translate.instant('Workstations.edit')" (click)="this.editWorkstation(row.id)"
+                  *factoryClaims="claimPolicyEnum[24]"></factory-btn-hamburger-inside>
+              </ng-container>
+              <factory-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-deactivate"
+                [buttonText]="row.status ? translate.instant('Workstations.deactivate') : translate.instant('Workstations.activate')"
+                (click)="activateWorkstation(row.id)" *factoryClaims="claimPolicyEnum[24]">
+              </factory-btn-hamburger-inside>
+              <ng-container *ngIf="row.status">
+                <factory-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-add"
+                  [buttonText]="this.translate.instant('Workstations.addCamera')" (click)="addCameras(row.id)"
+                  *factoryClaims="claimPolicyEnum[24]"></factory-btn-hamburger-inside>
+              </ng-container>
+              <ng-container *ngIf="row.status">
+                <factory-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                  [buttonText]="translate.instant('Workstations.delete')" (click)="deleteWorkstation(row.id)"
+                  *factoryClaims="claimPolicyEnum[25]"></factory-btn-hamburger-inside>
+              </ng-container>
+            </factory-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['name', 'optimalCrew', 'machine', 'type', 'status', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row *cdkRowDef="let row; columns: ['name', 'optimalCrew', 'machine', 'type', 'status', 'clearFilter']"
+          (click)="editWorkstation(row.id)">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+
+    </form>
+  </perfect-scrollbar>
+</div>

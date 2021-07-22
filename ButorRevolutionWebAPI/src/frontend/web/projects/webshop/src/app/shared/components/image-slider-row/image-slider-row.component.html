@@ -1,0 +1,36 @@
+<div class="image-line-container">
+  <div class="image-line-slider">
+    <div class="image-line-slider-button-up btn-up">
+      <button class="image-line-slider-up" type="button" (click)="slideUp()" *ngIf="sliderConfig.slidesToShow > 5" [disabled]="disableButtonUp"><i
+          class="icon icon-blackarrow_black_left"></i></button>
+    </div>
+
+    <div class="images-list">
+      <ul class="image-line-list">
+        <li class="image-line-list-elements" *ngFor="let image of imageUrl">
+          <a [routerLink]="['/details',image.webshopFurnitureUnitId]" class="image-line-list-a">
+            <img class="image-line-list-image" [webshopImage]="image.image" alt=""
+            (click)="imageSelect($event)" >
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="details">
+      <ul class="image-line-list">
+        <li class="image-line-list-elements" *ngFor="let image of imageUrl">
+          <h3 class="image-line-list-elements-name">{{image.name}}</h3>
+          <p class="image-line-list-elements-details">{{image.description}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="image-line-slider-button-down btn-down">
+      <button class="image-line-slider-down" type="button" (click)="slideDown()" *ngIf="sliderConfig.slidesToShow > 5" [disabled]="disableButtonDown"><i
+          class="icon icon-blackarrow_black_right"></i></button>
+    </div>
+
+  </div>
+
+
+</div>

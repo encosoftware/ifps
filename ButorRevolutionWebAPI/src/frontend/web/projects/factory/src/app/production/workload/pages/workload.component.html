@@ -1,0 +1,53 @@
+<butor-layout-one-col title="{{'Workload.title' | translate}}" *ngIf="!isLoading">
+  <butor-layout-one-col-actions>
+  </butor-layout-one-col-actions>
+  <butor-layout-panel-center>
+    <butor-panel>
+      <perfect-scrollbar style="height:calc(100% - 4rem);">
+        <div class="workload">
+          <div class="date-today date">
+            {{'Workload.today' | translate}}
+          </div>
+          <div class="date-tomorrow date">
+            {{'Workload.tomorrow' | translate}}
+          </div>
+          <div class="date-tomorrow-after date">
+            {{'Workload.dayAfter' | translate}}
+          </div>
+          <div class="workload-container">
+            <ng-container *ngFor="let item of objectKeys(workLoad)">
+              <div class="workload-container-status">
+                <div class="workload-header">
+                  {{item}}
+                </div>
+                <div class="workload-elements" *ngFor="let status of workLoad[item]">
+                  <div class="workload-elements-name">
+                    {{status.name}}
+                  </div>
+                  <div class="workload-elements-endTime">
+                    <div class="status" [style.width.%]="status.endTime | percantage : startDay"
+                      [style.backgroundColor]="status.backgroundColor">&nbsp;</div>
+                    <div class="status-after"
+                      *ngIf="((status.endTime | percantage : startDay)>0) && (status.endTime | percantage : startDay) &#60; 100">
+                    </div>
+                    <span class="status-after-date"
+                      *ngIf="((status.endTime | percantage : startDay)>0) && (status.endTime | percantage : startDay) &#60; 100">
+                      {{status.endTime | date:'HH:mm'}}
+                    </span>
+                    <span class="status-after-date"
+                      *ngIf="(status.endTime | percantage : startDay)===0">{{'Workload.available' | translate}}</span>
+                  </div>
+                  <div class="workload-elements-empty-first">
+                  </div>
+                  <div class="workload-elements-empty-second">
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+      </perfect-scrollbar>
+    </butor-panel>
+  </butor-layout-panel-center>
+</butor-layout-one-col>

@@ -1,0 +1,23 @@
+<div class="appointments-buttons-container">
+</div>
+<div *ngFor="let appointment of appointments" class="appointment-item-container">
+    <div class="order-appointment-date-container">
+        <div class="order-appointment-date-day">{{appointment.date | date:'d'}}</div>
+        <div class="order-appointment-date-month">{{appointment.date | date:'MMMM'}}</div>
+    </div>
+    <div class="order-appointment-date-time">{{appointment.from}} - {{appointment.to}}</div>
+    <div class="order-appointment-details-container">
+        <div class="order-appointment-title">{{appointment.type}}</div>
+        <div class="order-appointment-person">{{appointment.customer}}</div>
+        <div class="order-appointment-location">
+            <i class="icon icon-POI"></i>
+            {{appointment.address}}
+        </div>
+    </div>
+    <div class="order-appointment-notes">
+        <ng-container *ngIf="appointment.notes">
+            <i class="icon icon-menu"></i>
+            {{'Orders.appointments.notes' | translate}}: {{appointment.notes}}
+        </ng-container>
+    </div>
+</div>

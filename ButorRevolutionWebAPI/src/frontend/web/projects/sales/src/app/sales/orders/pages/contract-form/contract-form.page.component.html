@@ -1,0 +1,17 @@
+<butor-layout-two-row *ngIf="this.orderBasics">
+    <butor-layout-panel-top>
+        <butor-order-header [basicInfo]="orderBasics"></butor-order-header>
+    </butor-layout-panel-top>
+    <butor-layout-panel-bottom>
+        <div class="contract-title-container">
+            <div class="contract-title">{{'Orders.ContractForm.title' | translate}}</div>
+        </div>
+        <butor-layout-one-col>
+            <butor-layout-panel-center>
+                <butor-panel>
+                    <butor-order-contract-form [contract]="contract"></butor-order-contract-form>
+                </butor-panel>
+            </butor-layout-panel-center>
+        </butor-layout-one-col>
+    </butor-layout-panel-bottom>
+</butor-layout-two-row>

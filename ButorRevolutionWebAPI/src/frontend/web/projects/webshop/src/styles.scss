@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./scss/font/scss/favicons";
+@import "../../../src/scss/variables";
+@import "../../../src/scss/base/base";
+@import "../../../src/scss/button";
+@import "../../../src/scss/inputs";
+@import "../../../src/scss/material";
+@import "../../../src/scss/mixins";
+@import "../../../src/scss/popup";
+@import "../../../src/scss/table";
+@import "../../../src/scss/utalities";
+@import "../../../src/scss/variables";
+@import "./scss/default.theme";
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+
+body {
+    overflow: auto;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid $table-border-color;
+    padding: 0
+}
+

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="572" height="486" viewBox="0 0 572 486">
+  <g id="_403" data-name="403" transform="translate(-1072 -372)">
+    <g id="Group_5875" data-name="Group 5875" transform="translate(-32 31.001)">
+      <g id="Group_5874" data-name="Group 5874">
+        <path id="Union_5" data-name="Union 5" stroke="#eceaff" d="M16071.253,20011.645a30,30,0,0,1-30-30v-66.322q-.255-3.627-.257-7.318a103,103,0,0,1,206,0q0,3.973-.3,7.869v65.771a30,30,0,0,1-30,30Z" fill="none" transform="translate(-14730.498 -19451)" stroke-linecap="round" stroke-linejoin="round" stroke-width="13" stroke-dasharray="5"/>
+        <rect id="Rectangle_2033" data-name="Rectangle 2033" width="263.45" height="239.614" rx="30" transform="translate(1282 510.029)" fill="#eceaff"/>
+      </g>
+      <rect id="Rectangle_2016" data-name="Rectangle 2016" width="263.45" height="239.614" rx="30" transform="translate(1267 498.029)" fill="none" stroke-dasharray="5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="#4d41ff"/>
+      <path id="Union_4" data-name="Union 4" stroke="#4d41ff" d="M16050.1,19871.18v-27.711a21.111,21.111,0,1,1,24.352-.23v27.941a12.176,12.176,0,0,1-24.352,0Z" fill="rgba(0,0,0,0)" transform="translate(-14663.61 -19226.355)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-dasharray="5"/>
+      <path id="Union_3" data-name="Union 3" stroke="#4d41ff" d="M47.155,431.046V390.925c0-2.534.747-11.838.747-14.032a103,103,0,1,1,206,0c0,2.235.7,11.543.7,14.032v39.468" fill="none" transform="translate(1247.845 68.107)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke-dasharray="5"/>
+    </g>
+    <text id="_403-2" data-name="403" transform="translate(1072 753)" fill="#4d41ff" font-size="300" font-family="Poppins-SemiBold, Poppins" font-weight="600"><tspan x="0" y="0">403</tspan></text>
+  </g>
+</svg>

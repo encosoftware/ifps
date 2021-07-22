@@ -1,0 +1,11 @@
+<!-- <ul class="breadcrumb">
+  <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item">
+    <a [routerLink]="breadcrumb.url">
+        {{ breadcrumb.label }}
+    </a>
+  </li>
+</ul> -->
+<a (click)="back()" style="cursor: pointer">
+  <i class="icon icon-blackarrow_black_left" style="font-size: 1rem;padding-right: 1.5rem;"></i>
+  {{'breadcrumb.back' | translate}}
+</a>

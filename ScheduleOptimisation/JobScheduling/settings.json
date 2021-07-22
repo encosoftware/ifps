@@ -1,0 +1,17 @@
+{
+    "settings": {
+        "cncDistanceMultiplier": 3,
+        "avgNumOfComponentsPerHour": 1.5,
+        "workStartHour": 8,
+        "hoursTillBreak": 2,
+        "lunchDurationMinutes": 20,
+        "rescheduleDelayMinutes" : 20,
+        "timezoneOffset": 1,
+        "solver": {
+            "maxTimeInSeconds": 300,
+            "numSearchWorkers": 4,
+            "logSearchProgress": false,
+            "logDirectory": "C:/Users/modli.bendeguz/Documents/enco/butoros/ScheduleOptimisation/JobScheduling/logs"
+        }
+    }
+}

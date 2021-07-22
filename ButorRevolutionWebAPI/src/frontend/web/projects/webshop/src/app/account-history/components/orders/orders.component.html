@@ -1,0 +1,45 @@
+<div class="order">
+
+  <table cdk-table [dataSource]="items" class="table-standard table-standard-no-bc">
+
+    <ng-container cdkColumnDef="orderId">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        {{'Webshop.Account.order' | translate}}
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+        <b>{{row.orderName}}</b>
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="Date">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        {{'Webshop.Account.date' | translate}}
+      </th>
+      <td cdk-cell *cdkCellDef="let row"> {{row.date  | date: "y.MM.dd."}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="total">
+      <th cdk-header-cell *cdkHeaderCellDef>
+        {{'Webshop.Account.total' | translate}}
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+        {{row.total.value}} {{row.total.currency}}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="view">
+      <th cdk-header-cell *cdkHeaderCellDef>
+
+      </th>
+      <td cdk-cell *cdkCellDef="let row;let i = index"> <button mat-button matRipple class="btn btn-text-only"
+          (click)="openView(i)">{{'Webshop.Account.view' | translate}}</button>
+      </td>
+    </ng-container>
+
+
+    <tr cdk-header-row *cdkHeaderRowDef="['orderId', 'Date', 'total', 'view'];sticky:true;">
+    </tr>
+
+    <tr cdk-row *cdkRowDef="let row; columns: ['orderId', 'Date', 'total', 'view']"></tr>
+  </table>
+</div>

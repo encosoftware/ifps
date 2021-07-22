@@ -1,0 +1,61 @@
+.history-button-container{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem; 
+}
+
+i{
+    padding-right: 7px;
+    color: white;
+    font-size: 15px !important;
+}
+
+.history-header{
+    display: flex;
+    text-transform: uppercase;
+    padding:10px 20px;
+    color: #B8B3FF;
+    font-size: 15px;
+
+    .history-header-title{
+        width: 25%;
+    }
+
+    .history-detailed-date-header{
+        width: 30%;
+    }
+
+    .history-detailed-action-header{
+        width: 70%;
+    }
+}
+
+.history-item-container{
+    display: flex;
+    border-bottom: 2px solid rgba(184, 179, 255, 0.24);
+    font-size: 1.3rem;
+    padding: 10px 20px;
+
+    .history-item{
+        width: 25%;
+    }
+
+    .history-detailed-date-item{
+        width: 30%;
+    }
+
+    .history-detailed-action-item{
+        width: 70%;
+        display: flex;
+    }
+}
+
+.status{
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 2rem;
+    border: .1rem solid #4D41FF;
+    color: #4D41FF;
+}

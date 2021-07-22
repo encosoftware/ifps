@@ -1,0 +1,290 @@
+<form [formGroup]="generalForm" *ngIf="!isLoading">
+    <div class="general-information-container">
+        <div class="general-information-name">{{'Orders.offerForm.generalInformation.requires' | translate}}        
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <butor-form-field label="{{'Orders.offerForm.generalInformation.customer' | translate}}">
+                    <div style="padding-bottom: 11px;" class="row">
+                        <div class="col">
+                            <butor-form-checkbox label="{{'Orders.offerForm.generalInformation.private' | translate}}" formControlName="isPrivatePerson">
+                            </butor-form-checkbox>
+                        </div>
+                        <div class="col">
+                            <butor-form-checkbox label="{{'Orders.offerForm.generalInformation.companyRep' | translate}}" formControlName="companyRepresentative">
+                            </butor-form-checkbox>
+                        </div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'Orders.offerForm.generalInformation.budget' | translate}}">
+                    <div class="row">
+                        <div class="col-9">
+                            <butor-form-input butorOnlyNumbers formControlName="budgetPrice"></butor-form-input>
+                        </div>
+                        <div class="col-3">
+                            <ng-select placeholder="Currency" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false" formControlName="budgetCurrency"
+                                [items]="currencies"></ng-select>
+                        </div>
+                    </div>
+                </butor-form-field>                
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'Orders.offerForm.generalInformation.description' | translate}}">
+                    <textarea class="form-textarea" formControlName="description"></textarea>
+                </butor-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="general-information-container">
+        <div class="general-information-name">
+            {{'Orders.offerForm.generalInformation.TopCabinets' | translate}}
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-4">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.height' | translate}}">
+                            <butor-form-input type="number" append="mm" formControlName="topHeight">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.depth' | translate}}">
+                            <butor-form-input type="number" append="mm" formControlName="topDepth">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.outer' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="topOuterMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.inner' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="topInnerMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.backPanel' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="topBackMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.door' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="topDoorMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'Orders.offerForm.generalInformation.description' | translate}}">
+                    <textarea class="form-textarea" formControlName="topDescription"></textarea>
+                </butor-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="general-information-container">
+        <div class="general-information-name">
+            {{'Orders.offerForm.generalInformation.BaseCabinets' | translate}}
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-4">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.height' | translate}}">
+                            <butor-form-input type="number" append="mm" formControlName="baseHeight">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.depth' | translate}}">
+                            <butor-form-input type="number" append="mm" formControlName="baseDepth">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.outer' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="baseOuterMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.inner' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="baseInnerMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.backPanel' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="baseBackMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.door' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="baseDoorMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'Orders.offerForm.generalInformation.description' | translate}}">
+                    <textarea class="form-textarea" formControlName="baseDescription"></textarea>
+                </butor-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="general-information-container">
+        <div class="general-information-name">
+            {{'Orders.offerForm.generalInformation.TallCabinets' | translate}}
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-4">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.height' | translate}}">
+                            <butor-form-input type="number" append="mm" formControlName="tallHeight">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.depth' | translate}}">
+                            <butor-form-input type="number" append="mm" formControlName="tallDepth">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.outer' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="tallOuterMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.inner' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false"
+                                formControlName="tallInnerMaterial" [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.backPanel' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false" formControlName="tallBackMaterial"
+                                [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 material-icon-container">
+                        <i class="icon icon-menu material-icon"></i>
+                    </div>
+                    <div class="col-11">
+                        <butor-form-field label="{{'Orders.offerForm.generalInformation.materials.door' | translate}}">
+                            <ng-select placeholder="{{'Orders.offerForm.generalInformation.placeholder' | translate}}" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="name" bindValue="id" [clearable]="false" formControlName="tallDoorMaterial"
+                                [items]="decorboards">
+                            </ng-select>
+                        </butor-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'Orders.offerForm.generalInformation.description' | translate}}">
+                    <textarea class="form-textarea" formControlName="tallDescription"></textarea>
+                </butor-form-field>
+            </div>
+        </div>
+    </div>
+</form>

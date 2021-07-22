@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{ "products.title" | translate }}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" *butorClaims="claimPolicyEnum[17]">
+      {{ "products.buttons.LoadComponent" | translate }}
+    </button>
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewFurnitureUnit()"
+      *butorClaims="claimPolicyEnum[17]">
+      {{ "products.buttons.AddNewProducts" | translate }}
+    </button>
+  </div>
+</div>
+<div class="scroll-container">
+  <perfect-scrollbar [scrollIndicators]="true">
+    <form [formGroup]="productsFiltersForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard">
+        <ng-container cdkColumnDef="src">
+          <th cdk-header-cell *cdkHeaderCellDef></th>
+          <td cdk-cell *cdkCellDef="let row">
+            <img src="{{ row.src }}" class="img-small" />
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="description">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{ 'products.FilterLabel.DESCRIPTION' | translate }}" cType="filter">
+              <div>
+                <butor-form-input formControlName="description"></butor-form-input>
+              </div>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <b>{{ row.description }}</b>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="category">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{ 'products.FilterLabel.CATEGORY' | translate }}" cType="filter">
+              <ng-select formControlName="categoryId" [items]="productCategories" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.category }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="code">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{ 'products.FilterLabel.CODE' | translate }}" cType="filter">
+              <butor-form-input formControlName="code"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.code }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="size">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{ 'products.FilterLabel.Size' | translate }}" cType="filter">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            {{ row.size.width ? row.size.width : "" }}
+            {{ row.size.height ? "x" + row.size.height + "x" : "" }}
+            {{ row.size.depth ? row.size.depth : "" }} mm
+          </td>
+        </ng-container>
+
+      <ng-container cdkColumnDef="materialCost">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{ 'products.FilterLabel.MATERIALCOST' | translate }}" cType="filter">
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.materialCost }} {{row.materialCurrency}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="sellPrice">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{ 'products.FilterLabel.SELLPRICE' | translate }}" cType="filter">
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.sellPrice }} {{row.sellPriceCurrency}}</td>
+      </ng-container>
+
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{ "products.buttons.ClearFilter" | translate }}</a>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-btn-hamburger>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[17]" textColor="#4D41FF"
+                iconClass="icon icon-edit" [buttonText]="this.translate.instant('products.buttons.Edit')"
+                (click)="this.router.navigate(['/admin/products/' + row.id])"></butor-btn-hamburger-inside>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[18]" textColor="#FF4141"
+                iconClass="icon icon-delete" [buttonText]="this.translate.instant('products.buttons.Delete')"
+                (click)="deleteProduct(row.id)"></butor-btn-hamburger-inside>
+            </butor-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row *cdkHeaderRowDef="
+          [
+            'src',
+            'description',
+            'category',
+            'code',
+            'size',
+            'materialCost',
+            'sellPrice',
+            'clearFilter'
+          ];
+          sticky: true
+        "></tr>
+
+        <tr cdk-row *cdkRowDef="
+          let row;
+          columns: [
+            'src',
+            'description',
+            'category',
+            'code',
+            'size',
+            'materialCost',
+            'sellPrice',
+            'clearFilter'
+          ]
+        " [routerLink]="['/admin/products', row.id]"></tr>
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [pageIndex]="dataSource.pageIndex" [length]="dataSource.totalCount"
+        [pageSize]="dataSource.pageSize" [ngStyle]="{
+        display: !hasError && dataSource.items.length > 0 ? 'block' : 'none'
+      }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">
+        {{'errorM.noRecord' | translate}}
+      </div>
+    </form>
+  </perfect-scrollbar>
+</div>

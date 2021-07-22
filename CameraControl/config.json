@@ -1,0 +1,14 @@
+{
+  "camera_ip": "169.254.84.186",
+  "axis_camera_config": {
+    "username": "root",
+    "password": "ButorRevolution"
+  },
+  "result_url": "https://localhost:44395/api/plans/{camera_ip_address}/{cfc_id}",
+  "url_data_key": "cfc_id",
+  "qr_data_key": "concreteFurnitureComponentId",
+  "send_timeout_seconds": 5,
+  "display_image": false,
+  "use_image_preprocessing": false,
+  "__test_image": "remove the __ characters from the key, and put here the path of the test image (in jpg/bmp format)"
+}

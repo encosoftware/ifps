@@ -1,0 +1,15 @@
+<div class="messages" *ngFor="let message of messages">
+  <div class="messages_picture">
+    <figure class="u-minus-m">
+      <img src="https://picsum.photos/200/30" class="">
+    </figure>
+  </div>
+  <div class="messages_middle">
+    <div class="messages_middle-title"><span class="name">{{message.sender.name}}</span><span class="subject">customer</span></div>
+    <div class="messages_middle-body">{{message.text}}</div>
+    <div class="messages_middle-footer">{{message.sent}}</div>
+  </div>
+  <div class="messages_span">
+    <span class="message">{{message.messageCount}}</span>
+  </div>
+</div>

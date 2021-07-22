@@ -1,0 +1,34 @@
+<butor-layout-two-col *ngIf="!isLoading" title="{{'Venues.EditVenue.title' | translate}}">
+    <form [formGroup]="venueBasicInfoForm">
+        <butor-layout-two-col-actions>
+            <div class="btn-group">
+                <button mat-button class="btn" (click)="cancel()">{{'Venues.EditVenue.buttons.Cancel' | translate}}</button>
+                <button mat-button class="btn btn-border" (click)="delete()">{{'Venues.EditVenue.buttons.Delete' | translate}}</button>
+                <button *ngIf="venue.isActive" mat-button class="btn btn-border"
+                    (click)="deactivate()">{{'Venues.EditVenue.buttons.Deactivate' | translate}}</button>
+                <button *ngIf="!venue.isActive" mat-button class="btn btn-border"
+                    (click)="deactivate()">{{'Venues.EditVenue.buttons.Activate' | translate}}</button>
+                <button mat-button class="btn btn-primary" (click)="save()">{{'Venues.EditVenue.buttons.Save' | translate}}</button>
+            </div>
+        </butor-layout-two-col-actions>
+        <butor-layout-panel-right>
+            <butor-panel title="{{'Venues.EditVenue.PanelHeader.BasicInfo' | translate}}">
+                <butor-venue-basic-info [form]="venueBasicInfoForm" [submitted]="submitted"
+                    [basicInfo]="venue.basicInfo">
+                </butor-venue-basic-info>
+            </butor-panel>
+        </butor-layout-panel-right>
+        <butor-layout-panel-left>
+            <div class="meeting-rooms-container">
+                <div class="meeting-rooms-container-header">{{'Venues.EditVenue.PanelHeader.MeetingRooms' | translate}}</div>
+                <div class="meeting-rooms-container-body">
+                    <perfect-scrollbar>
+                        <div class="meeting-rooms-container-content">
+                            <butor-venue-meeting-rooms [meetingRooms]="venue.meetingRooms"></butor-venue-meeting-rooms>
+                        </div>
+                    </perfect-scrollbar>
+                </div>
+            </div>
+        </butor-layout-panel-left>
+    </form>
+</butor-layout-two-col>

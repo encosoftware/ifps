@@ -1,0 +1,94 @@
+<butor-layout-one-col title="Contract" *ngIf="!isLoading">
+    <butor-layout-one-col-actions>
+    </butor-layout-one-col-actions>
+    <butor-layout-panel-center>
+        <butor-panel>
+                <div class="row contract-details-container">
+                        <div class="col">
+                            <div class="contract-details-maingroup">PRODUCER</div>
+                            <butor-form-field label="Name">
+                                <div style="padding-bottom: 1.5rem;">{{contract.producer.name}}</div>
+                            </butor-form-field>
+                            <butor-form-field label="Correspondent address">
+                                {{contract.producer.correspondentAddress}}
+                            </butor-form-field>
+                            <butor-form-field label="Tax number">
+                                {{contract.producer.tax}}
+                            </butor-form-field>
+                            <butor-form-field label="Bank account">
+                                {{contract.producer.bankAccount}}
+                            </butor-form-field>
+                        </div>
+                        <div class="col">
+                            <div class="contract-details-maingroup">CUSTOMER</div>
+                            <butor-form-field label="Name">
+                                <ng-select placeholder="Dian Evans" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="options"
+                                    bindValue="value" [clearable]="false">
+                                </ng-select>
+                            </butor-form-field>
+                            <butor-form-field label="Correspondent address">
+                                {{contract.customer.correspondentAddress}}
+                            </butor-form-field>
+                            <butor-form-field label="Shipping address">
+                                {{contract.customer.shippingAddress}}
+                            </butor-form-field>
+                        </div>
+                        <div class="col">
+                            <div class="contract-details-maingroup">FINANCIAL DETAILS</div>
+                            <div class="row u-padding-bottom">
+                                <div class="col-4">
+                                    <div class="financial-name">Net cost</div>
+                                </div>
+                                <div class="col-8">
+                                    <div>{{contract.financial.netCost}} {{contract.financial.currency}}</div>
+                                </div>
+                            </div>
+                            <div class="row u-padding-bottom">
+                                <div class="col-4">
+                                    <div class="financial-name">VAT</div>
+                                </div>
+                                <div class="col-8">
+                                    <div>{{contract.financial.vat}} {{contract.financial.currency}}</div>
+                                </div>
+                            </div>
+                            <div class="row u-padding-bottom">
+                                <div class="col-4">
+                                    <div class="financial-name">Gross cost</div>
+                                </div>
+                                <div class="col-8">
+                                    <div>{{contract.financial.gross}} {{contract.financial.currency}}</div>
+                                </div>
+                            </div>
+                            <div class="row u-padding-bottom">
+                                <div class="col-4">
+                                    <div class="financial-name">1st payment</div>
+                                </div>
+                                <div class="col-8">
+                                    <butor-form-input type="number"  disabled="true"
+                                        append="due on {{contract.financial.firstPaymentDate | date:'dd MMMM y'}}">
+                                    </butor-form-input>
+                                </div>
+                            </div>
+                            <div class="row u-padding-bottom">
+                                <div class="col-4">
+                                    <div class="financial-name">2st payment</div>
+                                </div>
+                                <div class="col-8">
+                                    <butor-form-input type="number"  disabled="true"
+                                        append="due on {{contract.financial.firstPaymentDate | date:'dd MMMM y'}}">
+                                    </butor-form-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="big-container-padding">
+                        <butor-form-field label="Additional points">
+                            <textarea class="form-textarea"  disabled="true"></textarea>
+                        </butor-form-field>
+                    </div>
+                    
+
+        </butor-panel>
+    </butor-layout-panel-center>
+</butor-layout-one-col>

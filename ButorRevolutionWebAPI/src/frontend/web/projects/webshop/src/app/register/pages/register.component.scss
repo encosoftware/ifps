@@ -1,0 +1,65 @@
+:host /deep/ .input-white {
+
+    background-color: white !important;
+}
+
+.register {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10.7rem;
+
+    &-create {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        &-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #000000;
+            opacity: 1;
+            text-transform: none;
+        }
+
+        button {
+            margin-top: 2.3rem;
+
+        }
+    }
+
+    &-container {
+        width: 43rem;
+
+        &-header {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 4.3rem;
+        }
+    }
+
+    &-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 3.7rem;
+    }
+
+    &-terms {
+        display: flex;
+        flex-direction: column;
+        padding-top: 4rem;
+
+        &-check {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 2.3rem;
+        }
+
+    }
+}
+
+hr {
+    margin: 3.6rem 0;
+}

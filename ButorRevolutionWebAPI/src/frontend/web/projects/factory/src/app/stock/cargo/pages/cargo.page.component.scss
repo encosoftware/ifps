@@ -1,0 +1,12 @@
+.order-status {
+    font-size: 10px;
+    color: #4D41FF;
+    border: 0.5px solid #4D41FF;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+:host /deep/ .table-standard tbody tr{
+    cursor: default;
+}

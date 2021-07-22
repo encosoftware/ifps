@@ -1,0 +1,160 @@
+Feature: GREG CREATES A NEW VENUE SUCCESSFULLY
+
+	Scenario: Greg opens the "New Venue" page
+		Given Greg is on the "Venues" page
+		When Greg clicks on the "Add new venue" button
+		Then this navigates Greg to a new page titled "New Venue"
+	
+	Scenario: Greg opens a popup titled "New meeting room"
+		Given Greg is on the "New Venue" page
+		When Greg clicks on the "Add new room" button
+		Then a popup appears titled "New meeting room"
+	
+	Scenario: Greg fills the "New meeting room" popup
+		Given Greg sees a popup titled "New meeting room"
+		When "Name" is filled with " Pink Room"
+		And "Location" filled with "New building 23."
+		And "Név" filled with "Rózsaszín szoba"
+		And "Megközelítés" filled with "Új épület 23."
+		And he clicks on the "Save" button
+		Then the popup dissappears
+		And Greg should see the "New Venue" page
+		And a snackbar "New room created" appears
+
+	Scenario: Greg saves the New venue
+		Given Greg is on the "New Venue" page
+		And "Name" is filled with "Google"
+		And "Email" is filled with "google@gmail.com"
+		And "Postcode" is "87465"
+		And "City" is "Zurich"
+		And "Address" is "Google street 128"
+		And at least 1 meeting room is filled
+		When Greg clicks on the "Save" button
+		Then Greg should see the "Venues" page
+		And a snackbar "New venue saved" appears
+		And modifications are sent to the DB
+
+
+
+
+
+Feature: GREG CAN'T SAVE THE NEW VENUE (0 MEETING ROOM)
+
+	Scenario: Greg can't save the new venue
+		Given Greg is on the "New venue" page
+		And Name is filled with <name>
+		And <name> is less than 3 characterc
+		And Email is filled with <email>
+		And Postcode is <postcode>
+		And City is <city>
+		And Address is <address>
+		And MeetingRoom's count is <meetingroomcount>
+		When Greg clicks on the "Save" button
+		Then <error message> appears above the incorrectly filled text field
+		And the modifications are not sent to the DB
+
+		Examples:
+
+		BASIC INFO
+		| name   	| email            	| postcode    	| city     	| address 		|error message					        | meetingroomcount 	|
+		| null		| google@gmail.com 	| 87465     	| Zurich   	| Google street 128 	|"this is a required field"				| 1 			|
+		| Go		| google@gmail.com 	| 87465     	| Zurich   	| Google street 128 	|"the name should be at least 3 characters long"	| 1 			|
+		| Google 	| null 			| 87465     	| Zurich      	| Google street 128 	|"this is a required field"				| 1 			|
+		| Google 	| google@gmail.com 	| null         	| Zurich   	| Google street 128 	|"this is a required field"				| 1 			|
+		| Google 	| google@gmail.com 	| 87465     	| null		| Google street 128 	|"this is a required field"				| 1 			|
+		| Google 	| google@gmail.com 	| 87465     	| Zurich   	| null		 	|"this is a required field"				| 1 			|
+		| Google 	| google@gmail.com 	| 87465     	| Zurich   	| Google street 128	|"You should add at least 1 meeting room"		| 0 			|
+
+
+
+Feature: GREG CAN'T SAVE THE NEW MEETING ROOM
+
+	Scenario: Greg can't save the new meeting room
+		Given Greg is on the "New meeting room" popup
+		And Name is filled with <name>
+		And Location is filled with <location>
+		And Név is filled with <név>
+		And Megközelítés is filled with <megközelítés>
+		Then <error message> appears above the incorrectly filled text field
+		And the modifications are not sent to the DB
+		
+
+		MEETING ROOMS
+		| name		| location		| név			| megközelítés		|error message
+		| null		| New building 23.	| Rózsaszín szoba	| Új épület 23. 	|"this is a required field"
+		| Pink Room	| null			| Rózsaszín szoba	| Új épület 23. 	|"this is a required field"
+		| Pink Room	| New building 23.	| null			| Új épület 23. 	|"this is a required field"
+		| Pink Room	| New building 23.	| Rózsaszín szoba	| null			|"this is a required field"
+		| null		| null			| null			| null			|"this is a required field"
+
+
+
+			
+Feature: GREG HITS THE CANCEL BUTTON, HE DOESN'T FILLED ANYTHING IN THE FORM
+	
+	Scenario: Greg hits the cancel button
+		Given Greg is on the empty "New venue" page
+		When he hasn't filled the required fields and clicks on the "Cancel" button
+		Then he sees the "Venues" page
+
+
+
+
+Feature: GREG HITS THE CANCEL BUTTON, HE FILLED SOME FIELDS IN THE FORM, DISCARDS THE NEW VENUE
+
+	Scenario: Greg hits the cancel button
+		Given Greg is on the empty "New venue" page
+		When he has filled some of the required fields and clicks on the "Cancel" button
+		Then he sees a popup "Are you sure?"
+
+	Scenario1: Greg discards the new venue
+			Given Then he sees a popup "Are you sure?"
+			When he clicks "Discard info"
+			Then he returns to the main "Venues" page
+
+
+
+
+Feature: GREG HITS THE CANCEL BUTTON, HE FILLED SOME FIELDS IN THE FORM, RETURNS TO THE NEW VENUE PAGE
+
+	Scenario: Greg hits the cancel button
+		Given Greg is on the empty "New venue" page
+		When he has filled some of the required fields and clicks on the "Cancel" button
+		Then he sees a popup "Are you sure?"
+
+	Scenario2: Greg returns to the "New Venue" page
+			Given he sees a popup "Are you sure?"
+			When he clicks the "Cancel" button
+			Then he returns to the "New venue" page with his filled fields
+
+
+
+Feature: GREG EDITS A VENUE
+			
+	Scenario: Greg clicks on the edit button 
+		Given Greg is on the "Venues" page
+		When he clicks on the "Edit" button in the row of "Andrássy 100" venue
+		Then he sees the "Andrássy 100" venue's page
+
+	Scenario: Greg edits the venue
+		Given Greg is on the "Andrássy 100" venue's page
+		When modifies "Name" from "Andrássy 100" to "Andrássy"
+		And he clicks the "Save" button 
+		Then the modifications are sent to the DB
+
+
+
+Feature: GREG DELETES A VENUE
+
+	Scenario: Greg clicks on the delete button 
+		Given Greg is on the "Venues" page
+		And the cursor is on the "Andrássy 100" venue's row
+		When he clicks on the "Delete" button
+		Then a popup appears titled "Are you sure?"
+
+	Scenario: Greg deletes the venue
+		Given Greg sees the "Are you sure?" popup
+		When he clicks delete
+		Then he returns to te "Venues" page
+		And a "Venue deleted" snackbar appears
+		And the modifications are sent to the DB

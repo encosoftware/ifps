@@ -1,0 +1,8 @@
+  <div class="form-group" [ngClass]="{ 'filter': cType === 'filter','line': line === 'true' }">
+     <label class="form-label" *ngIf="label">{{label}} <ng-content select='.btns'></ng-content></label>
+    <div class="form-group-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+

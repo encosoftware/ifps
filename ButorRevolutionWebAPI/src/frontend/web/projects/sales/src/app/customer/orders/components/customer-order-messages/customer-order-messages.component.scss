@@ -1,0 +1,234 @@
+@import "../../../../../scss/variables";
+
+.order-messages-container{
+    display: flex;
+    height: 100%;
+
+    .messages-left-panel{
+        width: 50%;
+        border-right: 1px solid #B8B3FF;
+
+        .messages-container-header{
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem 2.5rem;
+
+            .messages-container-header-title{
+                font-size: 1.4rem;
+                color: #B8B3FF;
+            }
+        }
+
+        .messages {
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          justify-content: space-between;
+          padding: 1rem 5rem 1rem 2.5rem;
+          border-bottom: 1px solid #E5E5E5;
+          cursor: pointer;
+        
+          &_middle {
+            flex: 1;
+            padding-left: 1rem;
+            overflow: hidden;
+            &-title {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              .name{
+                font-size: 1.6rem;
+                font-weight:600; 
+                margin-right: 2rem;
+              }
+              .subject{
+                font-size: 1.3rem;
+                color: #B8B3FF;
+              }
+            }
+            &-body {
+              word-wrap: no-wrap;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              max-width: 100%;
+              overflow: hidden;
+              font-size: 1.3rem;
+            }
+            &-footer {
+              font-size: 1.3rem;
+              color: #B8B3FF;
+            }
+          }
+          &_picture {
+            min-width: 3rem;
+            position: relative;
+            & figure {
+              width: 3rem;
+              height: 3rem;
+              position: absolute;
+              top: 0;
+              right:0;
+        
+              & img {
+                height: 100%;
+                width: 3rem;
+                height: 3rem;
+                clip-path: circle(50% at 50% 50%);
+                position: relative;
+                backface-visibility: hidden;
+              }
+            }
+          }
+        }     
+        
+        .active{
+          background-color: #F8F8F8;
+        }
+
+        .assigned_people{
+          display: flex;
+          align-items: center;
+          padding: 1.5rem 2.5rem;
+          border-bottom: 1px solid #E5E5E5;
+          cursor: pointer;
+
+          .people-image{
+            width: 3rem;
+            height: 3rem;
+            clip-path: circle(50% at 50% 50%);
+          }
+
+          .name{
+            font-size: 1.6rem;
+            font-weight:600; 
+            margin-left: 1rem;
+            margin-right: 2rem;
+          }
+
+          .people-role{
+            font-size: 1.3rem;
+            color: #B8B3FF;
+          }
+        }
+    }
+
+    .messages-right-panel{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+        .messages-right-header{
+          flex: none;
+          padding: 1.2rem 2rem;
+          border-bottom: 1px solid #E5E5E5;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .name{
+            font-size: 1.6rem;
+            font-weight:600; 
+          }
+          .people-role{
+            font-size: 1.3rem;
+            color: #B8B3FF;
+          }
+        }
+
+        .messages-right-content{
+          flex: auto;
+          padding: 2rem;
+
+          .message-reply-container{
+            border-radius: 1.3rem 0rem 1.3rem 1.3rem;
+            border: 1px solid #B8B3FF;
+            background-color: #F8F7FF;
+            padding: 1.5rem;
+            margin-left: auto;
+            margin-bottom: 2.5rem;
+            max-width: 85%;
+            display: grid;
+
+            .message-reply-content{
+              font-size: 1.3rem;
+              text-align: justify;
+            }
+
+            .message-reply-date{
+              font-size: 1.3rem;
+              color: #B8B3FF;
+              margin-left:auto !important;
+            }
+
+          }
+
+          .message-own-container{
+            border-radius: 0rem 1.3rem 1.3rem 1.3rem;
+            border: 1px solid #B8B3FF;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 85%;
+
+            .message-own-content{
+              font-size: 1.3rem;
+              text-align: justify;
+            }
+
+            .message-own-date{
+              font-size: 1.3rem;
+              color: #B8B3FF;
+            }
+          }
+
+          .message-notification-container{
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 2.5rem;
+            .message-notification{
+              font-size: 1.5rem;
+              color: #B8B3FF;
+            }
+          }
+
+          .message-date-devider{
+            display: flex; 
+            flex-direction: row; 
+            padding-bottom: 2.5rem;
+          }
+
+          .message-date-devider:before, .message-date-devider:after{
+            content: ""; 
+            flex: 1 1; 
+            border-bottom: 1px solid #E5E5E5;
+            margin: auto; 
+          }
+
+          .message-helper-date{
+            color: #B8B3FF;
+            font-size: 1.3rem;
+            padding: 0 1rem;
+          }
+        }
+
+        .messages-right-footer{
+          flex: none;
+          padding:2rem 2rem;
+          border-top: 1px solid #E5E5E5;
+
+          .new-message-input{
+            width: 100%;
+            height: 100%;
+            font-size: 1.5rem;
+            border: none;
+            padding: 0;
+          }
+        }
+    }
+}
+
+i{
+    padding-right: 7px;
+    color: #4D41FF;
+    font-size: 15px !important;
+}

@@ -1,0 +1,84 @@
+<div class="basic-wrapper">
+  <form [formGroup]="basicInfoForm">
+    <mat-dialog-content>
+      <div class="basic-header">
+        <figure class="profile-big profile-page-pic">
+          <img [src]="previewUrl" class="profile__pic" (click)="fileInput.click()" alt='profile'>
+        </figure>
+        <input style="display: none;" #fileInput type="file" (change)="onFileSelected($event)" accept="image/*">
+      </div>
+      <butor-form-field label="{{data.translations.name}}">
+        <butor-form-input formControlName="name" name="name"></butor-form-input>
+        <div *ngIf="submitted && f.name.errors" class="input-error">
+          <div *ngIf="f.name.errors.required">{{data.translations.nameReq}}</div>
+        </div>
+      </butor-form-field>
+      <butor-form-field label="{{data.translations.phone}}">
+        <butor-form-input formControlName="phone" name="phone"></butor-form-input>
+      </butor-form-field>
+      <butor-form-field label="{{data.translations.email}}">
+        <butor-form-input formControlName="email" name="email"></butor-form-input>
+        <div *ngIf="submitted && f.email.errors" class="input-error">
+          <div *ngIf="f.email.errors.required">{{data.translations.emailReq}}</div>
+        </div>
+        <span class="error"
+          *ngIf="(basicInfoForm.get('email').touched || basicInfoForm.get('email').dirty) && basicInfoForm.get('email').hasError('email')">{{data.translations.emailFormat}} </span>
+      </butor-form-field>
+      <butor-form-field label="{{data.translations.address}}" *ngIf="data.roleName === 'Customer'">
+      </butor-form-field>
+      <div class="row" *ngIf="data.roleName === 'Customer'">
+        <div class="col-4">
+          <butor-form-field>
+            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries" bindLabel="name"
+              bindValue="id" formControlName="countryId" [clearable]="false" placeholder="{{data.translations.country}}" name="countryId">
+            </ng-select>
+            <div *ngIf="submitted && f.countryId.errors" class="input-error">
+              <div *ngIf="f.countryId.errors.required">{{data.translations.countryReq}}</div>
+            </div>
+          </butor-form-field>
+        </div>
+        <div class="col-3">
+          <butor-form-field>
+            <butor-form-input formControlName="postCode" type="number" placeholder="{{data.translations.postcode}}" name="postcode">
+            </butor-form-input>
+            <div *ngIf="submitted && f.postCode.errors" class="input-error">
+              <div *ngIf="f.postCode.errors.required">{{data.translations.postcodeReq}}</div>
+            </div>
+
+          </butor-form-field>
+        </div>
+        <div class="col-5">
+          <butor-form-field>
+            <butor-form-input formControlName="city" placeholder="{{data.translations.city}}" name="city"></butor-form-input>
+            <div *ngIf="submitted && f.city.errors" class="input-error">
+              <div *ngIf="f.city.errors.required">{{data.translations.cityReq}}</div>
+            </div>
+
+          </butor-form-field>
+        </div>
+        <div class="col-12">
+          <butor-form-field>
+            <butor-form-input formControlName="address" placeholder="{{data.translations.address}}" name="address"></butor-form-input>
+            <div *ngIf="submitted && f.address.errors" class="input-error">
+              <div *ngIf="f.address.errors.required">{{data.translations.addressReq}}</div>
+            </div>
+          </butor-form-field>
+        </div>
+      </div>
+      <butor-form-field label="{{data.translations.language}}">
+        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="languages" bindLabel="name"
+          bindValue="id" formControlName="language" name="language"></ng-select>
+        <div *ngIf="submitted && f.language.errors" class="input-error">
+          <div *ngIf="f.language.errors.required">{{data.translations.languageReq}}</div>
+        </div>
+      </butor-form-field>
+      <button class="btn btn-no-border" mat-button matRipple (click)="newPassword()">{{data.translations.password}}</button>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="d-flex justify-content-end u-margin-top button-wrapper">
+      <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple type="button"
+        (click)="cancel()">{{data.translations.cancel}}</button>
+      <button class="btn btn-primary" mat-button matRipple (click)="onSubmit()">{{data.translations.save}}</button>
+    </mat-dialog-actions>
+  </form>
+</div>

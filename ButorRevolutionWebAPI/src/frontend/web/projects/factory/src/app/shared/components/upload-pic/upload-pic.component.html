@@ -1,0 +1,11 @@
+<input style="display: none;" #fileInput type="file" (change)="onFileSelected($event)" accept="image/*">
+<div class="flex">
+  <figure class="uploade">
+    <img class="uploade-img" alt="" [src]="previewUrl">
+    <figcaption></figcaption>
+  </figure>
+  <div class="uploade-label">
+      <p class="uploade-label-status">{{uploadeLabel}}</p>
+      <a class="uploade-label-input" (click)="fileInput.click()"><i class="icon icon-upload"></i>{{'Picture.UploadButton' | translate}}</a>
+  </div>
+</div>

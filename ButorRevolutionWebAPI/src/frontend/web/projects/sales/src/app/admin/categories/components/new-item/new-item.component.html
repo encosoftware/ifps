@@ -1,0 +1,38 @@
+<form #subcatAddForm="ngForm" (ngSubmit)="save()">
+  <div class="container">
+    <h3 class="popupHeader" *ngIf="!(data.action === 'edit')">{{'Categories.AddNewSub.title' | translate}}</h3>
+    <h3 class="popupHeader" *ngIf="data.action === 'edit'">{{'Categories.EditSub.title' | translate}}</h3>
+    <div class="row">
+      <ng-container *ngFor="let item of items.translation;let i = index;">
+        <div class="col-6">
+          <butor-form-field
+            [label]="!(data.action === 'edit') || (data.action === 'add') ? languageTypeEnum[item.language]: item.language ">
+            <butor-form-input [(ngModel)]="item.name" [name]="item.language" #name="ngModel" [required]="true">
+            </butor-form-input>
+            <span class="error" *ngIf="!name.valid && (name.dirty || name.touched)">{{'Categories.AddNewSub.error.name' | translate}} </span>
+          </butor-form-field>
+          <butor-form-field *ngIf="(i | lessThan:0) && parentSelect.length !== 0" label="{{'Categories.AddNewSub.labels.Parent' | translate}}">
+            <ng-select  highlightColor="#9575cd" highlightTextColor="#fff" [items]="parentSelect" bindLabel="name"
+              [clearable]="false" bindValue="id" [(ngModel)]="items.parentId" name="parent" name="parent"
+              #parent="ngModel" [required]="true">
+            </ng-select>
+            <span class="error" *ngIf="!parent.valid && (parent.dirty || parent.touched)">{{'Categories.AddNewSub.error.parent' | translate}} </span>
+          </butor-form-field>
+        </div>
+      </ng-container>
+    </div>
+
+    <butor-form-field>
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple type="button"
+              (click)="cancel()">{{'Categories.AddNewSub.buttons.Cancel' | translate}}</button>
+            <button class="btn btn-primary" mat-button matRipple type="submit"
+              [disabled]="!subcatAddForm.valid">{{'Categories.AddNewSub.buttons.Save' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </butor-form-field>
+  </div>
+</form>

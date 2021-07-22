@@ -1,0 +1,74 @@
+<div class="container">
+    <h3>{{title}}</h3>
+    <form [formGroup]="newExpenseForm">
+
+        <butor-form-field label="{{'GeneralExpenses.newExpenseComponent.name' | translate}}">
+            <butor-form-input formControlName="name"></butor-form-input>
+            <div *ngIf="submitted && f.name.errors" class="error">
+                <div *ngIf="f.name.errors.required">{{'GeneralExpenses.newExpenseComponent.nameReq' | translate}}</div>
+            </div>
+        </butor-form-field>
+
+        <div class="row">
+            <div class="col-4">
+                <butor-form-field label="{{'GeneralExpenses.newExpenseComponent.date' | translate}}">
+                    <input class="datepicker-input" formControlName="paymentDate" [matDatepicker]="picker"
+                        (click)="picker.open()" />
+                    <mat-datepicker #picker></mat-datepicker>
+                    <div *ngIf="submitted && f.paymentDate.errors" class="error">
+                        <div *ngIf="f.paymentDate.errors.required">{{'GeneralExpenses.newExpenseComponent.dateReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'GeneralExpenses.newExpenseComponent.interval' | translate}}">
+                    <butor-form-input type="number" formControlName="interval"></butor-form-input>
+                    <div *ngIf="submitted && f.interval.errors" class="error">
+                        <div *ngIf="f.interval.errors.required">{{'GeneralExpenses.newExpenseComponent.intervallReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-4">
+                <butor-form-field label="{{'GeneralExpenses.newExpenseComponent.intervalType' | translate}}">
+                    <ng-select [items]="frequencies" formControlName="frequencyTypeId" highlightColor="#9575cd"
+                        highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false">
+                    </ng-select>
+                    <div *ngIf="submitted && f.frequencyTypeId.errors" class="error">
+                        <div *ngIf="f.frequencyTypeId.errors.required">{{'GeneralExpenses.newExpenseComponent.intervallTypeReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                <butor-form-field label="{{'GeneralExpenses.newExpenseComponent.amount' | translate}}">
+                    <butor-form-input type="number" formControlName="amountValue"></butor-form-input>
+                    <div *ngIf="submitted && f.amountValue.errors" class="error">
+                        <div *ngIf="f.amountValue.errors.required">{{'GeneralExpenses.newExpenseComponent.amountReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-3">
+                <butor-form-field label="{{'GeneralExpenses.newExpenseComponent.currency' | translate}}">
+                    <ng-select [items]="currencies" formControlName="amountCurrencyId" highlightColor="#9575cd"
+                        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+                    </ng-select>
+                    <div *ngIf="submitted && f.amountCurrencyId.errors" class="error">
+                        <div *ngIf="f.amountCurrencyId.errors.required">{{'GeneralExpenses.newExpenseComponent.currencyReq' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end u-margin-top">
+                <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+                    (click)="cancel()">{{'GeneralExpenses.newExpenseComponent.cancel' | translate}}</button>
+                <button class="btn btn-primary" mat-button matRipple
+                    (click)="addNewExpense()">{{'GeneralExpenses.newExpenseComponent.save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+.pop-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+
+}
+
+.dialog-title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-bottom: 2rem;
+}
+
+.label-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.label-contant {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.popup-title {
+    list-style: none;
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    &:not(:last-child) {
+        margin-right: 5rem;
+    }
+}
+
+
+.hamburger-menu-list{
+    background-color: $color-white-primary;
+    width: 10rem;
+    border: 1px solid #E6E4FF;
+    border-radius: $btn-border-radius;
+    box-shadow: $box-shadow-box-span;
+
+    .hamburger-menu-list-item{
+        padding: .5rem 1rem;
+        cursor: pointer;
+        i{
+            color: $color-btn-primary;
+        }
+        button{
+            cursor: pointer;
+            padding-left: .7rem !important;
+            color: $color-btn-primary;
+            background-color: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 0;
+            font-size:1.3rem;
+            font-weight: 600;
+        }
+        
+    }
+}

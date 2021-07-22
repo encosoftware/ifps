@@ -1,0 +1,13 @@
+<div class="panel">
+  <div class="panel-header">{{title}}</div>
+  <ng-container *ngTemplateOutlet="templateAction"></ng-container>
+  <div class="panel-body">
+    <perfect-scrollbar>
+      <ng-container *ngTemplateOutlet="templateTop"></ng-container>
+      <div class="panel-content">
+        <ng-content></ng-content>
+      </div>
+      <ng-container *ngTemplateOutlet="template"></ng-container>
+    </perfect-scrollbar>
+  </div>
+</div>

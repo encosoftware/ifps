@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  
+  ifps.sales.cypress:
+    container_name: ifps.sales.cypress
+    image: karpinszkyandras/ifpsrepository:cypress.local
+    build:
+      context: ../src/frontend/web/
+      dockerfile: ifps.sales.cypress.Dockerfile
+    depends_on:
+      - ifps.sales.ui
+    environment:
+      - CYPRESS_baseUrl=http://ifps.sales.ui/
+      - NO_COLOR=1
+    volumes:
+      - ./src/frontend/web/cypress/screenshots:/cypress/screenshots
+      - ./src/frontend/web/cypress/videos:/cypress/videos
+      - ./src/frontend/web/cypress/videos:/cypress/reports
+    networks:
+      - ifps-network

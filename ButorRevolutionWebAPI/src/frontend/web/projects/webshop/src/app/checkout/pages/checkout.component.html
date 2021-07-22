@@ -1,0 +1,39 @@
+<h3 class="login-container-header-check">Fizetés</h3>
+<div class="login">
+  <div class="login-container">
+    <form #login="ngForm" (submit)="loginUser(login)">
+      <h3 class="login-container-header-login">BEJELENTKEZÉS</h3>
+      <butor-form-field label="Felhasználónév">
+        <butor-form-input [classAddInput]="'input-white'" name="emailL" [(ngModel)]="emailLogin" type="email"
+          #emailL="ngModel" required (change)="validPassEmail()"></butor-form-input>
+        <div *ngIf="!emailL.invalid">
+          <span class="error" *ngIf="(passOrUser && login.valid) && (emailL.dirty || emailL.touched)">Email or
+            Password is incorrect! </span>
+        </div>
+      </butor-form-field>
+      <butor-form-field label="Jelszó">
+        <butor-form-input [classAddInput]="'input-white'" name="password" [(ngModel)]="passwordLogin" type="password"
+          required></butor-form-input>
+      </butor-form-field>
+      <div class="login-btn">
+        <button mat-button class="btn" type="button">Elfelejtett jelszó</button>
+        <button mat-button class="btn btn-primary" type="submit" [disabled]="!login.valid">Bejelentkezés</button>
+      </div>
+
+    </form>
+  </div>
+  <div class="guest-container">
+    <div class="guest-container-box">
+
+      <h3 class="guest-h3">Vásárlás vendégként</h3>
+      <p class="guest-p">A folyamat gyorsítása érdekében pár adat megadása kötelező.</p>
+      <button mat-button class="btn btn-primary" type="button" [routerLink]="['/purchase']">Folytatás vendégként</button>
+    </div>
+    <div class="guest-container-box">
+      <h3 class="guest-h3">Regisztráció</h3>
+      <p class="guest-p">Szeretnél regisztrálni egy új felhasználót? Regisztrálj a későbbi vásárlások egyszerűsítése érdekében.</p>
+      <button mat-button class="btn btn-primary" type="button" [routerLink]="['/register']">Új felhasználó létrehozása</button>
+
+    </div>
+  </div>
+</div>

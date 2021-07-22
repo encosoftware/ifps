@@ -1,0 +1,62 @@
+<div class="container">
+  <h3>{{'Companies.NewCompany.title' | translate}}</h3>
+  <form [formGroup]="addNewCompanyForm">
+    <butor-form-field label="{{'Companies.NewCompany.labels.Name' | translate}}">
+      <butor-form-input formControlName="name" name="name"></butor-form-input>
+    </butor-form-field>
+
+    <butor-form-field label="{{'Companies.NewCompany.labels.Type' | translate}}">
+      <ng-select formControlName="companyType" name="companyType" [items]="companyTypesList" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false">
+      </ng-select>
+    </butor-form-field>
+
+    <butor-form-field label="{{'Companies.NewCompany.labels.Taxnumber' | translate}}">
+      <butor-form-input formControlName="taxnumber" name="taxnumber"></butor-form-input>
+    </butor-form-field>
+
+    <butor-form-field label="{{'Companies.NewCompany.labels.Registernumber' | translate}}">
+      <butor-form-input formControlName="registernumber" name="registernumber"></butor-form-input>
+    </butor-form-field>
+
+    <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.hq' | translate}}">
+      <div class="row">
+        <div class="col-4">
+          <butor-form-field>
+            <ng-select formControlName="companyCountry" name="country" [items]="countries"
+              highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="translation" bindValue="id"
+              [clearable]="false" placeholder="{{'Orders.newOrder.country' | translate}}">
+            </ng-select>
+          </butor-form-field>
+        </div>
+        <div class="col-3">
+          <butor-form-field>
+            <butor-form-input formControlName="companyPostCode" name="postCode" placeholder="{{'Orders.newOrder.postcode' | translate}}">
+            </butor-form-input>
+          </butor-form-field>
+        </div>
+        <div class="col-5">
+          <butor-form-field>
+            <butor-form-input formControlName="companyCity" name="city" placeholder="{{'Orders.newOrder.city' | translate}}">
+            </butor-form-input>
+          </butor-form-field>
+        </div>
+        <div class="col-12">
+          <butor-form-field>
+            <butor-form-input formControlName="companyAddress" name="address" placeholder="{{'Orders.newOrder.address' | translate}}"></butor-form-input>
+          </butor-form-field>
+        </div>
+      </div>
+    </butor-form-field>
+  </form>
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-end u-margin-top">
+        <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+          (click)="cancel()">{{'Companies.NewCompany.buttons.Cancel' | translate}}</button>
+        <button class="btn btn-primary" mat-button matRipple [disabled]="!addNewCompanyForm.valid"
+          (click)="addNewCompany()">{{'Companies.NewCompany.buttons.Add' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

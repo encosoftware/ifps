@@ -1,0 +1,31 @@
+<div class="add-new-room-button-container">
+  <button mat-button class="btn btn-primary" (click)="openNewMeetingRoomDialog()">
+    {{ "Venues.EditVenue.MeetingRooms.buttons.AddNewRoom" | translate }}
+  </button>
+</div>
+<div *ngIf="meetingRooms && meetingRooms.length > 0" class="row meeting-room-header">
+  <div class="col-3">
+    {{ "Venues.EditVenue.MeetingRooms.FilterLabel.Name" | translate }}
+  </div>
+  <div class="col-9">
+    {{ "Venues.EditVenue.MeetingRooms.FilterLabel.location" | translate }}
+  </div>
+</div>
+<div *ngFor="let meetingRoom of meetingRooms; let itemIndex = index" class="row meeting-room-translation-container">
+  <div class="col-3">
+    {{ meetingRoom.name }}
+  </div>
+  <div class="col-8">
+      {{ meetingRoom.location }}
+  </div>
+  <div class="col-1 align-self-center">
+    <butor-btn-hamburger>
+      <butor-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-edit"
+        [buttonText]="this.translate.instant('Venues.EditVenue.MeetingRooms.buttons.Edit')"
+        (click)="this.openEditMeetingRoomDialog(itemIndex)"></butor-btn-hamburger-inside>
+      <butor-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+        [buttonText]="this.translate.instant('Venues.EditVenue.MeetingRooms.buttons.Delete')"
+        (click)="this.deleteMeetingRoom(itemIndex)"></butor-btn-hamburger-inside>
+    </butor-btn-hamburger>
+  </div>
+</div>

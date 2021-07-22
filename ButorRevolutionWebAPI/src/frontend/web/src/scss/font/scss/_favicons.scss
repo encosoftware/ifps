@@ -1,0 +1,353 @@
+@font-face {
+    font-family: "Icons";
+    src: url('projects/sales/src/scss/font/Icons.eot');
+    src: url('projects/sales/src/scss/font/Icons.eot?#iefix') format('eot'),
+        url('projects/sales/src/scss/font/Icons.woff') format('woff'),
+        url('projects/sales/src/scss/font/Icons.ttf') format('truetype'),
+        url('projects/sales/src/scss/font/Icons.svg#Icons') format('svg');
+}
+
+
+.icon:before {
+    font-family: "Icons";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+    text-decoration: none;
+    text-transform: none;
+    font-size: inherit;
+}
+
+
+
+.icon-403:before {
+    content: "\E001";
+}
+
+
+.icon-404:before {
+    content: "\E002";
+}
+
+
+.icon-add:before {
+    content: "\E003";
+}
+
+
+.icon-appointments_active:before {
+    content: "\E004";
+}
+
+
+.icon-appointments_inactive:before {
+    content: "\E005";
+}
+
+
+.icon-blackarrow_black_down:before {
+    content: "\E006";
+}
+
+
+.icon-blackarrow_black_left:before {
+    content: "\E007";
+}
+
+
+.icon-blackarrow_black_right:before {
+    content: "\E008";
+}
+
+
+.icon-blackarrow_black_up:before {
+    content: "\E009";
+}
+
+
+.icon-cargo_active:before {
+    content: "\E00A";
+}
+
+
+.icon-cargo_inactive:before {
+    content: "\E00B";
+}
+
+
+.icon-categories:before {
+    content: "\E00C";
+}
+
+
+.icon-cells_active:before {
+    content: "\E00D";
+}
+
+
+.icon-cells_inactive:before {
+    content: "\E00E";
+}
+
+
+.icon-checked:before {
+    content: "\E00F";
+}
+
+
+.icon-check_circle:before {
+    content: "\E010";
+}
+
+
+.icon-clear:before {
+    content: "\E011";
+}
+
+
+.icon-companies_active:before {
+    content: "\E012";
+}
+
+
+.icon-companies_inactive:before {
+    content: "\E013";
+}
+
+
+.icon-dashboard_active:before {
+    content: "\E014";
+}
+
+
+.icon-dashboard_inactive:before {
+    content: "\E015";
+}
+
+
+.icon-date:before {
+    content: "\E016";
+}
+
+
+.icon-deactivate:before {
+    content: "\E017";
+}
+
+
+.icon-deactivate_small:before {
+    content: "\E018";
+}
+
+
+.icon-delete:before {
+    content: "\E019";
+}
+
+
+.icon-edit:before {
+    content: "\E01A";
+}
+
+
+.icon-handshake:before {
+    content: "\E01B";
+}
+
+
+.icon-kotojel:before {
+    content: "\E01C";
+}
+
+
+.icon-label delete:before {
+    content: "\E01D";
+}
+
+
+.icon-materials_active:before {
+    content: "\E01E";
+}
+
+
+.icon-materials_inactive:before {
+    content: "\E01F";
+}
+
+
+.icon-backmaterial_back_panel:before {
+    content: "\E020";
+}
+
+
+.icon-material_door:before {
+    content: "\E021";
+}
+
+
+.icon-material_inner:before {
+    content: "\E022";
+}
+
+
+.icon-material_outer:before {
+    content: "\E023";
+}
+
+
+.icon-meetingroomes_active:before {
+    content: "\E024";
+}
+
+
+.icon-meetingroomes_inactive:before {
+    content: "\E025";
+}
+
+
+.icon-menu:before {
+    content: "\E026";
+}
+
+
+.icon-menu_clicked:before {
+    content: "\E027";
+}
+
+
+.icon-menu_inactive:before {
+    content: "\E028";
+}
+
+
+.icon-mixed:before {
+    content: "\E029";
+}
+
+
+.icon-orders_active:before {
+    content: "\E02A";
+}
+
+
+.icon-orders_inactive:before {
+    content: "\E02B";
+}
+
+
+.icon-pdf:before {
+    content: "\E02C";
+}
+
+
+.icon-photoplaceholder:before {
+    content: "\E02D";
+}
+
+
+.icon-POI:before {
+    content: "\E02E";
+}
+
+
+.icon-production_active:before {
+    content: "\E02F";
+}
+
+
+.icon-production_inactive:before {
+    content: "\E030";
+}
+
+
+.icon-products:before {
+    content: "\E031";
+}
+
+
+.icon-radio_off:before {
+    content: "\E032";
+}
+
+
+.icon-radio_on:before {
+    content: "\E033";
+}
+
+
+.icon-roles_active:before {
+    content: "\E034";
+}
+
+
+.icon-roles_inactive:before {
+    content: "\E035";
+}
+
+
+.icon-search:before {
+    content: "\E036";
+}
+
+
+.icon-stocks_active:before {
+    content: "\E037";
+}
+
+
+.icon-stocks_inactive:before {
+    content: "\E038";
+}
+
+
+.icon-time:before {
+    content: "\E039";
+}
+
+
+.icon-trolley:before {
+    content: "\E03A";
+}
+
+
+.icon-unchecked:before {
+    content: "\E03B";
+}
+
+
+.icon-upload:before {
+    content: "\E03C";
+}
+
+
+.icon-users_active:before {
+    content: "\E03D";
+}
+
+
+.icon-users_inactive:before {
+    content: "\E03E";
+}
+
+
+.icon-venues_active:before {
+    content: "\E03F";
+}
+
+
+.icon-venues_inactive:before {
+    content: "\E040";
+}
+
+
+.icon-view:before {
+    content: "\E041";
+}
+
+
+.icon-shall-not-passyou_shall_not_pass_sign:before {
+    content: "\E042";
+}

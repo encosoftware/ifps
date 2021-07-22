@@ -1,0 +1,82 @@
+<div class="container">
+    <h3>{{ title }}</h3>
+    <form [formGroup]="applianceForm">
+        <div class="row">
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.CODE' | translate}}">
+                    <butor-form-input [(ngModel)]="appliance.code" formControlName="code" #codeInput name="code">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.DESCRIPTION' | translate}}">
+                    <textarea [(ngModel)]="appliance.description" formControlName="description" class="form-textarea"
+                        name="description"></textarea>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.CATEGORY' | translate}}">
+                    <ng-select formControlName="category" [items]="categories" highlightColor="#9575cd" name="category"
+                        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false"
+                        [(ngModel)]="selectedCategory" (change)="categoryChange()">
+                    </ng-select>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.Picture' | translate}}">
+                    <butor-upload-pic [name]="appliance.picture.fileName" [folder]="appliance.picture.containerName"
+                        (nameOutput)="getFileName($event)" (folderOutput)="getFolderName($event)" *ngIf="!isLoading">
+                    </butor-upload-pic>
+                </butor-form-field>
+            </div>
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.Brand' | translate}}">
+                    <ng-select formControlName="brand" [items]="brands" highlightColor="#9575cd"
+                        highlightTextColor="#fff" name="brand" bindLabel="name" bindValue="id" [clearable]="false"
+                        [(ngModel)]="selectedBrand" (change)="brandChange()">
+                    </ng-select>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.HanaCode' | translate}}">
+                    <butor-form-input [(ngModel)]="appliance.hanaCode" name="hanaCode" formControlName="hanaCode">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.Purchasingprice' | translate}}">
+                    <div class="row">
+                        <div class="col-9">
+                            <butor-form-input type="number" [(ngModel)]="appliance.purchasingPrice"
+                                name="purchasingPrice" formControlName="purchasingPrice">
+                            </butor-form-input>
+                        </div>
+                        <div class="col-3">
+                            <ng-select formControlName="purchasingCurrency" [items]="purchasingCurrencies"
+                                name="purchasingCurrency" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="options" bindValue="value" [clearable]="false"
+                                [(ngModel)]="selectedPurchasingCurrency" (change)="purchasingCurrencyChange()">
+                            </ng-select>
+                        </div>
+                    </div>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.APPLIANCES.Newappliance.labels.Sellprice' | translate}}">
+                    <div class="row">
+                        <div class="col-9">
+                            <butor-form-input type="number" [(ngModel)]="appliance.sellPrice" name="sellPrice"
+                                formControlName="sellPrice">
+                            </butor-form-input>
+                        </div>
+                        <div class="col-3">
+                            <ng-select formControlName="sellingCurrency" name="sellingCurrency"
+                                [items]="sellingCurrencies" highlightColor="#9575cd" highlightTextColor="#fff"
+                                bindLabel="options" bindValue="value" [clearable]="false"
+                                [(ngModel)]="selectedSellingCurrency" (change)="sellingCurrencyChange()">
+                            </ng-select>
+                        </div>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+                    (click)="cancel()">{{'Materials.APPLIANCES.Newappliance.buttons.Cancel' | translate}}</button>
+                <button class="btn btn-primary" mat-button matRipple [disabled]="applianceForm.invalid || !appliance.picture.fileName"
+                    (click)="addNewAppliance()">{{'Materials.APPLIANCES.Newappliance.buttons.Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

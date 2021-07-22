@@ -1,0 +1,16 @@
+<butor-layout-two-row *ngIf="!isLoading">
+    <butor-layout-panel-top>
+        <factory-stock-cargo-header [basicInfo]="cargo.basics"></factory-stock-cargo-header>
+    </butor-layout-panel-top>
+    <butor-layout-panel-bottom>
+        <div class="details-title">
+            CARGO
+        </div>
+        <butor-layout-one-col>
+            <butor-layout-panel-center>
+                <factory-stock-cargo-details [details]="cargo.details" style="width: 100%">
+                </factory-stock-cargo-details>
+            </butor-layout-panel-center>
+        </butor-layout-one-col>
+    </butor-layout-panel-bottom>
+</butor-layout-two-row>

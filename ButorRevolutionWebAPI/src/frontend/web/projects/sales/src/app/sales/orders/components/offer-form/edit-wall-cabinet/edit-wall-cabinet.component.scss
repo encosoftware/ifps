@@ -1,0 +1,115 @@
+.wall-cabinet-basic-container{
+    padding: 0 2.5rem 2.5rem 2.5rem;
+    border-bottom: 0.5px solid #CCCCCC;
+}
+
+.total-price{
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.cabinet-header-container{
+    padding: 3.5rem 2.5rem;
+    display: flex;
+    .big-title{
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    .u-margin-btn-right{
+        padding-right: 2rem;
+        margin-left: auto;
+    }
+}
+
+.big-category-title-container{
+    padding:3rem 2.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.cabinet-details-container{
+    padding:3.5rem 2rem;
+    background-color: #F8F8F8;
+
+    .col-4{
+        padding: 0 !important;
+    }
+    .col-8{
+        padding: 0 !important;
+    }
+
+    .u-padding-right{
+        padding-right: 10rem;
+    }
+
+    .u-row-padding{
+        padding: 0 2.5rem 3rem 2.5rem;
+        align-items: center;
+    }
+
+    .u-row-padding-no-align{
+        padding: 0 2.5rem 3rem 2.5rem;
+    }
+
+    .cabinet-detail-name{
+        font-weight: 600;
+    }
+
+    .u-padding-small-bottom{
+        padding-bottom: 1rem;
+    }
+
+    .cabinet-image{
+        width: 85px;
+        height: 85px;
+        border: 1px solid #D6D6D6;
+        border-radius: 5px;
+    }
+}
+
+:host /deep/ .mat-content{
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5rem;
+    cursor: default;
+}
+
+:host /deep/ .mat-expansion-indicator{
+    margin-top: 15px;
+}
+
+:host /deep/ .mat-expansion-panel-body{
+    padding:0;
+}
+
+:host /deep/ .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+    background: white;
+}
+
+.expansion-panel-header-container{
+    padding: 0 8.2rem 0 2.4rem;
+    display: flex;
+    color: #B8B3FF;
+}
+
+.expansion-panel-image-container{
+    width: 10%;
+}
+
+.expansion-panel-container-basic{
+    width: 15%;
+}
+
+.expansion-panel-delete-container{
+    display: flex;
+    width: 15%;
+    justify-content: flex-end;
+    color: #FF4141;
+    cursor: pointer;
+    i{
+        padding-right: 1rem;
+    }
+}
+
+

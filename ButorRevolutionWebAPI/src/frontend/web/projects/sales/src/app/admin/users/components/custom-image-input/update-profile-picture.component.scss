@@ -1,0 +1,71 @@
+.update-profile-picture-wrapper{
+    padding: 18px;
+    .update-title{
+        color: #333333;
+        font-size: 25px;
+        font-weight: 600;
+    }
+    .update-image-cropper-wrapper{
+        width: 100%;
+        margin-top: 23px;
+        .update-image-cropper{
+            width: 400px;
+            margin: auto;
+
+            .update-cropped-image-item{
+                display: inline-flex;
+                width: 240px;
+            }
+            .update-cropped-image{
+                border-radius: 120px;
+            }
+
+        }
+
+    }
+    .update-image-buttons-wrapper{
+        margin-top: 35px;
+        position: relative;
+        width: 100%;
+        right: 0;
+        .update-image-buttons{
+            position: absolute;
+            right: 0;
+            .update-cancel-button{
+                background-color: #fff;
+                border: 1px solid #1A1A1A;
+                border-radius: 5px;
+                color: #1A1A1A;
+                font-size: 18px;
+                font-weight: 600;
+                height: 33px;
+                width: 82px;
+                cursor: pointer;
+            }
+            .update-save-button{
+                margin-left: 16px;
+                background-color: #1A1A1A;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 600;
+                border: none;
+                border-radius: 5px;
+                height: 33px;
+                width: 72px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+i {
+    padding-right: 0.8rem;
+    color: #4D41FF;
+}
+
+.upload-label-input {
+    font-size: 1.5rem;
+    color: #4D41FF;
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,67 @@
+<butor-layout-one-col>
+  <butor-layout-panel-center style="flex-direction: column;">
+    <div class="u-big-padding-bottom">
+      <h3>{{'Appointments.Title' | translate}}</h3>
+    </div>
+    <butor-panel [templateAction]="appointmentAction">
+      <ng-template #appointmentAction>
+        <div class="appointment-title-action">
+          <span class="date"> {{ viewDate | date: 'yyyy MMMM':'': translateService.currentLang  }}</span>
+          <a class="calendar-page" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+            [excludeDays]="excludeDays" (click)="loadData()">
+            <i class="icon icon-blackarrow_black_left"></i></a>
+          <a class="calendar-page" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" [excludeDays]="excludeDays"
+            (click)="loadData()">
+            <i class="icon icon-blackarrow_black_right"></i></a>
+          <button class="btn btn-border u-margin-btn-right" mat-button matRipple mwlCalendarToday
+            [(viewDate)]="viewDate" (click)="loadData()">{{'Appointments.Today' | translate}}</button>
+          <button *ngIf="this.excludeDays.length > 0" class="btn btn-border" mat-button matRipple
+            (click)="hideOrShowWeekdays()">{{'Appointments.ShowWeekends' | translate}}</button>
+          <button *ngIf="this.excludeDays.length === 0" class="btn btn-border" mat-button matRipple
+            (click)="hideOrShowWeekdays()">{{'Appointments.HideWeekends' | translate}}</button>
+        </div>
+      </ng-template>
+
+      <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" [refresh]="refresh" [eventTemplate]="eventsTemp"
+        [headerTemplate]="headerCalendar" [excludeDays]="excludeDays" weekStartsOn="1" [dayStartHour]="8"
+        [dayEndHour]="20">
+      </mwl-calendar-week-view>
+      <ng-template #headerCalendar let-days="days">
+        <div class="cal-day-headers">
+          <div class="cal-header" [ngClass]="{
+          'cal-past': item.date | dateTest:'past',
+          'cal-weekend':item.date | dateTest:'weekend', 
+          'cal-today':item.date | dateTest:'today',
+          'cal-future':item.date | dateTest:'future'}" *ngFor="let item of days">
+            <b>{{item.date | date:'EEE':'': translateService.currentLang}} </b>
+            <br>
+            <span> {{item.date | date:'d'}}</span>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #eventsTemp let-weekEvent="weekEvent">
+        <butor-event-info [event]="weekEvent.event" [detailsTemplate]="eventDetails"></butor-event-info>
+        <ng-template #eventDetails let-event="event">
+          <div class="tooltipBox">
+            <div class="appointment">
+              <div class="appointment-header">
+                <div class="day">{{event.start | date:'dd'}}</div>
+                <div class="month">{{event.start | date:'MMMM'}}</div>
+                <div class="time">{{event.start | date:'HH:mm'}} - {{event.end | date:'HH:mm'}}</div>
+              </div>
+              <div class="appointment_body">
+                <div class="appointment_body-title">{{event.title}}</div>
+                <div class="appointment_body-author">{{event.meta.customerName}}</div>
+                <div class="appointment_body-address"><i class="icon icon-POI"></i>
+                  {{event.meta.address.postCode}} {{event.meta.address.city}}, {{event.meta.address.address}}
+                </div>
+                <div class="appointment_body-note"><i class="icon icon-menu"></i>{{'Appointments.Notes' | translate}}: {{event.meta.notes}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-template>
+    </butor-panel>
+  </butor-layout-panel-center>
+
+</butor-layout-one-col>

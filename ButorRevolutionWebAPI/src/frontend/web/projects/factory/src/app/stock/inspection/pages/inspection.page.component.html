@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-between u-margin-top">
+    <h3>{{'Inspection.title' | translate}}</h3>
+    <div class="d-flex justify-content-between">
+        <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewInspection()"
+            *factoryClaims="claimPolicyEnum[41]">{{'Inspection.newInspection' | translate}}</button>
+    </div>
+</div>
+
+<div class="scroll-container">
+    <perfect-scrollbar>
+        <form [formGroup]="inspectionForm" class="scroll-form">
+            <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+                <ng-container cdkColumnDef="date">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Inspection.date' | translate}}" cType='filter'>
+                            <input class="datepicker-input" [matDatepicker]="picker" formControlName="date"
+                                (click)="picker.open()">
+                            <mat-datepicker #picker></mat-datepicker>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"><b>{{row.date | date:'y.MM.d.'}}</b></td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="stock">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Inspection.stock' | translate}}" cType='filter'>
+                            <ng-select name="stock" highlightColor="#9575cd" highlightTextColor="#fff"
+                                formControlName="stock" [items]="stocks" [clearable]="false" bindLabel="name"
+                                bindValue="id">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">{{row.stock}}</td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="report">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Inspection.report' | translate}}" cType='filter'>
+                            <butor-form-input name="report" formControlName="report"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">{{row.report}}</td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="delegation">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Inspection.delegation' | translate}}" cType='filter'>
+                            <butor-form-input name="delegation" formControlName="delegation"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"><span
+                            *ngFor="let item of row.delegation; let index = index;">{{item}}{{index === row.delegation.length - 1 ? '' : ','}}</span>
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="clearFilter">
+                    <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                                class="icon icon-clear"></i>{{'Inspection.clearFilter' | translate}}</a> </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <factory-btn-hamburger>
+                            <factory-btn-hamburger-inside *ngIf="row.isClosed" textColor="#4D41FF"
+                                iconClass="icon icon-edit" buttonText="Generate report"
+                                [routerLink]="['/stock/inspection/',row.id,'report']"></factory-btn-hamburger-inside>
+                            <ng-container *ngIf="!row.isClosed">
+                                <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[41]" textColor="#4D41FF"
+                                    iconClass="icon icon-edit" buttonText="{{'Inspection.edit' | translate}}"
+                                    (click)="this.editInspection(row.id)">
+                                </factory-btn-hamburger-inside>
+                            </ng-container>
+                            <ng-container *ngIf="!row.isClosed">
+                                <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[42]" textColor="#FF4141"
+                                    iconClass="icon icon-delete" buttonText="{{'Inspection.delete' | translate}}"
+                                    (click)="deleteButton(row.id)">
+                                </factory-btn-hamburger-inside>
+                            </ng-container>
+
+                        </factory-btn-hamburger>
+                    </td>
+                </ng-container>
+
+                <tr cdk-header-row
+                    *cdkHeaderRowDef="['date', 'stock', 'report', 'delegation', 'clearFilter'];sticky:true;">
+                </tr>
+
+                <tr cdk-row *cdkRowDef="let row; columns: ['date', 'stock', 'report', 'delegation', 'clearFilter']"
+                    [routerLink]="['/stock/inspection/',row.id,'report']">
+                </tr>
+
+            </table>
+
+            <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+                [pageIndex]="dataSource.pageIndex"
+                [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+            </mat-paginator>
+
+            <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+            <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">
+                {{'Inspection.NoRecords' | translate }}</div>
+
+        </form>
+    </perfect-scrollbar>
+</div>

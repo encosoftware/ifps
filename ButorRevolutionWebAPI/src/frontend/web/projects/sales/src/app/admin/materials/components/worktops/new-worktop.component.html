@@ -1,0 +1,90 @@
+<div class="conatiner">
+    <div class="dialog-title">
+        {{ title }}
+    </div>
+    <form [formGroup]="worktopForm">
+        <div class="row">
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.CODE' | translate}}">
+                    <butor-form-input name="code" formControlName="code" [(ngModel)]="worktop.code" #codeInput
+                        name="code"></butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.DESCRIPTION' | translate}}">
+                    <butor-form-input name="description" formControlName="description" [(ngModel)]="worktop.description"
+                        name="description">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.CATEGORY' | translate}}">
+                    <ng-select name="category" formControlName="category" [items]="categories" highlightColor="#9575cd"
+                        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false"
+                        [(ngModel)]="selectedCategory" (change)="categoryChange()">
+                    </ng-select>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.Picture' | translate}}">
+                    <butor-upload-pic [name]="worktop.picture.fileName" [folder]="worktop.picture.containerName"
+                        (nameOutput)="getFileName($event)" (folderOutput)="getFolderName($event)" *ngIf="!isLoading">
+                    </butor-upload-pic>
+                </butor-form-field>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.Length' | translate}}">
+                            <butor-form-input name="length" type="number" formControlName="length" append="mm"
+                                [(ngModel)]="worktop.length">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.Width' | translate}}">
+                            <butor-form-input name="width" type="number" formControlName="width" append="mm"
+                                [(ngModel)]="worktop.width">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.Thickness' | translate}}">
+                            <butor-form-input name="thickness" type="number" formControlName="thickness" append="mm"
+                                [(ngModel)]="worktop.thickness">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.Fiberheading' | translate}}">
+                    <butor-form-checkbox label="{{'Materials.WorkTop.newWorktop.labels.Fiberheading' | translate}}"
+                        formControlName="fiberHeadingIsChecked">
+                    </butor-form-checkbox>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.PurchasingPrice' | translate}}">
+                    <div class="row">
+                        <div class="col-9">
+                            <butor-form-input name="purchasingPrice" type="number" formControlName="purchasingPrice"
+                                [(ngModel)]="worktop.purchasingPrice">
+                            </butor-form-input>
+                        </div>
+                        <div class="col-3">
+                            <ng-select name="currency" formControlName="currency" [items]="currencies"
+                                highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="options" bindValue="value"
+                                [clearable]="false" [(ngModel)]="selectedCurrency" (change)="currencyChange()">
+                            </ng-select>
+                        </div>
+                    </div>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.WorkTop.newWorktop.labels.TransactionPrice' | translate}}">
+                    <butor-form-input name="transactionPrice" type="number" formControlName="transactionPrice"
+                        append="%" [(ngModel)]="worktop.transactionPrice"></butor-form-input>
+                </butor-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button mat-button matRipple class="btn btn-text-only u-margin-btn-right"
+                    (click)="cancel()">{{'Materials.WorkTop.newWorktop.buttons.Cancel' | translate}}</button>
+                <button mat-button matRipple class="btn btn-primary u-margin-btn-right" [disabled]="worktopForm.invalid || !worktop.picture.fileName"
+                    (click)="addNewWroktop()">{{'Materials.WorkTop.newWorktop.buttons.Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

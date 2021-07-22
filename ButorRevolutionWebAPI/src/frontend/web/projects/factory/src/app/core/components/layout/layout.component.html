@@ -1,0 +1,8 @@
+<div class="layout">
+  <div [ngClass]="isOpenMenu ? 'layout-menu' : 'layout-menu-close'">
+    <factory-menu></factory-menu>
+  </div>
+  <div [ngClass]="isOpenMenu ? 'layout-content' : 'layout-content-close'">
+    <router-outlet *factoryMyRefreshOnChange="translate.onLangChange | async"></router-outlet>
+  </div>
+</div>

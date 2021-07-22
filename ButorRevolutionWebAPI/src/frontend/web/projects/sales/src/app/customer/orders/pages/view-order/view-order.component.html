@@ -1,0 +1,56 @@
+<butor-layout-two-row *ngIf="!isLoading">
+    <butor-layout-panel-top>
+        <butor-order-header [basicInfo]="basics"></butor-order-header>
+    </butor-layout-panel-top>
+    <butor-layout-panel-bottom>
+        <butor-layout-two-col>
+            <butor-layout-panel-right>
+                <div class="order-facilities-container">
+                    <div class="forms-title">
+                        {{'Orders.orderDetails.forms' | translate}}
+                    </div>
+                    <div class="order-facilities-item-container">
+                        <div class="name-container">
+                            <i class="icon icon-trolley"
+                                [ngClass]="{'approved': isOfferApproved || this.basics.currentStatusState === 'WaitingForContract' || this.basics.currentStatusState === 'WaitingForContractFeedback' || this.basics.currentStatusState === 'UnderProduction', 'declined': isOfferDeclined, 'default': this.basics.currentStatusState === 'WaitingForOfferFeedback', 'disabled': this.basics.currentStatusState === 'WaitingForOffer'}"></i>
+                            <div>
+                                <div class="order-facilities-name">{{'Orders.orderDetails.offer' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-facilities-item-container">
+                        <div class="name-container">
+                            <i class="icon icon-handshake"
+                                [ngClass]="{'disabled': this.basics.currentStatusState === 'WaitingForOffer' || this.basics.currentStatusState === 'WaitingForOfferFeedback' || this.basics.currentStatusState === 'WaitingForContract', 'default': this.basics.currentStatusState === 'WaitingForContractFeedback', 'approved': this.basics.currentStatusState === 'UnderProduction'}"></i>
+                            <div>
+                                <div class="order-facilities-name">{{'Orders.orderDetails.contract' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </butor-layout-panel-right>
+            <butor-layout-panel-left>
+                <mat-tab-group class="col tab-group left" disableRipple>
+                    <mat-tab label="{{'Orders.orderDetails.documents' | translate}}">
+                        <perfect-scrollbar>
+                            <butor-customer-order-documents [documents]="documents" (refresh)="refresh()">
+                            </butor-customer-order-documents>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                    <mat-tab label="{{'Orders.orderDetails.appointments' | translate}}">
+                        <perfect-scrollbar>
+                            <butor-customer-order-appointments [appointments]="appointments">
+                            </butor-customer-order-appointments>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                    <mat-tab label="{{'Orders.orderDetails.orderHistory' | translate}}">
+                        <perfect-scrollbar>
+                            <butor-customer-order-history [history]="history"></butor-customer-order-history>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                </mat-tab-group>
+            </butor-layout-panel-left>
+        </butor-layout-two-col>
+    </butor-layout-panel-bottom>
+</butor-layout-two-row>

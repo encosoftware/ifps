@@ -1,0 +1,240 @@
+<div class="d-flex justify-content-between u-margin-top bottom-padding">
+  <h3>{{'Trends.title' | translate}}</h3>
+</div>
+<form [formGroup]="trendsForm">
+  <div class="d-flex flex-row align-items-center bottom-padding">
+    <label class="filter-label">{{'Trends.from' | translate}}</label>
+    <input class="datepicker-input" formControlName="intervalFrom" [matDatepicker]="picker1" (click)="picker1.open()" />
+    <mat-datepicker #picker1></mat-datepicker>
+    <label class="filter-label">{{'Trends.to' | translate}}</label>
+    <input class="datepicker-input" formControlName="intervalTo" [matDatepicker]="picker2" (click)="picker2.open()" />
+    <mat-datepicker #picker2></mat-datepicker>
+    <label class="filter-label">{{'Trends.maxItems' | translate}}</label>
+    <butor-form-input formControlName="take" type="number"></butor-form-input>
+  </div>
+</form>
+<mat-tab-group>
+  <mat-tab label="{{'Trends.corpuses' | translate}}">
+    <div class="scroll-container">
+      <perfect-scrollbar>
+        <table cdk-table [dataSource]="corpuses" class="table-standard table-bc-no-hover">
+          <ng-container cdkColumnDef="image">
+            <th cdk-header-cell *cdkHeaderCellDef>
+            </th>
+            <td cdk-cell *cdkCellDef="let row">
+              <img src="{{baseUrl + row.image}}" alt="Material" height="70" width="70">
+            </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="name">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.name' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="code">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.code' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="description">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.description' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="category">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.category' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.category}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="ordersCount">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.ordersCount' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.ordersCount}} </td>
+          </ng-container>
+
+          <tr cdk-header-row *cdkHeaderRowDef="[
+              'image',
+              'name',
+              'code',
+              'description',
+              'category',
+              'ordersCount'
+            ]"></tr>
+
+          <tr cdk-row *cdkRowDef="
+            let row;
+            columns: [
+              'image',
+              'name',
+              'code',
+              'description',
+              'category',
+              'ordersCount'
+            ]"></tr>
+        </table>
+      </perfect-scrollbar>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{'Trends.fronts' | translate}}">
+    <div class="scroll-container">
+      <perfect-scrollbar>
+        <table cdk-table [dataSource]="fronts" class="table-standard table-bc-no-hover">
+          <ng-container cdkColumnDef="image">
+            <th cdk-header-cell *cdkHeaderCellDef>
+            </th>
+            <td cdk-cell *cdkCellDef="let row">
+              <img src="{{baseUrl + row.image}}" alt="Material" height="70" width="70">
+            </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="name">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.name' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="code">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.code' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="description">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.description' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="category">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.category' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.category}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="ordersCount">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.ordersCount' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.ordersCount}} </td>
+          </ng-container>
+
+          <tr cdk-header-row *cdkHeaderRowDef="[
+              'image',
+              'name',
+              'code',
+              'description',
+              'category',
+              'ordersCount'
+            ]"></tr>
+
+          <tr cdk-row *cdkRowDef="
+            let row;
+            columns: [
+              'image',
+              'name',
+              'code',
+              'description',
+              'category',
+              'ordersCount'
+            ]"></tr>
+        </table>
+      </perfect-scrollbar>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{'Trends.furnitureUnits' | translate}}">
+    <div class="scroll-container">
+      <perfect-scrollbar>
+        <table cdk-table [dataSource]="furnitureUnits" class="table-standard table-bc-no-hover">
+          <ng-container cdkColumnDef="image">
+            <th cdk-header-cell *cdkHeaderCellDef>
+            </th>
+            <td cdk-cell *cdkCellDef="let row">
+              <img src="{{baseUrl + row.image}}" alt="Material" height="70" width="70">
+            </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="name">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.name' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="code">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.code' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="description">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.description' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="category">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.category' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.category}} </td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="ordersCount">
+            <th cdk-header-cell *cdkHeaderCellDef>
+              <butor-form-field label="{{'Trends.ordersCount' | translate}}" cType="filter">
+              </butor-form-field>
+            </th>
+            <td cdk-cell *cdkCellDef="let row"> {{row.ordersCount}} </td>
+          </ng-container>
+
+          <tr cdk-header-row *cdkHeaderRowDef="[
+              'image',
+              'code',
+              'description',
+              'category',
+              'ordersCount'
+            ]"></tr>
+
+          <tr cdk-row *cdkRowDef="
+            let row;
+            columns: [
+              'image',
+              'code',
+              'description',
+              'category',
+              'ordersCount'
+            ]"></tr>
+        </table>
+      </perfect-scrollbar>
+    </div>
+  </mat-tab>
+</mat-tab-group>

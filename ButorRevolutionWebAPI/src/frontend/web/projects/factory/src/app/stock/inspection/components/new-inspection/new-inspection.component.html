@@ -1,0 +1,61 @@
+<div class="container">
+    <div *ngIf="!data" class="dialog-title">
+        {{'Inspection.newInspection' | translate}}
+    </div>
+    <div *ngIf="data" class="dialog-title">
+        {{'Inspection.editInspection' | translate}}
+    </div>
+    <form [formGroup]="newInspectionForm">
+        <butor-form-field label="{{'Inspection.Modal.ReportName' | translate }}">
+            <butor-form-input formControlName="report"></butor-form-input>
+            <div *ngIf="submitted && f.report.errors" class="error">
+                <div *ngIf="f.report.errors.required">{{'Inspection.nameReq' | translate}}</div>
+            </div>
+        </butor-form-field>
+
+        <butor-form-field label="{{'Inspection.Modal.Stock' | translate }}">
+            <ng-select formControlName="stock" [items]="stocks" highlightColor="#9575cd" highlightTextColor="#fff"
+                bindLabel="name" bindValue="id" [clearable]="false" placeholder="Stock">
+            </ng-select>
+            <div *ngIf="submitted && f.stock.errors" class="error">
+                <div *ngIf="f.stock.errors.required">{{'Inspection.storageReq' | translate}}</div>
+            </div>
+        </butor-form-field>
+
+        <butor-form-field label="{{'Inspection.Modal.Delegation' | translate }}">
+            <ng-select formControlName="delegation" [items]="users" highlightColor="#9575cd" highlightTextColor="#fff"
+                bindLabel="name" bindValue="id" [clearable]="false" [multiple]="true">
+            </ng-select>
+            <div *ngIf="submitted && f.delegation.errors" class="error">
+                <div *ngIf="f.delegation.errors.required">{{'Inspection.deleReq' | translate}}</div>
+            </div>
+        </butor-form-field>
+
+        <div class="row">
+            <div class="col-5">
+                <butor-form-field>
+                    <div style="display: flex;">
+                        <i class="icon icon-appointments_active" (click)="picker.open()"></i>
+                        <input class="datepicker-input" [matDatepicker]="picker" formControlName="date"
+                            placeholder="Choose a date" (click)="picker.open()">
+                    </div>
+                    <mat-datepicker #picker></mat-datepicker>
+                </butor-form-field>
+                <div *ngIf="submitted && f.date.errors" class="error">
+                    <div *ngIf="f.date.errors.required">{{'Inspection.dateReq' | translate}}</div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end u-margin-top">
+                <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+                    (click)="cancel()">{{'Inspection.Modal.Cancel' | translate }}</button>
+                <button class="btn btn-primary" mat-button matRipple
+                    (click)="addNewInspection()">{{'Inspection.Modal.Save' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

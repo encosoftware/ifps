@@ -1,0 +1,9 @@
+@import "../../../../scss/variables";
+
+:host > div {
+    position: absolute;
+    background-color: $color-white-primary;
+    border-radius: $btn-border-radius;
+    border: 1px solid $color-input-border;
+    padding: 1rem;
+}

@@ -1,0 +1,123 @@
+<h3>{{'Edging.Title' | translate}}</h3>
+<div class="scroll-container">
+    <perfect-scrollbar>
+        <form [formGroup]="edgebandingForm" class="scroll-form">
+            <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+                <ng-container cdkColumnDef="componentId">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Edging.ComponentName' | translate}}" cType='filter'>
+                            <butor-form-input name="componentId" formControlName="componentId"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"
+                        [ngStyle]="{'color': row.isShowedButton ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+                        <b>{{row.componentId}}</b>
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="orderId">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Edging.OrderName' | translate}}" cType='filter'>
+                            <butor-form-input name="orderId" formControlName="orderId"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"
+                        [ngStyle]="{'color': row.isShowedButton ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+                        {{row.orderId}}</td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="workingNr">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Edging.WorkingNr' | translate}}" cType='filter'>
+                            <butor-form-input name="workingNr" formControlName="workingNr"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"
+                        [ngStyle]="{'color': row.isShowedButton ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+                        {{row.workingNr}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="estimatedStartTime">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Edging.EstimatedStartTime' | translate}}" cType='filter'>
+                            <ng-select [items]="estimatedStartDropdown" highlightColor="#9575cd"
+                                highlightTextColor="#fff" formControlName="estimatedStartTime" [clearable]="false"
+                                bindLabel="name" bindValue="toDate">
+                            </ng-select>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"
+                        [ngStyle]="{'color': row.isShowedButton ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+                        {{row.estimatedStartTime | date:'y.MM.dd. HH:mm'}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="estimatedProcessTime">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Edging.EstimatedProcessTime' | translate}}" cType='filter'>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"
+                        [ngStyle]="{'color': row.isShowedButton ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+                        {{row.estimatedProcessTime | secToHourMinSec | date:'HH:mm:ss'}}
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="actualProcessTime">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Edging.ActualProcessTime' | translate}}" cType='filter'>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"
+                        [ngStyle]="{'color': row.isShowedButton ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+                        {{row.actualProcessTime | secToHourMinSec | date:'HH:mm:ss'}}
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="workerName">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                        <butor-form-field label="{{'Edging.WorkerName' | translate}}" cType='filter'>
+                            <butor-form-input name="workerName" formControlName="workerName"></butor-form-input>
+                        </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"
+                        [ngStyle]="{'color': row.isShowedButton ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> <span
+                            *ngFor="let item of row.workerName; let index = index;">{{item}}{{index === row.workerName.length - 1 ? '' : ', '}}</span>
+                    </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="clearFilter">
+                    <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                                class="icon icon-clear"></i>{{'Edging.ClearFilter' | translate}}</a> </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                        <button class="btn btn-primary-green" mat-button matRipple
+                            *ngIf="row.isShowedButton && !row.isStarted"
+                            (click)="setProcessStatus(row.id)">START</button>
+                        <button class="btn btn-primary-red" mat-button matRipple
+                            *ngIf="row.isShowedButton && row.isStarted" (click)="setProcessStatus(row.id)">STOP</button>
+                    </td>
+                </ng-container>
+
+                <tr cdk-header-row
+                    *cdkHeaderRowDef="['componentId', 'orderId', 'workingNr', 'estimatedStartTime', 'estimatedProcessTime', 'actualProcessTime', 'workerName', 'clearFilter'];sticky:true;">
+                </tr>
+
+                <tr cdk-row
+                    *cdkRowDef="let row; columns: ['componentId', 'orderId', 'workingNr', 'estimatedStartTime', 'estimatedProcessTime', 'actualProcessTime', 'workerName', 'clearFilter']">
+                </tr>
+
+            </table>
+
+            <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+                [pageIndex]="dataSource.pageIndex"
+                [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+            </mat-paginator>
+
+            <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+            <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">
+                {{'errorM.noRecord' | translate}}
+            </div>
+
+        </form>
+    </perfect-scrollbar>
+</div>

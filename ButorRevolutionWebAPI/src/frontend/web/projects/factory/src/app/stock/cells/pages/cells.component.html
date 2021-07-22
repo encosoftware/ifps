@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Cells.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewCell()"
+      *factoryClaims="claimPolicyEnum[47]">{{'Cells.createNewCell' | translate}}
+    </button>
+  </div>
+</div>
+
+<div class="scroll-container">
+<perfect-scrollbar>
+  <form [formGroup]="cellsForm" class="scroll-form">
+    <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+      <ng-container cdkColumnDef="name">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Cells.name' | translate}}" cType='filter'>
+            <butor-form-input name="name" formControlName="name"></butor-form-input>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="stock">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Cells.stock' | translate}}" cType='filter'>
+            <butor-form-input name="stock" formControlName="stock"></butor-form-input>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> {{row.stock}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="description">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Cells.description' | translate}}" cType='filter'>
+            <butor-form-input formControlName="description"></butor-form-input>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="clearFilter">
+        <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+              class="icon icon-clear"></i>{{'Cells.clearFilter' | translate}}</a> </th>
+        <td cdk-cell *cdkCellDef="let row">
+          <factory-btn-hamburger>
+            <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[47]" textColor="#4D41FF"
+              iconClass="icon icon-edit" buttonText="{{'Cells.edit' | translate}}" (click)="this.editCell(row.id)">
+            </factory-btn-hamburger-inside>
+            <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[48]" textColor="#FF4141"
+              iconClass="icon icon-delete" buttonText="{{'Cells.delete' | translate}}" (click)="deleteButton(row.id)">
+            </factory-btn-hamburger-inside>
+          </factory-btn-hamburger>
+        </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="['name', 'stock', 'description', 'clearFilter'];sticky:true;">
+      </tr>
+
+      <tr cdk-row *cdkRowDef="let row; columns: ['name', 'stock', 'description', 'clearFilter']"
+        (click)="editCell(row.id)">
+      </tr>
+
+    </table>
+
+    <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+      [pageIndex]="dataSource.pageIndex"
+      [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+    </mat-paginator>
+
+    <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+    <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+
+  </form>
+</perfect-scrollbar>
+</div>

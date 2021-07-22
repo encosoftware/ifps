@@ -1,0 +1,86 @@
+@import "../../../../../scss/variables";
+
+i{
+  padding-right: 4vw;
+  font-size: 9rem !important;
+  color: #4D41FF;
+}
+
+.disabled {
+  color: #D6D6D6;
+}
+
+.default {
+  color: $color-icons;
+}
+
+.declined {
+  color: $declined-icon-color;
+}
+
+.approved {
+  color: $approved-icon-color;
+}
+
+.order-facilities-item-container{
+  height: 18rem;
+  background-color: white;
+  box-shadow: 0 0.3rem 1.4rem rgba(184, 179, 255, 0.24);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-facilities-item-container:not(:nth-child(2)){
+  margin-top: 2rem;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.order-facilities-container{
+  width: 100%;
+}
+
+.order-facilities-name{
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.order-facilities-message{
+  font-size: 1.3rem;
+  font-weight: normal;
+  font-style: italic;
+  color: #D6D6D6;
+}
+
+.name-container{
+  display: flex;
+  align-items: center;
+}
+
+.forms-title{
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+:host /deep/ .mat-tab-label-content {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: black;
+  opacity: 1;
+}
+
+:host /deep/ .mat-tab-label-active {
+  .mat-tab-label {
+    border: none !important;
+  }
+
+  .mat-tab-label-content {
+    color: #4D41FF;
+    opacity: 1 !important;
+  }
+}
+

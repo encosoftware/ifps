@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="dialog-title">
+    {{'Workstations.addCameraComponent.title' | translate}}
+  </div>
+  <form [formGroup]="cameraForm" (ngSubmit)="onSubmit()">
+    <butor-form-field label="{{'Workstations.addCameraComponent.cameraStart' | translate}}">
+      <ng-select formControlName="camera_start" [items]="camerasStart" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.camera_start.errors" class="input-error">
+        <div *ngIf="f.camera_start.errors.required">{{'Workstations.addCameraComponent.camReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Workstations.addCameraComponent.state' | translate}}">
+      <ng-select formControlName="state_start" [items]="statesStart" highlightColor="#9575cd" highlightTextColor="#fff"
+        bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.state_start.errors" class="input-error">
+        <div *ngIf="f.state_start.errors.required">{{'Workstations.addCameraComponent.stateReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Workstations.addCameraComponent.cameraFinish' | translate}}">
+      <ng-select formControlName="camera_finish" [items]="camerasFinish" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+    </butor-form-field>
+    <butor-form-field label="{{'Workstations.addCameraComponent.state' | translate}}">
+      <ng-select formControlName="state_finish" [items]="statesFinish" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+    </butor-form-field>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+        (click)="cancel()">{{'Workstations.addCameraComponent.cancel' | translate}}</button>
+      <button class="btn btn-primary" mat-button matRipple
+        type="submit">{{'Workstations.addCameraComponent.save' | translate}}</button>
+    </div>
+  </form>
+</div>

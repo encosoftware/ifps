@@ -1,0 +1,33 @@
+:host /deep/ .panel-body {
+    height: 100% !important;
+}
+
+:host /deep/ .panel-content {
+    padding: 0rem;
+}
+
+:host /deep/ .layout-body-bread{
+    margin-top: 0 !important; 
+  }
+
+:host /deep/ .panel-bottom{
+    max-height: 74vh;
+}
+
+:host /deep/ .panel {
+  height: 74vh;
+}
+
+.contract-title-container{
+    display: flex;
+    .contract-title{
+      font-size: 1.8rem;
+      font-weight: 600;
+      padding-right: 4rem;
+      text-transform: uppercase;
+    }
+    .contract-version{
+      color: #B8B3FF;
+      font-size: 1.5rem;
+    }
+  }

@@ -1,0 +1,35 @@
+.table-checkbox-container {
+    padding-top: 3.8rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+.order-scheduling-status {
+    font-size: 10px;
+    color: #4D41FF;
+    border: 0.5px solid #4D41FF;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+.order-scheduling-status-blue {
+    color: #00BAFF;
+    border: 0.5px solid #00BAFF;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+    font-size: 10px;
+} 
+
+.order-scheduling-status-green {
+    color: #5CD26C;
+    border: 0.5px solid #5CD26C;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline-block;
+    font-size: 10px;
+}
+
+:host /deep/ .table-standard tbody tr{
+    cursor: default;
+}

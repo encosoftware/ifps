@@ -1,0 +1,540 @@
+<mat-dialog-content *ngIf="!isLoading">
+    <div class="d-flex justify-content-between preview-container">
+        <div class="preview-name">{{ preview.offerName }}</div>
+        <div class="d-flex">
+            <button class="btn btn-primary" mat-button matRipple type="button"
+                (click)="sendToCustomer()">{{'Orders.preview.sendToCustomer' | translate}}</button>
+        </div>
+    </div>
+    <div id="ccc">
+        <div class="flex">
+            <div class="no-break" *ngFor="let item of preview.renderers">
+                <img src="{{ row.src }}"  class="preview-image">
+            </div>
+        </div>
+        <div class="row general-container">
+            <div class="col general-container-col">
+                <div class="general-name">{{'Orders.preview.producer' | translate}}</div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">{{'Orders.preview.name' | translate}}</div>
+                    <div class="col-8">{{ preview.shippingInfo.producerName }}</div>
+                </div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">{{'Orders.preview.headquarter' | translate}}</div>
+                    <div class="col-8">{{ preview.shippingInfo.headquarter }}</div>
+                </div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">{{'Orders.preview.contactPerson' | translate}}</div>
+                    <div class="col-8">{{ preview.shippingInfo.contactPerson }}</div>
+                </div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">Email</div>
+                    <div class="col-8">{{ preview.shippingInfo.producerEmail }}</div>
+                </div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">{{'Orders.preview.phone' | translate}}</div>
+                    <div class="col-8">{{ preview.shippingInfo.producerPhone }}</div>
+                </div>
+            </div>
+            <div class="col general-container-col">
+                <div class="general-name">{{'Orders.preview.customer' | translate}}</div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">{{'Orders.preview.name' | translate}}</div>
+                    <div class="col-8">{{ preview.shippingInfo.customerName }}</div>
+                </div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">{{'Orders.preview.shippingAddress' | translate}}</div>
+                    <div class="col-8">{{ preview.shippingInfo.shippingAddress }}</div>
+                </div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">Email</div>
+                    <div class="col-8">{{ preview.shippingInfo.customerEmail }}</div>
+                </div>
+                <div class="row general-item">
+                    <div class="col-4 gengeral-category-name">{{'Orders.preview.phone' | translate}}</div>
+                    <div class="col-8">{{ preview.shippingInfo.customerPhone }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="no-break">
+            <div class="table-category-title" *ngIf="preview.topCabinetList.length > 0">TOP CABINETS</div>
+            <div class="row">
+                <div class="col">
+                    <table cdk-table [dataSource]="preview.topCabinetList" class="table-standard table-bc"
+                        *ngIf="preview.topCabinetList.length > 0">
+
+                        <ng-container cdkColumnDef="name">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.name' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                <div class="name-container">
+                                    <img src="{{ row.src }}"  class="img-small">
+                                    <p>
+                                        <b>{{ row.name }}</b>
+                                    </p>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="code">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.code' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="width">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.width' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.width }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="depth">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.depth' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.depth }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="height">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.height' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.height }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="price">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.price' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="quantity">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.quantity' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.quantity }}
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="subtotal">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.subtotal' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"><b>{{ row.subtotal }} {{ row.subtotalCurrency }}</b></td>
+                        </ng-container>
+
+                        <tr cdk-header-row
+                            *cdkHeaderRowDef="['name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal'];">
+                        </tr>
+
+                        <tr cdk-row
+                            *cdkRowDef="let row; columns: ['name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal']">
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="no-break">
+            <div class="table-category-title" *ngIf="preview.baseCabinetList.length > 0">BASE CABINETS</div>
+            <div class="row">
+                <div class="col">
+                    <table cdk-table [dataSource]="preview.baseCabinetList" class="table-standard table-bc"
+                        *ngIf="preview.baseCabinetList.length > 0">
+
+                        <ng-container cdkColumnDef="name">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.name' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                <div class="name-container">
+                                    <img src="{{ row.src }}"  class="img-small">
+                                    <p>
+                                        <b>{{ row.name }}</b>
+                                    </p>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="code">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.code' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="width">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.width' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.width }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="depth">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.depth' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.depth }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="height">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.height' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.height }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="price">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.price' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="quantity">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.quantity' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.quantity }}
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="subtotal">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.subtotal' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.subtotal }} {{ row.subtotalCurrency }}</td>
+                        </ng-container>
+
+                        <tr cdk-header-row
+                            *cdkHeaderRowDef="['name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal'];">
+                        </tr>
+
+                        <tr cdk-row
+                            *cdkRowDef="let row; columns: ['name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal']">
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="no-break">
+            <div class="table-category-title" *ngIf="preview.tallCabinetList.length > 0">TALL CABINETS</div>
+            <div class="row">
+                <div class="col">
+                    <table cdk-table [dataSource]="preview.tallCabinetList" class="table-standard table-bc"
+                        *ngIf="preview.tallCabinetList.length > 0">
+
+                        <ng-container cdkColumnDef="name">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.name' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                <div class="name-container">
+                                    <img src="{{ row.src }}"  class="img-small">
+                                    <p>
+                                        <b>{{ row.name }}</b>
+                                    </p>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="code">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.code' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="width">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.width' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.width }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="depth">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.depth' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.depth }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="height">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.height' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.height }} mm
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="price">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.price' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="quantity">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.quantity' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.quantity }}
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="subtotal">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.subtotal' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.subtotal }} {{ row.subtotalCurrency }}</td>
+                        </ng-container>
+
+                        <tr cdk-header-row
+                            *cdkHeaderRowDef="['name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal'];">
+                        </tr>
+
+                        <tr cdk-row
+                            *cdkRowDef="let row; columns: ['name', 'code', 'width', 'depth', 'height', 'price', 'quantity', 'subtotal']">
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="no-break">
+            <div class="table-category-title" *ngIf="preview.appliancesList.length > 0">
+                {{'Orders.preview.appliances' | translate}}</div>
+            <div class="row">
+                <div class="col">
+                    <table cdk-table [dataSource]="preview.appliancesList" class="table-standard table-bc"
+                        *ngIf="preview.appliancesList.length > 0">
+
+                        <ng-container cdkColumnDef="name">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.name' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                <div class="name-container">
+                                    <img src="{{ row.src }}"  class="img-small">
+                                    <p>
+                                        <b>{{ row.name }}</b>
+                                    </p>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="code">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.code' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.code }} </td>
+                        </ng-container>
+
+
+
+                        <ng-container cdkColumnDef="price">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.price' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="quantity">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.quantity' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.quantity }}
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="subtotal">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.subtotal' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"><b>{{ row.subtotal }} {{ row.subtotalCurrency }}</b></td>
+                        </ng-container>
+
+                        <tr cdk-header-row *cdkHeaderRowDef="['name', 'code', 'price', 'quantity', 'subtotal'];">
+                        </tr>
+
+                        <tr cdk-row *cdkRowDef="let row; columns: ['name', 'code', 'price', 'quantity', 'subtotal']">
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="no-break">
+            <div class="table-category-title">{{'Orders.preview.accessories' | translate}}</div>
+            <div class="row">
+                <div class="col">
+                    <table cdk-table [dataSource]="preview.accessoriesList" class="table-standard table-bc"
+                        *ngIf="preview.accessoriesList.length > 0">
+
+                        <ng-container cdkColumnDef="name">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.name' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                <div class="name-container">
+                                    <img src="{{ row.src }}"  class="img-small">
+                                    <p>
+                                        <b>{{ row.name }}</b>
+                                    </p>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="code">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.code' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.code }} </td>
+                        </ng-container>
+
+
+
+                        <ng-container cdkColumnDef="price">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.price' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"> {{ row.price }} {{ row.priceCurrency }}</td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="quantity">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.quantity' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row">
+                                {{ row.quantity }}
+                            </td>
+                        </ng-container>
+
+                        <ng-container cdkColumnDef="subtotal">
+                            <th cdk-header-cell *cdkHeaderCellDef>
+                                <butor-form-field label="{{'Orders.preview.subtotal' | translate}}" cType='filter'>
+                                </butor-form-field>
+                            </th>
+                            <td cdk-cell *cdkCellDef="let row"><b>{{ row.subtotal }} {{ row.subtotalCurrency }}</b></td>
+                        </ng-container>
+
+                        <tr cdk-header-row *cdkHeaderRowDef="['name', 'code', 'price', 'quantity', 'subtotal'];">
+                        </tr>
+
+                        <tr cdk-row *cdkRowDef="let row; columns: ['name', 'code', 'price', 'quantity', 'subtotal']">
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="no-break">
+            <div class="offer-form-price-sum-container">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col price-category-title">{{'Orders.offerForm.shipping' | translate}}</div>
+                            <div class="col offer-form-price-value">{{ preview.prices.shippingPrice }}
+                                {{ preview.prices.shippingCurrency }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col price-category-title">{{'Orders.offerForm.products.assembly' | translate}}
+                            </div>
+                            <div class="col offer-form-price-value">{{ preview.prices.assemblyPrice }}
+                                {{ preview.prices.assemblyCurrency }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col price-category-title">
+                                {{'Orders.offerForm.products.installation' | translate}}</div>
+                            <div class="col offer-form-price-value">{{ preview.prices.installationPrice }}
+                                {{ preview.prices.installationCurrency }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col price-category-title">{{'Orders.offerForm.products.products' | translate}}
+                            </div>
+                            <div class="col offer-form-price-value">{{ preview.prices.productsPrice }}
+                                {{ preview.prices.productsCurrency }}</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col price-category-title">{{'Orders.offerForm.products.vat' | translate}}</div>
+                            <div class="col offer-form-price-value">{{ preview.prices.vatPrice }}
+                                {{ preview.prices.vatCurrency }}</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="price-category-title">{{'Orders.offerForm.products.total' | translate}}</div>
+                        <div class="total-price">{{ preview.prices.totalPrice }} {{ preview.prices.totalCurrency }}
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-information">
+                    A szerelési árajánlat nem tartalmazza a víz, villany, gáz és a légtechnikai bekötések költségeit.
+                    Vállalási
+                    határidő: 4-6 hét. Teljeskörű bútor garancia: 3 év.
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

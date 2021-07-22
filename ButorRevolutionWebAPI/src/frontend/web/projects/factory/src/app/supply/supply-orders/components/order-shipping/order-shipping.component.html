@@ -1,0 +1,80 @@
+<form [formGroup]="orderShippingForm">
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
+        <div class="col-9">
+          <butor-form-field label="{{'CreateCargo.shipping.shippingCost' | translate}}">
+            <butor-form-input type="number" formControlName="shippingCost"></butor-form-input>
+            <div *ngIf="submitted && f.shippingCost.errors" class="error">
+              <div *ngIf="f.shippingCost.errors.required">{{'CreateCargo.shipping.shippingCostReq' | translate}}</div>
+            </div>
+          </butor-form-field>
+        </div>
+        <div class="col-3">
+          <butor-form-field label="{{'CreateCargo.shipping.currency' | translate}}">
+            <ng-select formControlName="currency" [items]="currencies" highlightColor="#9575cd"
+              highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false">
+            </ng-select>
+            <div *ngIf="submitted && f.currency.errors" class="error">
+              <div *ngIf="f.currency.errors.required">{{'CreateCargo.shipping.currencyReq' | translate}}</div>
+            </div>
+          </butor-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <b>{{'CreateCargo.shipping.vat' | translate}}</b>
+          </div>
+          <butor-form-checkbox label="VAT amount is 0" formControlName="vatIsChecked" (change)="toggleVatAmount()">
+          </butor-form-checkbox>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <butor-form-field label="{{'CreateCargo.shipping.shippingAddress' | translate}}">
+        <div class="row">
+          <div class="col-4">
+            <ng-select formControlName="country" [items]="countries" highlightColor="#9575cd" highlightTextColor="#fff"
+              bindLabel="translation" bindValue="id" [clearable]="false" placeholder="Country">
+            </ng-select>
+            <div *ngIf="submitted && f.country.errors" class="error">
+              <div *ngIf="f.country.errors.required">{{'profile.countryReq' | translate}}</div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <butor-form-input formControlName="postCode" type="number" placeholder="Postcode">
+            </butor-form-input>
+            <div *ngIf="submitted && f.postCode.errors" class="error">
+              <div *ngIf="f.postCode.errors.required">{{'profile.postcodeReq' | translate}}</div>
+            </div>
+          </div>
+          <div class="col-5">
+            <butor-form-input formControlName="city" placeholder="City"></butor-form-input>
+            <div *ngIf="submitted && f.city.errors" class="error">
+              <div *ngIf="f.city.errors.required">{{'profile.cityReq' | translate}}</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding-top: 1.5rem;" class="row">
+          <div class="col-12">
+            <butor-form-field>
+              <butor-form-input formControlName="address" placeholder="Street, number, floor">
+              </butor-form-input>
+              <div *ngIf="submitted && f.address.errors" class="error">
+                <div *ngIf="f.address.errors.required">{{'profile.addressReq' | translate}}</div>
+              </div>
+            </butor-form-field>
+          </div>
+        </div>
+      </butor-form-field>
+    </div>
+    <div class="col-4">
+      <butor-form-field label="{{'CreateCargo.shipping.note' | translate}}">
+        <textarea formControlName="note" class="form-textarea"></textarea>
+      </butor-form-field>
+    </div>
+  </div>
+</form>

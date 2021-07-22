@@ -1,0 +1,18 @@
+
+<form [formGroup]="applianceForm" *ngIf="!isLoading">
+  <h3>EDIT APPLIANCE</h3>
+  <butor-form-field label="Appliance name">
+    {{ name }}
+  </butor-form-field>
+  <butor-form-field label="Quantity">
+    <butor-form-input formControlName="quantity" type="number"></butor-form-input>
+    <div *ngIf="submitted && f.quantity.errors" class="error">
+      <div *ngIf="f.quantity.errors.required">Quantity is required</div>
+    </div>
+  </butor-form-field>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()"
+      type="button">Cancel</button>
+    <button mat-button class="btn btn-primary" (click)="save()">Save</button>
+  </div>
+</form>

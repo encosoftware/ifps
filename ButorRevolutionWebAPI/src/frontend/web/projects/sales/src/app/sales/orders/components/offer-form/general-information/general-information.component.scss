@@ -1,0 +1,39 @@
+.general-information-container{
+    padding: 3rem 2.5rem;
+    border-bottom: 1px solid #E5E5E5;
+
+    .general-information-name{
+        font-size: 1.8rem;
+        font-weight: 600;
+        padding-bottom: 2rem;
+    }
+
+    .general-information-content{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-textarea{
+        height: 13.2rem;
+        outline: none;
+        font-size: 1.5rem;
+        padding: 1rem;
+        font-family: "Poppins", sans-serif;
+        border-radius: 6px;
+        margin-bottom: 0;
+        border: 1px solid #d6d6d6;
+        background-color: #f8f8f8;
+        width: 100%;
+        resize: none;
+    }
+
+    .material-icon-container{
+        position: relative;
+    }
+
+    .material-icon{
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 2rem;
+    }
+}

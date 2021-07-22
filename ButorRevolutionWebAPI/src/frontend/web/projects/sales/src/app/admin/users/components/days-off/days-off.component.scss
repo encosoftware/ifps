@@ -1,0 +1,125 @@
+@import "../../../../../scss/variables";
+
+.table {
+    &-action {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        &-btn {}
+    }
+
+    &-date {
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: inline-flex;
+        justify-content: space-around;
+
+        span {
+          margin-right: 2rem;
+        }
+
+        .calendar-page {
+          margin-right: 2rem;
+        }
+    }
+}
+
+.calendar {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 2rem;
+
+    &-cell-cal {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    &-rowgroup {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    &-row {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    &-header,
+    &-cell {
+        position: relative;
+        width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+
+        &::before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+        }
+    }
+
+    &-header {
+        font-size: 1.7rem;
+        color: $calendar-header-color;
+        font-weight: 600;
+        padding-top: 0;
+        height: 2.1rem;
+    }
+
+    &-cell {
+        margin: 1.5rem;
+        cursor: pointer;
+    }
+}
+
+.sick-day {
+    color: $color-white-primary;
+    background-color: rgba(0, 186, 255, 1);
+    box-shadow: $box-shadow-box-cell;
+}
+
+.actual-day {
+    border: 2px solid $color-btn-primary;
+    color: $color-btn-primary;
+    box-shadow: $box-shadow-box-cell;
+}
+
+.doday {
+    background-color: rgba(63, 217, 109, 1);
+    color: $color-white-primary;
+    box-shadow: $box-shadow-box-cell;
+}
+
+.empty {
+    background-color: #f2f2f2;
+    // box-shadow: $box-shadow-box-cell;
+    cursor: unset;
+}
+
+.selected {
+    background-color: rgba(230, 228, 255, 1);
+    box-shadow: $box-shadow-box-cell;
+}
+
+.selectSick {
+    border: 2px solid #0068CF;
+    background-color: #9CE0F9;
+}
+
+.selectDayoff {
+    border: 2px solid #16A240;
+    background-color: #6DEE94;
+
+}
+
+.calendar-page {
+    cursor: pointer;
+}

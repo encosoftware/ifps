@@ -1,0 +1,127 @@
+<butor-layout-two-row *ngIf="!isLoading">
+    <!-- <butor-layout-two-row> -->
+    <butor-layout-panel-top>
+        <factory-order-header [basicInfo]="order"></factory-order-header>
+    </butor-layout-panel-top>
+    <butor-layout-panel-bottom>
+        <butor-layout-two-col>
+            <butor-layout-panel-right>
+                <butor-panel title="{{'Users.EditUser.PanelHeader.BasicInfo' | translate}}">
+                    <span *ngIf="!payment" class="PaymentReq">{{'Orders.orderDetails.paymentReq' | translate}}</span>
+                    <div class="payment-container" *ngIf="payment">
+                        <form (submit)="addOrderPayment(id,1,dateFirst)">
+                            <div class="payment-header">
+                                <h2>{{'Orders.orderDetails.1stPayment' | translate}}</h2>
+                                <span
+                                    class="payment-status">{{payment.firstPaymentBool ? ('Orders.orderDetails.done' | translate) : ('Orders.orderDetails.pending' | translate)}}</span>
+                                <span
+                                    class="payment-amount">{{payment.firstPaymentAmount ? payment.firstPaymentAmount.value: ''}}
+                                    {{payment.firstPaymentAmount ? payment.firstPaymentAmount.currency: ''}}</span>
+                            </div>
+                            <div class="payment-body" *ngIf="!payment.firstPaymentBool">
+                                <butor-form-field label="Date" style="width: 10rem;">
+                                    <input class="datepicker-input" [matDatepicker]="picker" (click)="picker.open()"
+                                        [(ngModel)]="dateFirst" name="dateFirst" />
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <!-- <div *ngIf="submitted && f.paymentDate.errors" class="error">
+                                <div *ngIf="f.paymentDate.errors.required">Date is required</div>
+                            </div> -->
+                                </butor-form-field>
+                                <button class="btn btn-primary" mat-button matRipple type="submit"
+                                    [disabled]="!dateFirst">{{'Orders.newOrder.save' | translate}}</button>
+                            </div>
+                            <div class="payment-footer" *ngIf="payment.firstPaymentBool">
+                                <span>{{dateFirst? (dateFirst | date:'y.MM.dd') : payment.firstPaymentDate | date:'y.MM.dd'}}</span>
+                                <span>{{payment.firstPaymentAmount ? payment.firstPaymentAmount.value: ''}}
+                                    {{payment.firstPaymentAmount ? payment.firstPaymentAmount.currency: ''}}</span>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="payment-container" *ngIf="payment">
+                        <form (submit)="addOrderPayment(id,2,dateSecond)">
+                            <div class="payment-header">
+                                <h2>{{'Orders.orderDetails.2ndPayment' | translate}}</h2>
+                                <span
+                                    class="payment-status">{{payment.secondPaymentBool ? ('Orders.orderDetails.done' | translate) : ('Orders.orderDetails.pending' | translate)}}</span>
+                                <span class="payment-amount">{{payment.secondPaymentAmount.value}}
+                                    {{payment.secondPaymentAmount.currency}}</span>
+                            </div>
+                            <div class="payment-body" *ngIf="payment.firstPaymentBool && !payment.secondPaymentBool">
+                                <butor-form-field label="Date" style="width: 10rem;">
+                                    <input class="datepicker-input" [matDatepicker]="pickerSecond"
+                                        (click)="pickerSecond.open()" name="dateSecond" [(ngModel)]="dateSecond" />
+                                    <mat-datepicker #pickerSecond></mat-datepicker>
+                                </butor-form-field>
+                                <button class="btn btn-primary" mat-button matRipple type="submit"
+                                    [disabled]="!dateSecond">{{'Orders.newOrder.save' | translate}}</button>
+                            </div>
+                            <div class="payment-footer" *ngIf="payment.secondPaymentBool">
+                                <span>{{payment.secondPaymentDate  | date:'y.MM.dd'}}</span>
+                                <span>{{payment.secondPaymentAmount ? payment.secondPaymentAmount.value: ''}}
+                                    {{payment.secondPaymentAmount ? payment.secondPaymentAmount.currency: ''}}</span>
+                            </div>
+                        </form>
+                    </div>
+                </butor-panel>
+            </butor-layout-panel-right>
+            <butor-layout-panel-left>
+                <butor-panel [templateTop]="table" title="{{'Users.EditUser.PanelHeader.BasicInfo' | translate}}">
+                    <ng-template #table>
+                        <table cdk-table [dataSource]="orderHistory" class="table-standard table-bc">
+
+                            <ng-container cdkColumnDef="state">
+                                <th cdk-header-cell *cdkHeaderCellDef>
+                                    <butor-form-field label="{{'Orders.tableHeader.state' | translate}}">
+                                    </butor-form-field>
+                                </th>
+                                <td cdk-cell *cdkCellDef="let row">
+                                    {{row.state}}
+                                </td>
+                            </ng-container>
+
+                            <ng-container cdkColumnDef="assignedTo">
+                                <th cdk-header-cell *cdkHeaderCellDef>
+                                    <butor-form-field label="{{'Orders.tableHeader.assignedTo' | translate}}">
+                                    </butor-form-field>
+                                </th>
+                                <td cdk-cell *cdkCellDef="let row">
+                                    <span class="order-status">{{row.assignedTo}}</span>
+                                </td>
+                            </ng-container>
+
+                            <ng-container cdkColumnDef="closedOn">
+                                <th cdk-header-cell *cdkHeaderCellDef>
+                                    <butor-form-field label="{{'Orders.tableHeader.closedOn' | translate}}">
+                                    </butor-form-field>
+                                </th>
+                                <td cdk-cell *cdkCellDef="let row">
+                                    {{row.closedOn}}
+                                </td>
+                            </ng-container>
+
+                            <ng-container cdkColumnDef="deadline">
+                                <th cdk-header-cell *cdkHeaderCellDef>
+                                    <butor-form-field label="{{'Orders.tableHeader.deadLine' | translate}}">
+                                    </butor-form-field>
+                                </th>
+                                <td cdk-cell *cdkCellDef="let row">
+                                    {{row.deadline}}
+                                </td>
+                            </ng-container>
+
+                            <tr cdk-header-row
+                                *cdkHeaderRowDef="['state', 'assignedTo', 'closedOn', 'deadline'];sticky:true;">
+                            </tr>
+
+                            <tr cdk-row *cdkRowDef="let row; columns: ['state', 'assignedTo', 'closedOn', 'deadline']"
+                                (click)="paymentChoose(row.orderId)">
+                            </tr>
+
+                        </table>
+                    </ng-template>
+                </butor-panel>
+            </butor-layout-panel-left>
+        </butor-layout-two-col>
+    </butor-layout-panel-bottom>
+</butor-layout-two-row>

@@ -1,0 +1,108 @@
+<form #account="ngForm" (submit)="profileChange(account)" novalidate [webshopMustMatch]="['passfirst','passcheck']">
+  <div class="account-container-box" *ngIf="!isLoading">
+    <div class="account-container">
+      <div class="data">
+        {{edit ? userName: ''}}
+        <butor-form-field label="{{'Webshop.Account.name' | translate}}" *ngIf="!edit">
+          <butor-form-input [classAddInput]="'input-white'" [(ngModel)]="userName" name="name">
+          </butor-form-input>
+        </butor-form-field>
+
+      </div>
+      <!-- <div class="btn-account">
+      <button mat-button matRipple class="btn btn-text-only">Edit</button>
+    </div> -->
+    </div>
+    <hr>
+    <div class="account-container">
+      <div class="data">
+        {{edit ? email: ''}}
+        <butor-form-field label="Email" *ngIf="!edit">
+          <butor-form-input [classAddInput]="'input-white'" [(ngModel)]="email" name="email">
+          </butor-form-input>
+        </butor-form-field>
+      </div>
+      <!-- <div class="btn-account">
+      <button mat-button matRipple class="btn btn-text-only">Edit</button>
+    </div> -->
+    </div>
+    <hr>
+    <div class="account-container">
+      <div class="data">
+          {{edit ? passwordToShow: ''}}
+        <butor-form-field label="{{'Webshop.Account.password' | translate}}" *ngIf="!edit">
+          <butor-form-input name="passfirst" [(ngModel)]="password" type="password" required
+            pattern='^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{6,}$'
+            #passfirst="ngModel" [classAddInput]="'input-white'"></butor-form-input>
+          <span class="error" *ngIf="!passfirst.valid && (passfirst.dirty || passfirst.touched)">Jelszó
+            megadása kötelező </span>
+        </butor-form-field>
+        <butor-form-field label="{{'Webshop.Account.newPassword' | translate}}" *ngIf="!edit">
+            <butor-form-input name="passfirst" [(ngModel)]="passwordNew" type="password" required
+              pattern='^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{6,}$'
+              #passnew="ngModel" [classAddInput]="'input-white'"></butor-form-input>
+            <span class="error" *ngIf="!passnew.valid && (passnew.dirty || passnew.touched)">Jelszó
+              megadása kötelező </span>
+          </butor-form-field>
+        <butor-form-field label="{{'Webshop.Account.newPasswordAgain' | translate}}" *ngIf="!edit">
+          <butor-form-input name="passcheck" [(ngModel)]="passwordCheck" type="password" required
+            pattern='^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{6,}$'
+            #passcheck="ngModel" [classAddInput]="'input-white'"></butor-form-input>
+          <span class="error"
+            *ngIf="!passcheck.valid && (passcheck.dirty || passcheck.touched) && passcheck.errors.required">Jelszó
+            megadása kötelező </span>
+          <div *ngIf="passcheck.invalid">
+            <span class="error" *ngIf="passcheck.errors.mustMatch">Passwords must match</span>
+          </div>
+        </butor-form-field>
+      </div>
+      <!-- <div class="btn-account">
+      <button mat-button matRipple class="btn btn-text-only">Edit</button>
+    </div> -->
+    </div>
+    <hr>
+    <div class="account-container">
+      <div class="data">
+        <div class="account-contact-row">
+          <div class="account-contact-column right-p">
+              {{edit ? (postalCode + ' '+ city + ' '+ address) : ''}}
+            <butor-form-field label="{{'Webshop.Account.postCode' | translate}}"*ngIf="!edit">
+              <butor-form-input [classAddInput]="'input-white'" [(ngModel)]="postalCode" name="postalCode">
+              </butor-form-input>
+            </butor-form-field>
+          </div>
+          <div class="account-contact-column right-p" *ngIf="!edit">
+            <butor-form-field label="{{'Webshop.Account.country' | translate}}">
+              <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries" bindLabel="name"
+                bindValue="id" name="parent" [multiple]="false" [clearable]="false" [(ngModel)]="country"> </ng-select>
+            </butor-form-field>
+          </div>
+          <div class="account-contact-column" *ngIf="!edit">
+            <butor-form-field label="{{'Webshop.Account.city' | translate}}">
+              <butor-form-input [classAddInput]="'input-white'" [(ngModel)]="city" name="city">
+              </butor-form-input>
+            </butor-form-field>
+          </div>
+        </div>
+        <div class="account-contact-row" *ngIf="!edit">
+          <div class="account-contact-column">
+            <butor-form-field label="{{'Webshop.Account.address' | translate}}">
+              <butor-form-input [classAddInput]="'input-white'" [(ngModel)]="address" name="address">
+              </butor-form-input>
+            </butor-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="account-container">
+      <button mat-button matRipple class="btn btn-text-only">{{'Webshop.Account.deleteAccount' | translate}}</button>
+      <div class="edit">
+        <button mat-button matRipple class="btn btn-text-only" type="button" (click)="edit = !edit" *ngIf="edit">{{'Webshop.Account.edit' | translate}}</button>
+        <button mat-button matRipple class="btn btn-text-only margin-r" type="button" (click)="edit = !edit" *ngIf="!edit">{{'Webshop.Account.cancel' | translate}}</button>
+        <button mat-button matRipple class="btn btn-primary" type="submit" *ngIf="!edit">{{'Webshop.Account.save' | translate}}</button>
+      </div>
+    </div>
+  </div>
+
+</form>

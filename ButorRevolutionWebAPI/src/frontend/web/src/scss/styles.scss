@@ -1,0 +1,149 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "utalities";
+@import "base/base";
+@import "inputs";
+@import "table";
+@import "button";
+@import "popup";
+@import "default.theme";
+
+@import "./font/scss/favicons";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "material";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import "~bootstrap-4-grid/css/grid.css";
+@import "./angular-calendar/angular-calendar";
+// @import "~angular-calendar/css/angular-calendar.css";
+
+.profile {
+    &-big {
+        width: 14rem;
+        height: 14rem;
+        background-color: red;
+        clip-path: circle(50% at 50% 50%);
+        position: relative;
+        backface-visibility: hidden;
+    }
+
+    &-sml {
+        width: 6rem;
+        height: 6rem;
+        clip-path: circle(50% at 50% 50%);
+        position: relative;
+        backface-visibility: hidden;
+    }
+
+    &__pic {
+        height: 100%;
+        max-width: 100%;
+        width: 100%;
+        object-fit: cover;
+
+        &-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+    }
+}
+
+.tooltip {
+    &-title {
+        font-weight: 600;
+        font-size: 1.3rem;
+        white-space: nowrap;
+    }
+
+    &-middle {
+        font-size: 1.3rem;
+        font-weight: 400;
+        white-space: nowrap;
+
+    }
+
+    &-bottom {
+        font-size: 1.3rem;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+}
+
+.image-icons {
+    display: inline-flex;
+}
+
+.image-icons__photo {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-sizing: content-box;
+
+    &:first-child {}
+
+    &:not(:last-child) {
+        margin-right: -1rem;
+    }
+}
+
+.role {
+    box-shadow: $box-shadow-box-span;
+    padding: $padding-role;
+    border-radius: $btn-border-radius;
+    font-size: 1.5rem;
+    display: inline-flex;
+    flex-grow: 0 !important;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 0.4rem 1rem 0.4rem 0;
+
+    .image-icons {
+        margin-right: 0rem;
+    }
+
+    &-text {
+        white-space: nowrap;
+    }
+
+    &-link {
+
+        &,
+        &:link,
+        &:active,
+        &:focus,
+        &:hover {
+            color: $color-btn-primary;
+            font-size: 1.5rem;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 2rem;
+            padding-right: 0rem;
+        }
+
+        i {
+            color: $color-btn-primary;
+            text-align: center;
+        }
+    }
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+    border-bottom: 2px solid rgba(184, 179, 255, 0.24);
+}
+
+.preview-dialog-container .mat-dialog-container {
+    padding: 0 !important;
+}
+
+.preview-dialog-container .mat-dialog-content {
+    padding: 0 !important;
+    margin: 0 !important;
+}

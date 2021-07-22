@@ -1,0 +1,69 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Statistics.title' | translate}}</h3>
+</div>
+
+<perfect-scrollbar style="height:calc(100% - 4rem);">
+  <form [formGroup]="statisticsForm">
+    <butor-panel>
+      <butor-form-field label="{{'Statistics.tableHeader.date' | translate}}" cType='filter'>
+        <ng-select [items]="dates" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name" bindValue="year"
+          [clearable]="false" name="addedOnTo" class="date-select" formControlName="year">
+        </ng-select>
+      </butor-form-field>
+      <table cdk-table [dataSource]="dataSource" class="table-standard-no-bc" #table>
+        <!-- Header and Row Declarations -->
+        <ng-container cdkColumnDef="month">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Statistics.tableHeader.month' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            {{row.month}}
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="generalExpenseCost">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Statistics.tableHeader.generalExpense' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            {{row.generalExpenseCost}} {{row.currency}}
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="profit">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Statistics.tableHeader.profit' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            {{row.profit}} {{row.currency}}
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="income">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Statistics.tableHeader.income' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            {{row.income}} {{row.currency}}
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['month', 'generalExpenseCost', 'income', 'profit'];sticky:true;">
+        </tr>
+
+        <tr cdk-row *cdkRowDef="let row; columns: ['month', 'generalExpenseCost', 'income', 'profit']">
+        </tr>
+
+      </table>
+
+    </butor-panel>
+    <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+    <div *ngIf="!hasError && dataSource.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+
+  </form>
+</perfect-scrollbar>

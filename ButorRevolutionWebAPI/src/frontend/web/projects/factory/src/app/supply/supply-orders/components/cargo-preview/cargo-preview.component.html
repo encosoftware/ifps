@@ -1,0 +1,150 @@
+<div *ngIf="!isLoading">
+  <h3>{{ cargo.cargoId }}</h3>
+  <div class="row">
+    <div class="col-4">
+      <h4>{{'CargoPreview.contractingParty' | translate}}</h4>
+      <div>{{ cargo.contractingCompany.companyName }}</div>
+      <div>
+        {{ cargo.contractingCompany.address.postCode }}, {{ cargo.contractingCompany.address.city }}
+        {{ cargo.contractingCompany.address.address }}
+      </div>
+      <div>
+        {{ cargo.contractingCompany.email }}
+      </div>
+      <div>
+        {{ cargo.contractingCompany.contactPersonName }}
+      </div>
+      <div>
+        {{ cargo.contractingCompany.phone }}
+      </div>
+    </div>
+    <div class="col-4">
+      <h4>{{'CargoPreview.supplier' | translate}}</h4>
+      <div>{{ cargo.supplierCompany.companyName }}</div>
+      <div>
+        {{ cargo.supplierCompany.address.postCode }}, {{ cargo.supplierCompany.address.city }}
+        {{ cargo.supplierCompany.address.address }}
+      </div>
+      <div>
+        {{ cargo.supplierCompany.email }}
+      </div>
+      <div>
+        {{ cargo.supplierCompany.contactPersonName }}
+      </div>
+      <div>
+        {{ cargo.supplierCompany.phone }}
+      </div>
+    </div>
+    <div class="col-4">
+      <h4>{{'CargoPreview.shipping' | translate}}</h4>
+      <div>
+        {{ cargo.shipping.address.postCode }}, {{ cargo.shipping.address.city }} {{ cargo.shipping.address.address }}
+      </div>
+      <div>
+        {{ cargo.shipping.name }}
+      </div>
+      <div>
+        {{ cargo.shipping.phone }}
+      </div>
+      <div>
+        {{ cargo.shipping.note }}
+      </div>
+    </div>
+
+    <table cdk-table [dataSource]="cargo.items" class="table-standard table-bc">
+
+      <ng-container cdkColumnDef="material">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="Material" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.material}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="name">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="Name" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.name}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="price">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="Price" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.price}} {{row.currency}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="amount">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="Amount" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.amount}}</b> </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="subTotal">
+        <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="Subtotal" cType='filter'>
+          </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> <b>{{row.subTotal}} {{row.currency}}</b> </td>
+      </ng-container>
+
+
+      <tr cdk-header-row *cdkHeaderRowDef="['material', 'name', 'price', 'amount', 'subTotal'];sticky:true;">
+      </tr>
+
+      <tr cdk-row *cdkRowDef="let row; columns: ['material', 'name', 'price', 'amount', 'subTotal']"
+        [routerLink]="['/supply/orders/create', row.id]">
+      </tr>
+
+    </table>
+
+    <div class="col-6 billing-section">
+      <div class="row">
+        <div class="col-6">
+          {{'Cargo.shipping' | translate}}
+        </div>
+        <div class="col-6">
+          {{ cargo.shippingPrice }} {{cargo.currency }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{'Storages.Arrived.assembly' | translate}}
+        </div>
+        <div class="col-6">
+          {{ cargo.assemblyPrice }} {{cargo.currency }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{'Storages.Arrived.subtotal' | translate}}
+        </div>
+        <div class="col-6">
+          {{ cargo.subtotal }} {{cargo.currency }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{'Storages.Arrived.vat' | translate}}
+        </div>
+        <div class="col-6">
+          {{ cargo.vat }} {{cargo.currency }}
+        </div>
+      </div>
+    </div>
+    <div class="col-6 billing-section" style="text-align: right;">
+      <div>
+        {{'Cargo.tableHeader.totalCost' | translate}}
+      </div>
+      <div>
+        {{ cargo.total }} {{cargo.currency }}
+      </div>
+    </div>
+  </div>
+</div>
+

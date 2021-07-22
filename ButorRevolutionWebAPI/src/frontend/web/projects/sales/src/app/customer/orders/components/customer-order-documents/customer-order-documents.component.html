@@ -1,0 +1,99 @@
+<div class="documnet-version-type">
+    <i class="icon icon-dashboard_active"></i>
+    <div>{{'Orders.documents.versionable' | translate}}</div>
+</div>
+<mat-expansion-panel *ngFor="let versionableDocument of documents.versionable">
+    <mat-expansion-panel-header [collapsedHeight]="'25px'" [expandedHeight]="'25px'">
+        <mat-panel-title>
+            {{versionableDocument.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+            <div style="display: flex;justify-content: space-between;">
+                <div *ngIf="versionableDocument.versions.length > 0"><span
+                        class="document-status">{{versionableDocument.versions[0].translation}}</span></div>
+                <div *ngIf="versionableDocument.versions.length == 0"><span
+                        class="document-status">{{'Orders.documents.Status' | translate}}</span></div>
+                <div class="document-file-counter">{{versionableDocument.fileCount}}
+                    {{'Orders.documents.files' | translate}}
+                </div>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let version of versionableDocument.versions" class="document-row">
+        <div class="document-date">
+            {{version.date | date:'y.MM.dd.'}}
+        </div>
+        <div class="document-status-container">
+            <span class="document-status">{{version.translation}}</span>
+        </div>
+        <div class="documnet-item-container">
+            <ng-container *ngFor="let document of version.documents">
+                <div class="document-file-container">
+                    <i class="icon file-type" [ngClass]="{'icon-pdf' : document.type ==='Pdf',
+                                            'icon-doc' : document.type ==='Word',
+                                            'icon-xls' : document.type ==='Spreadsheet',
+                                            'icon-jpg' : document.type ==='Picture'}"></i>
+                    <div style="cursor: pointer;" title="Download document" (click)="downloadDoc(document.id, document.name, $event)">
+                        {{document.name}}</div>
+                </div>
+
+            </ng-container>
+        </div>
+        <div style="display: flex;justify-content: space-between;">
+            <button *ngIf="version.status == 'WaitingForApproval'" mat-button class="btn btn-primary-green"
+                (click)="approve(version.versionId)">{{'Orders.documents.approve' | translate}}</button>
+            <button *ngIf="version.status == 'WaitingForApproval'" mat-button class="btn btn-primary-red"
+                (click)="decline(version.versionId)">{{'Orders.documents.decline' | translate}}</button>
+        </div>
+    </div>
+</mat-expansion-panel>
+<div class="documnet-version-type">
+    <i class="icon icon-dashboard_active"></i>
+    <div>{{'Orders.documents.documents' | translate}}</div>
+</div>
+<mat-expansion-panel *ngFor="let simpleDocument of documents.documents">
+    <mat-expansion-panel-header [collapsedHeight]="'25px'" [expandedHeight]="'25px'">
+        <mat-panel-title>
+            {{simpleDocument.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+            <div style="display: flex;justify-content: space-between;">
+                <div *ngIf="simpleDocument.versions.length > 0"><span
+                        class="document-status">{{simpleDocument.versions[0].translation}}</span></div>
+                <div *ngIf="simpleDocument.versions.length == 0"><span
+                        class="document-status">{{simpleDocument.translation}}</span></div>
+                <div class="document-file-counter">{{simpleDocument.fileCount}}
+                    {{'Orders.documents.files' | translate}}
+                </div>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let version of simpleDocument.versions" class="document-row">
+        <div class="document-date">
+            {{version.date | date:'y.MM.dd.'}}
+        </div>
+        <div class="document-status-container">
+            <span class="document-status">{{version.translation}}</span>
+        </div>
+        <div class="documnet-item-container">
+            <ng-container *ngFor="let document of version.documents">
+                <div class="document-file-container">
+                    <i class="icon file-type" [ngClass]="{'icon-pdf' : document.type ==='Pdf',
+                            'icon-doc' : document.type ==='Word',
+                            'icon-xls' : document.type ==='Spreadsheet',
+                            'icon-jpg' : document.type ==='Picture'}"></i>
+                    <div style="cursor: pointer;" title="Download document"
+                        (click)="downloadDoc(document.id, document.name, $event)">{{document.name}}</div>
+                </div>
+            </ng-container>
+        </div>
+        <div style="display: flex;justify-content: space-between;">
+            <button *ngIf="version.status == 'WaitingForApproval'" mat-button class="btn btn-primary-green"
+                (click)="approve(version.versionId)">{{'Orders.documents.approve' | translate}}</button>
+            <button *ngIf="version.status == 'WaitingForApproval'" mat-button class="btn btn-primary-red"
+                (click)="decline(version.versionId)">{{'Orders.documents.decline' | translate}}</button>
+            <button *ngIf="version.documents.length > 0" mat-button class="btn btn-primary"
+                (click)="downloadAll(version.versionId)">{{'Orders.documents.downloadAll' | translate}}</button>
+        </div>
+    </div>
+</mat-expansion-panel>

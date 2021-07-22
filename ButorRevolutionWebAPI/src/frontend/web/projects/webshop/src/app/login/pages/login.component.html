@@ -1,0 +1,30 @@
+<div class="login">
+  <div class="login-container">
+    <h3 class="login-container-header">{{'Webshop.Login.login' | translate}}</h3>
+    <form #login="ngForm" (submit)="loginUser(login)">
+      <butor-form-field label="Email">
+        <butor-form-input [classAddInput]="'input-white'" name="emailL" [(ngModel)]="emailLogin" type="email"
+          #emailL="ngModel" required (change)="validPassEmail()"></butor-form-input>
+        <div *ngIf="!emailL.invalid">
+          <span class="error"
+            *ngIf="(passOrUser && login.valid) && (emailL.dirty || emailL.touched)">{{'Webshop.Login.incorrect' | translate}}</span>
+        </div>
+      </butor-form-field>
+      <butor-form-field label="{{'Webshop.Login.password' | translate}}">
+        <butor-form-input [classAddInput]="'input-white'" name="password" [(ngModel)]="passwordLogin" type="password"
+          required></butor-form-input>
+      </butor-form-field>
+      <button mat-button class="btn" type="button">{{'Webshop.Login.forgot' | translate}}</button>
+      <div class="login-btn">
+        <button mat-button class="btn btn-primary" type="submit"
+          [disabled]="!login.valid">{{'Webshop.Login.login' | translate}}</button>
+      </div>
+      <hr>
+      <div class="login-create">
+        <h3>{{'Webshop.Login.newHere' | translate}}</h3>
+        <button mat-button class="btn btn-primary" type="button"
+          [routerLink]="['/register']">{{'Webshop.Login.createAccount' | translate}}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+.preview-name{
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.preview-container{
+  padding: 3rem 2.5rem 2.2rem 2.5rem;
+}
+
+.preview-image{
+  width: 100%;
+}
+
+.general-container{
+  padding: 4rem 1rem;
+  margin: 0;
+
+  .general-container-col{
+      padding-right: 10%;
+
+      .general-name{
+          font-size: 1.8rem;
+          font-weight: 600;
+          padding-bottom: 4rem;
+      }
+      .general-item{
+          padding-bottom: 1.5rem;
+      }
+
+      .gengeral-category-name{
+          font-weight: 600;
+      }
+  }
+}
+
+.table-category-title{
+  padding: 2.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.offer-form-price-sum-container{
+  padding: 3rem 2.5rem;
+  background-color: #F8F8F8;
+  border: 1px solid #BFBFBF;
+
+  .price-category-title{
+      font-size: 1.5rem;
+      font-weight: 600;
+  }
+
+  .offer-form-price-value{
+      font-size: 1.5rem;
+  }
+
+  .offer-information{
+      padding-top: 2.5rem;
+      font-size: 1.3rem;
+  }
+
+  .total-price{
+      font-size: 2.5rem;
+      font-weight: 600;
+  }
+
+  .row{
+      padding: 5px 0px;
+  }
+}
+
+:host /deep/ .table-standard{
+  tbody{
+      tr{
+          &:hover td {
+              background-color: white;
+              cursor: default;
+          }
+      }
+  }
+}
+

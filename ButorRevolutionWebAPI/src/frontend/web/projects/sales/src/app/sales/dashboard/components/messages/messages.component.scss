@@ -1,0 +1,64 @@
+@import "../../../../../scss/variables";
+
+.messages {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  padding: 2rem;
+  border-bottom: 1px solid #e5e5e5;
+
+  &_middle {
+    flex: 1;
+    padding: 0 1.5rem;
+    overflow: hidden;
+    &-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .name{
+        font-size: 1.6rem;
+        font-weight:600; 
+        margin-right: 2rem;
+      }
+      .subject{
+        font-size: 1.3rem;
+        color: $color-message;
+      }
+    }
+    &-body {
+      word-wrap: no-wrap;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      overflow: hidden;
+      font-size: 1.3rem;
+    }
+    &-footer {
+      font-size: 1.3rem;
+      color: $color-message;
+    }
+  }
+  &_span {
+  }
+  &_picture {
+    min-width: 5rem;
+    position: relative;
+    & figure {
+      width: 3rem;
+      height: 3rem;
+      position: absolute;
+      top: 0;
+      right:0;
+
+      & img {
+        height: 100%;
+        width: 3rem;
+        height: 3rem;
+        clip-path: circle(50% at 50% 50%);
+        position: relative;
+        backface-visibility: hidden;
+      }
+    }
+  }
+}

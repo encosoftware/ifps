@@ -1,0 +1,83 @@
+<div class="stocked-item-title">
+    {{'StockedItems.ejectTitle' | translate}}
+</div>
+<div class="stocked-item-table-name">
+    {{'StockedItems.itemList' | translate}}
+</div>
+<div *ngIf="!isLoading" class="stocked-item-table-container">
+    <perfect-scrollbar>
+        <table cdk-table [dataSource]="dataSource" class="table-standard" #table>
+
+            <ng-container cdkColumnDef="description">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'StockedItems.description' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> <b>{{row.description}}</b> </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="code">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'StockedItems.code' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="cellName">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'StockedItems.cellName' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.cellName}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="cellMetadata">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'StockedItems.cellMetaData' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.cellMeta}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'StockedItems.quantity' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.quantity}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="kiadva">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'StockedItems.quantityToEject' | translate}}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <div style="max-width: 7rem;">
+                        <butor-form-input type="number" [(ngModel)]="row.count"></butor-form-input>
+                    </div>
+                    <div *ngIf="(row.count > row.quantity) || (0 > row.count)" class="error">Invalid count</div>
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="clearFilter">
+                <th cdk-header-cell *cdkHeaderCellDef> </th>
+                <td cdk-cell *cdkCellDef="let row">
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row
+                *cdkHeaderRowDef="['description', 'code', 'cellName', 'cellMetadata', 'quantity','kiadva', 'clearFilter'];sticky:true;">
+            </tr>
+
+            <tr cdk-row
+                *cdkRowDef="let row; columns: ['description', 'code', 'cellName', 'cellMetadata', 'quantity','kiadva', 'clearFilter']">
+            </tr>
+
+        </table>
+        <div class="d-flex justify-content-end u-button-padding">
+            <button mat-button matRipple class="btn btn-primary u-margin-btn-right" [disabled]="isEmptyInputField()" (click)="confirm()">{{'StockedItems.confirm' | translate}}</button>
+        </div>
+    </perfect-scrollbar>
+</div>

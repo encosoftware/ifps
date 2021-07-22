@@ -1,0 +1,82 @@
+version: '3.7'
+
+services:
+
+  ifps.sqlserver:
+    image: registry.encosoft-dev.hu/butorrevolution/sqlserver:latest
+    container_name: ifps.sqlserver
+    build:
+      context: ../src/backend/
+      dockerfile: tools/ifps.mssql.Dockerfile
+    networks:
+      - ifps-network
+
+  ifps.sales.api:
+    image: registry.encosoft-dev.hu/butorrevolution/sales-api:latest
+    container_name: ifps.sales.api
+    build:
+      context: ../src/backend/
+      dockerfile: sales/IFPS.Sales.API/Dockerfile
+    depends_on:
+      - ifps.sqlserver
+    networks:
+      - ifps-network
+      
+  ifps.sales.ui:
+    container_name: ifps.sales.ui
+    image: registry.encosoft-dev.hu/butorrevolution/sales-ui:latest
+    build:
+      context: ../src/
+      dockerfile: frontend/web/ifps.sales.ui.Dockerfile
+    depends_on:
+      - ifps.sales.api
+    networks:
+      - ifps-network
+      
+  ifps.webshop.ui:
+    container_name: ifps.webshop.ui
+    image: registry.encosoft-dev.hu/butorrevolution/webshop-ui:latest
+    build:
+      context: ../src/
+      dockerfile: frontend/web/ifps.webshop.ui.Dockerfile
+    depends_on:
+      - ifps.sales.api
+    networks:
+      - ifps-network
+
+  ifps.factory.api:
+    image: registry.encosoft-dev.hu/butorrevolution/factory-api:latest
+    container_name: ifps.factory.api
+    build:
+      context: ../src/backend/
+      dockerfile: factory/IFPS.Factory.API/Dockerfile
+    depends_on:
+      - ifps.sqlserver
+    networks:
+      - ifps-network
+      
+  ifps.factory.ui:
+    container_name: ifps.factory.ui
+    image: registry.encosoft-dev.hu/butorrevolution/factory-ui:latest
+    build:
+      context: ../src/
+      dockerfile: frontend/web/ifps.factory.ui.Dockerfile
+    depends_on:
+      - ifps.factory.api
+    networks:
+      - ifps-network
+
+  ifps.integration.api:
+    image: registry.encosoft-dev.hu/butorrevolution/integration-api:latest
+    container_name: ifps.integration.api
+    build:
+      context: ../src/backend/
+      dockerfile: shared/IFPS.Integration.API/Dockerfile
+    depends_on:
+      - ifps.sqlserver
+    networks:
+      - ifps-network
+
+
+networks:
+  ifps-network:

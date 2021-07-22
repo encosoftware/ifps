@@ -1,0 +1,84 @@
+<div class="conatiner">
+  <div class="dialog-title">{{'products.newProduct.title' | translate}}</div>
+  <form [formGroup]="productUnitForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-6">
+        <butor-form-field label="{{'products.newProduct.labels.Code' | translate}}">
+          <butor-form-input name="code" formControlName="code"></butor-form-input>
+          <div *ngIf="submitted && f.code.errors" class="input-error">
+            <div *ngIf="f.code.errors.required">Code is required</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'products.newProduct.labels.Description' | translate}}">
+          <butor-form-input name="description" formControlName="description">
+          </butor-form-input>
+        </butor-form-field>
+        <butor-form-field label="{{'products.newProduct.labels.Category' | translate}}">
+          <ng-select name="category" formControlName="category" [items]="productCategories" highlightColor="#9575cd"
+            highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+          </ng-select>
+          <div *ngIf="submitted && f.category.errors" class="input-error">
+            <div *ngIf="f.category.errors.required">Category is required</div>
+          </div>
+        </butor-form-field>
+        <butor-form-field label="{{'products.newProduct.labels.furnitureUnitType' | translate}}">
+          <ng-select name="furnitureUnitTypeId" formControlName="furnitureUnitTypeId" [items]="furnitureTypes" highlightColor="#9575cd"
+            highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+          </ng-select>
+          <div *ngIf="submitted && f.furnitureUnitTypeId.errors" class="input-error">
+            <div *ngIf="f.furnitureUnitTypeId.errors.required">Furniture unit type is required</div>
+          </div>
+        </butor-form-field>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <butor-form-field label="{{'products.newProduct.labels.Height' | translate}}">
+              <butor-form-input name="height" type="number" formControlName="height" append="mm">
+              </butor-form-input>
+              <div *ngIf="submitted && f.height.errors" class="input-error">
+                <div *ngIf="f.height.errors.required">Height is required</div>
+              </div>
+            </butor-form-field>
+          </div>
+          <div class="col-4">
+            <butor-form-field label="{{'products.newProduct.labels.Width' | translate}}">
+              <butor-form-input name="width" type="number" formControlName="width" append="mm">
+              </butor-form-input>
+              <div *ngIf="submitted && f.width.errors" class="input-error">
+                <div *ngIf="f.width.errors.required">Width is required</div>
+              </div>
+            </butor-form-field>
+          </div>
+          <div class="col-4">
+            <butor-form-field label="{{'products.newProduct.labels.Depth' | translate}}">
+              <butor-form-input name="depth" type="number" formControlName="depth" append="mm">
+              </butor-form-input>
+              <div *ngIf="submitted && f.depth.errors" class="input-error">
+                <div *ngIf="f.depth.errors.required">Depth is required</div>
+              </div>
+            </butor-form-field>
+          </div>
+        </div>
+        <butor-form-field label="{{'products.newProduct.labels.Picture' | translate}}">
+          <butor-upload-pic [name]="product.picture.fileName" [folder]="product.picture.containerName"
+            (nameOutput)="getFileName($event)" (folderOutput)="getFolderName($event)" *ngIf="!isLoading">
+          </butor-upload-pic>
+          <div *ngIf="submitted && f.picture.errors" class="input-error">
+            <div *ngIf="f.picture.errors.required">Picture is required</div>
+          </div>
+        </butor-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-end">
+          <button mat-button matRipple class="btn btn-text-only u-margin-btn-right" (click)="cancel()">
+            {{ "products.buttons.Cancel" | translate }}</button>
+          <button mat-button matRipple class="btn btn-primary u-margin-btn-right"
+            type="submit">{{"products.buttons.Save" | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

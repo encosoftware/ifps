@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="dialog-title">
+    {{'OrderScheduling.OptimisationModal.Title' | translate}}
+  </div>
+  <form [formGroup]="optimisationForm" (ngSubmit)="onSubmit()">
+    <butor-form-field label="{{'OrderScheduling.OptimisationModal.ShiftNum' | translate}}">
+      <butor-form-input formControlName="shiftNumber" type="number"></butor-form-input>
+      <div *ngIf="submitted && f.shiftNumber.errors" class="input-error">
+        <div *ngIf="f.shiftNumber.errors.required">{{'OrderScheduling.OptimisationModal.Error' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'OrderScheduling.OptimisationModal.ShiftLength' | translate}}">
+      <butor-form-input formControlName="shiftLengthHours" type="number"></butor-form-input>
+      <div *ngIf="submitted && f.shiftLengthHours.errors" class="input-error">
+        <div *ngIf="f.shiftLengthHours.errors.required">{{'OrderScheduling.OptimisationModal.Error' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'OrderScheduling.OptimisationModal.Strategy' | translate}}">
+      <ng-select formControlName="sortingStrategyTypeId" [items]="sortingStrategies" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.sortingStrategyTypeId.errors" class="input-error">
+        <div *ngIf="f.sortingStrategyTypeId.errors.required">{{'OrderScheduling.OptimisationModal.Error' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <button class="btn btn-primary" mat-button matRipple type="submit">{{'OrderScheduling.OptimisationModal.Save' | translate}}</button>
+  </form>
+</div>

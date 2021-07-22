@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-between u-margin-top">
+    <h3>{{'Cargo.title' | translate}}</h3>
+    <div class="d-flex justify-content-between">
+        <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="downloadCsv()"
+            *factoryClaims="claimPolicyEnum[44]">{{'csvDownload' | translate}}</button>
+    </div>
+</div>
+
+
+<perfect-scrollbar style="height:calc(100% - 4rem);">
+    <form [formGroup]="cargoForm">
+        <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+            <ng-container cdkColumnDef="cargoId">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.tableHeader.cargoId' | translate}}" cType='filter'>
+                        <butor-form-input formControlName="cargoId"></butor-form-input>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <b>{{row.cargoId}}</b>
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="status">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.tableHeader.status' | translate}}" cType='filter'>
+                        <ng-select [items]="statusDropdown" highlightColor="#9575cd" highlightTextColor="#fff"
+                            formControlName="status" bindLabel="name" bindValue="id">
+                        </ng-select>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"><span class="order-status">{{row.status}}</span></td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="created">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.tableHeader.arrivedOn' | translate}}" cType='filter'>
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" formControlName="arrivedOn"
+                            [items]="arrivedOnDropdown" [clearable]="false" bindLabel="name" bindValue="toDate">
+                        </ng-select>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.arrivedOn | date:'y.MM.d'}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="supplier">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.tableHeader.supplier' | translate}}" cType='filter'>
+                        <ng-select [items]="supplierDropdown" highlightColor="#9575cd" highlightTextColor="#fff"
+                            formControlName="supplier" [clearable]="false" bindLabel="name" bindValue="id">
+                        </ng-select>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.supplier}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="bookedBy">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Cargo.tableHeader.bookedBy' | translate}}" cType='filter'>
+                        <butor-form-input formControlName="bookedBy"></butor-form-input>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row"> {{row.bookedBy}} </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="clearFilter">
+                <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                            class="icon icon-clear"></i>{{'Cargo.tableHeader.clearFilters' | translate}}</a> </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <ng-container *factoryClaims="claimPolicyEnum[31]">
+                        <button *ngIf="row.statusEnum != stocked" mat-button matRipple class="btn btn-primary"
+                            [routerLink]="['/stock/cargo', row.id]">{{'Cargo.tableHeader.stock' | translate}}</button>
+                    </ng-container>
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row
+                *cdkHeaderRowDef="['cargoId', 'status', 'created', 'supplier', 'bookedBy', 'clearFilter'];sticky:true;">
+            </tr>
+
+            <tr cdk-row
+                *cdkRowDef="let row; columns: ['cargoId', 'status', 'created', 'supplier', 'bookedBy', 'clearFilter']">
+            </tr>
+
+        </table>
+
+        <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+            [pageIndex]="dataSource.pageIndex"
+            [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+        </mat-paginator>
+
+        <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+        <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}
+        </div>
+
+    </form>
+</perfect-scrollbar>

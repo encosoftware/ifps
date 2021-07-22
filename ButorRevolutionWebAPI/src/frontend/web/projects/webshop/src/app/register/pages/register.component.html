@@ -1,0 +1,67 @@
+<form #register="ngForm" (submit)="registerUser(register)" novalidate [webshopMustMatch]="['passfirst','passcheck']">
+  <div class="register">
+    <div class="register-container">
+      <h3 class="register-container-header">Regisztráció</h3>
+      <butor-form-field label="Name">
+        <butor-form-input name="nameR" [(ngModel)]="name" required #nameR="ngModel" [classAddInput]="'input-white'">
+        </butor-form-input>
+        <span class="error" *ngIf="!nameR.valid && (nameR.dirty || nameR.touched)">Név
+          megadása kötelező </span>
+      </butor-form-field>
+      <butor-form-field label="Email">
+        <butor-form-input name="emailR" [(ngModel)]="email" type="email" required email #emailR="ngModel"
+                  (ngModelChange)="emailValidation($event)" [classAddInput]="'input-white'">
+                </butor-form-input>
+                <span class="error"
+                  *ngIf="!emailR.valid && (emailR.dirty || emailR.touched) && emailR.errors.required">Email
+                  megadása kötelező </span>
+                <div *ngIf="passcheck.invalid && emailR.invalid">
+                  <span class="error" *ngIf="emailR.errors.email">Nem megfelelő email formátum</span>
+                </div>
+                <span class="error" *ngIf="emailExist">Email létezik</span>
+      </butor-form-field>
+      <butor-form-field label="Password">
+        <butor-form-input name="passfirst" [(ngModel)]="password" type="password" required
+                  pattern='^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{6,}$'
+                  #passfirst="ngModel"  [classAddInput]="'input-white'"></butor-form-input>
+                <span class="error" *ngIf="!passfirst.valid && (passfirst.dirty || passfirst.touched)">Jelszó
+                  megadása kötelező </span>
+      </butor-form-field>
+      <butor-form-field label="Password again">
+        <butor-form-input name="passcheck" [(ngModel)]="passwordcheck" type="password" required
+                  pattern='^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{6,}$'
+                  #passcheck="ngModel"  [classAddInput]="'input-white'"></butor-form-input>
+                <span class="error"
+                  *ngIf="!passcheck.valid && (passcheck.dirty || passcheck.touched) && passcheck.errors.required">Jelszó
+                  megadása kötelező </span>
+                <div *ngIf="passcheck.invalid">
+                  <span class="error" *ngIf="passcheck.errors.mustMatch">Passwords must match</span>
+                </div>
+  
+      </butor-form-field>
+      <div class="register-terms">
+        <div class="register-terms-check">
+          <butor-form-checkbox name="emailS" [(ngModel)]="emailSend" required #emailS="ngModel">
+          </butor-form-checkbox>
+          <p>Szeretném, ha a FurnitureRevolution megkeresne egyedi ajánlatokkal, kedvezményekkel.
+            Ezekről az emailekről bármikor leiratkozhatok.</p>
+
+        </div>
+        <div class="register-terms-check">
+          <butor-form-checkbox name="emailTerms" [(ngModel)]="emailTermsC" required #emailTerms="ngModel">
+          </butor-form-checkbox>
+          <p>Elfogadom az Adatvédelmi Nyilatkozatot. Kérjük alaposan olvasd át az Adatvédelmi Nyilatkozatot és az Általános szerződési feltételeket.</p>
+        </div>
+      </div>
+      <div class="register-btn">
+        <button mat-button class="btn btn-primary" type="submit"
+        [disabled]="(!(register.valid && !emailExist && emailTermsC))">Regisztráció</button>
+      </div>
+      <hr>
+      <div class="register-create">
+        <h3 class="register-create-title"> Már van felhasználód?</h3>
+        <button mat-button class="btn btn-primary" type="button" (click)="navigateLogin()">Bejelentkezés</button>
+      </div>
+    </div>
+  </div>
+</form>

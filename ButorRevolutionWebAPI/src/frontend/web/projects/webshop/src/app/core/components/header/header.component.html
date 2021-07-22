@@ -1,0 +1,62 @@
+<div class="menu">
+  <div class="menu-header-logo">
+    <img class="menu-header-logo-image" src="/assets/icons/logo-03.svg" alt="" [routerLink]="['/']" />
+  </div>
+  <div class="menu-header-searchbar">
+    <butor-form-field cType="filter">
+      <butor-form-input [classAddInput]="'input-height'" [classAddInside]="'inside-icon'" [(ngModel)]="search"
+        (ngModelChange)="searchUnit($event)"></butor-form-input>
+    </butor-form-field>
+  </div>
+  <div class="menu-header-menu">
+    <a class="menu-header-menu-link" [matMenuTriggerFor]="menu">{{'Webshop.Header.basket' | translate}} ( {{basketDetails ? basketDetails.orderedFurnitureUnits.length : 0}} )</a>
+    <mat-menu #menu="matMenu">
+      <div class="basket-header" *ngIf="basketDetails ? (basketDetails.subTotal.value > 0) : basketDetails"
+        [routerLink]="['/basket']">
+        <div class="basket-header-items" *ngFor="let details of basketDetails.orderedFurnitureUnits">
+          <div class="basket-header-items-item">
+            <div class="basket-header-items-details">
+              <h4 class="basket-header-items-details-header">
+                {{details.furnitureUnitListDto.code}}
+              </h4>
+              <p class="basket-header-items-details-description">
+                {{details.furnitureUnitListDto.description}}
+              </p>
+              <div class="basket-header-items-details-size">
+                {{details.furnitureUnitListDto.depth}} x {{details.furnitureUnitListDto.width}} x
+                {{details.furnitureUnitListDto.height}}
+              </div>
+              <div class="basket-header-items-details-quantity">
+                {{details.quantity}} qty
+              </div>
+            </div>
+            <div class="basket-header-items-price">
+              {{details.furnitureUnitListDto.sellPrice.value * details.quantity }}
+              {{details.furnitureUnitListDto.sellPrice.currency}}
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="basket-header-subtotal">
+          <span class="subtotal">{{'Webshop.Header.subtotal' | translate}}</span>
+          <span class="price">{{basketDetails.subTotal.value}} {{basketDetails.subTotal.currency}}</span>
+        </div>
+      </div>
+    </mat-menu>
+    <a class="menu-header-menu-link" [routerLink]="['/account']" *ngIf="loggedIn">{{'Webshop.Header.account' | translate}}</a>
+    <a class="menu-header-menu-link" [routerLink]="['/login']" *ngIf="!loggedIn">{{'Webshop.Header.login' | translate}}</a>
+    <a class="menu-header-menu-link" (click)="switchLanguage(language)">{{lngAll | languagePipe: language}}</a>
+    <!-- <button type="button" (click)="switchLanguage(lng)" [class.activate]="lng === language"
+              [disabled]="lng === language">{{lng | languagePipe}}
+          </button> -->
+  </div>
+  <div class="menu-main">
+    <ng-container *ngFor="let menuItem of menuCategories">
+      <a class="menu-main-link" [matMenuTriggerFor]="categories">{{menuItem.name}}</a>
+      <mat-menu #categories="matMenu">
+        <button mat-menu-item *ngFor="let item of menuItem.subCategories"
+          [routerLink]="['/units',item.id]">{{item.name}}</button>
+      </mat-menu>
+    </ng-container>
+  </div>
+</div>

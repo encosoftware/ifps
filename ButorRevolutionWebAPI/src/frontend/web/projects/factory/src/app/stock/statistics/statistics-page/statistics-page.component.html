@@ -1,0 +1,35 @@
+<butor-panel title="{{'StockStatistics.title' | translate}}">
+  <div class="row" [formGroup]="statisticsForm">
+    <div class="col">
+      <butor-form-field label="{{'StockStatistics.materialGroup' | translate}}" cType='filter'>
+        <ng-select formControlName="materialGroup" [items]="materialGroup" highlightColor="#9575cd"
+          highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false" name="role">
+        </ng-select>
+      </butor-form-field>
+    </div>
+    <div class="col">
+      <butor-form-field label="{{'StockStatistics.material' | translate}}" cType='filter'>
+        <ng-select formControlName="material" [items]="materials" highlightColor="#9575cd" highlightTextColor="#fff"
+          bindLabel="name" bindValue="id" [clearable]="false" name="role">
+        </ng-select>
+      </butor-form-field>
+    </div>
+    <div class="col">
+      <butor-form-field label="{{'StockStatistics.year' | translate}}" cType='filter'>
+        <ng-select [items]="dates" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name" bindValue="year"
+          [clearable]="false" name="addedOnTo" class="date-select" formControlName="date">
+        </ng-select>
+      </butor-form-field>
+    </div>
+  </div>
+
+  <div class="flex">
+    <div class="flex-item">
+      <div style="display: block;">
+        <canvas baseChart width="2" height="1" [datasets]="lineChartData" [labels]="lineChartLabels"
+          [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+          [chartType]="lineChartType"></canvas>
+      </div>
+    </div>
+  </div>
+</butor-panel>

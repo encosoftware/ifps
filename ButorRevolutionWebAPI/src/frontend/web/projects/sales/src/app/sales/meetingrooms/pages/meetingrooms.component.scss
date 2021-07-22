@@ -1,0 +1,220 @@
+@import "../../../../scss/variables";
+.events {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  margin: 1px;
+  padding: 0 5px;
+  line-height: 25px;
+  background-color: rgba(248, 247, 255, 1);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color-white-primary;
+    background-color: rgba(77, 65, 255, 1);
+  }
+  &_title {
+    font-family: $font-family-primary;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+  &_subtitle {
+    font-family: $font-family-primary;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: rgba(184, 179, 255, 1);
+  }
+}
+.appointment-title-action {
+  padding-bottom: 0.9rem;
+}
+.date {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.3rem;
+  margin-right: 2.75rem;
+}
+
+.calendar-page {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.3rem;
+  margin-right: 2.75rem;
+}
+
+:host /deep/ .cal-day-column:nth-child(-n+3){
+  .tooltipBox {
+    position: absolute;
+    background-color: $color-white-primary;
+    border-radius: 5px;
+    border: 1px solid $color-input-border;
+    padding: 1rem;
+    top:0px;
+    left: 100%;
+    cursor: default;
+    z-index: 999;
+  }
+}
+
+:host /deep/ .cal-day-column:not(:nth-child(-n+3)) {
+  .tooltipBox {
+    position: absolute;
+    background-color: $color-white-primary;
+    border-radius: 5px;
+    border: 1px solid $color-input-border;
+    padding: 1rem;
+    top:0px;
+    right: 100%;
+    cursor: default;
+    z-index: 999;
+  }
+}
+
+.appointment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.2rem;
+  border-bottom: 1px solid #e5e5e5;
+  &-header {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    .day {
+      font-size: 2.5rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+    }
+    .month {
+      color: $color-message;
+      font-size: 1.3rem;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+    }
+    .time {
+      font-size: 1.3rem;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &_body {
+    margin-left: 1.5rem;
+    white-space: nowrap;
+    &-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    &-author {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    &-address {
+      font-size: 1.3rem;
+      font-weight: 400;
+      i {
+        color: rgba(77, 65, 255, 1);
+        font-size: inherit;
+        margin-right: 1.3rem;
+      }
+    }
+    &-note {
+      font-size: 1.3rem;
+      font-weight: 400;
+      i {
+        color: rgba(77, 65, 255, 1);
+        font-size: inherit;
+        margin-right: 1.3rem;
+      }
+    }
+  }
+}
+
+.cal-event-container.cal-draggable.cal-ends-within-day:hover {
+  z-index: 2;
+}
+
+.meeting-rooms-header {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #BFBFBF;
+  .meeting-room-name {
+    padding-bottom: 20px;
+  }
+  .meeting-room-locations {
+    .location {
+      padding-right: 30px;
+      padding-bottom: 25px;
+    }
+  }
+}
+
+.meeting-room-reserved {
+  font-size: 10px;
+  color: #BFBFBF;
+  border: 1px solid #BFBFBF;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+.meeting-room-free {
+  font-size: 10px;
+  color: #5CD26C;
+  border: 1px solid #5CD26C;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+:host /deep/ .table-standard tbody tr {
+  cursor: pointer !important;
+}
+
+:host /deep/ .table-standard tbody {
+
+  .active{
+
+    &:hover td {
+      background-color: #F8F7FF !important;
+    } 
+
+    td{
+      background-color: #F8F7FF;
+      border-top: 1px solid #4D41FF;
+      border-bottom: 1px solid #4D41FF;
+
+    }
+
+    td:first-child {
+      border-top: 1px solid #4D41FF;
+      border-left: 1px solid #4D41FF;
+      border-bottom: 1px solid #4D41FF;
+    }
+
+    td:last-child {
+      border-top: 1px solid #4D41FF;
+      border-right: 1px solid #4D41FF;
+      border-bottom: 1px solid #4D41FF;
+    }
+  }
+
+  tr:first-child td:first-child {
+    border-radius: 0;
+  }
+
+  tr:first-child td:last-child {
+    border-radius: 0;
+  }
+
+}
+
+

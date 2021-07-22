@@ -1,0 +1,352 @@
+
+<mat-dialog-content *ngIf="!isLoading">
+    <div class="cabinet-header-container">
+        <div class="big-title">Wall cabinet with door</div>
+        <button mat-button class="btn btn-text-only u-margin-btn-right" (click)="cancel()">Cancel</button>
+        <button mat-button class="btn btn-primary" (click)="save()">Save</button>
+    </div>
+    <div class="wall-cabinet-basic-container">
+        <div class="row">
+            <div class="col">
+                <label class="popup-title">
+                    Basic
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <butor-form-field label="Code">
+                    <butor-form-input [(ngModel)]="furnitureUnit.code" [disabled]="true" #codeInput></butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="Description">
+                    <butor-form-textarea [(ngModel)]="furnitureUnit.description"></butor-form-textarea>
+                </butor-form-field>
+            </div>
+            <div class="col">
+                <butor-form-field label="Category">
+                    <ng-select highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name" bindValue="id"
+                        [clearable]="false" [items]="categories" [(ngModel)]="furnitureUnit.categoryId">
+                    </ng-select>
+                </butor-form-field>
+                <butor-form-field label="Picture">
+                    <img [src]="furnitureUnit.src">
+                </butor-form-field>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-4">
+                        <butor-form-field label="Width">
+                            <butor-form-input append="mm" type="number" [(ngModel)]="furnitureUnit.width">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="Height">
+                            <butor-form-input append="mm" type="number" [(ngModel)]="furnitureUnit.height">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                    <div class="col-4">
+                        <butor-form-field label="Depth">
+                            <butor-form-input append="mm" type="number" [(ngModel)]="furnitureUnit.depth">
+                            </butor-form-input>
+                        </butor-form-field>
+                    </div>
+                </div>
+                <butor-form-field label="Total">
+                    <div class="total-price">{{ furnitureUnit.totalPrice }} {{ furnitureUnit.totalCurrency }}</div>
+                </butor-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="big-category-title-container">FRONT</div>
+    <div class="expansion-panel-header-container">
+        <div class="expansion-panel-image-container"></div>
+        <div class="expansion-panel-container-basic">NAME</div>
+        <div class="expansion-panel-container-basic">CODE</div>
+        <div class="expansion-panel-container-basic">SIZE (W/L)</div>
+        <div class="expansion-panel-container-basic">AMOUNT</div>
+        <div class="expansion-panel-container-basic">EDGING</div>
+        <div class="expansion-panel-container-basic"></div>
+    </div>
+    <mat-expansion-panel *ngFor="let front of furnitureUnit.fronts">
+        <mat-expansion-panel-header [collapsedHeight]="'80px'" [expandedHeight]="'80px'">
+            <div class="expansion-panel-image-container">
+                <img src="https://picsum.photos/id/1010/100/100" class="img-small">
+            </div>
+            <div class="expansion-panel-container-basic"><b>{{ front.name }}</b></div>
+            <!-- TODO ez alatt code-nak kellene lennie de nem küldi el a backend -->
+            <div class="expansion-panel-container-basic">{{ front.name }}</div>
+            <div class="expansion-panel-container-basic">{{ front.width }}x{{ front.height }} mm</div>
+            <div class="expansion-panel-container-basic">{{ front.amount }} db</div>
+            <div class="expansion-panel-container-basic">
+                top - {{ front.topFoil }}
+                <br>
+                bottom - {{ front.bottomFoil }}
+                <br>
+                right - {{ front.rightFoil }}
+                <br>
+                left - {{ front.leftFoil }}
+            </div>
+            <div class="expansion-panel-delete-container">
+                <!-- <i class="icon icon-delete"></i>
+                <div>Delete</div> -->
+            </div>
+        </mat-expansion-panel-header>
+        <div class="row cabinet-details-container">
+            <div class="col u-padding-right">
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <!-- TODO ez alatt code-nak kellene lennie de nem küldi el a backend -->
+                        <div class="cabinet-detail-name">Code</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="decorboards"
+                            bindLabel="code" bindValue="id" [(ngModel)]="front.boardMaterialId">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding-no-align">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Description</div>
+                    </div>
+                    <div class="col-8">
+                        <!-- TODO nem jön description -->
+                        <div class="u-padding-small-bottom">front (ajtó)</div>
+                        <!-- <div class="u-padding-small-bottom">34217 RV/RV Sanremo Kristály Tölgy</div> -->
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Width</div>
+                    </div>
+                    <div class="col-8">
+                        {{ front.width }} mm
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Height</div>
+                    </div>
+                    <div class="col-8">
+                        {{ front.height }} mm
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Amount</div>
+                    </div>
+                    <div class="col-8">
+                        {{ front.amount }}
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row u-row-padding">
+                    <div class="col">
+                        <div class="cabinet-detail-name">Edging</div>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <butor-form-checkbox label="all side">
+                        </butor-form-checkbox>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" (change)="allSideChange($event, front.id)" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>top</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="front.topFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>bottom</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="front.bottomFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>right</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="front.rightFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>left</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="front.leftFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+    <div class="big-category-title-container">CORPUS</div>
+    <div class="expansion-panel-header-container">
+        <div class="expansion-panel-image-container"></div>
+        <div class="expansion-panel-container-basic">NAME</div>
+        <div class="expansion-panel-container-basic">CODE</div>
+        <div class="expansion-panel-container-basic">SIZE (W/L)</div>
+        <div class="expansion-panel-container-basic">AMOUNT</div>
+        <div class="expansion-panel-container-basic">EDGING</div>
+        <div class="expansion-panel-container-basic"></div>
+    </div>
+    <mat-expansion-panel *ngFor="let corpus of furnitureUnit.corpuses">
+        <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
+            <div class="expansion-panel-image-container">
+                <img src="https://picsum.photos/id/1010/100/100" class="img-small">
+            </div>
+            <div class="expansion-panel-container-basic"><b>{{ corpus.name }}</b></div>
+            <!-- TODO ez alatt code-nak kellene lennie de nem küldi el a backend -->
+            <div class="expansion-panel-container-basic">{{ corpus.name }}</div>
+            <div class="expansion-panel-container-basic">{{ corpus.width }}x{{ corpus.height }} mm</div>
+            <div class="expansion-panel-container-basic">{{ corpus.amount }} db</div>
+            <div class="expansion-panel-container-basic">
+                top - {{ corpus.topFoil }}
+                <br>
+                bottom - {{ corpus.bottomFoil }}
+                <br>
+                right - {{ corpus.rightFoil }}
+                <br>
+                left - {{ corpus.leftFoil }}
+            </div>
+            <div class="expansion-panel-delete-container">
+                <!-- <i class="icon icon-delete"></i>
+                <div>Delete</div> -->
+            </div>
+        </mat-expansion-panel-header>
+        <div class="row cabinet-details-container">
+            <div class="col u-padding-right">
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <!-- TODO ez alatt code-nak kellene lennie de nem küldi el a backend -->
+                        <div class="cabinet-detail-name">Code</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="decorboards"
+                            bindLabel="code" bindValue="id" [(ngModel)]="corpus.boardMaterialId">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding-no-align">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Description</div>
+                    </div>
+                    <div class="col-8">
+                        <!-- TODO nem jön description -->
+                        <div class="u-padding-small-bottom">front (ajtó)</div>
+                        <!-- <div class="u-padding-small-bottom">34217 RV/RV Sanremo Kristály Tölgy</div> -->
+                        <img src="https://picsum.photos/id/1020/85/85" class="cabinet-image">
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Width</div>
+                    </div>
+                    <div class="col-8">
+                        {{ corpus.width }} mm
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Height</div>
+                    </div>
+                    <div class="col-8">
+                        {{ corpus.height }} mm
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div class="cabinet-detail-name">Amount</div>
+                    </div>
+                    <div class="col-8">
+                        {{ corpus.amount }}
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row u-row-padding">
+                    <div class="col">
+                        <div class="cabinet-detail-name">Edging</div>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <butor-form-checkbox label="all side">
+                        </butor-form-checkbox>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" (change)="allSideChange($event, corpus.id)" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>top</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="corpus.topFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>bottom</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="corpus.bottomFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>right</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="corpus.rightFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="row u-row-padding">
+                    <div class="col-4">
+                        <div>left</div>
+                    </div>
+                    <div class="col-8">
+                        <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="foils" bindLabel="code"
+                            bindValue="id" [(ngModel)]="corpus.leftFoilId" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+</mat-dialog-content>

@@ -1,0 +1,23 @@
+ <div class="image-container">
+  <div class="image-slider">
+    <div class="image-slider-button">
+      <button class="image-slider-up" type="button" (click)="slideUp()" *ngIf="sliderConfig.slidesToShow > 5" [disabled]="disableButtonUp"><i class="icon icon-blackarrow_black_up"></i></button>
+    </div>
+    <ul class="image-list">
+      <li class="image-list-elements" *ngFor="let image of imageUrl">
+        <img class="image-list-image" [webshopImage]="image"  (click)="imageSelect(image)"></li>
+    </ul>
+    <div class="image-slider-button">
+      <button class="image-slider-down" type="button" (click)="slideDown()" *ngIf="sliderConfig.slidesToShow > 5" [disabled]="disableButtonDown"><i class="icon icon-blackarrow_black_down"></i></button>
+    </div>
+  </div>
+  <ng-container>
+      <div class="image-viewer">
+          <img class="image-viewer-image" [webshopImage]="selectedPic" alt="">
+      </div>
+  </ng-container>
+  
+</div> 
+
+
+

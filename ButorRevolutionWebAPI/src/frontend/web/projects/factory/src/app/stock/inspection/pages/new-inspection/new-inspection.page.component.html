@@ -1,0 +1,16 @@
+<butor-layout-two-row *ngIf="!isLoading">
+    <butor-layout-panel-top>
+        <factory-inspection-header [basicInfo]="inspection.basicInfo"></factory-inspection-header>
+    </butor-layout-panel-top>
+    <butor-layout-panel-bottom>
+        <div class="details-title">
+            {{'Inspection.Report' | translate }}
+        </div>
+        <butor-layout-one-col>
+            <butor-layout-panel-center>
+                <factory-inspection-details [products]="inspection.products" [closed]="inspection.isClosed" style="width: 100%; height: 72vh;">
+                </factory-inspection-details>
+            </butor-layout-panel-center>
+        </butor-layout-one-col>
+    </butor-layout-panel-bottom>
+</butor-layout-two-row>

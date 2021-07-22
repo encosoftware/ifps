@@ -1,0 +1,32 @@
+<butor-layout-two-col *ngIf="!isLoading" title="{{'Companies.EditCompany.title' | translate}}">
+  <form [formGroup]="basicInfoForm">
+    <butor-layout-two-col-actions>
+      <div class="btn-group">
+        <button mat-button class="btn"
+          (click)="cancel()">{{'Companies.EditCompany.buttons.Cancel' | translate}}</button>
+        <button mat-button class="btn btn-primary"
+          (click)="saveCompany()"  *factoryClaims="claimPolicyEnum[5]">{{'Companies.EditCompany.buttons.Save' | translate}}</button>
+      </div>
+    </butor-layout-two-col-actions>
+    <butor-layout-panel-right>
+      <butor-panel title="{{'Companies.EditCompany.PanelHeader.BasicInfo' | translate}}">
+        <butor-basic-info [form]="basicInfoForm" [company]="company"></butor-basic-info>
+      </butor-panel>
+    </butor-layout-panel-right>
+    <butor-layout-panel-left>
+      <!-- TODO: MODIFY TYPE  -->
+      <mat-tab-group class="col tab-group left" disableRipple *ngIf="company.companyTypeId === 1">
+        <mat-tab label="{{'Companies.EditCompany.PanelHeader.Employees' | translate}}">
+          <perfect-scrollbar>
+            <butor-employees [employees]="company.employees"></butor-employees>
+          </perfect-scrollbar>
+        </mat-tab>
+        <mat-tab label="{{'Companies.EditCompany.PanelHeader.Groups' | translate}}">
+          <perfect-scrollbar>
+            <butor-groups [userTeams]="company.userTeams"></butor-groups>
+          </perfect-scrollbar>
+        </mat-tab>
+      </mat-tab-group>
+    </butor-layout-panel-left>
+  </form>
+</butor-layout-two-col>

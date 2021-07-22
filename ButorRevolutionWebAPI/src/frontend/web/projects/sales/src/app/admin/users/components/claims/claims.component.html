@@ -1,0 +1,32 @@
+<div [formGroup]="claimsForm">
+    <mat-expansion-panel *ngFor="let module of model; let i = index;trackBy: trackByFn" [formArrayName]="i">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <div>
+                    <label class="label-checkbox checkbox-header">
+                        <div class="boxCheck" (click)="handleModuleClick(i,$event)" [ngClass]="module | checkboxPipe">
+                        </div>
+                        <span>{{module.name}}</span>
+                    </label>
+                    <span class="expansion-panel-span">
+                        {{module.description}}
+                    </span>
+                </div>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container" formGroupName="claims">
+            <div class="row">
+                <div class="container">
+                    <ul class="check-list">
+                        <ng-container *ngFor="let claim of module.claims; let j = index" [formArrayName]="j">
+                            <li class="panel-li">
+                                <butor-form-checkbox formControlName="isChecked" [label]="claim.name">
+                                </butor-form-checkbox>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</div>

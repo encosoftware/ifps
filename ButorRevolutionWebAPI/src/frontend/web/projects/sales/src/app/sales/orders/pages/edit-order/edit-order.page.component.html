@@ -1,0 +1,60 @@
+<butor-layout-two-row *ngIf="!isLoading">
+    <butor-layout-panel-top>
+        <butor-order-header [basicInfo]="orderBasics" (reload)="loadData()"></butor-order-header>
+    </butor-layout-panel-top>
+    <butor-layout-panel-bottom>
+        <butor-layout-two-col>
+            <butor-layout-panel-right>
+                <div class="order-facilities-container">
+                    <div class="forms-title">
+                        {{'Orders.orderDetails.forms' | translate}}
+                    </div>
+                    <div class="order-facilities-item-container"[ngClass]="(isOfferClickable) ? 'clickable' : false"
+                        (click)="isOfferClickable ? openOfferForm() : false">
+                        <div class="name-container">
+                            <i class="icon icon-trolley"
+                                [ngClass]="{'approved': isOfferApproved || this.orderBasics.currentStatusState === 'WaitingForContract' || this.orderBasics.currentStatusState === 'WaitingForContractFeedback' || this.orderBasics.currentStatusState === 'UnderProduction' || this.orderBasics.currentStatusState === 'WaitingForOnSiteSurvey', 'declined': isOfferDeclined, 'default': this.orderBasics.currentStatusState === 'WaitingForOffer' || this.orderBasics.currentStatusState === 'WaitingForOfferFeedback'}"></i>
+                            <div>
+                                <div class="order-facilities-name">{{'Orders.orderDetails.offer' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-facilities-item-container" [ngClass]="(isContractClickable) ? 'clickable' : false"
+                    (click)="isContractClickable ? openContractForm() : false">
+                        <div class="name-container">
+                            <i class="icon icon-handshake"
+                                [ngClass]="{'disabled': this.orderBasics.currentStatusState === 'WaitingForOffer' || this.orderBasics.currentStatusState === 'WaitingForOfferFeedback' || this.orderBasics.currentStatusSate === 'WaitingForContract', 'approved': this.orderBasics.currentStatusState === 'UnderProduction', 'declined': this.orderBasics.currentStatusSate === 'ContractDeclined', 'default': this.orderBasics.currentStatusState === 'WaitingForContractFeedback'}"></i>
+                            <div>
+                                <div class="order-facilities-name">{{'Orders.orderDetails.contract' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </butor-layout-panel-right>
+            <butor-layout-panel-left style="height: 90%">
+                <mat-tab-group class="col tab-group left" disableRipple [selectedIndex]="selected.value"
+                    (selectedIndexChange)="selected.setValue($event)">
+                    <mat-tab label="{{'Orders.orderDetails.documents' | translate}}">
+                        <perfect-scrollbar>
+                            <butor-order-documents [documents]="orderDocuments" [divisions]="orderBasics.divisions" (saved)="onSaved($event)">
+                            </butor-order-documents>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                    <mat-tab label="{{'Orders.orderDetails.appointments' | translate}}">
+                        <perfect-scrollbar>
+                            <butor-order-appointments [appointments]="orderAppointmnets" [orderIdApp]="orderId"
+                                (saved)="onSaved($event)">
+                            </butor-order-appointments>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                    <mat-tab label="{{'Orders.orderDetails.orderHistory' | translate}}">
+                        <perfect-scrollbar>
+                            <butor-order-history [history]="orderTickets"></butor-order-history>
+                        </perfect-scrollbar>
+                    </mat-tab>
+                </mat-tab-group>
+            </butor-layout-panel-left>
+        </butor-layout-two-col>
+    </butor-layout-panel-bottom>
+</butor-layout-two-row>

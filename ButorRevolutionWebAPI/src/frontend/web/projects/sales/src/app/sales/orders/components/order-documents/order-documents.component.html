@@ -1,0 +1,89 @@
+<div class="document-buttons-container">
+    <ng-container  *butorClaims="claimPolicyEnum[claimPolicyEnum.UpdateOrderDocuments]">
+        <button *ngIf="selectedDocumentGroupId && !selectedVersionId" mat-button class="btn btn-primary"
+            (click)="openNewDocumentDialog()">{{'Orders.documents.uploadNewVersion' | translate}}</button>
+            <button *ngIf="selectedDocumentGroupId && selectedVersionId && checkDivision()" mat-button class="btn btn-primary"
+                (click)="openNewDocumentDialog()">{{'Orders.documents.upload' | translate}}</button>
+    </ng-container>
+   
+</div>
+<div class="documnet-version-type">
+    <i class="icon icon-dashboard_active"></i>
+    <div>{{'Orders.documents.versionable' | translate}}</div>
+</div>
+<mat-expansion-panel #expansionPanel *ngFor="let versionableDocument of documents.versionable; let index = index;"
+    [expanded]="versionOpenedIndex === index">
+    <mat-expansion-panel-header (click)="expandPanel(expansionPanel, $event, index, versionableDocument.documentGroupId, versionableDocument.folderId)" [collapsedHeight]="'25px'" [expandedHeight]="'25px'" [class.active-folder]="selectedDocumentGroupId === versionableDocument.documentGroupId && !selectedVersionId">
+        <mat-panel-title>
+            {{versionableDocument.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+            <div style="display: flex;justify-content: space-between;">
+                <div *ngIf="versionableDocument.versions.length > 0"><span class="document-status">{{versionableDocument.versions[0].translation}}</span></div>
+                <div *ngIf="versionableDocument.versions.length == 0"><span class="document-status">{{'Orders.documents.Status' | translate}}</span></div>
+                <div class="document-file-counter">{{versionableDocument.fileCount}} {{'Orders.documents.files' | translate}}</div>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div style="cursor: pointer" *ngFor="let version of versionableDocument.versions" class="document-row"
+        (click)="onVersionClicked(version.versionId)" [class.active]="selectedVersionId === version.versionId">
+        <div class="document-date">
+            {{version.date | date:'y.MM.dd.'}}
+        </div>
+        <div class="document-status-container">
+            <span class="document-status">{{version.translation}}</span>
+        </div>
+        <div class="documnet-item-container">
+            <ng-container *ngFor="let document of version.documents">
+                <div class="document-file-container">
+                    <i class="icon file-type"
+                        [ngClass]="{'icon-pdf' : document.type ==='Pdf',
+                                    'icon-doc' : document.type ==='Word',
+                                    'icon-xls' : document.type ==='Spreadsheet',
+                                    'icon-jpg' : document.type ==='Picture'}"></i>
+                    <div title="Download document" (click)="downloadDoc(document.id, document.name, $event)">{{document.name}}</div>
+                </div>
+
+            </ng-container>
+        </div>
+    </div>
+</mat-expansion-panel>
+<div class="documnet-version-type">
+    <i class="icon icon-dashboard_active"></i>
+    <div>{{'Orders.documents.documents' | translate}}</div>
+</div>
+<mat-expansion-panel *ngFor="let simpleDocument of documents.documents; let index = index"
+    [expanded]="openedIndex === index"
+    (opened)="openedIndex = index; versionOpenedIndex = -1; selectedDocumentGroupId = simpleDocument.documentGroupId; selectedVersionId = -1; selectedFolderId = simpleDocument.folderId">
+    <mat-expansion-panel-header [collapsedHeight]="'25px'" [expandedHeight]="'25px'" [class.active-folder]="selectedDocumentGroupId === simpleDocument.documentGroupId">
+        <mat-panel-title>
+            {{simpleDocument.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+            <div style="display: flex;justify-content: space-between;" >
+                <div><span *ngIf="simpleDocument.versions.length == 0" class="document-status">{{'Orders.documents.Status' | translate}}</span></div>
+                <div class="document-file-counter">{{simpleDocument.fileCount}} {{'Orders.documents.files' | translate}}</div>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let version of simpleDocument.versions" class="document-row">
+        <div class="document-date">
+            {{version.date | date:'y.MM.dd.'}}
+        </div>
+        <div class="document-status-container">
+            <span class="document-status">{{version.translation}}</span>
+        </div>
+        <div class="documnet-item-container">
+            <ng-container *ngFor="let document of version.documents">
+                <div class="document-file-container">
+                    <i class="icon file-type"
+                    [ngClass]="{'icon-pdf' : document.type ==='Pdf',
+                    'icon-doc' : document.type ==='Word',
+                    'icon-xls' : document.type ==='Spreadsheet',
+                    'icon-jpg' : document.type ==='Picture'}"></i>
+                    <div style="cursor: pointer;" title="Download document" (click)="downloadDoc(document.id, document.name, $event)">{{document.name}}</div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</mat-expansion-panel>

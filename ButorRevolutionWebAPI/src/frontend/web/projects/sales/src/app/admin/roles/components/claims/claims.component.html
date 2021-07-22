@@ -1,0 +1,33 @@
+<mat-expansion-panel *ngFor="let modul of model; let tempIndex = index">
+    <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'60px'">
+        <mat-panel-title>
+            <div>
+                <div>
+                    <label class="form__checkbox-group" (click)="$event.stopPropagation();">
+                        <input [checked]="modul.enabled" class="form__checkbox-input" type="checkbox" name="any" (click)="toggleModule(tempIndex)">
+                        <span [attr.class]="modul.checkmarkClass"></span>
+                        <span class="form__checkbox-label">{{modul.name}}</span>
+                    </label>
+                </div>
+                <div class="modul-description">
+                    {{modul.detail}}
+                </div>
+            </div>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <ul class="check-list">
+                    <li class="concrete-claim" *ngFor="let claim of modul.claims; let subTempIndex = index">
+                        <label class="form__checkbox-group">
+                            <input [checked]="claim.enabled" class="form__checkbox-input" type="checkbox" name="any" (click)="toggleClaim(tempIndex,subTempIndex)">
+                            <span class="form__checkbox-button"></span>
+                            <span class="form__checkbox-label">{{claim.name}}</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</mat-expansion-panel>

@@ -1,0 +1,54 @@
+<div class="container">
+  <div *ngIf="!id" class="dialog-title">
+    {{'CuttingMachine.newTitle' | translate}}
+  </div>
+  <div *ngIf="id" class="dialog-title">
+    {{'CuttingMachine.editTitle' | translate}}
+  </div>
+  <form [formGroup]="cuttingMachineForm" (ngSubmit)="onSubmit()">
+    <butor-form-field label="{{'CuttingMachine.tableHeader.machineName' | translate}}">
+      <butor-form-input name="machineName" formControlName="machineName"></butor-form-input>
+      <div *ngIf="submitted && f.machineName.errors" class="input-error">
+        <div *ngIf="f.machineName.errors.required">{{'Workstations.newWorkstation.nameReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'CuttingMachine.tableHeader.serialNumber' | translate}}">
+      <butor-form-input name="serialNumber" formControlName="serialNumber" type="number"></butor-form-input>
+      <div *ngIf="submitted && f.serialNumber.errors" class="input-error">
+        <div *ngIf="f.serialNumber.errors.required">{{'Workstations.newWorkstation.serialNumber' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'CuttingMachine.tableHeader.yearOfManufacture' | translate}}">
+      <butor-form-input name="yearOfManufacture" formControlName="yearOfManufacture" type="number"></butor-form-input>
+      <div *ngIf="submitted && f.yearOfManufacture.errors" class="input-error">
+        <div *ngIf="f.yearOfManufacture.errors.required">{{'Workstations.newWorkstation.yearOfManufacture' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'CuttingMachine.tableHeader.softwareVersion' | translate}}">
+      <butor-form-input name="softwareVersion" formControlName="softwareVersion" type="number"></butor-form-input>
+      <div *ngIf="submitted && f.softwareVersion.errors" class="input-error">
+        <div *ngIf="f.softwareVersion.errors.required">{{'Workstations.newWorkstation.softwareVersion' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'CuttingMachine.tableHeader.code' | translate}}">
+      <butor-form-input name="code" formControlName="code" type="number"></butor-form-input>
+      <div *ngIf="submitted && f.code.errors" class="input-error">
+        <div *ngIf="f.code.errors.required">{{'Workstations.newWorkstation.code' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'CuttingMachine.tableHeader.brand' | translate}}">
+      <ng-select name="brandId" formControlName="brandId" [items]="suppliers" highlightColor="#9575cd" highlightTextColor="#fff"
+        bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.brandId.errors" class="input-error">
+        <div *ngIf="f.brandId.errors.required">{{'Workstations.newWorkstation.brand' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+        (click)="cancel()">{{'CuttingMachine.cancel' | translate}}</button>
+      <button class="btn btn-primary" mat-button matRipple
+        type="submit">{{'CuttingMachine.save' | translate}}</button>
+    </div>
+  </form>
+</div>

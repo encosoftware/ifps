@@ -1,0 +1,21 @@
+.contract-container {
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered-title {
+    padding: 2rem 3rem 5rem 3rem;
+    text-align: center;
+}
+
+.inline-input {
+    margin: 1px;
+    display: inline-block;
+}
+
+.text-container {
+    text-align: justify;
+}

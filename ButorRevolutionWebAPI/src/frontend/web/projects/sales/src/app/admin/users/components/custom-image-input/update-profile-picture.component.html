@@ -1,0 +1,22 @@
+<div class="update-profile-picture-wrapper">
+    <div class="update-title">{{'Users.EditUser.updatePicture.title' | translate}}</div>
+    <div class="update-image-cropper-wrapper">
+        <div class="update-image-cropper">
+
+            <image-cropper [imageChangedEvent]="imageChangedEvent" (imageCropped)="imageCropped($event)" [resizeToWidth]="100" [resizeToHeight]="100" [roundCropper]="true"></image-cropper>
+            <input style="display: none;" #fileInput type="file" (change)="fileChangeListener($event)">
+            <div class="flex">
+                <div class="upload-label-input" (click)="fileInput.click()"><i class="icon icon-upload"></i>
+                    {{'Users.EditUser.updatePicture.upload' | translate}}
+                    </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="update-image-buttons-wrapper">
+        <div class="update-image-buttons">
+            <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="dialogRef.close()">{{'Users.NewUser.buttons.Cancel' | translate}}</button>
+          <button class="btn btn-primary" mat-button matRipple [disabled]="!croppedImage" (click)="saveImage()">{{'Users.NewUser.buttons.Add' | translate}}</button>
+        </div>
+    </div>
+</div>

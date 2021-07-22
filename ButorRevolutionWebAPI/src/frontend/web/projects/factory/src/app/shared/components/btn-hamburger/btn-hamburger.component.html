@@ -1,0 +1,14 @@
+<button
+  type="button"
+  [matMenuTriggerFor]="menu"
+  (click)="$event.stopPropagation()"
+  class="btn btn-hamburger"
+>
+  <div class="btn-point"></div>
+  <div class="btn-point"></div>
+  <div class="btn-point"></div>
+</button>
+<mat-menu #menu class="hamburger-menu-list">
+  <ng-content select="ng-container"></ng-content>
+  <ng-content select="factory-btn-hamburger-inside"></ng-content>
+</mat-menu>

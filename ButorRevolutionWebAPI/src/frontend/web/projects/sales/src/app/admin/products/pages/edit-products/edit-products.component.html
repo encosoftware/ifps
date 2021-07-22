@@ -1,0 +1,394 @@
+<form *ngIf="!isLoading" [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+  <perfect-scrollbar style="height:calc(100% - 4rem);">
+    <butor-layout-one-col title="{{'products.editProducts.title' | translate}}">
+      <butor-layout-one-col-actions>
+        <div style="margin-bottom: 3rem;" class="btn-group">
+          <button mat-button class="btn" (click)="cancel()"
+            type="button">{{'products.editProducts.buttons.Cancel' | translate}}</button>
+          <button mat-button class="btn btn-primary"
+            type="submit">{{'products.editProducts.buttons.Save' | translate}}</button>
+        </div>
+      </butor-layout-one-col-actions>
+      <butor-layout-panel-center>
+        <butor-panel [template]="editproduct">
+          <div class="row">
+            <div class="col">
+              <label class="popup-title">
+                {{'products.editProducts.basic.title' | translate}}
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <butor-form-field label="{{'products.editProducts.basic.labels.CODE' | translate}}">
+                <butor-form-input formControlName="code" name="code"></butor-form-input>
+                <div *ngIf="submitted && f.code.errors" class="input-error">
+                  <div *ngIf="f.code.errors.required">Code is required</div>
+                </div>
+              </butor-form-field>
+              <butor-form-field label="{{'products.editProducts.basic.labels.DESCRIPTION' | translate}}">
+                <butor-form-textarea formControlName="description" name="description"></butor-form-textarea>
+                <div *ngIf="submitted && f.description.errors" class="input-error">
+                  <div *ngIf="f.description.errors.required">Description is required</div>
+                </div>
+              </butor-form-field>
+            </div>
+            <div class="col">
+              <butor-form-field label="{{'products.editProducts.basic.labels.CATEGORY' | translate}}">
+                <ng-select formControlName="categoryId" [items]="productCategories" highlightColor="#9575cd"
+                  highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+                </ng-select>
+                <div *ngIf="submitted && f.categoryId.errors" class="input-error">
+                  <div *ngIf="f.categoryId.errors.required">Category is required</div>
+                </div>
+              </butor-form-field>
+              <butor-form-field label="{{'products.editProducts.basic.labels.Picture' | translate}}">
+                <butor-upload-pic [name]="product.picture.fileName" [folder]="product.picture.containerName"
+                  (nameOutput)="getFileName($event)" (folderOutput)="getFolderName($event)" *ngIf="!isLoading">
+                </butor-upload-pic>
+                <div *ngIf="submitted && f.picture.errors" class="input-error">
+                  <div *ngIf="f.picture.errors.required">Picture is required</div>
+                </div>
+              </butor-form-field>
+            </div>
+            <div class="col">
+              <div class="row" formGroupName="size">
+                <div class="col-4">
+                  <butor-form-field label="{{'products.editProducts.basic.labels.Width' | translate}}">
+                    <butor-form-input append="mm" type="number" formControlName="width"></butor-form-input>
+                    <div *ngIf="submitted && f.size.controls.width.errors" class="input-error">
+                      <div *ngIf="f.size.controls.width.errors.required">Width is required</div>
+                    </div>
+                  </butor-form-field>
+                </div>
+                <div class="col-4">
+                  <butor-form-field label="{{'products.editProducts.basic.labels.Height' | translate}}">
+                    <butor-form-input append="mm" type="number" formControlName="height"></butor-form-input>
+                    <div *ngIf="submitted && f.size.controls.height.errors" class="input-error">
+                      <div *ngIf="f.size.controls.height.errors.required">Height is required</div>
+                    </div>
+                  </butor-form-field>
+                </div>
+                <div class="col-4">
+                  <butor-form-field label="{{'products.editProducts.basic.labels.Depth' | translate}}">
+                    <butor-form-input append="mm" type="number" formControlName="depth"></butor-form-input>
+                    <div *ngIf="submitted && f.size.controls.depth.errors" class="input-error">
+                      <div *ngIf="f.size.controls.depth.errors.required">Depth is required</div>
+                    </div>
+                  </butor-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-template #editproduct>
+            <div class="row under-line">
+              <div class="col d-flex justify-content-between u-p">
+                <label class="popup-title">
+                  {{'products.editProducts.Front.title' | translate}}
+                </label>
+                <button mat-button class="btn btn-primary" (click)="openFront()"
+                  type="button">{{'products.editProducts.Front.buttons.addFront' | translate}}</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <table cdk-table [dataSource]="frontDataSource" class="table-standard table-bc"
+                  *ngIf="frontDataSource.length > 0">
+
+                  <ng-container cdkColumnDef="src">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <img src="{{row.src}}" class="img-small">
+                    </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="name">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Front.FilterLabel.Name' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="code">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Front.FilterLabel.CODE' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="size">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Front.FilterLabel.SIZE' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.size.height}}x{{row.size.width}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="amount">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Front.FilterLabel.AMOUNT' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.amount}} db </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="edging">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Front.FilterLabel.EDGING' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <div *ngIf="row.edging.all !== null">
+                        all - {{row.edging.all}}
+                      </div>
+                      <div *ngIf="row.edging.all === null">
+                        top - {{row.edging.top}}
+                        <br>
+                        right - {{row.edging.right}}
+                        <br>
+                        bottom - {{row.edging.bottom}}
+                        <br>
+                        left - {{row.edging.left}}
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="menu">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <butor-btn-hamburger>
+                        <butor-btn-hamburger-inside
+                          textColor="#4D41FF"
+                          iconClass="icon icon-edit"
+                          [buttonText]="this.translate.instant('products.buttons.Edit')"
+                          (click)="this.openFront(row.id)"
+                        ></butor-btn-hamburger-inside>
+                        <butor-btn-hamburger-inside
+                          textColor="#FF4141"
+                          iconClass="icon icon-delete"
+                          [buttonText]="this.translate.instant('products.buttons.Delete')"
+                          (click)="deleteButton(row.id)"
+                        ></butor-btn-hamburger-inside>
+                      </butor-btn-hamburger>
+                    </td>
+                  </ng-container>
+
+                  <tr cdk-header-row *cdkHeaderRowDef="['src','name', 'code', 'size', 'amount', 'edging', 'menu'];">
+                  </tr>
+
+                  <tr cdk-row *cdkRowDef="let row; columns: ['src','name', 'code', 'size', 'amount', 'edging', 'menu']"
+                    (click)="openFront(row.id)">
+                  </tr>
+
+                </table>
+                <div *ngIf="hasError && !frontDataSource" class="no-data-row">{{ error }}</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col d-flex justify-content-between u-p">
+                <label class="popup-title">
+                  {{'products.editProducts.Corpus.title' | translate}}
+                </label>
+                <button mat-button class="btn btn-primary" (click)="openCorpus()"
+                  type="button">{{'products.editProducts.Corpus.buttons.addcorpus' | translate}}</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <table cdk-table [dataSource]="corpusDataSource" class="table-standard table-bc"
+                  *ngIf="corpusDataSource.length > 0">
+
+                  <ng-container cdkColumnDef="src">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <img src="{{row.src}}" class="img-small">
+                    </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="name">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Corpus.FilterLabel.Name' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="code">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Corpus.FilterLabel.CODE' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="size">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Corpus.FilterLabel.SIZE' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.size.height}}x{{row.size.width}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="amount">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Corpus.FilterLabel.AMOUNT' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.amount}} db </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="edging">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Corpus.FilterLabel.EDGING' | translate}}"
+                        cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <div *ngIf="row.edging.all !== null">
+                        all - {{row.edging.all}}
+                      </div>
+                      <div *ngIf="row.edging.all === null">
+                        top - {{row.edging.top}}
+                        <br>
+                        right - {{row.edging.right}}
+                        <br>
+                        bottom - {{row.edging.bottom}}
+                        <br>
+                        left - {{row.edging.left}}
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="menu">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <butor-btn-hamburger>
+                        <butor-btn-hamburger-inside
+                          textColor="#4D41FF"
+                          iconClass="icon icon-edit"
+                          [buttonText]="this.translate.instant('products.buttons.Edit')"
+                          (click)="this.openCorpus(row.id)"
+                        ></butor-btn-hamburger-inside>
+                        <butor-btn-hamburger-inside
+                          textColor="#FF4141"
+                          iconClass="icon icon-delete"
+                          [buttonText]="this.translate.instant('products.buttons.Delete')"
+                          (click)="deleteButton(row.id)"
+                        ></butor-btn-hamburger-inside>
+                      </butor-btn-hamburger>
+                    </td>
+                  </ng-container>
+
+                  <tr cdk-header-row *cdkHeaderRowDef="['src','name', 'code', 'size', 'amount', 'edging', 'menu'];">
+                  </tr>
+
+                  <tr cdk-row *cdkRowDef="let row; columns: ['src','name', 'code', 'size', 'amount', 'edging', 'menu']"
+                    (click)="openCorpus(row.id)">
+                  </tr>
+
+                </table>
+                <div *ngIf="hasError && !corpusDataSource" class="no-data-row">{{ error }}</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col d-flex justify-content-between u-p">
+                <label class="popup-title">
+                  {{'products.editProducts.Accessories.title' | translate}}
+                </label>
+                <button mat-button class="btn btn-primary" (click)="openAccessory()"
+                  type="button">{{'products.editProducts.Accessories.buttons.addAccessories' | translate}}
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <table cdk-table [dataSource]="accessoriesDataSource" class="table-standard table-bc"
+                  *ngIf="accessoriesDataSource.length > 0">
+
+                  <ng-container cdkColumnDef="src">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <img src="{{row.src}}" class="img-small">
+                    </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="name">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Accessories.FilterLabel.Name' | translate}}" cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="code">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Accessories.FilterLabel.CODE' | translate}}" cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.materialCode}} </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="amount">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                      <butor-form-field label="{{'products.editProducts.Accessories.FilterLabel.AMOUNT' | translate}}" cType='filter'>
+                      </butor-form-field>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row"> {{row.amount}} db </td>
+                  </ng-container>
+
+                  <ng-container cdkColumnDef="menu">
+                    <th cdk-header-cell *cdkHeaderCellDef>
+                    </th>
+                    <td cdk-cell *cdkCellDef="let row">
+                      <butor-btn-hamburger>
+                        <butor-btn-hamburger-inside
+                          textColor="#4D41FF"
+                          iconClass="icon icon-edit"
+                          [buttonText]="this.translate.instant('products.buttons.Edit')"
+                          (click)="this.openAccessory(row.id)"
+                        ></butor-btn-hamburger-inside>
+                        <butor-btn-hamburger-inside
+                          textColor="#FF4141"
+                          iconClass="icon icon-delete"
+                          [buttonText]="this.translate.instant('products.buttons.Delete')"
+                          (click)="deleteAccessoryButton(row.id)"
+                        ></butor-btn-hamburger-inside>
+                      </butor-btn-hamburger>
+                    </td>
+                  </ng-container>
+
+                  <tr cdk-header-row *cdkHeaderRowDef="['src','name', 'code', 'amount', 'menu'];">
+                  </tr>
+
+                  <tr cdk-row *cdkRowDef="let row; columns: ['src','name', 'code', 'amount', 'menu']"
+                    (click)="openAccessory(row.id)">
+                  </tr>
+
+                </table>
+                <div *ngIf="hasError && !accessoriesDataSource" class="no-data-row">{{ error }}</div>
+              </div>
+            </div>
+          </ng-template>
+        </butor-panel>
+      </butor-layout-panel-center>
+    </butor-layout-one-col>
+  </perfect-scrollbar>
+</form>

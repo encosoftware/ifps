@@ -1,0 +1,11 @@
+{
+    "baseUrl": "http://localhost:4200/",
+    "waitForAnimations": true,
+    "viewportWidth": 1920,
+    "viewportHeight": 1080,
+    "trashAssetsBeforeRuns": true,
+    "env": {
+        "factoryUrl": "https://localhost:44395/",
+        "salesUrl": "https://localhost:44348/"
+    }
+}

@@ -1,0 +1,155 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Materials.ACCESSORIES.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right"
+      *butorClaims="claimPolicyEnum[2]">{{'Materials.ACCESSORIES.buttons.ImportFile' | translate}}</button>
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewAccessory()"
+      *butorClaims="claimPolicyEnum[2]">{{'Materials.ACCESSORIES.buttons.Addnewaccessory' | translate}}</button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="accessoryListForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+
+        <ng-container cdkColumnDef="code">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.ACCESSORIES.FilterLabel.CODE' | translate}}" cType='filter'>
+              <butor-form-input name="code" formControlName="code"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-tooltip [template]="accessorytool">{{row.code}}</butor-tooltip>
+            <ng-template #accessorytool>
+              <div class="container">
+                <div class="row">
+                  <div class="col u-p-l-1">
+                    <figure class="profile-sml">
+                      <img
+                        [src]="baseUrl | pictureSrc : row.picture ? row.picture.containerName: null : row.picture ? row.picture.fileName : null"
+                        class="profile__pic">
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <div class="row tooltip-title">{{row.code}}</div>
+                    <div class="row tooltip-bottom">{{row.description}}</div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="description">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.ACCESSORIES.FilterLabel.DESCRIPTION' | translate}}" cType='filter'>
+              <butor-form-input name="description" formControlName="description"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="structurallyOptional">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.ACCESSORIES.FilterLabel.STRUCTURALLY' | translate}}" cType='filter'>
+              <ng-select name="structurallyOptional" formControlName="structurallyOptional" [items]="optionals"
+                highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="options" bindValue="value"
+                [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <div *ngIf="row.structurallyOptional">
+              <i class="icon icon-check_circle green-check-circle"></i>
+            </div>
+            <div *ngIf="!row.structurallyOptional">
+              <i class="icon icon-clear red-check-circle"></i>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="optMount">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.ACCESSORIES.FilterLabel.MOUNTING' | translate}}" cType='filter'>
+              <ng-select name="optMount" formControlName="optMount" [items]="optionals" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="options" bindValue="value" [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <div *ngIf="row.optMount">
+              <i class="icon icon-check_circle green-check-circle"></i>
+            </div>
+            <div *ngIf="!row.optMount">
+              <i class="icon icon-clear red-check-circle"></i>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="category">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.ACCESSORIES.FilterLabel.CATEGORY' | translate}}" cType='filter'>
+              <ng-select name="categoryId" formControlName="categoryId" [items]="accessoryCategories"
+                highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="options" bindValue="value"
+                [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.category}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="transactionPrice">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.ACCESSORIES.FilterLabel.Transactionprice' | translate}}">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.transactionPrice }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="purchasingPrice">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Materials.ACCESSORIES.FilterLabel.Purchasingprice' | translate}}">
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">{{ row.purchasingPrice }} {{ row.currency }}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="far fa-times-circle"></i>{{'Materials.ACCESSORIES.buttons.ClearFilter' | translate}}</a>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-btn-hamburger>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[2]" textColor="#4D41FF"
+                iconClass="icon icon-edit" [buttonText]="this.translate.instant('Materials.ACCESSORIES.buttons.Edit')"
+                (click)="this.editAccessory(row.id, false)"></butor-btn-hamburger-inside>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[3]" textColor="#FF4141"
+                iconClass="icon icon-delete"
+                [buttonText]="this.translate.instant('Materials.ACCESSORIES.buttons.Delete')"
+                (click)="deleteAccessorie(row.id)"></butor-btn-hamburger-inside>
+            </butor-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['code', 'description', 'structurallyOptional', 'optMount', 'category', 'transactionPrice', 'purchasingPrice', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row
+          *cdkRowDef="let row; columns: ['code', 'description', 'structurallyOptional', 'optMount', 'category', 'transactionPrice', 'purchasingPrice','clearFilter']"
+          (click)="editAccessory(row.id, false)">
+        </tr>
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+    </form>
+  </perfect-scrollbar>
+</div>

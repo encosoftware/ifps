@@ -1,0 +1,36 @@
+<div class="appointments-buttons-container">
+    <button mat-button class="btn btn-border"
+        (click)="addAppointment()">{{'Orders.appointments.new' | translate}}</button>
+</div>
+<div *ngFor="let appointment of appointments" class="appointment-item-container">
+    <div class="order-appointment-date-container">
+        <div class="order-appointment-date-day">{{appointment.date | date:'dd'}}</div>
+        <div class="order-appointment-date-month">{{appointment.date | date:'MMMM'}}</div>
+    </div>
+    <div class="order-appointment-date-time">{{appointment.from}} - {{appointment.to}}</div>
+    <div class="order-appointment-details-container">
+        <div class="order-appointment-title">{{appointment.type}}</div>
+        <div class="order-appointment-person">{{appointment.customer}}</div>
+        <div class="order-appointment-location">
+            <i class="icon icon-POI"></i>
+            {{appointment.address}}
+        </div>
+    </div>
+    <div class="order-appointment-notes">
+        <ng-container *ngIf="appointment.notes">
+            <i class="icon icon-menu"></i>
+            {{'Orders.appointments.notes' | translate}}: {{appointment.notes}}
+        </ng-container>
+    </div>
+    <div class="order-appointment-hamburger">
+        <butor-btn-hamburger>
+            <butor-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-edit"
+                [buttonText]="this.translate.instant('Venues.buttons.Edit')"
+                (click)="editAppointment(appointment.id)"></butor-btn-hamburger-inside>
+            <butor-btn-hamburger-inside textColor="#FF4141" iconClass="icon icon-delete"
+                [buttonText]="translate.instant('Users.EditUser.buttons.Delete')"
+                (click)="deleteAppointment(appointment.id)">
+            </butor-btn-hamburger-inside>
+        </butor-btn-hamburger>
+    </div>
+</div>

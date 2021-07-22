@@ -1,0 +1,97 @@
+<div class="order-header-container">
+  <div class="d-flex justify-content-between">
+      <h3>{{basicInfo[0].orderId}}</h3>
+      <div class="d-flex justify-content-between mr-20">
+      </div>
+  </div>
+</div>
+<table cdk-table [dataSource]="dataSource" class="table-standard">
+  <ng-container cdkColumnDef="orderId">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.orderName' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          {{row.orderId}}
+      </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="currentStatus">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.currentStatus' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          <span class="order-status">{{row.currentStatus}}</span>
+      </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="statusDeadline">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.statusDeadline' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          {{row.statusDeadline | date:'yyyy.MM.dd'}}
+      </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="responsible">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.responsible' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          {{row.responsible}}
+      </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="customer">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.customer' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          {{row.customer}}
+      </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="sales">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.sales' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          {{row.salesPerson}}
+      </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="createdOn">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.createdOn' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          {{row.createdOn | date:'yyyy.MM.dd'}}
+      </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="deadline">
+      <th cdk-header-cell *cdkHeaderCellDef>
+          <butor-form-field label="{{'Orders.tableHeader.deadline' | translate}}">
+          </butor-form-field>
+      </th>
+      <td cdk-cell *cdkCellDef="let row">
+          {{row.deadline | date:'yyyy.MM.dd'}}
+      </td>
+  </ng-container>
+
+  <tr cdk-header-row
+      *cdkHeaderRowDef="['orderId', 'currentStatus', 'statusDeadline', 'responsible', 'customer','sales', 'createdOn', 'deadline'];sticky:true;">
+  </tr>
+
+  <tr cdk-row
+      *cdkRowDef="let row; columns: ['orderId', 'currentStatus', 'statusDeadline', 'responsible', 'customer','sales', 'createdOn', 'deadline']">
+  </tr>
+
+</table>

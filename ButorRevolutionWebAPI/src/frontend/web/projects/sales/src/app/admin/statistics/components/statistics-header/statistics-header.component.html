@@ -1,0 +1,44 @@
+<div class="flex">
+  <div class="container-statics">
+    <p class="statics-data">
+      {{salesPerson ? (salesPerson.numberOfOffers ? salesPerson.numberOfOffers : 0) : 0}}
+    </p>
+    <butor-form-field label="{{'Statistics.FilterLabel.numberOfOffers' | translate}}" cType='filter'>
+    </butor-form-field>
+  </div>
+  <div class="container-statics">
+    <p class="statics-data">
+      {{salesPerson ? (salesPerson.numberOfContracts ? salesPerson.numberOfContracts : 0) : 0}}
+    </p>
+    <butor-form-field label="{{'Statistics.FilterLabel.numberOfContracts' | translate}}" cType='filter'>
+    </butor-form-field>
+  </div>
+  <div class="container-statics">
+    <p class="statics-data">
+      {{salesPerson ? (salesPerson.effeciency ? salesPerson.effeciency : 0) : 0}} %
+    </p>
+    <butor-form-field label="{{'Statistics.FilterLabel.efficiency' | translate}}" cType='filter'>
+    </butor-form-field>
+  </div>
+  <div class="container-statics">
+    <p class="statics-data">
+      {{salesPerson ? 
+        (salesPerson.summaryTotal ? 
+          (salesPerson.summaryTotal.value ? 
+            salesPerson.summaryTotal.value : 0)
+         : 0)
+         :0}}
+      <span class="statics-data-curr">
+        {{salesPerson ? 
+          (salesPerson.summaryTotal ? 
+            (salesPerson.summaryTotal.currency ? 
+              salesPerson.summaryTotal.currency : 'Huf')
+           : 'Huf')
+           :'Huf'}}
+      </span>
+    </p>
+    <butor-form-field label="{{'Statistics.FilterLabel.total' | translate}}" cType='filter'>
+    </butor-form-field>
+  </div>
+
+</div>

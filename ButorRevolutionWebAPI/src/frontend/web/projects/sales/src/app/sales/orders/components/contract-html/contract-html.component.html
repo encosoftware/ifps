@@ -1,0 +1,263 @@
+<div *ngIf="data">
+    <div class="contract-container">
+        <div class="row" style="padding-top:20px;">
+            <div class="col">
+                <div class="d-flex justify-content-end">
+                    <butor-form-field label="Azonosítószám">
+                        <div>{{data.idNumber}}</div>
+                    </butor-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="centered-title">
+            <h2><b>Megrendelői megállapodás</b></h2>
+        </div>
+
+        <div class="text-container">
+            <p>A végösszeg <span>{{data.total}}</span>
+                Ft, melyből az Ügyfél előlegként <span>
+                    {{data.deposit}}
+                </span>
+                Ft-ot fizet. Fennmaradó összeg <span>
+                    {{data.rest}}
+                </span> Ft előre utalással, vagy az áru
+                átvételekor kerül kiegyenlítésre.
+                A teljes összes kiegyenlítéséig a
+                termék(ek) az <span>
+                    {{data.manufacturer}}
+                </span> tulajdonát képezik.</p><br />
+
+            <p>Kérjük, hogy a Megrendelőlap aláírása előtt ellenőrizze a feltüntetett adatokat, mert kizárólag
+                ezeket az
+                adatokat
+                tekintjük irányadónak. A megrendelőlapon rögzítettekről és az azokat éríntő műszaki kérdésekről az
+                elfogadást
+                megelőzően szíveskedjen a Gyártótól tájékozódni. A műszaki vagy egyéb félreértések miatt nem
+                megfelelő
+                termékért
+                a Gyártó nem vállal felelősséget.</p><br />
+
+            <p><b>Árak:</b> A megrendelésen szereplő árak bruttó ÁFÁ-s árak. A megrendelőn szereplő termékek árai a
+                beépítést,
+                helyreállítást, szállítási költségeket nem tartalmazzák. Műszaki félreértésekből adódó hibákért
+                felelősségeket
+                nem
+                vállalunk. Számszaki hiba esetén az egységárak az irányadók. A feltüntetett árak kizárólag az adott
+                termékekre
+                vonatkoznak, az esetleges méret és adatmódosításból eredő változásokra nem érvényes.</p><br />
+
+            <p><b>Megrendelés érvényessége:</b> Az Ügyfélnek a megrendelői szerződést az aláírást követően
+                szkennelve
+                e-mailben el kell
+                juttatni a Gyártó részére. A megrendelés szóbeli módosítására nincs lehetőség, ha mégis szükség van
+                rá
+                azt
+                csak
+                írásban teheti meg az Ügyfél. Utólagos módosítás esetén, ha a módosítandó termék olyan nagy mértékű
+                módosításokkal
+                jár együtt, ami egy teljesen más termék legyártását vonja ma után, valamint ha az adott termék a
+                gyártási
+                folyamatnak olyan stádiumában áll, hogy a kívánt módosítás már nem érhető el, az Ügyfél vállalja a
+                termék
+                teljes
+                árának megfizetését a Gyártó részére.</p><br />
+
+            <p><b>Fizetési feltételek:</b> Az Ügyfél a megrendelés elfogadásával kötelezettséget vállal a termék
+                átvételére és az
+                ellenérték teljes összegének kifizetésére. A termék megrendelésekor
+                <span>
+                    {{data.depositPercentage}}
+                </span>
+                %-os előleg esedékes, amelyről a Gyártó
+                előlegbekérőt állít ki. A bekérő alapján az Ügyfél az <span>
+                    {{data.manufacturer}}
+                </span> a <span>
+                    {{data.bank}}
+                </span> Banknál vezetett <span>
+                    {{data.bankaccount}}
+                </span> számú
+                számlájára utalással teljesít. A teljes összeg kiegyenlítéséig a termékek a Gyártó kizárólagos
+                tulajdonát
+                képezi.</p><br />
+
+            <p><b>Gyártási határidő:</b> A várható gyártási idő, az előleg és az aláírt megállapodás beérkezését
+                követően
+                <span>
+                    {{data.fromWeek}}
+                </span> - <span>
+                    {{data.toWeek}}
+                </span> hétig tart, melynek időtartamát az ünnepnapok és hosszúhétvégék is befolyásolhatják. A
+                gyártás
+                közbeni
+                módosítás a gyártási
+                határidő meghosszabbítását, illetve a vételár módosulását vonhatja maga után.</p><br />
+
+            <p><b>Kiszállítás:</b> A szállítás során keletkezett sérülésekért, károkért a Gyártó nem felelős. A
+                szállítási költséget a
+                termékek ára nem tartalmazza. A szállítást az Ügyfél is megoldhatja az általa biztosított
+                gépjárművel,
+                saját
+                felelősségre és költségre. A szállítás pontos napjáról a Gyártó szóban vagy írásban értesíti az
+                Ügyfelet.
+            </p><br />
+
+            <p><b>Garancia, jótállás:</b> Garanciális igény esetén csak a termékekről kiállított számla ellenében
+                áll
+                módunkban
+                intézkedni. A garanciális igény benyújtását a Gyártó csak teljes mértékben kiegyenlített számla
+                esetén
+                köteles
+                elfogadni. A garancia nem terjed ki az elemi károkra és harmadik fél által okozott károkra.
+                Szakszerűtlen
+                karbantartás, idegen eredetű javítás, változás, beavatkozás esetén az Ügyfél elesik a garanciától.
+                Minőségi
+                kifogást
+                az Ügyfél minden esetben írásban köteles közölni.</p><br />
+
+            <p><b>Jogállás:</b> Az ÁSZF-ben nem szabályozott kérdésekben a Polgári Törvénykönyv rendelkezései az
+                irányadók.
+                Minden a
+                Gyártó által készített dokumentum az <span>
+                    {{data.manufacturer}}
+                </span> tulajdonát képezi, kizárólag a címzett nevére szól, tartalma
+                részben vagy egészében való más irányú felhasználása, harmadik fél részére történő átadása szigorúan
+                tilos.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!data">
+    <form formGroupName="contract">
+        <div class="contract-container">
+            <div class="row" style="padding-top:20px;">
+                <div class="col">
+                    <div class="d-flex justify-content-end">
+                        <butor-form-field label="Azonosítószám">
+                            <butor-form-input formControlName="idNumber" name="idNumber"></butor-form-input>
+                        </butor-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="centered-title">
+                <h2><b>Megrendelői megállapodás</b></h2>
+            </div>
+
+            <div class="text-container">
+                <p>A végösszeg
+                    <span class="inline-input">
+                        <butor-form-input formControlName="total" name="total">
+                        </butor-form-input>
+                    </span>
+                    Ft, melyből az Ügyfél előlegként <span class="inline-input">
+                        <butor-form-input formControlName="deposit" name="deposit"></butor-form-input>
+                    </span>
+                    Ft-ot fizet. Fennmaradó összeg <span class="inline-input">
+                        <butor-form-input formControlName="rest" name="rest"></butor-form-input>
+                    </span> Ft előre utalással, vagy az áru
+                    átvételekor kerül kiegyenlítésre.
+                    A teljes összes kiegyenlítéséig a
+                    termék(ek) az <span class="inline-input">
+                        <butor-form-input formControlName="manufacturer" name="manufacturer"></butor-form-input>
+                    </span> tulajdonát képezik.</p><br />
+
+                <p>Kérjük, hogy a Megrendelőlap aláírása előtt ellenőrizze a feltüntetett adatokat, mert kizárólag
+                    ezeket az
+                    adatokat
+                    tekintjük irányadónak. A megrendelőlapon rögzítettekről és az azokat éríntő műszaki kérdésekről az
+                    elfogadást
+                    megelőzően szíveskedjen a Gyártótól tájékozódni. A műszaki vagy egyéb félreértések miatt nem
+                    megfelelő
+                    termékért
+                    a Gyártó nem vállal felelősséget.</p><br />
+
+                <p><b>Árak:</b> A megrendelésen szereplő árak bruttó ÁFÁ-s árak. A megrendelőn szereplő termékek árai a
+                    beépítést,
+                    helyreállítást, szállítási költségeket nem tartalmazzák. Műszaki félreértésekből adódó hibákért
+                    felelősségeket
+                    nem
+                    vállalunk. Számszaki hiba esetén az egységárak az irányadók. A feltüntetett árak kizárólag az adott
+                    termékekre
+                    vonatkoznak, az esetleges méret és adatmódosításból eredő változásokra nem érvényes.</p><br />
+
+                <p><b>Megrendelés érvényessége:</b> Az Ügyfélnek a megrendelői szerződést az aláírást követően
+                    szkennelve
+                    e-mailben el kell
+                    juttatni a Gyártó részére. A megrendelés szóbeli módosítására nincs lehetőség, ha mégis szükség van
+                    rá
+                    azt
+                    csak
+                    írásban teheti meg az Ügyfél. Utólagos módosítás esetén, ha a módosítandó termék olyan nagy mértékű
+                    módosításokkal
+                    jár együtt, ami egy teljesen más termék legyártását vonja ma után, valamint ha az adott termék a
+                    gyártási
+                    folyamatnak olyan stádiumában áll, hogy a kívánt módosítás már nem érhető el, az Ügyfél vállalja a
+                    termék
+                    teljes
+                    árának megfizetését a Gyártó részére.</p><br />
+
+                <p><b>Fizetési feltételek:</b> Az Ügyfél a megrendelés elfogadásával kötelezettséget vállal a termék
+                    átvételére és az
+                    ellenérték teljes összegének kifizetésére. A termék megrendelésekor <span class="inline-input">
+                        <butor-form-input formControlName="depositPercentage" name="depositPercentage">
+                        </butor-form-input>
+                    </span>
+                    %-os előleg esedékes, amelyről a Gyártó
+                    előlegbekérőt állít ki. A bekérő alapján az Ügyfél az <span class="inline-input">
+                        <butor-form-input formControlName="manufacturer" name="manufacturer"></butor-form-input>
+                    </span> a <span class="inline-input">
+                        <butor-form-input formControlName="bank" name="bank"></butor-form-input>
+                    </span> Banknál vezetett <span class="inline-input">
+                        <butor-form-input formControlName="bankaccount" name="bankaccount"></butor-form-input>
+                    </span> számú
+                    számlájára utalással teljesít. A teljes összeg kiegyenlítéséig a termékek a Gyártó kizárólagos
+                    tulajdonát
+                    képezi.</p><br />
+
+                <p><b>Gyártási határidő:</b> A várható gyártási idő, az előleg és az aláírt megállapodás beérkezését
+                    követően
+                    <span class="inline-input">
+                        <butor-form-input formControlName="fromWeek" name="fromWeek"></butor-form-input>
+                    </span> - <span class="inline-input">
+                        <butor-form-input formControlName="toWeek" name="toWeek"></butor-form-input>
+                    </span> hétig tart, melynek időtartamát az ünnepnapok és hosszúhétvégék is befolyásolhatják. A
+                    gyártás
+                    közbeni
+                    módosítás a gyártási
+                    határidő meghosszabbítását, illetve a vételár módosulását vonhatja maga után.</p><br />
+
+                <p><b>Kiszállítás:</b> A szállítás során keletkezett sérülésekért, károkért a Gyártó nem felelős. A
+                    szállítási költséget a
+                    termékek ára nem tartalmazza. A szállítást az Ügyfél is megoldhatja az általa biztosított
+                    gépjárművel,
+                    saját
+                    felelősségre és költségre. A szállítás pontos napjáról a Gyártó szóban vagy írásban értesíti az
+                    Ügyfelet.
+                </p><br />
+
+                <p><b>Garancia, jótállás:</b> Garanciális igény esetén csak a termékekről kiállított számla ellenében
+                    áll
+                    módunkban
+                    intézkedni. A garanciális igény benyújtását a Gyártó csak teljes mértékben kiegyenlített számla
+                    esetén
+                    köteles
+                    elfogadni. A garancia nem terjed ki az elemi károkra és harmadik fél által okozott károkra.
+                    Szakszerűtlen
+                    karbantartás, idegen eredetű javítás, változás, beavatkozás esetén az Ügyfél elesik a garanciától.
+                    Minőségi
+                    kifogást
+                    az Ügyfél minden esetben írásban köteles közölni.</p><br />
+
+                <p><b>Jogállás:</b> Az ÁSZF-ben nem szabályozott kérdésekben a Polgári Törvénykönyv rendelkezései az
+                    irányadók.
+                    Minden a
+                    Gyártó által készített dokumentum az <span class="inline-input">
+                        <butor-form-input formControlName="manufacturer" name="manufacturer"></butor-form-input>
+                    </span> tulajdonát képezi, kizárólag a címzett nevére szól, tartalma
+                    részben vagy egészében való más irányú felhasználása, harmadik fél részére történő átadása szigorúan
+                    tilos.
+                </p>
+            </div>
+        </div>
+    </form>
+</div>

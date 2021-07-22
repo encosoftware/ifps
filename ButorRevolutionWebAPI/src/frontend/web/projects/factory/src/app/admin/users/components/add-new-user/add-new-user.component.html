@@ -1,0 +1,33 @@
+<div class="container">
+  <h3>{{'Users.NewUser.title' | translate}}</h3>
+  <form #userAddForm="ngForm" (ngSubmit)="addNewUser(userAddForm.value)">
+    <butor-form-field label="{{'Users.NewUser.labels.Name' | translate}}">
+      <butor-form-input name="name" ngModel required #name="ngModel"></butor-form-input>
+      <span class="error"
+      *ngIf="!name.valid && (name.touched || name.dirty)">{{'Users.NewUser.nameReq' | translate}}</span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.NewUser.labels.Email' | translate}}">
+      <butor-form-input name="email" ngModel required email #email="ngModel" (ngModelChange)="emailValidation($event)"></butor-form-input>
+      <span class="error" *ngIf="!email.valid && (email.dirty || email.touched)">{{'Users.NewUser.emailFormat' | translate}} </span>
+      <span class="error" *ngIf="emailExist">{{'Users.NewUser.emailUsed' | translate}} </span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.NewUser.labels.PhoneNumber' | translate}}">
+      <butor-form-input name="phoneNumber" ngModel required #phone="ngModel"></butor-form-input>
+      <span class="error" *ngIf="!phone.valid && (phone.dirty || phone.touched)">{{'Users.NewUser.phoneReq' | translate}}</span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.NewUser.labels.Role' | translate}}">
+      <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="roles" bindLabel="name"
+      bindValue="id" name="roleId" ngModel required #role="ngModel">
+      <span class="error" *ngIf="!role.valid && (role.dirty || role.touched)">{{'Users.NewUser.roleReq' | translate}}</span>
+  </ng-select>
+    </butor-form-field>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-end u-margin-top">
+          <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple type="button" (click)="cancel()">{{'Users.NewUser.buttons.Cancel' | translate}}</button>
+          <button class="btn btn-primary" mat-button matRipple type="submit" [disabled]="!userAddForm.valid">{{'Users.NewUser.buttons.Add' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

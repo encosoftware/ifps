@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^4.1.1",
+    "cypress": "^4.0.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5"
+  },
+  "dependencies": {
+    "cypress-file-upload": "^3.5.3"
+  }
+}

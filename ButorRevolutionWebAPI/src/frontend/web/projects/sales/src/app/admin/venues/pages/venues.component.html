@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Venues.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" *butorClaims="claimPolicyEnum[8]"
+      (click)="addNewVenue()">{{'Venues.buttons.AddNewVenues' | translate}}</button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="venueFiltersForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard">
+        <ng-container cdkColumnDef="name">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Venues.FilterLabel.Name' | translate}}" cType='filter'>
+              <butor-form-input formControlName="name" name="name"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.active ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+            <b>{{row.name}}</b>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="rooms">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Venues.FilterLabel.Rooms' | translate}}" cType='filter'>
+              <butor-form-input type="number" formControlName="rooms" name="rooms"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.active ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.rooms}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="address">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Venues.FilterLabel.Address' | translate}}" cType='filter'>
+              <butor-form-input formControlName="address" name="address"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.active ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.address}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="phone">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Venues.FilterLabel.Phone' | translate}}" cType='filter'>
+              <butor-form-input formControlName="phone" name="phone"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.active ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.phone}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="email">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Venues.FilterLabel.Email' | translate}}" cType='filter'>
+              <butor-form-input formControlName="email" name="email"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.active ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <a class="btns btns-icon-a" (click)="clearFilter()">
+              <i class="icon icon-clear"></i>{{'Venues.buttons.ClearFilter' | translate}}</a>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.active ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+            <butor-btn-hamburger>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[8]" textColor="#4D41FF"
+                iconClass="icon icon-edit" [buttonText]="this.translate.instant('Venues.buttons.Edit')"
+                (click)="this.router.navigate(['/admin/venues', row.id])"></butor-btn-hamburger-inside>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[9]" textColor="#FF4141"
+                iconClass="icon icon-delete" [buttonText]="this.translate.instant('Users.EditUser.buttons.Delete')"
+                (click)="buttonDelete(row.id)"></butor-btn-hamburger-inside>
+            </butor-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['name', 'rooms', 'address', 'phone', 'email', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row *cdkRowDef="let row; columns: ['name', 'rooms', 'address', 'phone', 'email', 'clearFilter']"
+          [routerLink]="['/admin/venues', row.id]">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+    </form>
+  </perfect-scrollbar>
+</div>

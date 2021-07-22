@@ -1,0 +1,42 @@
+@import "../../../../scss/variables";
+
+
+.tab-login{
+    display: flex;          
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center; 
+    height: 100%;  
+    flex: 1;
+}
+.login-mat-tab{
+    padding: 2.5rem;
+}
+.tab-group-login{
+    width: 48rem;
+}
+
+.login-title{
+    font-size: 2.5rem;
+    color: rgba(77, 65, 255, 1);
+    line-height: 3.8rem;
+    margin-bottom: 4.9rem;
+}
+.login-header{
+   
+}
+
+.layout-login{
+    display: flex;
+    flex-direction: row;  
+    height: 100vh;
+
+}
+.background-div{
+    background: url('/assets/icons/loginpic.png');
+    background-size: cover;
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

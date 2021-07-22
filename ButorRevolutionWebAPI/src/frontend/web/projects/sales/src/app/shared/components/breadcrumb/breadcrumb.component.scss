@@ -1,0 +1,13 @@
+.breadcrumb li {
+  display: inline;
+}
+// .breadcrumb li+li:before {
+//   content: " > ";
+// }
+.breadcrumb{
+  padding-bottom: 10px;
+  a {
+    text-decoration: none;
+    color: rgba(184, 179, 255, 1);
+  }
+}

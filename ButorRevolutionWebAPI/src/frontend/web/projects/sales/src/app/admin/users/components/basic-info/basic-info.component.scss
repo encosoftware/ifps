@@ -1,0 +1,15 @@
+.basic-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.basic-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-big {
+    cursor: pointer;
+}

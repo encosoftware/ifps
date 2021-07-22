@@ -1,0 +1,34 @@
+<div class="container">
+  <h3>{{'Users.NewUser.title' | translate}}</h3>
+  <div [formGroup]="userAddForm">
+    <butor-form-field label="{{'Users.NewUser.labels.Name' | translate}}">
+      <butor-form-input formControlName="name" name="name"></butor-form-input>
+      <span class="error"
+      *ngIf="(userAddForm.get('name').touched || userAddForm.get('name').dirty) && userAddForm.get('name').hasError('required')">Név megadása kötelező! </span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.NewUser.labels.Email' | translate}}">
+      <butor-form-input formControlName="email" name="email"></butor-form-input>
+      <span class="error" *ngIf="(userAddForm.get('email').touched || userAddForm.get('email').dirty) && userAddForm.get('email').hasError('required')">Email megadása kötelező! </span>
+      <span class="error" *ngIf="(userAddForm.get('email').touched || userAddForm.get('email').dirty) && userAddForm.get('email').hasError('email')">Email formátuma nem megfelelő! </span>
+      <span class="error" *ngIf="emailExist">Email használatban! </span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.NewUser.labels.PhoneNumber' | translate}}">
+      <butor-form-input formControlName="phoneNumber" name="phoneNumber"></butor-form-input>
+      <span class="error" *ngIf="(userAddForm.get('phoneNumber').touched || userAddForm.get('phoneNumber').dirty) && userAddForm.get('phoneNumber').hasError('pattern')">Nem valós telefonszám!</span>
+    </butor-form-field>
+    <butor-form-field label="{{'Users.NewUser.labels.Role' | translate}}">
+      <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="roles" bindLabel="name"
+      bindValue="id" name="roleId" formControlName="roleId">
+      <span class="error" *ngIf="(userAddForm.get('roleId').touched || userAddForm.get('roleId').dirty) && userAddForm.get('roleId').hasError('required')">Szerepkör megadása kötelező! </span>
+  </ng-select>
+    </butor-form-field>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-end u-margin-top">
+          <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()">{{'Users.NewUser.buttons.Cancel' | translate}}</button>
+          <button class="btn btn-primary" mat-button matRipple (click)="addNewUser(userAddForm.value)" [disabled]="!userAddForm.valid">{{'Users.NewUser.buttons.Add' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

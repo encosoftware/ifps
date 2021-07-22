@@ -1,0 +1,28 @@
+<div class="history-header">
+    <div class="history-header-title">
+        {{'Orders.orderHistory.status' | translate}}
+    </div>
+    <div class="history-header-title">
+        {{'Orders.orderHistory.doneBy' | translate}}
+    </div>
+    <div class="history-header-title">
+        {{'Orders.orderHistory.closingDate' | translate}}
+    </div>
+    <div class="history-header-title">
+        {{'Orders.orderHistory.deadline' | translate}}
+    </div>
+</div>
+<div *ngFor="let normalHistoryItem of history.normal" class="history-item-container">
+    <div class="history-item">
+        <span class="status">{{normalHistoryItem.state}}</span>
+    </div>
+    <div class="history-item">
+        {{normalHistoryItem.assignedTo}}
+    </div>
+    <div class="history-item">
+        {{normalHistoryItem.closeOn}}
+    </div>
+    <div class="history-item">
+        {{normalHistoryItem.deadline}}
+    </div>
+</div>

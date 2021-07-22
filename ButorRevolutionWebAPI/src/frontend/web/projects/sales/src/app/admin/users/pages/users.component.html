@@ -1,0 +1,149 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Users.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="openDialog()"
+      *butorClaims="claimPolicyEnum[20]">{{'Users.buttons.AddNewUser' | translate}}
+    </button>
+  </div>
+</div>
+<div class="scroll-container">
+  <perfect-scrollbar  [scrollIndicators]="true">
+    <form [formGroup]="userFiltersForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard">
+        <ng-container cdkColumnDef="name">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Users.FilterLabel.Name' | translate}}" cType='filter'>
+              <butor-form-input formControlName="name" name="name"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.status ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+            <butor-tooltip [template]="usertoole"
+              (open)="row.image ? loadImage(row.image.containerName,row.image.fileName):loadImage(undefined,undefined) ">
+              {{row.name}}</butor-tooltip>
+            <ng-template #usertoole>
+              <div class="container">
+                <div class="row">
+                  <div class="col u-p-l-1">
+                    <figure class="profile-sml u-minus-m">
+                      <img [src]="previewUrl ? previewUrl :'/assets/icons/photoplaceholder_.jpg'" class="profile__pic">
+                    </figure>
+                  </div>
+                  <div class="col">
+                    <div class="row tooltip-title">{{row.name}}</div>
+                    <div class="row tooltip-middle">{{row.phone}}</div>
+                    <div class="row tooltip-bottom">{{row.email}}</div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="role">
+          <th cdk-header-cell *cdkHeaderCellDef width="13%">
+            <butor-form-field label="{{'Users.FilterLabel.Role' | translate}}" cType='filter'>
+              <ng-select formControlName="role" [items]="rolesList" highlightColor="#9575cd" highlightTextColor="#fff"
+                bindLabel="name" bindValue="id" [clearable]="false" name="role">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.status ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.role}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="status">
+          <th cdk-header-cell *cdkHeaderCellDef width="10%">
+            <butor-form-field label="{{'Users.FilterLabel.Status' | translate}}" cType='filter'>
+              <ng-select formControlName="status" [items]="isActivated" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="label" bindValue="value" [clearable]="false" name="status">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.status ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }">
+            <div *ngIf="row.status === true">
+              activated
+            </div>
+            <div *ngIf="row.status === false">
+              deactivated
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="company">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Users.FilterLabel.Company' | translate}}" cType='filter'>
+              <butor-form-input formControlName="company" name="company"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.status ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.company}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="email">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Users.FilterLabel.Email' | translate}}" cType='filter'>
+              <butor-form-input formControlName="email" name="email"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.status ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="phone">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Users.FilterLabel.Phone' | translate}}" cType='filter'>
+              <butor-form-input formControlName="phone" name="phone"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.status ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.phone}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="addedOn">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Users.FilterLabel.AddedOn' | translate}}" cType='filter'>
+              <ng-select formControlName="addedOnTo" [items]="addedOnList" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="name" bindValue="toDate" [clearable]="false" name="addedOnTo">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"
+            [ngStyle]="{'color': row.status ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, .3)' }"> {{row.addedOn | date:"y.MM.dd."}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'Users.buttons.ClearFilter' | translate}}</a> </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <butor-btn-hamburger>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[20]" textColor="#4D41FF"
+                iconClass="icon icon-deactivate" [buttonText]="activateOrDisable(row)" (click)="toggleActive(row)">
+              </butor-btn-hamburger-inside>
+              <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[21]" textColor="#FF4141"
+                iconClass="icon icon-delete" [buttonText]="translate.instant('Users.EditUser.buttons.Delete')"
+                (click)="deleteUser(row)"></butor-btn-hamburger-inside>
+            </butor-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['name', 'role', 'status', 'company', 'email', 'phone','addedOn', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row
+          *cdkRowDef="let row; columns: ['name', 'role', 'status', 'company', 'email', 'phone','addedOn','clearFilter']"
+          [routerLink]="['/admin/users', row.id]">
+        </tr>
+      </table>
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+    </form>
+  </perfect-scrollbar>
+</div>

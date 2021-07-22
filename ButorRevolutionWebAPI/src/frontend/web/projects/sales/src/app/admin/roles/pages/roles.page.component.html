@@ -1,0 +1,37 @@
+<butor-layout-two-col title="{{'Roles.title' | translate}}" breadcrumbs=" ">
+  <butor-layout-two-col-actions>
+    <div style="padding-top: 10px" *ngIf="selectedId" class="btn-group">
+      <button mat-button class="btn btn-border"
+        (click)="openDialog()">{{'Roles.buttons.SaveAs' | translate}}</button>
+      <button mat-button class="btn btn-primary"
+        (click)="saveRole()">{{'Roles.buttons.Save' | translate}}</button>
+    </div>
+  </butor-layout-two-col-actions>
+  <butor-layout-panel-right>
+    <div class="panel-without-margin">
+      <div class="panel-without-margin-header">{{'Roles.PanelHeader.Roles' | translate}}</div>
+      <div class="panel-without-margin-body">
+        <perfect-scrollbar>
+          <div class="panel-without-margin-content">
+            <butor-role-list [model]="roles" (selectedRoleId)="onRoleSelected($event)"></butor-role-list>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+  </butor-layout-panel-right>
+  <butor-layout-panel-left>
+    <div *ngIf="selectedId" class="panel-without-margin">
+      <div class="panel-without-margin-header">
+        {{'Roles.PanelHeader.Claims' | translate}}
+      </div>
+      <div class="panel-without-margin-body">
+        <perfect-scrollbar>
+          <div *ngIf="claims !== undefined" class="panel-without-margin-content">
+            <butor-claim-list [model]="claims"></butor-claim-list>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+  </butor-layout-panel-left>
+</butor-layout-two-col>
+

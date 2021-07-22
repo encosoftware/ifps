@@ -1,0 +1,712 @@
+
+
+struct TwoDRect
+{
+	sat::IntervalVar X;
+	sat::IntervalVar Y;
+	std::string Name;
+	int Area;
+
+	TwoDRect() {}
+	TwoDRect(sat::IntervalVar x, sat::IntervalVar y, std::string name, int area) : X(x), Y(y), Name(name), Area(area) {}
+};
+
+struct RotatableTwoDRect
+{
+	sat::IntervalVar X_def;
+	sat::IntervalVar Y_def;
+
+	sat::IntervalVar X_rot;
+	sat::IntervalVar Y_rot;
+
+	std::string Name;
+	int Area;
+
+	RotatableTwoDRect() {}
+	RotatableTwoDRect(sat::IntervalVar x_def, sat::IntervalVar y_def, sat::IntervalVar x_rot, sat::IntervalVar y_rot, std::string name, int area) :
+		X_def(x_def), Y_def(y_def), X_rot(x_rot), Y_rot(y_rot), Name(name), Area(area) {}
+};
+
+bool TDRgreater(const TwoDRect &a, const TwoDRect &b) {
+	return a.Area > b.Area;
+}
+
+bool RTDRgreater(const RotatableTwoDRect &a, const RotatableTwoDRect &b) {
+	return a.Area > b.Area;
+}
+
+/// rect
+void PrintRotatableRectangle(std::ofstream& ofile, sat::CpSolverResponse result, RotatableTwoDRect rect, int type, int comp_n) {
+
+	bool is_deafult_orientation = sat::SolutionBooleanValue(result, rect.X_def.PresenceBoolVar());
+	int left, width, top, height;
+
+	if (is_deafult_orientation) {
+		left = sat::SolutionIntegerValue(result, rect.X_def.StartVar());
+		width = sat::SolutionIntegerValue(result, rect.X_def.SizeVar());
+
+		top = sat::SolutionIntegerValue(result, rect.Y_def.StartVar());
+		height = sat::SolutionIntegerValue(result, rect.Y_def.SizeVar());
+	}
+	else {
+		left = sat::SolutionIntegerValue(result, rect.X_rot.StartVar());
+		width = sat::SolutionIntegerValue(result, rect.X_rot.SizeVar());
+
+		top = sat::SolutionIntegerValue(result, rect.Y_rot.StartVar());
+		height = sat::SolutionIntegerValue(result, rect.Y_rot.SizeVar());
+	}
+
+	std::string area_type = "";
+	if (type == 1) {
+		if (is_deafult_orientation) {
+			area_type = "component default";
+		}
+		else {
+			area_type = "component rotated";
+		}
+	}
+	else if (type == 2) {
+		area_type = "border";
+	}
+	else if (type == 3) {
+		area_type = "leftover";
+	}
+	else {
+		LOG(ERROR) << "Unknown type!" << std::endl;
+	}
+
+	ofile << "<div class='" + area_type + "' style='left:"
+		+ std::to_string(left) + "px; width:"
+		+ std::to_string(width) + "px; top:"
+		+ std::to_string(top) + "px; height:"
+		+ std::to_string(height) + "px;'>" + rect.Name + "&nbsp;&nbsp;&nbsp;<b>" + std::to_string(comp_n) + ".</b></div>";
+}
+ /// rect
+void PrintRectangle(std::ofstream& ofile, sat::CpSolverResponse result, TwoDRect rect, int type, int comp_n) {
+
+		int left = sat::SolutionIntegerValue(result, rect.X.StartVar());
+		int width = sat::SolutionIntegerValue(result, rect.X.SizeVar());
+
+		int top = sat::SolutionIntegerValue(result, rect.Y.StartVar());
+		int height = sat::SolutionIntegerValue(result, rect.Y.SizeVar());
+
+		std::string area_type = "";
+		if (type == 1) {
+			area_type = "component";
+		}
+		else if (type == 2) {
+			area_type = "border";
+		}
+		else if (type == 3) {
+			area_type = "leftover";
+		}
+		else {
+			LOG(ERROR) << "Unknown type!" << std::endl;
+		}
+
+		ofile << "<div class='" + area_type + "' style='left:"
+			+ std::to_string(left) + "px; width:"
+			+ std::to_string(width) + "px; top:"
+			+ std::to_string(top) + "px; height:"
+			+ std::to_string(height) + "px;'>" + rect.Name + "&nbsp;&nbsp;&nbsp;<b>" + std::to_string(comp_n) + ".</b></div>";
+	}
+
+
+/// else
+std::vector<TwoDRect> CreateComponentVariables(sat::CpModelBuilder &CPModel, JsonArray component_array, JsonData board_data, const int board_num, int &var_num) {
+
+	std::vector<TwoDRect> component_variables;
+
+	const Domain x_domain(0, (int)board_data.value()["Width"] * board_num + board_num);
+	const Domain y_domain(0, (int)board_data.value()["Length"]);
+
+	for (auto& component : component_array) {
+		if (board_data.value()["Id"] == component.value()["BoardId"]) {
+
+			sat::IntVar tmp_x_start = CPModel.NewIntVar(x_domain);
+			sat::IntVar tmp_x_size = CPModel.NewConstant((int)component.value()["Width"]);
+			sat::IntVar tmp_x_end = CPModel.NewIntVar(x_domain);
+			sat::IntervalVar tmp_x = CPModel.NewIntervalVar(tmp_x_start, tmp_x_size, tmp_x_end);
+
+			sat::IntVar tmp_y_start = CPModel.NewIntVar(y_domain);
+			sat::IntVar tmp_y_size = CPModel.NewConstant((int)component.value()["Length"]);
+			sat::IntVar tmp_y_end = CPModel.NewIntVar(y_domain);
+			sat::IntervalVar tmp_y = CPModel.NewIntervalVar(tmp_y_start, tmp_y_size, tmp_y_end);
+
+			int area = (int)component.value()["Width"] * (int)component.value()["Length"];
+
+			var_num += 8;
+
+			TwoDRect tmp_component = TwoDRect(tmp_x, tmp_y, component.value()["Name"], area);
+			component_variables.push_back(tmp_component);
+		}
+	}
+
+	return component_variables;
+}
+
+/// else
+std::vector<RotatableTwoDRect> CreateRotatableComponentVariables(sat::CpModelBuilder &CPModel, JsonArray component_array, JsonData board_data, const int board_num, int &var_num) {
+
+	std::vector<RotatableTwoDRect> component_variables;
+
+	const Domain x_domain(0, (int)board_data.value()["Width"] * board_num + board_num);
+	const Domain y_domain(0, (int)board_data.value()["Length"]);
+
+	for (auto& component : component_array) {
+		if (board_data.value()["Id"] == component.value()["BoardId"]) {
+		
+			int w_comp = (int)component.value()["Width"];
+			int l_comp = (int)component.value()["Length"];
+			int area = w_comp * l_comp;
+		
+			// X_def
+			sat::IntVar def_x_start = CPModel.NewIntVar(x_domain);
+			sat::IntVar def_x_size = CPModel.NewConstant(w_comp);
+			sat::IntVar def_x_end = CPModel.NewIntVar(x_domain);
+			sat::BoolVar def_x_presence = CPModel.NewBoolVar();
+			sat::IntervalVar def_x = CPModel.NewOptionalIntervalVar(def_x_start, def_x_size, def_x_end, def_x_presence);
+
+			// Y_def
+			sat::IntVar def_y_start = CPModel.NewIntVar(y_domain);
+			sat::IntVar def_y_size = CPModel.NewConstant(l_comp);
+			sat::IntVar def_y_end = CPModel.NewIntVar(y_domain);
+			sat::BoolVar def_y_presence = CPModel.NewBoolVar();
+			sat::IntervalVar def_y = CPModel.NewOptionalIntervalVar(def_y_start, def_y_size, def_y_end, def_y_presence);
+
+			// X_rot
+			sat::IntVar rot_x_start = CPModel.NewIntVar(x_domain);
+			sat::IntVar rot_x_size = CPModel.NewConstant(l_comp); // l_comp for x!
+			sat::IntVar rot_x_end = CPModel.NewIntVar(x_domain);
+			sat::BoolVar rot_x_presence = CPModel.NewBoolVar();
+			sat::IntervalVar rot_x = CPModel.NewOptionalIntervalVar(rot_x_start, rot_x_size, rot_x_end, rot_x_presence);
+
+			// Y_rot
+			sat::IntVar rot_y_start = CPModel.NewIntVar(y_domain);
+			sat::IntVar rot_y_size = CPModel.NewConstant(w_comp); // w_comp for y!
+			sat::IntVar rot_y_end = CPModel.NewIntVar(y_domain);
+			sat::BoolVar rot_y_presence = CPModel.NewBoolVar();
+			sat::IntervalVar rot_y = CPModel.NewOptionalIntervalVar(rot_y_start, rot_y_size, rot_y_end, rot_y_presence);
+
+			var_num += 20;
+
+			RotatableTwoDRect tmp_component(def_x, def_y, rot_x, rot_y, component.value()["Name"], area);
+		
+			// internal constraints
+			CPModel.AddEquality(tmp_component.X_def.PresenceBoolVar(), tmp_component.Y_def.PresenceBoolVar());
+			CPModel.AddEquality(tmp_component.X_rot.PresenceBoolVar(), tmp_component.Y_rot.PresenceBoolVar());
+
+			std::vector<sat::BoolVar> bools = { 
+				tmp_component.X_def.PresenceBoolVar(),
+				tmp_component.Y_def.PresenceBoolVar(),
+				tmp_component.X_rot.PresenceBoolVar(),
+				tmp_component.Y_rot.PresenceBoolVar() 
+			};
+			CPModel.AddEquality(2, sat::LinearExpr::BooleanSum(bools));
+
+			component_variables.push_back(tmp_component);
+		}
+	}
+
+	return component_variables;
+}
+
+/// else
+std::vector<TwoDRect> CreateBorderVariables(sat::CpModelBuilder &CPModel, JsonData board_data, const int board_num, int &var_num) {
+
+	std::vector<TwoDRect> borders;
+
+	int w_board = (int)board_data.value()["Width"];
+	int l_board = (int)board_data.value()["Length"];
+
+	for (int i = 1; i < board_num; i++) {
+
+		sat::IntVar border_x_start = CPModel.NewConstant(w_board * i + (i - 1));
+		sat::IntVar border_x_size = CPModel.NewConstant(1);
+		sat::IntVar border_x_end = CPModel.NewConstant(w_board * i + i);
+		sat::IntervalVar border_x = CPModel.NewIntervalVar(border_x_start, border_x_size, border_x_end);
+
+		sat::IntVar border_y_start = CPModel.NewConstant(0);
+		sat::IntVar border_y_size = CPModel.NewConstant(l_board);
+		sat::IntVar border_y_end = CPModel.NewConstant(l_board);
+		sat::IntervalVar border_y = CPModel.NewIntervalVar(border_y_start, border_y_size, border_y_end);
+
+		var_num += 8;
+
+		std::string border_name = "Border" + std::to_string(i);
+
+		TwoDRect border(border_x, border_y, border_name, -1);
+		borders.push_back(border);
+	}
+
+	return borders;
+}
+
+/// else
+TwoDRect CreateLeftoverVariable(sat::CpModelBuilder &CPModel, JsonData board_data, const int board_num, int &var_num, const int leftover_length) {
+
+	int w_board = (int)board_data.value()["Width"];
+	int l_board = (int)board_data.value()["Length"];
+
+	sat::IntVar left_x_start = CPModel.NewConstant((board_num - 1) * w_board + (board_num - 1));
+	sat::IntVar left_x_size = CPModel.NewConstant(w_board);
+	sat::IntVar left_x_end = CPModel.NewConstant(board_num * w_board + (board_num - 1));
+	sat::IntervalVar left_x = CPModel.NewIntervalVar(left_x_start, left_x_size, left_x_end);
+
+	sat::IntVar left_y_start = CPModel.NewConstant(l_board - leftover_length);
+	sat::IntVar left_y_size = CPModel.NewConstant(leftover_length);
+	sat::IntVar left_y_end = CPModel.NewConstant(l_board);
+	sat::IntervalVar left_y = CPModel.NewIntervalVar(left_y_start, left_y_size, left_y_end);
+
+	var_num += 8;
+
+	TwoDRect leftover(left_x, left_y, "Left-over", -1);
+
+	return leftover;
+}
+
+/// else
+void GenerateLayout(const sat::CpSolverResponse result, std::vector<TwoDRect> component_variables, std::vector<TwoDRect> border_variables, 
+	std::string time_str, int w_board, int l_board, int board_num) {
+
+	std::ofstream layout_file;
+	layout_file.open("layouts/layout_" + time_str + ".html");
+
+	layout_file << "<!DOCTYPE html><html><head><title>Layout planning</title><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
+	layout_file << "<h3>Layout</h3>";
+	layout_file << "<div class='layout-container' style='width:" + std::to_string(w_board * board_num + (board_num - 1)) + "px; height:" + std::to_string(l_board) + "px;'>";
+
+	int comp_n = 1;
+	for (auto& component : component_variables) {
+		PrintRectangle(layout_file, result, component, 1, comp_n);
+		comp_n++;
+	}
+
+	for (auto& border : border_variables) {
+		PrintRectangle(layout_file, result, border, 2, -1);
+	}
+
+	layout_file << "</div></body></html>";
+	layout_file.close();
+}
+
+/// else
+void GenerateLayoutWihtLeftover(const sat::CpSolverResponse result, std::vector<TwoDRect> component_variables, std::vector<TwoDRect> border_variables, 
+	TwoDRect leftover_variable, std::string time_str, int w_board, int l_board, int board_num) {
+
+	std::ofstream layout_file;
+	layout_file.open("layouts/layout_" + time_str + ".html");
+
+	layout_file << "<!DOCTYPE html><html><head><title>Layout planning</title><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
+	layout_file << "<h3>Layout</h3>";
+	layout_file << "<div class='layout-container' style='width:" + std::to_string(w_board * board_num + (board_num - 1)) + "px; height:" + std::to_string(l_board) + "px;'>";
+
+	int comp_n = 1;
+	for (auto& component : component_variables) {
+		PrintRectangle(layout_file, result, component, 1, comp_n);
+		comp_n++;
+	}
+
+	for (auto& border : border_variables) {
+		PrintRectangle(layout_file, result, border, 2, -1);
+	}
+
+	PrintRectangle(layout_file, result, leftover_variable, 3, -1);
+
+	layout_file << "</div></body></html>";
+	layout_file.close();
+}
+
+/// else
+void GenerateRotatableLayout(const sat::CpSolverResponse result, std::vector<RotatableTwoDRect> component_variables, std::vector<TwoDRect> border_variables,
+	std::string time_str, int w_board, int l_board, int board_num) {
+
+	std::ofstream layout_file;
+	layout_file.open("layouts/layout_" + time_str + ".html");
+
+	layout_file << "<!DOCTYPE html><html><head><title>Layout planning</title><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
+	layout_file << "<h3>Layout</h3>";
+	layout_file << "<div class='layout-container' style='width:" + std::to_string(w_board * board_num + (board_num - 1)) + "px; height:" + std::to_string(l_board) + "px;'>";
+
+	int comp_n = 1;
+	for (auto& component : component_variables) {
+		PrintRotatableRectangle(layout_file, result, component, 1, comp_n);
+		comp_n++;
+	}
+
+	for (auto& border : border_variables) {
+		PrintRectangle(layout_file, result, border, 2, -1);
+	}
+
+	layout_file << "</div></body></html>";
+	layout_file.close();
+}
+
+/// else
+void GenerateRotatableLayoutWithLeftover(const sat::CpSolverResponse result, std::vector<RotatableTwoDRect> component_variables, std::vector<TwoDRect> border_variables,
+	TwoDRect leftover_variable, std::string time_str, int w_board, int l_board, int board_num) {
+
+	std::ofstream layout_file;
+	layout_file.open("layouts/layout_" + time_str + ".html");
+
+	layout_file << "<!DOCTYPE html><html><head><title>Layout planning</title><link rel='stylesheet' type='text/css' href='style.css'></head><body>";
+	layout_file << "<h3>Layout</h3>";
+	layout_file << "<div class='layout-container' style='width:" + std::to_string(w_board * board_num + (board_num - 1)) + "px; height:" + std::to_string(l_board) + "px;'>";
+
+	int comp_n = 1;
+	for (auto& component : component_variables) {
+		PrintRotatableRectangle(layout_file, result, component, 1, comp_n);
+		comp_n++;
+	}
+
+	for (auto& border : border_variables) {
+		PrintRectangle(layout_file, result, border, 2, -1);
+	}
+
+	PrintRectangle(layout_file, result, leftover_variable, 3, -1);
+
+	layout_file << "</div></body></html>";
+	layout_file.close();
+}
+
+/// else
+int RunBoardSearch(JsonArray component_array, JsonData board_data, int leftover_length, int board_num, CustomSearchParameters LP_params) {
+
+	// SAT CP model init
+	sat::CpModelBuilder BoardCPModel;
+	sat::NoOverlap2DConstraint no_overlap = BoardCPModel.AddNoOverlap2D();
+	int var_num = 0;
+	bool with_leftover = false;
+
+	// create component variables and constraints
+	std::vector<TwoDRect> component_variables = CreateComponentVariables(BoardCPModel, component_array, board_data, board_num, var_num);
+	for (auto& component : component_variables) {
+		no_overlap.AddRectangle(component.X, component.Y);
+	}
+
+	// create border variables and constraints
+	std::vector<TwoDRect> border_variables = CreateBorderVariables(BoardCPModel, board_data, board_num, var_num);
+	for (auto& border : border_variables) {
+		no_overlap.AddRectangle(border.X, border.Y);
+	}
+
+	// create leftover variable if lenght above threshold
+	TwoDRect leftover_variable;
+	if (leftover_length > LP_params.Leftover_th) {
+		leftover_variable = CreateLeftoverVariable(BoardCPModel, board_data, board_num, var_num, leftover_length);
+		no_overlap.AddRectangle(leftover_variable.X, leftover_variable.Y);
+		with_leftover = true;
+	}
+
+	// define search strategy
+	std::sort(component_variables.begin(), component_variables.end(), TDRgreater);
+
+	std::vector<sat::IntVar> y_coord_starts;
+	for (auto& component : component_variables) {
+		y_coord_starts.push_back(component.X.StartVar());
+	}
+
+	BoardCPModel.AddDecisionStrategy(
+		y_coord_starts,
+		sat::DecisionStrategyProto::CHOOSE_FIRST,
+		sat::DecisionStrategyProto::SELECT_MIN_VALUE
+	);
+
+	std::string strat_str = "desc_area  x_start_var  choose_first  select_min_value";
+
+	LOG(INFO) << "    Strategy: " << strat_str << std::endl;
+
+	// setup parameters
+	sat::Model model;
+	sat::SatParameters parameters;
+
+	parameters.set_max_time_in_seconds(LP_params.Max_time_in_seconds);
+	parameters.set_num_search_workers(LP_params.Parallel_worker_num);
+	parameters.set_log_search_progress(LP_params.Detailed_solver_logs);
+	parameters.set_search_branching(sat::SatParameters::FIXED_SEARCH);
+
+	model.Add(sat::NewSatParameters(parameters));
+
+	LOG(INFO) << "\n MODEL: " << std::endl;
+	LOG(INFO) << "  var:    " << BoardCPModel.Proto().variables_size() << std::endl;
+	LOG(INFO) << "  constr: " << BoardCPModel.Proto().constraints_size() << std::endl;
+	LOG(INFO) << "  debug string: " << std::endl << BoardCPModel.Proto().DebugString() << std::endl;
+
+	//return 0;
+
+	// solver
+	LOG(INFO) << "    Started solving.." << std::endl;
+	const sat::CpSolverResponse result = sat::SolveWithModel(BoardCPModel.Build(), &model);
+
+	LOG(INFO) << "    Solver finished!" << std::endl;
+	LOG(INFO) << "      Stats:" << std::endl;
+	LOG(INFO) << "	      time:         " << result.wall_time() << std::endl;
+	LOG(INFO) << "	      variable_num: " << var_num << std::endl;
+	LOG(INFO) << "	      branches:     " << result.num_branches() << std::endl;
+	LOG(INFO) << "	      conflicts:    " << result.num_conflicts() << std::endl;
+
+	if (result.status() == sat::CpSolverStatus::FEASIBLE) {
+
+		if (with_leftover) {
+			GenerateLayoutWihtLeftover(result, component_variables, border_variables, leftover_variable, LP_params.Timestamp, 
+				(int)board_data.value()["Width"], (int)board_data.value()["Length"], board_num);
+		}
+		else {
+			GenerateLayout(result, component_variables, border_variables, LP_params.Timestamp, (int)board_data.value()["Width"], 
+				(int)board_data.value()["Length"], board_num);
+		}
+
+		return 1;
+	}
+	else if (result.status() == sat::CpSolverStatus::INFEASIBLE) {
+
+		return 2;
+
+	}
+	else if (result.status() == sat::CpSolverStatus::UNKNOWN && result.wall_time() > LP_params.Max_time_in_seconds) {
+	
+		return 3;
+	}
+	else {
+
+		return 4;
+	}
+}
+
+/// else
+int RunRotatableBoardSearch(JsonArray component_array, JsonData board_data, int leftover_length, int board_num, CustomSearchParameters LP_params) {
+
+	// SAT CP model init
+	sat::CpModelBuilder BoardCPModel;
+	sat::NoOverlap2DConstraint no_overlap = BoardCPModel.AddNoOverlap2D();
+	int var_num = 0;
+	bool with_leftover = false;
+
+	// create component variables and constraints
+	std::vector<RotatableTwoDRect> component_variables = CreateRotatableComponentVariables(BoardCPModel, component_array, board_data, board_num, var_num);
+	for (auto& component : component_variables) {
+		no_overlap.AddRectangle(component.X_def, component.Y_def);
+		no_overlap.AddRectangle(component.X_rot, component.Y_rot);
+	}
+
+	// create border variables and constraints
+	std::vector<TwoDRect> border_variables = CreateBorderVariables(BoardCPModel, board_data, board_num, var_num);
+	for (auto& border : border_variables) {
+		no_overlap.AddRectangle(border.X, border.Y);
+	}
+
+	// create leftover variable if lenght above threshold
+	TwoDRect leftover_variable;
+	if (leftover_length > LP_params.Leftover_th) {
+		leftover_variable = CreateLeftoverVariable(BoardCPModel, board_data, board_num, var_num, leftover_length);
+		no_overlap.AddRectangle(leftover_variable.X, leftover_variable.Y);
+		with_leftover = true;
+	}
+
+	LOG(INFO) << "variables_size(): " << BoardCPModel.Build().variables_size();
+
+	// define search strategy
+	std::sort(component_variables.begin(), component_variables.end(), RTDRgreater);
+
+	std::vector<sat::IntVar> x_coord_starts;
+	for (auto& component : component_variables) {
+		x_coord_starts.push_back(component.X_def.StartVar());
+		x_coord_starts.push_back(component.X_rot.StartVar());
+	}
+
+	BoardCPModel.AddDecisionStrategy(
+		x_coord_starts,
+		sat::DecisionStrategyProto::CHOOSE_FIRST,
+		sat::DecisionStrategyProto::SELECT_MIN_VALUE
+	);
+
+	std::string strat_str = "desc_area  x_start_var  choose_first  select_min_value";
+
+	LOG(INFO) << "    Strategy: " << strat_str << std::endl;
+
+	// setup parameters
+	sat::Model model;
+	sat::SatParameters parameters;
+
+	parameters.set_max_time_in_seconds(LP_params.Max_time_in_seconds);
+	parameters.set_num_search_workers(LP_params.Parallel_worker_num);
+	parameters.set_log_search_progress(LP_params.Detailed_solver_logs);
+	parameters.set_search_branching(sat::SatParameters::FIXED_SEARCH);
+
+	model.Add(sat::NewSatParameters(parameters));
+
+	//LOG(INFO) << "\n MODEL: " << std::endl;
+	//LOG(INFO) << "  var:    " << BoardCPModel.Proto().variables_size() << std::endl;
+	//LOG(INFO) << "  constr: " << BoardCPModel.Proto().constraints_size() << std::endl;
+	//LOG(INFO) << "  debug string: " << std::endl << BoardCPModel.Proto().DebugString() << std::endl;
+
+	//return 0;
+
+	// solver
+	LOG(INFO) << "    Started solving.." << std::endl;
+	const sat::CpSolverResponse result = sat::SolveWithModel(BoardCPModel.Build(), &model);
+
+	LOG(INFO) << "    Solver finished!" << std::endl;
+	LOG(INFO) << "      Stats:" << std::endl;
+	LOG(INFO) << "	      time:         " << result.wall_time() << std::endl;
+	LOG(INFO) << "	      variable_num: " << var_num << std::endl;
+	LOG(INFO) << "	      branches:     " << result.num_branches() << std::endl;
+	LOG(INFO) << "	      conflicts:    " << result.num_conflicts() << std::endl;
+
+	if (result.status() == sat::CpSolverStatus::FEASIBLE) {
+
+		if (with_leftover) {
+			GenerateRotatableLayoutWithLeftover(result, component_variables, border_variables, leftover_variable, LP_params.Timestamp,
+				(int)board_data.value()["Width"], (int)board_data.value()["Length"], board_num);
+		}
+		else {
+			GenerateRotatableLayout(result, component_variables, border_variables, LP_params.Timestamp, (int)board_data.value()["Width"],
+				(int)board_data.value()["Length"], board_num);
+		}
+
+		return 1;
+	}
+	else if (result.status() == sat::CpSolverStatus::INFEASIBLE) {
+
+		return 2;
+
+	}
+	else if (result.status() == sat::CpSolverStatus::UNKNOWN && result.wall_time() > LP_params.Max_time_in_seconds) {
+
+		return 3;
+	}
+	else {
+
+		return 4;
+	}
+}
+
+void ProcessBoard(JsonData board_data, JsonArray component_array, CustomSearchParameters LP_params) {
+
+	int boardId = (int)board_data.value()["Id"];
+	LOG(INFO) << "\n  Processing board " << boardId << "..." << std::endl;
+
+	int w_board = (int)board_data.value()["Width"];
+	int l_board = (int)board_data.value()["Length"];
+	int sum_component_area = CalculateSumComponentArea(component_array, board_data.value()["Id"]);
+
+	
+	LOG(INFO) << "    One board area:         " << (float)(w_board * l_board) / 1000000 << " m2" << std::endl;
+	LOG(INFO) << "    Sum component area:     " << (float)sum_component_area / 1000000 << " m2" << std::endl;
+
+	// base board num
+	int board_num = sum_component_area / (w_board * l_board) + 1;
+	LOG(INFO) << "    Base board num:         " << board_num << std::endl;
+
+	int leftover_area = board_num * w_board * l_board - sum_component_area;
+	int leftover_length = 0;
+
+	if (leftover_area < (w_board * l_board * LP_params.Area_multiplier)) {
+
+		board_num++;
+		leftover_area += w_board * l_board;
+		leftover_length = l_board * 0.9;
+
+		LOG(INFO) << "      Free space under threshold, +1 board." << std::endl;
+	}
+	else {
+		leftover_length = (leftover_area / w_board + 1) * LP_params.Leftover_length_multiplier;
+	}
+
+	//DEBUG !!!
+	//leftover_length = 1400;
+	//board_num = 6;
+
+	LOG(INFO) << "    Final board num:        " << board_num << std::endl;
+	LOG(INFO) << "    Leftover area:          " << (float)leftover_area / 1000000 << " m2" << std::endl;
+	LOG(INFO) << std::endl;
+
+	int iter_num = 1;
+
+	// searching loop per board
+	while (true) {
+
+		LOG(INFO) << "    [" + std::to_string(iter_num) + "]" << std::endl;
+		LOG(INFO) << "    LO length : " << leftover_length << std::endl;
+		
+		if (leftover_length < 0) {
+			LOG(INFO) << "    LO length under 0, shutting down search" << std::endl;
+			
+			break;
+		}
+		else if (leftover_length < LP_params.Leftover_th) {
+			LOG(INFO) << "    LO length under threshold, set to 0" << std::endl;
+			leftover_length = 0;
+			LOG(INFO) << "    LO length : " << leftover_length << std::endl;
+			
+		}
+
+		int status;
+
+		bool is_directed_board = (bool)board_data.value()["HasFiberDirection"];
+
+		if (is_directed_board) {
+			LOG(INFO) << "    --Normal search" << std::endl;
+			status = RunBoardSearch(component_array, board_data, leftover_length, board_num, LP_params);
+		}
+		else {
+			LOG(INFO) << "    --Rotatable search" << std::endl;
+			status = RunRotatableBoardSearch(component_array, board_data, leftover_length, board_num, LP_params);
+		}
+
+		if (status == 1) {
+
+			LOG(INFO) << "      SUCCESS: Found valid solution." << std::endl;
+
+			break;
+		}
+		else if (status == 2) {
+
+			LOG(INFO) << "      ERROR: Problem infeasible, decreasing leftover area" << std::endl;
+
+			leftover_length = leftover_length - 200;
+		}
+		else if (status == 3) {
+
+			LOG(INFO) << "      ERROR: Ran out of time, decreasing leftover area" << std::endl << std::endl;
+
+			leftover_length = leftover_length - 200;
+		}
+		else {
+
+			LOG(INFO) << "      ERROR: unknown\nexiting..." << std::endl;
+
+			break;
+		}
+
+		iter_num++;
+	}
+}
+
+void LayoutPlanning(std::string data_file_name) {
+
+	std::string time_str = GetDateTimeAsString();
+	LOG(INFO) << "\nLayout planning started..." << std::endl;
+	
+	// parameters
+	CustomSearchParameters LP_params;
+	LP_params.Timestamp = time_str;
+	LP_params.Leftover_th = 500;
+	LP_params.Max_time_in_seconds = 60;
+	LP_params.Area_multiplier = 0.1;
+	LP_params.Leftover_length_multiplier = 0.9;
+	LP_params.Parallel_worker_num = 2;
+	LP_params.Detailed_solver_logs = false;
+
+	// load data from json
+	std::ifstream data_file;
+	data_file.open(data_file_name);
+	static json DATA;
+	data_file >> DATA;
+
+	// board loop
+	for (auto& board : DATA["boards"].items()) {
+
+		ProcessBoard(board, DATA["components"].items(), LP_params);
+	}
+}

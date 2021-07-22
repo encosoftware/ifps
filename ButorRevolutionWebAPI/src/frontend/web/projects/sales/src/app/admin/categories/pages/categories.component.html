@@ -1,0 +1,90 @@
+<butor-layout-two-col title="{{ 'Categories.title' | translate }}">
+  <butor-layout-two-col-actions>
+    <div class="btn-group">
+      <button mat-button class="btn btn-primary" (click)="newItem()" *butorClaims="claimPolicyEnum[14]">
+        {{ "Categories.buttons.newSub" | translate }}
+      </button>
+    </div>
+  </butor-layout-two-col-actions>
+  <butor-layout-panel-right>
+    <butor-panel title="{{ 'Categories.PanelHeader.Categories' | translate }}" [template]="categoriesMain">
+      <ng-template #categoriesMain>
+        <ul class="menu-list-ul">
+          <li class="menu-list-li" *ngFor="let n of mainCategoriesName; let i = index"
+            (click)="selectMainCat(n.groupingCategoryType, i)" [ngClass]="{ active: selectedMainCat === i }">
+            <a class="menu-list-a">{{ n.name }}</a>
+          </li>
+        </ul>
+      </ng-template>
+    </butor-panel>
+  </butor-layout-panel-right>
+  <butor-layout-panel-left>
+    <butor-panel title="{{ 'Categories.PanelHeader.Subcat' | translate }}" [template]="categoriesSub">
+      <ng-template #categoriesSub style="margin-top:-5rem;">
+        <mat-tree [dataSource]="subDataSource" [treeControl]="treeControl">
+
+          <mat-tree-node *matTreeNodeDef="let node" butorMaterialTreePadding>
+            
+            <div style="display: flex;justify-content: space-between;align-items: center;width: 100%;">
+              <span>
+                <button mat-icon-button disabled></button>
+                {{ node.name }}
+              </span>
+              <butor-btn-hamburger>
+                <butor-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-add" [buttonText]="
+                    this.translate.instant('Categories.buttons.Add')
+                  " (click)="
+                    this.newItem(node.id, 'add', node.type, node.name)
+                  "></butor-btn-hamburger-inside>
+                <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[14]" textColor="#4D41FF"
+                  iconClass="icon icon-edit" [buttonText]="
+                    this.translate.instant('Categories.buttons.Edit')
+                  " (click)="
+                    this.newItem(node.id, 'edit',node.type, node.name)
+                  "></butor-btn-hamburger-inside>
+                <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[15]" textColor="#FF4141"
+                  iconClass="icon icon-delete" [buttonText]="
+                    this.translate.instant('Categories.buttons.Delete')
+                  " (click)="this.deleteItem(node.id, node.type)"></butor-btn-hamburger-inside>
+              </butor-btn-hamburger>
+            </div>
+          </mat-tree-node>
+         
+          <mat-tree-node *matTreeNodeDef="let node; when: hasChild" butorMaterialTreePadding>
+            <div style="display: flex;justify-content: space-between;align-items: center;width: 100%;">
+              <span style="display: flex;align-items: center;flex-wrap: nowrap" class="subcat">
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
+                  <mat-icon class="mat-icon-rtl-mirror">
+                    {{
+                      treeControl.isExpanded(node)
+                        ? "expand_more"
+                        : "chevron_right"
+                    }}
+                  </mat-icon>
+                </button>
+                {{ node.name }}
+              </span>
+              <butor-btn-hamburger>
+                <butor-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-add" [buttonText]="
+                    this.translate.instant('Categories.buttons.Add')
+                  " (click)="
+                    this.newItem(node.id, 'add', node.type, node.name)
+                  "></butor-btn-hamburger-inside>
+                <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[14]" textColor="#4D41FF"
+                  iconClass="icon icon-edit" [buttonText]="
+                    this.translate.instant('Categories.buttons.Edit')
+                  " (click)="
+                    this.newItem(node.id, 'edit', node.type, node.name)
+                  "></butor-btn-hamburger-inside>
+                <butor-btn-hamburger-inside *butorClaims="claimPolicyEnum[15]" textColor="#FF4141"
+                  iconClass="icon icon-delete" [buttonText]="
+                    this.translate.instant('Categories.buttons.Delete')
+                  " (click)="this.deleteItem(node.id, node.type)"></butor-btn-hamburger-inside>
+              </butor-btn-hamburger>
+            </div>
+          </mat-tree-node>
+        </mat-tree>
+      </ng-template>
+    </butor-panel>
+  </butor-layout-panel-left>
+</butor-layout-two-col>

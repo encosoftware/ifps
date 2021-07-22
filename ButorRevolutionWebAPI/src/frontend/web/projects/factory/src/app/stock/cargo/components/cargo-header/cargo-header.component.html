@@ -1,0 +1,72 @@
+<div class="cargo-id-container">
+    {{basicInfo.cargoId}}
+</div>
+<table cdk-table [dataSource]="dataSource" class="table-standard" #table>
+
+    <ng-container cdkColumnDef="cargoId">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Cargo.tableHeader.cargoId' | translate}}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row">
+            <b>{{row.cargoId}}</b>
+        </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="status">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Cargo.tableHeader.status' | translate}}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"><span class="order-status">{{row.status}}</span></td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="stockedOn">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Cargo.tableHeader.stockedOn' | translate}}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> {{row.stockedOn | date:'y.MM.d'}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="bookedBy">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Cargo.tableHeader.bookedBy' | translate}}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> {{row.bookedBy}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="created">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Cargo.tableHeader.created' | translate}}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> {{row.created | date:'y.MM.d'}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="supplier">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Cargo.tableHeader.supplier' | translate}}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"> {{row.supplier}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="cost">
+        <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Cargo.tableHeader.totalCost' | translate}}" cType='filter'>
+            </butor-form-field>
+        </th>
+        <td cdk-cell *cdkCellDef="let row"><b>{{row.grossCost}} {{row.grossCostCurrency}}</b></td>
+    </ng-container>
+
+    <tr cdk-header-row
+        *cdkHeaderRowDef="['cargoId', 'status', 'stockedOn', 'bookedBy', 'created', 'supplier', 'cost'];sticky:true;">
+    </tr>
+
+    <tr cdk-row
+        *cdkRowDef="let row; columns: ['cargoId', 'status', 'stockedOn', 'bookedBy', 'created', 'supplier', 'cost']">
+    </tr>
+
+</table>

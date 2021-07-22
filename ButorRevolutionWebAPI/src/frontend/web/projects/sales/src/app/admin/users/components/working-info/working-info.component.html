@@ -1,0 +1,125 @@
+<div>
+    <div class="row">
+        <!-- left  -->
+        <div class="col-md-12">
+            <butor-form-field label="{{'Users.EditUser.WorkingInfo.labels.UserOffice' | translate}}">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="usersOfficesSelect"
+                    [multiple]="true" bindLabel="name" bindValue="id" (search)="usersOffices($event.term)"
+                    [(ngModel)]="model.usersOffices" name="userOffices">
+                    <ng-template ng-option-tmp let-item="item">
+                        <img src="https://picsum.photos/200" width="20px" height="20px"> {{item.name}}
+                    </ng-template>
+
+                    <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                        <div class="role">
+                            <div class="image-icons">
+                                <img src=" https://picsum.photos/200" alt="" class="image-icons__photo">
+                            </div>
+                            <span class="role-text">{{item.name}}</span>
+                            <a class="role-link" (click)="clear(item)"><i class="icon icon-clear"></i></a>
+                        </div>
+                    </ng-template>
+                </ng-select>
+            </butor-form-field>
+            <butor-form-field label="{{'Users.EditUser.WorkingInfo.labels.Supervisors' | translate}}">
+                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="supervisorsSelect"
+                    bindLabel="name" bindValue="id" (search)=salesPerson($event.term) [(ngModel)]="model.supervisors" name="supervisorSelect">
+                </ng-select>
+            </butor-form-field>
+            <butor-form-field label="{{'Users.EditUser.WorkingInfo.labels.Supervisees' | translate}}" *ngIf="model.supervisees.length > 0">
+                <div class="role" *ngFor="let item of model.supervisees">
+                    <div class="image-icons">
+                        <img src=" https://picsum.photos/200" alt="" class="image-icons__photo">
+                    </div>
+                    <span class="role-text">{{item.name}}</span>
+                </div>
+            </butor-form-field>
+
+            <butor-form-field label="{{'Users.EditUser.WorkingInfo.labels.Groups' | translate}}" *ngIf="model.groups.length > 0">
+                <div class="role" *ngFor="let item of model.groups">
+                    <span class="role-text">{{item}}</span>
+                </div>
+            </butor-form-field>
+
+        </div>
+        <!-- right  -->
+        <div class="col-md-12">
+            <label class="form-label">{{'Users.EditUser.WorkingInfo.labels.WorkingHors' | translate}}</label>
+            <div *ngFor="let item of model.workingHours;let i=index;">
+                <ng-container *ngFor="let working of item.workingHour;let j=index;">
+                    <div class="row u-margin-top-btn-sm">
+                        <div class="col-2 u-margin-minus">
+                            <butor-form-checkbox [label]="item.day" [(ngModel)]="model.workingHours[i].isChecked"
+                                *ngIf="j === 0">
+                            </butor-form-checkbox>
+                        </div>
+                        <div class="col-2">
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect"
+                                bindLabel="name" bindValue="name" [(ngModel)]="working.from" [clearable]='false' name="from">
+                            </ng-select>
+                        </div>
+                        <div class="col-2">
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect"
+                                bindLabel="name" bindValue="name" [(ngModel)]="working.to" [clearable]='false' name="to">
+                            </ng-select>
+                        </div>
+                        <span class="append-select-span" (click)="addNewHours(i)" *ngIf="j === 0">
+                            <i class="icon icon-add"></i>
+                        </span>
+                        <span class="append-select-span-del" (click)="removeHours(i,j)" *ngIf="(j > 0) && (j != 0)">
+                            <i class="icon icon-clear"></i>
+                        </span>
+                    </div>
+                </ng-container>
+
+
+
+                <!-- <ng-container *ngFor="let item of model.workingHours;let i=index; trackBy: trackByFn" [formGroupName]="i">
+                <div class="row u-margin-top-btn-sm">
+                    <div class="col-2 u-margin-minus">
+                        <butor-form-checkbox [label]="item.day" formControlName="isChecked">
+                        </butor-form-checkbox>
+                    </div>
+                    <ng-container formArrayName="workingHour">
+                        <ng-container formGroupName="0">
+                            <div class="col-2">
+                                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect"
+                                    bindLabel="name" formControlName="from" bindValue="name">
+
+                                </ng-select>
+                            </div>
+                            <div class="col-2">
+                                <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect"
+                                    bindLabel="name" formControlName="to" bindValue="name">
+
+                                </ng-select>
+                            </div>
+                            <span class="append-select-span" (click)="addNewHours(i)">
+                                <i class="icon icon-add"></i>
+                            </span>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <ng-container *ngFor="let working of item.workingHour | slice:1;let j=index; trackBy: trackByFn"
+                    formArrayName="workingHour">
+                    <div class="row  u-margin-top-btn-sm" [formGroupName]="j+1">
+                        <div class="col-2 u-margin-minus">&nbsp;</div>
+                        <div class="col-2">
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect"
+                                bindLabel="name" formControlName="from" bindValue="name">
+                            </ng-select>
+                        </div>
+                        <div class="col-2">
+                            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="dateSelect"
+                                bindLabel="name" formControlName="to" bindValue="name">
+                            </ng-select>
+                        </div>
+                        <span class="append-select-span" (click)="removeHours(i,j+1)"><i class="icon icon-clear"></i>
+                        </span>
+                    </div>
+                </ng-container>
+            </ng-container> -->
+            </div>
+        </div>
+
+    </div>

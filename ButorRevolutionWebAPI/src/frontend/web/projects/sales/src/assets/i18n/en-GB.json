@@ -1,0 +1,1302 @@
+{
+    "breadcrumb": {
+        "back": "Back"
+    },
+    "errorM": {
+        "noRecord": "No records found"
+    },
+    "snackbar": {
+        "saved": "Saved",
+        "deleted": "Deleted",
+        "error": "Unexpected error!",
+        "success": "Success",
+        "basicInfoInvalid": "Basic Info Form Invalid",
+        "workingInfoInvalid": "Working Info Form Invalid",
+        "claimsInvalid": "Claims Form Invalid!",
+        "diffDays":"Different starting and ending days are not allowed.",
+        "wrongStatus": "Cannot create the appointment with status of the order!",
+        "notExpand": "You can not expand empty versionable document groups!",
+        "userCantDelete": "Person cannot be deleted because there is still an ongoing order assigned to him/her!"
+    },
+    "profile": {
+        "name": "Name",
+        "nameReq": "Name is required",
+        "language": "Language",
+        "languageReq": "Language is required",
+        "email": "Email",
+        "emailReq": "Email is required",
+        "password": "Change password",
+        "phone": "Phone",
+        "phoneReq": "Phone is required",
+        "cancel": "Cancel",
+        "save": "Save",
+        "address": "Address",
+        "addressReq": "Address is required",
+        "city": "City",
+        "cityReq": "City is required",
+        "postcode": "Postcode",
+        "postcodeReq": "Postcode is required",
+        "country": "Country",
+        "countryReq": "Country is required",
+        "emailFormat": "Invalid email"
+    },
+    "email": {
+        "success": "Email has been sent!"
+    },
+    "login": {
+        "title": "Login",
+        "Email": "Email",
+        "Password": "Password",
+        "forget": "Forgot my password",
+        "login": "Log in",
+        "error": {
+            "wrongEmailPass": "Email or Password is incorrect!",
+            "name": "Name is required",
+            "emailReq": "Email is required",
+            "emailForm": "Invalid email",
+            "emailExist": "Email is exist",
+            "password": "Password is required. Password must include uppercase and lowercase letters and number, at least 6 characters!",
+            "passwordMatch": "Passwords must match",
+            "reset": "Reset your password?",
+            "forget": "Please provide the email address that you used when you signed up for your account. We will send you an email that will allow you to reset your password."
+        },
+        "send": "Send"
+    },
+    "register": {
+        "title": "Sign up",
+        "name": "Name",
+        "Email": "Email",
+        "Password": "Password",
+        "register": "Sign up"
+    },
+    "newPassword": {
+        "current": "Current password",
+        "new": "New password",
+        "again": "Retype new password",
+        "errorMessages": {
+            "required": "Password is required",
+            "confirmation": "Confirmation password does not match"
+        },
+        "buttons": {
+            "cancel": "Cancel",
+            "save": "Save"
+        }
+    },
+    "Menu": {
+        "Sales": {
+            "title": "Sales",
+            "Dashboard": "Dashboard",
+            "Appointments": "Appointments",
+            "MeetingRooms": "Meeting Rooms",
+            "Orders": "Orders"
+        },
+        "Admin": {
+            "Users": "Users",
+            "Roles": "Roles",
+            "Venues": "Venues",
+            "WebshopUnits": "Webshop furnitureunits",
+            "Companies": "Companies",
+            "statiscs": "Statistics",
+            "Materials": {
+                "Title": "Materials",
+                "WorkTop": "Work Top",
+                "Decorboards": "Decorboards",
+                "Foils": "Foils",
+                "Accessories": "Accessories",
+                "Appliances": "Appliances"
+            },
+            "Products": "Products",
+            "Categories": "Categories",
+            "trends": "Trends"
+        },
+        "Logout": "Logout"
+    },
+    "Users": {
+        "title": "Users",
+        "buttons": {
+            "AddNewUser": "Add new user",
+            "ClearFilter": "Clear filters"
+        },
+        "FilterLabel": {
+            "Name": "NAME",
+            "Role": "ROLE",
+            "Status": "STATUS",
+            "Company": "COMPANY",
+            "Email": "EMAIL",
+            "Phone": "PHONE",
+            "AddedOn": "ADDED ON"
+        },
+        "NewUser": {
+            "title": "NEW USER",
+            "labels": {
+                "Name": "Name",
+                "Email": "Email",
+                "PhoneNumber": "Phone Number",
+                "Role": "Role"
+            },
+            "Placeholders": {
+                "Name": "Type here the name",
+                "Email": "example@email.com",
+                "PhoneNumber": "+44712223333",
+                "Role": "Click Edit and choose"
+            },
+            "buttons": {
+                "Cancel": "Cancel",
+                "Add": "Add"
+            }
+        },
+        "EditUser": {
+            "title": "EDIT USER",
+            "buttons": {
+                "Cancel": "Cancel",
+                "Delete": "Delete",
+                "Deactivate": "Deactivate",
+                "Activate": "Activate",
+                "AddNewOrders": "Add new orders",
+                "Save": "Save"
+            },
+            "PanelHeader": {
+                "BasicInfo": "Basic Info",
+                "Claims": "Claims",
+                "DaysOff": "Dayoff",
+                "Notification": "Notification",
+                "WorkingInfo": "WorkingInfo"
+            },
+            "updatePicture": {
+                "title": "Update profile picture",
+                "upload": "Upload file"
+            },
+            "BasicInfo": {
+                "labels": {
+                    "Name": "Name",
+                    "Roles": "Roles",
+                    "Company": "Company",
+                    "PhoneNumber": "Phone",
+                    "Email": "Email",
+                    "Address": "Address",
+                    "Language": "Language"
+                },
+                "placeholder": {
+                    "Name": "Type here the name",
+                    "Roles": "Click Edit and choose",
+                    "Company": "Choose",
+                    "PhoneNumber": "+4472223333",
+                    "Email": "example@email.com",
+                    "Address": "Country, ZIP, City, Address",
+                    "Language": "Choose"
+                }
+            },
+            "WorkingInfo": {
+                "labels": {
+                    "UserOffice": "Users Offices",
+                    "Supervisors": "Supervisors",
+                    "Supervisees": "Supervisees",
+                    "Groups": "Groups",
+                    "Discount": "Possible additional discount",
+                    "WorkingHors": "Working Hours"
+                },
+                "buttons": {
+                    "addNew": "Add new"
+                }
+            },
+            "DaysOff": {
+                "buttons": {
+                    "Delete": "Delete",
+                    "SickDay": "Sick Leave",
+                    "DayOff": "Day off"
+                },
+                "labels": {
+                    "Monday": "M",
+                    "Tuesday": "T",
+                    "Wednesday": "W",
+                    "Thursday": "T",
+                    "Friday": "F",
+                    "Saturday": "S",
+                    "Sunday": "Su"
+                }
+            },
+            "Notification": {
+                "labels": {
+                    "ReciveNot": "Recieve notifications via",
+                    "NotifAbout": "Notify me about"
+                }
+            }
+        }
+    },
+    "Statistics": {
+        "title": "Statistics",
+        "FilterLabel": {
+            "Name": "Name",
+            "numberOfOffers": "Number Of Offers",
+            "numberOfContracts": "Number Of Contracts",
+            "efficiency": "Efficiency",
+            "total": "Total",
+            "Person": "Person",
+            "AddedOn": "From Date",
+            "Addedto": "To Date"
+        }
+    },
+    "Roles": {
+        "title": "USER ROLES",
+        "buttons": {
+            "SaveAs": "Save as",
+            "Save": "Save"
+        },
+        "PanelHeader": {
+            "Roles": "Roles",
+            "Claims": "Claims"
+        },
+        "SaveAs": {
+            "title": "Save role as",
+            "category": "Category",
+            "name": "Name",
+            "cancel": "Cancel"
+        }
+    },
+    "Venues": {
+        "title": "VENUES",
+        "buttons": {
+            "AddNewVenues": "Add new venues",
+            "ClearFilter": "Clear filters",
+            "Edit": "Edit",
+            "Delete": "Delete"
+        },
+        "FilterLabel": {
+            "Name": "NAME",
+            "Rooms": "ROOMS",
+            "Address": "ADDRESS",
+            "Phone": "PHONE",
+            "Email": "EMAIL"
+        },
+        "NewVenues": {
+            "title": "NEW VENUE",
+            "labels": {
+                "Name": "Name",
+                "PhoneNumber": "Phone",
+                "Email": "Email",
+                "Address": "Address"
+            },
+            "Placeholders": {
+                "Country": "Country",
+                "Postcode": "Postcode",
+                "City": "City",
+                "Address": "Address"
+            },
+            "buttons": {
+                "Cancel": "Cancel",
+                "Add": "Add",
+                "Edit": "Edit",
+                "Delete": "Delete"
+            }
+        },
+        "EditVenue": {
+            "title": "EDIT VENUE",
+            "buttons": {
+                "Cancel": "Cancel",
+                "Delete": "Delete",
+                "Deactivate": "Deactivate",
+                "Activate": "Activate",
+                "Save": "Save",
+                "addNew": "Add new"
+            },
+            "PanelHeader": {
+                "BasicInfo": "Basic Info",
+                "MeetingRooms": "Meeting Rooms"
+            },
+            "basicInfo": {
+                "labels": {
+                    "Name": "Name",
+                    "PhoneNumber": "Phone",
+                    "Email": "Email",
+                    "Address": "Address",
+                    "OpeningHours": "Opening Hours",
+                    "AddNew": "Add new"
+                }
+            },
+            "MeetingRooms": {
+                "buttons": {
+                    "AddNewRoom": "Add new room",
+                    "Edit": "Edit",
+                    "Delete": "Delete"
+                },
+                "FilterLabel": {
+                    "Name": "NAME",
+                    "location": "Location"
+                }
+            },
+            "NewMeetingRoom": {
+                "title": "NEW MEETING ROOM",
+                "editTitle": "EDIT MEETING ROOM",
+                "Name": "Name",
+                "Location": "Location",
+                "buttons": {
+                    "cancel": "Cancel",
+                    "add": "Add",
+                    "save": "Save"
+                }
+            }
+        }
+    },
+    "Companies": {
+        "title": "COMPANIES",
+        "buttons": {
+            "AddNewCompany": "Add new company",
+            "ClearFilter": "Clear filters",
+            "Edit": "Edit",
+            "Delete": "Delete"
+        },
+        "FilterLabel": {
+            "Name": "NAME",
+            "Type": "COMPANY TYPE",
+            "ContactPerson": "CONTACT PERSON",
+            "Email": "EMAIL",
+            "Phone": "PHONE",
+            "hq": "HEADQUARTERS"
+        },
+        "NewCompany": {
+            "title": "NEW COMPANY",
+            "labels": {
+                "Name": "Name",
+                "Type": "Company Type",
+                "Taxnumber": "Taxnumber",
+                "Registernumber": "Registernumber",
+                "hq": "Headquarter"
+            },
+            "buttons": {
+                "Cancel": "Cancel",
+                "Add": "Add"
+            }
+        },
+        "EditCompany": {
+            "title": "EDIT COMPANY",
+            "PanelHeader": {
+                "BasicInfo": "Basic Info",
+                "Employees": "EMPLOYEES",
+                "Groups": "GROUPS"
+            },
+            "buttons": {
+                "Cancel": "Cancel",
+                "Save": "Save"
+            },
+            "basicInfo": {
+                "buttons": {
+                    "addNew": "Add new"
+                },
+                "labels": {
+                    "Name": "Name",
+                    "Type": "Company types",
+                    "Taxnumber": "Taxnumber",
+                    "Registernumber": "Registernumber",
+                    "ContactPerson": "Contact person",
+                    "Phone": "Phone",
+                    "Email": "Email",
+                    "hq": "Headquater",
+                    "OpeningHours": "Opening hours"
+                },
+                "placeholder": {
+                    "Name": "Type here the name",
+                    "Type": "Choose",
+                    "Contactperson": "Start to type a name...",
+                    "PhoneNumber": "+3612223333",
+                    "Email": "example@email.com",
+                    "Address": "Country, ZIP, City, Address"
+                }
+            },
+            "Employees": {
+                "FilterLabel": {
+                    "Name": "NAME",
+                    "Role": "ROLE",
+                    "Email": "EMAIL",
+                    "Phone": "PHONE",
+                    "WAGE": "WAGE"
+                },
+                "Groups": {
+                    "FilterLabel": {
+                        "Name": "NAME",
+                        "Members": "MEMBERS",
+                        "Type": "TYPE"
+                    },
+                    "buttons": {
+                        "deleteGroup": "Delete",
+                        "addNewGroup": "Add new group"
+                    },
+                    "NewGroups": {
+                        "MainTitle": "New Group",
+                        "buttons": {
+                            "Add": "Add",
+                            "Cancel": "Cancel"
+                        },
+                        "labels": {
+                            "UserTeamType": "User group type",
+                            "Name": "Name",
+                            "Users": "Users"
+                        },
+                        "Placeholder": {
+                            "Name": "Name of the group",
+                            "Users": "Start to type a name..."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Materials": {
+        "WorkTop": {
+            "title": "WORK TOPS",
+            "FilterLabel": {
+                "CODE": "CODE",
+                "DESCRIPTION": "DESCRIPTION",
+                "CATEGORY": "CATEGORY",
+                "Size": "Size (l/w/t)",
+                "Transaction price": "Transaction price (%)",
+                "Purchasing price": "Purchasing price"
+            },
+            "buttons": {
+                "ImportFile": "Import from file",
+                "AddnewWorkTop": "Add new work top",
+                "ClearFilter": "Clear filters"
+            },
+            "errorM": {
+                "noRecord": "No records found"
+            },
+            "newWorktop": {
+                "title": "New Worktop",
+                "editTitle": "Edit Worktop",
+                "buttons": {
+                    "Cancel": "Cancel",
+                    "Save": "Save"
+                },
+                "labels": {
+                    "CODE": "CODE",
+                    "DESCRIPTION": "DESCRIPTION",
+                    "CATEGORY": "CATEGORY",
+                    "Picture": "Picture",
+                    "TransactionPrice": "Transaction price",
+                    "PurchasingPrice": "Purchasing price",
+                    "Fiberheading": "Fiber heading",
+                    "Length": "Length",
+                    "Width": "Width",
+                    "Thickness": "Thickness"
+                },
+                "placeholder": {
+                    "picture": "Még nincs feltöltve kép."
+                }
+            }
+        },
+        "DECORBOARDS": {
+            "title": "DECORBOARDS",
+            "FilterLabel": {
+                "CODE": "CODE",
+                "DESCRIPTION": "DESCRIPTION",
+                "CATEGORY": "CATEGORY",
+                "Size": "Size (l/w/t)",
+                "Transactionprice": "Transaction price (%)",
+                "Purchasingprice": "Purchasing price"
+            },
+            "buttons": {
+                "ImportFile": "Import from file",
+                "Addnewdecorboard": "Add new decorboard",
+                "ClearFilter": "Clear filters",
+                "Edit": "Edit",
+                "Delete": "Delete"
+            },
+            "errorM": {
+                "noRecord": "No records found"
+            },
+            "newDecorboard": {
+                "title": "NEW DECORBOARD",
+                "editTitle": "EDIT DECORBOARD",
+                "buttons": {
+                    "Cancel": "Cancel",
+                    "Save": "Save"
+                },
+                "labels": {
+                    "CODE": "CODE",
+                    "DESCRIPTION": "DESCRIPTION",
+                    "CATEGORY": "CATEGORY",
+                    "Picture": "Picture",
+                    "Purchasingprice": "Purchasing price",
+                    "Transactionprice": "Transaction price",
+                    "Fiberheading": "Fiber heading",
+                    "Length": "Length",
+                    "Width": "Width",
+                    "Thickness": "Thickness"
+                },
+                "placeholder": {
+                    "Picture": "There is no uploaded picture yet."
+                }
+            }
+        },
+        "Foils": {
+            "title": "FOILS",
+            "FilterLabel": {
+                "CODE": "CODE",
+                "DESCRIPTION": "DESCRIPTION",
+                "Thickness": "Thickness",
+                "Transactionprice": "Transaction price (%)",
+                "Purchasingprice": "Purchasing price"
+            },
+            "buttons": {
+                "ImportFile": "Import from file",
+                "Addnewfoil": "Add new foil",
+                "ClearFilter": "Clear filters",
+                "Edit": "Edit",
+                "Delete": "Delete"
+            },
+            "errorM": {
+                "noRecord": "No records found"
+            },
+            "newFoil": {
+                "title": "NEW FOIL",
+                "editTitle": "EDIT FOIL",
+                "buttons": {
+                    "Cancel": "Cancel",
+                    "Save": "Save"
+                },
+                "labels": {
+                    "CODE": "CODE",
+                    "DESCRIPTION": "DESCRIPTION",
+                    "Picture": "Picture",
+                    "Purchasingprice": "Purchasing price",
+                    "Transactionprice": "Transaction price",
+                    "Thickness": "Thickness"
+                },
+                "placeholder": {
+                    "Picture": "There is no uploaded picture yet."
+                }
+            }
+        },
+        "ACCESSORIES": {
+            "title": "ACCESSORIES",
+            "FilterLabel": {
+                "CODE": "CODE",
+                "DESCRIPTION": "DESCRIPTION",
+                "STRUCTURALLY": "STRUCTURALLY OPTIONAL",
+                "MOUNTING": "OPTIONAL MOUNTING",
+                "CATEGORY": "CATEGORY",
+                "Transactionprice": "Transaction price (%)",
+                "Purchasingprice": "Purchasing price"
+            },
+            "buttons": {
+                "ImportFile": "Import from file",
+                "Addnewaccessory": "Add new accessory",
+                "ClearFilter": "Clear filters",
+                "Edit": "Edit",
+                "Delete": "Delete"
+            },
+            "errorM": {
+                "noRecord": "No records found"
+            },
+            "NEWACCESSORY": {
+                "title": "NEW ACCESSORY",
+                "editTitle": "EDIT ACCESSORY",
+                "buttons": {
+                    "Cancel": "Cancel",
+                    "Save": "Save"
+                },
+                "labels": {
+                    "CODE": "CODE",
+                    "DESCRIPTION": "DESCRIPTION",
+                    "Category": "Category",
+                    "Picture": "Picture",
+                    "Purchasingprice": "Purchasing price",
+                    "Transactionprice": "Transaction price",
+                    "Properties": "Properties",
+                    "Optional": "Optional",
+                    "RequiredForA": "Required for assembly"
+                },
+                "placeholder": {
+                    "Category": "Choose",
+                    "Picture": "There is no uploaded picture yet."
+                }
+            }
+        },
+        "APPLIANCES": {
+            "title": "APPLIANCES",
+            "FilterLabel": {
+                "CODE": "CODE",
+                "DESCRIPTION": "DESCRIPTION",
+                "CATEGORY": "CATEGORY",
+                "Brand": "BRAND",
+                "Netcost": "Net cost",
+                "sellprice": "sell price"
+            },
+            "buttons": {
+                "ImportFile": "Import from file",
+                "AddNewAppliance": "Add new applience",
+                "ClearFilter": "Clear filters",
+                "Edit": "Edit",
+                "Delete": "Delete"
+            },
+            "errorM": {
+                "noRecord": "No records found"
+            },
+            "Newappliance": {
+                "title": "NEW APPLIANCE",
+                "editTitle": "EDIT APPLIANCE",
+                "buttons": {
+                    "Cancel": "Cancel",
+                    "Save": "Save"
+                },
+                "labels": {
+                    "CODE": "CODE",
+                    "DESCRIPTION": "DESCRIPTION",
+                    "CATEGORY": "Category",
+                    "Picture": "Picture",
+                    "Purchasingprice": "Purchasing price",
+                    "Brand": "Brand",
+                    "HanaCode": "HanaCode",
+                    "Sellprice": "Sell price"
+                },
+                "placeholder": {
+                    "Picture": "There is no uploaded picture yet."
+                }
+            }
+        }
+    },
+    "products": {
+        "title": "PRODUCTS",
+        "buttons": {
+            "LoadComponent": "Load component",
+            "AddNewProducts": "Add new products",
+            "ClearFilter": "Clear filters",
+            "Edit": "Edit",
+            "Delete": "Delete",
+            "Cancel": "Cancel",
+            "Save": "Save"
+        },
+        "FilterLabel": {
+            "CODE": "CODE",
+            "DESCRIPTION": "DESCRIPTION",
+            "CATEGORY": "CATEGORY",
+            "Size": "Size (l/w/t)",
+            "MATERIALCOST": "MATERIAL COST",
+            "SELLPRICE": "SELL PRICE"
+        },
+        "newProduct": {
+            "title": "New furniture unit",
+            "labels": {
+                "Code": "Code",
+                "Description": "Description",
+                "Category": "Category",
+                "Height": "Height",
+                "Width": "Width",
+                "Depth": "Depth",
+                "Picture": "Picture",
+                "furnitureUnitType": "Furniture unit type"
+            }
+        },
+        "editProducts": {
+            "title": "EDIT PRODUCT",
+            "buttons": {
+                "Cancel": "Cancel",
+                "Save": "Save"
+            },
+            "basic": {
+                "title": "Basic",
+                "labels": {
+                    "CODE": "CODE",
+                    "DESCRIPTION": "DESCRIPTION",
+                    "CATEGORY": "CATEGORY",
+                    "Picture": "Picture",
+                    "Height": "Height",
+                    "Width": "Width",
+                    "Depth": "Depth"
+                }
+            },
+            "Front": {
+                "title": "Front",
+                "buttons": {
+                    "addFront": "Add front",
+                    "Edit": "Edit",
+                    "Delete": "Delete"
+                },
+                "FilterLabel": {
+                    "Name": "Name",
+                    "CODE": "CODE",
+                    "SIZE": "SIZE",
+                    "AMOUNT": "AMOUNT",
+                    "EDGING": "EDGING"
+                },
+                "AddFront": {
+                    "title": "ADD FRONT",
+                    "labels": {
+                        "Name": "Name",
+                        "Materialcode": "Material code",
+                        "Description": "Description",
+                        "Height": "Height",
+                        "Width": "Width",
+                        "Amount": "Amount",
+                        "Edging": "Edging",
+                        "allside": "All Side",
+                        "Top": "Top",
+                        "Bottom": "Bottom",
+                        "Right": "Right",
+                        "Left": "Left"
+                    },
+                    "buttons": {
+                        "Cancel": "Cancel",
+                        "Save": "Save"
+                    }
+                }
+            },
+            "Corpus": {
+                "title": "Corpus",
+                "buttons": {
+                    "addcorpus": "Add corpus",
+                    "Edit": "Edit",
+                    "Delete": "Delete"
+                },
+                "FilterLabel": {
+                    "Name": "Name",
+                    "CODE": "CODE",
+                    "SIZE": "SIZE",
+                    "AMOUNT": "AMOUNT",
+                    "EDGING": "EDGING"
+                },
+                "AddCorpus": {
+                    "title": "ADD CORPUS",
+                    "labels": {
+                        "Name": "Name",
+                        "Materialcode": "Material code",
+                        "Description": "Description",
+                        "Height": "Height",
+                        "Width": "Width",
+                        "Amount": "Amount",
+                        "Edging": "Edging",
+                        "allside": "All Side",
+                        "Top": "Top",
+                        "Bottom": "Bottom",
+                        "Right": "Right",
+                        "Left": "Left"
+                    },
+                    "buttons": {
+                        "Cancel": "Cancel",
+                        "Save": "Save"
+                    }
+                }
+            },
+            "Accessories": {
+                "title": "Accessories",
+                "buttons": {
+                    "addAccessories": "Add accessories",
+                    "Edit": "Edit",
+                    "Delete": "Delete"
+                },
+                "FilterLabel": {
+                    "Name": "Name",
+                    "CODE": "CODE",
+                    "SIZE": "SIZE",
+                    "AMOUNT": "AMOUNT"
+                },
+                "AddAccessories": {
+                    "title": "ADD ACCESSORIES",
+                    "labels": {
+                        "Name": "Name",
+                        "Materialcode": "Material code",
+                        "Picture": "Picture",
+                        "Amount": "Amount"
+                    },
+                    "buttons": {
+                        "Cancel": "Cancel",
+                        "Save": "Save"
+                    }
+                }
+            }
+        }
+    },
+    "Categories": {
+        "title": "CATEGORIES",
+        "buttons": {
+            "newSub": "Add new subcategories",
+            "Add": "Add",
+            "Edit": "Edit",
+            "Delete": "Delete"
+        },
+        "PanelHeader": {
+            "Categories": "CATEGORIES",
+            "Subcat": "SUBCATEGORIES"
+        },
+        "AddNewSub": {
+            "title": "New subcategory",
+            "labels": {
+                "Parent": "Parent",
+                "GB": "GB",
+                "HU": "HU"
+            },
+            "buttons": {
+                "Cancel": "Cancel",
+                "Save": "Save"
+            },
+            "error": {
+                "name": "Name is required",
+                "parent": "Parent category is required"
+            }
+        },
+        "EditSub": {
+            "title": "Edit subcategory",
+            "labels": {
+                "Parent": "Parent",
+                "GB": "GB",
+                "HU": "HU"
+            },
+            "buttons": {
+                "Cancel": "Cancel",
+                "Save": "Save"
+            }
+        }
+    },
+    "Orders": {
+        "title": "Orders",
+        "buttons": {
+            "edit": "Edit",
+            "delete": "Delete",
+            "onsiteSurvey": "On-site surveyed",
+            "shipped": "Shipped",
+            "installation": "Installed"
+        },
+        "tableHeader": {
+            "orderId": "ORDER NAME",
+            "orderName": "ORDER NAME",
+            "workingNumber": "WORKING NR",
+            "currentStatus": "CURRENT STATUS",
+            "statusDeadline": "STATUS DEADLINE",
+            "responsible": "RESPONSIBLE",
+            "customer": "CUSTOMER",
+            "sales": "SALES",
+            "createdOn": "CREATED ON",
+            "deadline": "DEADLINE",
+            "clearFilters": "Clear filters",
+            "createNewOrder": "Create new order",
+            "edit": "Edit",
+            "delete": "Delete"
+        },
+        "newOrder": {
+            "title": "New order",
+            "customer": "Customer",
+            "orderName": "Order name",
+            "shippingAddress": "Shipping address",
+            "sales": "Sales",
+            "deadline": "Deadline",
+            "cancel": "Cancel",
+            "save": "Save",
+            "typeName": "Type name",
+            "customerRequired": "Customer is required",
+            "country": "Country",
+            "postcode": "Postcode",
+            "postCodeRequired": "Postcode is required",
+            "city": "City",
+            "cityRequired": "City is required",
+            "address": "Address",
+            "addressRequired": "Address is required",
+            "salesPersonRequired": "Sales person is required",
+            "deadlineRequired": "Deadline is required",
+            "chooseDate": "Choose a date",
+            "orderNameRequired": "Order name is required"
+        },
+        "editOrder": {
+            "title": "Edit order",
+            "currentStatus": "Current status",
+            "responsible": "Responsible",
+            "statusDeadline": "Status deadline",
+            "customer": "Customer",
+            "orderName": "Order name",
+            "shippingAddress": "Shipping address",
+            "sales": "Sales",
+            "deadline": "Deadline",
+            "cancel": "Cancel",
+            "save": "Save",
+            "placeholder": {
+                "date": "Choose a date",
+                "customer": "Type name",
+                "country": "Country",
+                "postcode": "Postcode",
+                "city": "City",
+                "address": "Address"
+            },
+            "error": {
+                "state": "Current status is required",
+                "deadline": "Status deadline is required",
+                "customer": "Customer is required",
+                "country": "Country is required",
+                "postcode": "Postcode is required",
+                "city": "City is required",
+                "address": "Address is required",
+                "sales": "Sales person is required"
+            }
+        },
+        "orderDetails": {
+            "buttons": {
+                "editOrder": "Edit order",
+                "cancel": "Cancel"
+            },
+            "forms": "Forms",
+            "offer": "Offer",
+            "noOffer": "There is no offer yet",
+            "contract": "Contract",
+            "noContract": "There is no contract yet",
+            "documents": "Documents",
+            "appointments": "Appointments",
+            "messages": "Messages",
+            "orderHistory": "Order history",
+            "done": "Done",
+            "pending": "Pending"
+        },
+        "preview": {
+            "sendToCustomer": "Send to customer",
+            "producer": "Producer",
+            "name": "Name",
+            "headquarter": "Headquarter",
+            "contactPerson": "Contact person",
+            "phone": "Phone",
+            "customer": "Customer",
+            "shippingAddress": "Shipping address",
+            "code": "Code",
+            "width": "Width",
+            "depth": "Depth",
+            "height": "Height",
+            "price": "Price",
+            "quantity": "Quantity",
+            "subtotal": "Subtotal",
+            "accessories": "Accessories",
+            "appliances": "Appliances"
+        },
+        "offerForm": {
+            "title": "Offer form",
+            "saved": "Saved",
+            "save": "Save",
+            "shipping": "Shipping",
+            "generalInformation": {
+                "title": "General information",
+                "products": "Products",
+                "requires": "Required",
+                "customer": "Customer",
+                "description": "Description",
+                "private": "Private person",
+                "companyRep": "Company representative",
+                "budget": "Budget",
+                "company": "Company",
+                "saveOffer": "Save offer",
+                "height": "Height",
+                "depth": "Depth",
+                "TopCabinets": "Top cabinets",
+                "BaseCabinets": "Base cabinets",
+                "TallCabinets": "Tall cabinets",
+                "materials": {
+                    "outer": "Outer material",
+                    "inner": "Inner material",
+                    "backPanel": "Back panel material",
+                    "door": "Door material"
+                },
+                "error": {
+                    "HeightRequired": "Height is required",
+                    "DepthRequired": "Depth is required",
+                    "OuterRequired": "Outer material is required",
+                    "InnerRequired": "Top inner material is required",
+                    "BackRequired": "Top back material is required",
+                    "DoorRequired": "Top door material is required",
+                    "BudgetRequired": "Budget price is required",
+                    "CurrencyRequired": "Budget currency is required"
+                },
+                "placeholder": "Material"
+            },
+            "products": {
+                "title": "Products",
+                "preview": "Preview",
+                "saveOffer": "Save offer",
+                "assembly": "Assembly",
+                "installation": "Installation",
+                "vat": "VAT",
+                "subtotal": "Sub total",
+                "products": "Products",
+                "total": "Total",
+                "distance": "Distance",
+                "basicFee": "Basic fee",
+                "services": "Services",
+                "tableHeader": {
+                    "name": "Name",
+                    "code": "Code",
+                    "width": "Width",
+                    "depth": "Depth",
+                    "height": "Height",
+                    "price": "Price",
+                    "quantity": "Quantity",
+                    "subtotal": "Sub total"
+                },
+                "buttons": {
+                    "addSe": "Add service",
+                    "AddTopCabinet": "Add top cabinet",
+                    "AddBaseCabinet": "Add base cabinet",
+                    "AddTallCabinet": "Add tall cabinet",
+                    "AddAppliance": "Add appliance cabinet"
+                },
+                "TopCabinets": "TOP CABINETS",
+                "BaseCabinets": "BASE CABINETS",
+                "TallCabinets": "TALL CABINETS",
+                "Appliances": "APPLIANCES",
+                "Accessories": "ACCESSORIES",
+                "NewProducts": {
+                    "Titles": {
+                        "Top": "Add top cabinet",
+                        "Base": "Add base cabinet",
+                        "Tall": "Add tall cabinet",
+                        "Appliance": "Add appliance"
+                    },
+                    "Cabinet": "Cabinet",
+                    "Quantity": "Quantity",
+                    "Buttons": {
+                        "Cancel": "Cancel",
+                        "Save": "Save"
+                    },
+                    "ErrorMessages": {
+                        "CabinetError": "Cabinet is required",
+                        "QuantityError": "Quantity is required"
+                    }
+                }
+            }
+        },
+        "ContractForm": {
+            "contract": "Contract",
+            "Buttons": {
+                "Cancel": "Cancel",
+                "Save": "Save"
+            },
+            "title": "CONTRACT FORM",
+            "name": "Name",
+            "producer": "Producer",
+            "customer": "Customer",
+            "financialDetails": "Financial Details",
+            "correspondentAddress": "Correspondent address",
+            "shippingAddress": "Shipping address",
+            "netCost": "Net cost",
+            "taxNumber": "Tax number",
+            "bankAccount": "Bank account",
+            "vat": "VAT",
+            "grossCost": "Gross cost",
+            "serviceCost": "Service cost",
+            "firstPayment": "First payment",
+            "secondPayment": "Second payment",
+            "additional": "Additional",
+            "contractDate": "Contract date",
+            "dueOn": "due on"
+        },
+        "documents": {
+            "zipAndDownload": "Zip and download all Documents",
+            "uploadNewVersion": "Upload new version",
+            "upload": "Upload",
+            "versionable": "Versionable documents",
+            "documents": "Documents",
+            "files": "files",
+            "approve": "Approve",
+            "approved": "Approved",
+            "decline": "Decline",
+            "declined": "Declined",
+            "downloadAll": "Download all",
+            "Status": "Empty",
+            "uploadDocs": {
+                "title": "Upload document",
+                "folder": "Selected folder",
+                "type": "Document type",
+                "files": "Files",
+                "message": "There is no uploaded file yet.",
+                "buttons": {
+                    "upload": "Upload file",
+                    "cancel": "Cancel",
+                    "save": "Save"
+                }
+            }
+        },
+        "appointments": {
+            "new": "Add new appointment",
+            "notes": "Notes",
+            "NewAppointment": {
+                "Title": "New appointment",
+                "AppointmentModal": {
+                    "Name": "Name",
+                    "Type": "Type",
+                    "Time": "Time",
+                    "Order": "Order",
+                    "Customer": "Customer",
+                    "CustomerDropdown": {
+                        "Label": "Select"
+                    },
+                    "Participant": "Participant",
+                    "Venue": "Venue",
+                    "MeetingRoom": "Meeting room",
+                    "NewAddress": "New address",
+                    "NewAddressValues": {
+                        "Country": "Country",
+                        "Postcode": "Postcode",
+                        "City": "City",
+                        "Address": "Address"
+                    },
+                    "Notes": "Notes",
+                    "Buttons": {
+                        "Cancel": "Cancel",
+                        "Save": "Save"
+                    },
+                    "ErrorMessages": {
+                        "NameError": "Name is required",
+                        "TypeError": "Type is required",
+                        "TimeError": "Invalid dates",
+                        "CustomerError": "Customer is required",
+                        "ParticipantError": "Participant is required",
+                        "VenueError": "Venue is required",
+                        "CountryError": "Country is required",
+                        "PostcodeError": "Postcode is required",
+                        "CityError": "City is required",
+                        "AddressError": "Address is required",
+                        "MeetingRoomError": "Meeting room is required",
+                        "OrderError": "Order is required"
+                    }
+                }
+            },
+            "EditAppointment": {
+                "Title": "Edit appointment"
+            }
+        },
+        "messages": {
+            "title": "MESSAGES",
+            "assignedPeople": "ASSIGNED PEOPLE",
+            "download": "Download all messages"
+        },
+        "orderHistory": {
+            "detailedView": "Detailed view",
+            "status": "STATUS",
+            "doneBy": "DONE BY",
+            "closingDate": "CLOSING DATE",
+            "deadline": "DEADLINE",
+            "date": "DATE",
+            "action": "ACTION"
+        }
+    },
+    "WebshopFurnitureUnits": {
+        "title": "WEBSHOP FURNITUREUNITS",
+        "Labels": {
+            "code": "Code",
+            "description": "Description",
+            "price": "Price",
+            "newUnit": "New webshop furniture unit",
+            "editUnit": "Edit webshop furniture unit",
+            "furnitureUnit": "FurnitureUnit",
+            "noRecord": "No records found"
+        },
+        "Buttons": {
+            "addNewUnits": "Add new webshop furnitureunits",
+            "clearFilters": "Clear filters",
+            "cancel": "Cancel",
+            "save": "Save"
+        }
+    },
+    "Trends": {
+        "title": "TRENDS",
+        "from": "From",
+        "to": "To",
+        "maxItems": "Number of max items",
+        "corpuses": "Corpuses",
+        "fronts": "Fronts",
+        "furnitureUnits": "Furniture units",
+        "name": "NAME",
+        "code": "CODE",
+        "description": "DESCRIPTION",
+        "category": "CATEGORY",
+        "ordersCount": "ORDERS COUNT"
+    },
+    "Appointments": {
+        "Buttons": {
+            "Edit": "Edit",
+            "Delete": "Delete",
+            "Cancel": "Cancel",
+            "Save": "Save"
+        },
+        "Notes": "Notes",
+        "Title": "Appointments",
+        "Today": "Today",
+        "ShowWeekends": "Show weekends",
+        "HideWeekends": "Hide weekends",
+        "NewAppointment": {
+            "Title": "New appointment"
+        },
+        "EditAppointment": {
+            "Title": "Edit appointment"
+        },
+        "AppointmentModal": {
+            "Name": "Name",
+            "Type": "Type",
+            "Time": "Time",
+            "Order": "Order",
+            "Customer": "Customer",
+            "CustomerDropdown": {
+                "Label": "Select"
+            },
+            "Participant": "Participant",
+            "Venue": "Venue",
+            "MeetingRoom": "Meeting room",
+            "NewAddress": "New address",
+            "NewAddressValues": {
+                "Country": "Country",
+                "Postcode": "Postcode",
+                "City": "City",
+                "Address": "Address"
+            },
+            "Notes": "Notes"
+        }
+    },
+    "Dashboard": {
+        "unansweredMessages": "Unanswered messages",
+        "appointmentsToday": "Appointments today",
+        "myTickets": "My tickets",
+        "allTickets": "All tickets",
+        "orderId": "Order name",
+        "status": "STATUS",
+        "customer": "CUSTOMER"
+    },
+    "MeetingRooms": {
+        "title": "Meeting Rooms",
+        "name": "Name",
+        "status": "Status",
+        "StatusValue": {
+            "Booked": "Booked",
+            "Available": "Currently available"
+        },
+        "Today": "Today",
+        "ShowWeekends": "Show weekends",
+        "HideWeekends": "Hide weekends",
+        "Notes": "Notes",
+        "venue": "Venue"
+    },
+    "Hamburger": {
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "CustomerOrders": {
+        "nextDay": "Next day",
+        "nextWeek": "Next week",
+        "nextMonth": "Next month",
+        "nextYear": "Next year",
+        "lastDay": "Yesterday",
+        "lastWeek": "Last week",
+        "lastMonth": "Last month",
+        "lastYear": "Last year",
+        "OfferForm": {
+            "producer": "Producer",
+            "customer": "Customer",
+            "name": "Name",
+            "headquarter": "Headquarter",
+            "contactPerson": "Contact Person",
+            "phone": "Phone",
+            "shippingAddress": "Shipping address",
+            "wallCabinet": "Wall Cabinet",
+            "baseAndTall": "Base and Tall Cabinets",
+            "appliances": "Appliances",
+            "accessories": "Accessories",
+            "shipping": "Shipping",
+            "assembly": "Assembly",
+            "subtotal": "Subtotal",
+            "total": "Total"
+        }
+    },
+    "Picture": {
+        "UploadButton": "Upload"
+    }
+}

@@ -1,0 +1,70 @@
+<div class="container">
+  <div *ngIf="id" class="dialog-title">
+    {{'MaterialPackage.Modal.EditTitle' | translate}}
+  </div>
+  <div *ngIf="!id" class="dialog-title">
+    {{'MaterialPackage.Modal.NewTitle' | translate}}
+  </div>
+  <form [formGroup]="materialPackageForm" (ngSubmit)="onSubmit()">
+    <butor-form-field label="{{'MaterialPackage.Modal.Material' | translate}}">
+      <ng-select name="materialId" formControlName="materialId" [items]="materials" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.materialId.errors" class="input-error">
+        <div *ngIf="f.materialId.errors.required">{{'MaterialPackage.Modal.MaterialError' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'MaterialPackage.Modal.Supplier' | translate}}">
+      <ng-select name="supplierId" formControlName="supplierId" [items]="suppliers" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+      </ng-select>
+      <div *ngIf="submitted && f.supplierId.errors" class="input-error">
+        <div *ngIf="f.supplierId.errors.required">{{'MaterialPackage.Modal.SupplierError' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'MaterialPackage.Modal.Code' | translate}}">
+      <butor-form-input name="code" formControlName="code"></butor-form-input>
+      <div *ngIf="submitted && f.code.errors" class="input-error">
+        <div *ngIf="f.code.errors.required">{{'MaterialPackage.Modal.CodeError' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'MaterialPackage.Modal.Description' | translate}}">
+      <butor-form-input name="description" formControlName="description"></butor-form-input>
+      <div *ngIf="submitted && f.description.errors" class="input-error">
+        <div *ngIf="f.description.errors.required">{{'MaterialPackage.Modal.DescriptionError' | translate}}</div>
+      </div>
+      <butor-form-field label="{{'MaterialPackage.Modal.Size' | translate}}">
+        <butor-form-input name="size" type="number" formControlName="size"></butor-form-input>
+        <div *ngIf="submitted && f.size.errors" class="input-error">
+          <div *ngIf="f.size.errors.required">{{'MaterialPackage.Modal.SizeError' | translate}}</div>
+        </div>
+      </butor-form-field>
+    </butor-form-field>
+    <div class="row">
+      <div class="col-3">
+        <butor-form-field label="{{'MaterialPackage.Modal.Price' | translate}}">
+          <butor-form-input name="price" type="number" formControlName="price"></butor-form-input>
+          <div *ngIf="submitted && f.price.errors" class="input-error">
+            <div *ngIf="f.price.errors.required">{{'MaterialPackage.Modal.PriceError' | translate}}</div>
+          </div>
+        </butor-form-field>
+      </div>
+      <div class="col-3">
+        <butor-form-field label="{{'MaterialPackage.Modal.Currency' | translate}}">
+          <ng-select name="currencyId" [items]="currencies" formControlName="currencyId" highlightColor="#9575cd"
+            highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+          </ng-select>
+          <div *ngIf="submitted && f.currencyId.errors" class="input-error">
+            <div *ngIf="f.currencyId.errors.required">{{'MaterialPackage.Modal.CurrencyError' | translate}}</div>
+          </div>
+        </butor-form-field>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+        (click)="cancel()">{{'MaterialPackage.Modal.Cancel' | translate}}</button>
+      <button class="btn btn-primary" mat-button matRipple
+        type="submit">{{'MaterialPackage.Modal.Save' | translate}}</button>
+    </div>
+  </form>
+</div>

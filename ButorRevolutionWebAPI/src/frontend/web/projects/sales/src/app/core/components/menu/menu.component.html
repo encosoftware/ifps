@@ -1,0 +1,211 @@
+<perfect-scrollbar style="max-height: 100vh;">
+    <div class="container-fluid container__menu" id="menu_container">
+
+        <div
+            [ngClass]="{'container__menu-section-header':isMenuOpen,'container__menu-section-header-close-menu':!isMenuOpen}">
+            <figure class="profile-sml" (click)="openProfile()">
+                <img [src]="previewUrl ? previewUrl :'/assets/icons/photoplaceholder_.jpg'" class="profile-sml__pic">
+            </figure>
+
+            <div [ngClass]="{'container__menu-title':isMenuOpen,'container__menu-title--close':!isMenuOpen}"
+                (click)="openProfile()">
+                <div class="container__menu-name">{{userName}}</div>
+                <div class="container__menu-role">{{roleName}}</div>
+            </div>
+            <hr>
+
+            <div class="container__menu-iconmenu">
+                <i class="icon icon-menu" (click)="onToggleMenuBar()"></i>
+            </div>
+        </div>
+        <hr *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetOrders],claimPolicyEnum[claimPolicyEnum.GetCustomerAppointments],claimPolicyEnum[claimPolicyEnum.GetAppointments],claimPolicyEnum[claimPolicyEnum.GetOrdersBySales],claimPolicyEnum[claimPolicyEnum.GetOrdersByCustomer],claimPolicyEnum[claimPolicyEnum.GetOrdersByPartner],claimPolicyEnum[claimPolicyEnum.GetPartnerAppointments],claimPolicyEnum[claimPolicyEnum.GetStatistics],claimPolicyEnum[claimPolicyEnum.GetTrends]]">
+
+            <div class="container__menu-section"
+            *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetOrders],claimPolicyEnum[claimPolicyEnum.GetCustomerAppointments],claimPolicyEnum[claimPolicyEnum.GetAppointments],claimPolicyEnum[claimPolicyEnum.GetOrdersBySales],claimPolicyEnum[claimPolicyEnum.GetOrdersByCustomer],claimPolicyEnum[claimPolicyEnum.GetOrdersByPartner],claimPolicyEnum[claimPolicyEnum.GetPartnerAppointments],claimPolicyEnum[claimPolicyEnum.GetStatistics],claimPolicyEnum[claimPolicyEnum.GetTrends]]">
+            <ul class="container__menu-ul"
+                *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetOrders],claimPolicyEnum[claimPolicyEnum.GetCustomerAppointments],claimPolicyEnum[claimPolicyEnum.GetAppointments],claimPolicyEnum[claimPolicyEnum.GetOrdersBySales],claimPolicyEnum[claimPolicyEnum.GetOrdersByCustomer],claimPolicyEnum[claimPolicyEnum.GetOrdersByPartner],claimPolicyEnum[claimPolicyEnum.GetPartnerAppointments],claimPolicyEnum[claimPolicyEnum.GetStatistics],claimPolicyEnum[claimPolicyEnum.GetTrends]]">
+                <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetAppointments]">
+                    <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                        routerLink="/sales/dashboard" routerLinkActive="active">
+                        <div class="dashboard-flex">
+                            <div class="dashboard-flex-ins">
+                                <i class="icon icon-dashboard_active"></i>
+                                <span>{{'Menu.Sales.Dashboard' | translate}}</span>
+                            </div>
+                            <span
+                                class="dashboard-message">{{((unanswear |async) > 9) ? ('9+') : (unanswear |async)}}</span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetAppointments]">
+                    <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                        routerLink="/sales/appointments" routerLinkActive="active">
+                        <i class="icon icon-appointments_active"></i>
+                        <span class="fg-3" translate>Menu.Sales.Appointments</span>
+                    </a>
+                </li>
+                <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetAppointments]">
+                    <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                        routerLink="/sales/meetingrooms" routerLinkActive="active">
+                        <i class="icon icon-meetingroomes_active"></i>
+                        <span class="fg-3">{{'Menu.Sales.MeetingRooms' | translate}}</span>
+                    </a>
+                </li>
+                <li class="container__menu-li"
+                    *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetOrders],claimPolicyEnum[claimPolicyEnum.GetOrdersBySales],claimPolicyEnum[claimPolicyEnum.GetOrdersByCustomer],claimPolicyEnum[claimPolicyEnum.GetOrdersByPartner]]">
+                    <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                        routerLink="/sales/orders" routerLinkActive="active">
+                        <i class="icon icon-orders_active"></i>
+                        <span class="fg-3">{{'Menu.Sales.Orders' | translate}}</span>
+                    </a>
+                </li>
+                <li class="container__menu-li" *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetCustomerAppointments],claimPolicyEnum[claimPolicyEnum.GetPartnerAppointments]]">
+                    <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                        routerLink="/customers/appointments" routerLinkActive="active">
+                        <i class="icon icon-appointments_active"></i>
+                        <span class="fg-3" translate>Menu.Sales.Appointments</span>
+                    </a>
+                </li>
+                <li class="container__menu-li" *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetStatistics]]">
+                    <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                        routerLink="/admin/statiscs" routerLinkActive="active">
+                        <i class="icon icon-categories"></i>
+                        <span>{{'Menu.Admin.statiscs' | translate}}</span>
+                    </a>
+                </li>
+                <li class="container__menu-li" *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetTrends]]">
+                    <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                        routerLink="/admin/trends" routerLinkActive="active">
+                        <i class="icon icon-companies_active"></i>
+                        <span>{{'Menu.Admin.trends' | translate}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    <span [ngClass]="{'menu__title':isMenuOpen,'menu__title--close':!isMenuOpen}"
+        *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetMaterials],claimPolicyEnum[claimPolicyEnum.GetRoles],claimPolicyEnum[claimPolicyEnum.GetVenues],claimPolicyEnum[claimPolicyEnum.GetCompanies],claimPolicyEnum[claimPolicyEnum.GetGroupingCategories],claimPolicyEnum[claimPolicyEnum.GetFurnitureUnits],claimPolicyEnum[claimPolicyEnum.GetUsers]]">ADMIN</span>
+    <hr *butorClaims="[claimPolicyEnum[claimPolicyEnum.GetMaterials],claimPolicyEnum[claimPolicyEnum.GetRoles],claimPolicyEnum[claimPolicyEnum.GetVenues],claimPolicyEnum[claimPolicyEnum.GetCompanies],claimPolicyEnum[claimPolicyEnum.GetGroupingCategories],claimPolicyEnum[claimPolicyEnum.GetFurnitureUnits],claimPolicyEnum[claimPolicyEnum.GetUsers]]">
+
+    <div class="container__menu-section">
+        <ul class="container__menu-ul">
+            <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetUsers]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    routerLink="/admin/users" routerLinkActive="active">
+                    <i class="icon icon-users_active"></i>
+                    <span>{{'Menu.Admin.Users' | translate}}</span>
+                </a>
+            </li>
+            <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetRoles]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    routerLink="/admin/roles" routerLinkActive="active">
+                    <i class="icon icon-roles_active"></i>
+                    <span>{{'Menu.Admin.Roles' | translate}}</span>
+                </a>
+            </li>
+            <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetVenues]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    routerLink="/admin/venues" routerLinkActive="active">
+                    <i class="icon icon-venues_active"></i>
+                    <span>{{'Menu.Admin.Venues' | translate}}</span>
+                </a>
+            </li>
+            <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetCompanies]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    routerLink="/admin/companies" routerLinkActive="active">
+                    <i class="icon icon-companies_active"></i>
+                    <span>{{'Menu.Admin.Companies' | translate}}</span>
+                </a>
+            </li>
+            <li class="container__menu-li" id="material" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetMaterials]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    *ngIf="isMenuOpen" routerLinkActive="active" (click)="materialToggleMenu()">
+                    <i class="icon icon-materials_active"></i>
+                    <span>{{'Menu.Admin.Materials.Title' | translate}}</span>
+                    <i [ngClass]="{'icon-blackarrow_black_down':!isMaterialOpenBigMenu || isMaterialMenuSmallOpen,'icon-blackarrow_black_up':isMaterialOpenBigMenu || isMaterialMenuSmallOpen}"
+                        [ngStyle]="{'display':isMenuOpen ? 'block':'none'} " class="icon"
+                        style="font-size: 0.5rem"></i>
+                </a>
+                <ul class="container__menu-ul-open" *ngIf="isMaterialOpenBigMenu">
+                    <li class="container__menu-li-open">
+                        <a class="container__menu-a-open" routerLink="/admin/materials/worktops"
+                            routerLinkActive="active">
+                            <span>{{'Menu.Admin.Materials.WorkTop' | translate}}</span>
+                        </a>
+                    </li>
+                    <li class="container__menu-li-open">
+                        <a class="container__menu-a-open" routerLink="/admin/materials/decorboards"
+                            routerLinkActive="active">
+                            <span>{{'Menu.Admin.Materials.Decorboards' | translate}}</span>
+                        </a>
+                    </li>
+                    <li class="container__menu-li-open">
+                        <a class="container__menu-a-open" routerLink="/admin/materials/foils"
+                            routerLinkActive="active">
+                            <span>{{'Menu.Admin.Materials.Foils' | translate}}</span>
+                        </a>
+                    </li>
+                    <li class="container__menu-li-open">
+                        <a class="container__menu-a-open" routerLink="/admin/materials/accessories"
+                            routerLinkActive="active">
+                            <span>{{'Menu.Admin.Materials.Accessories' | translate}}</span>
+                        </a>
+                    </li>
+                    <li class="container__menu-li-open">
+                        <a class="container__menu-a-open" routerLink="/admin/materials/appliances"
+                            routerLinkActive="active">
+                            <span>{{'Menu.Admin.Materials.Appliances' | translate}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetFurnitureUnits]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    routerLink="/admin/products" routerLinkActive="active">
+                    <i class="icon icon-productsicon_products_active"></i>
+                    <span>{{'Menu.Admin.Products' | translate}}</span>
+                </a>
+            </li>
+            <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetFurnitureUnits]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    routerLink="/admin/wfurnitureunits" routerLinkActive="active">
+                    <i class="icon icon-production_active"></i>
+                    <span>{{'Menu.Admin.WebshopUnits' | translate}}</span>
+                </a>
+            </li>
+            <li class="container__menu-li" *butorClaims="claimPolicyEnum[claimPolicyEnum.GetGroupingCategories]">
+                <a [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}"
+                    routerLink="/admin/categories" routerLinkActive="active">
+                    <i class="icon icon-categoriesicon_categories_active"></i>
+                    <span>{{'Menu.Admin.Categories' | translate}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="language" *ngIf="isMenuOpen">
+            <ng-container *ngFor="let lng of lngAll">
+                <button type="button" (click)="switchLanguage(lng)" [class.activate]="lng === language"
+                    [disabled]="lng === language">{{lng | languagePipe}}
+                </button>
+            </ng-container>
+        </div>
+        <div class="copyright" *ngIf="isMenuOpen">
+            © 2020 Integrated Furniture Production System
+        </div>
+    </footer>
+    <hr>
+    <div class="container__menu-section logout">
+      <ul class="container__menu-ul">
+        <li class="container__menu-li">
+          <a (click)="logout()" *ngIf="!!token"
+            [ngClass]="{'container__menu-a':isMenuOpen,'container__menu-a--close':!isMenuOpen}">
+            <i class="icon icon-log-outicon_log-out_inactive"></i>
+            <span>{{'Menu.Logout' | translate }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+</div>
+</perfect-scrollbar>

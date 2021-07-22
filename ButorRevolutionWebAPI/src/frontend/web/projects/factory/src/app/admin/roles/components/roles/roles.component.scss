@@ -1,0 +1,33 @@
+@import "../../../../../scss/variables";
+
+mat-expansion-panel-header{
+    padding: 0px 18px;
+    font-weight: 600;
+    &:hover{
+        background-color: transparent !important;
+    }
+}
+
+.mat-expansion-panel-header {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    align-items: center !important;
+}
+
+:host /deep/ div.mat-expansion-panel-body{
+    padding: 0;
+}
+
+.sub-role{
+    padding:10px 10px 10px 18px;
+    font-size: 15px;
+    font-weight: normal;
+    cursor: pointer;
+    &:hover {
+        background-color: $color-background;
+    }
+}
+
+.active{
+    background-color: $color-background;
+}

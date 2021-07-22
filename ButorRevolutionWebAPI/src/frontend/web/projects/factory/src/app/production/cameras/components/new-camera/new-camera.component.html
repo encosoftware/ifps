@@ -1,0 +1,32 @@
+<div class="container">
+  <div *ngIf="!id" class="dialog-title">
+    {{'Cameras.newCamera.newTitle' | translate}}
+  </div>
+  <div *ngIf="id" class="dialog-title">
+    {{'Cameras.newCamera.editTitle' | translate}}
+  </div>
+  <form [formGroup]="cameraForm" (ngSubmit)="onSubmit()">
+    <butor-form-field label="{{'Cameras.newCamera.name' | translate}}">
+      <butor-form-input name="name" formControlName="name"></butor-form-input>
+      <div *ngIf="submitted && f.name.errors" class="input-error">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Cameras.newCamera.ipAddress' | translate}}">
+      <butor-form-input name="ipAddress" formControlName="ipAddress"></butor-form-input>
+      <div *ngIf="submitted && f.ipAddress.errors" class="input-error">
+        <div *ngIf="f.ipAddress.errors.required">IPAddress is required</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Cameras.newCamera.type' | translate}}">
+        <butor-form-input name="type" formControlName="type"></butor-form-input>
+      <div *ngIf="submitted && f.type.errors" class="input-error">
+        <div *ngIf="f.type.errors.required">Type is required</div>
+      </div>
+    </butor-form-field>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()">{{'Cameras.newCamera.Cancel' | translate}}</button>
+      <button class="btn btn-primary" mat-button matRipple type="submit">{{'Cameras.newCamera.Save' | translate}}</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,6 @@
+<label class="form__radio-group" [ngClass]="classAddGroup">
+  <input class="form__radio-input" type="radio" [name]="name" [disabled]="disabled" [ngClass]="classAddInput"  (change)="onCheckboxChange($event.target.checked)"[checked]="value"
+  >
+  <span class="form__radio-button"  [ngClass]="classAddbuttonSpan"></span>
+  <span class="form__radio-label"  [ngClass]="classAddLabel">{{label}}</span>
+</label>

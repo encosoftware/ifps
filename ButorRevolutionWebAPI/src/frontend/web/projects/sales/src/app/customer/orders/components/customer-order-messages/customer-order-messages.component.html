@@ -1,0 +1,70 @@
+<div class="order-messages-container">
+    <div class="messages-left-panel">
+        <div class="messages-container-header">
+            <div class="messages-container-header-title">
+                <i class="icon icon-appointments_active"></i>
+                {{'Orders.messages.title' | translate}}
+            </div>
+            <button mat-button class="btn">{{'Orders.messages.download' | translate}}</button>
+        </div>
+
+        <div class="messages" *ngFor="let messageItem of orderMessages.messages" (click)="selectMessage(messageItem)"
+            [class.active]="selectedMessage === messageItem.channelId">
+            <div class="messages_picture">
+                <figure class="u-minus-m">
+                    <img src="https://picsum.photos/id/1013/100/100" class="">
+                </figure>
+            </div>
+            <div class="messages_middle">
+                <div class="messages_middle-title">
+                    <span class="name">{{messageItem.sender.name}}</span>
+                    <span class="message">{{messageItem.messageCount}}</span>
+                </div>
+                <div class="messages_middle-body">{{messageItem.text}}</div>
+                <div class="messages_middle-footer">{{messageItem.sent | date:'MMMM d, HH:mm'}}</div>
+            </div>
+        </div>
+
+        <div class="messages-container-header">
+            <div class="messages-container-header-title">
+                <i class="icon icon-users_active"></i>
+                {{'Orders.messages.assignedPeople' | translate}}
+            </div>
+        </div>
+
+        <div class="assigned_people" *ngFor="let assignedPerson of orderMessages.assignedPeople"
+            (click)="createChannel(assignedPerson, assignedPerson.name)">
+            <img src="https://picsum.photos/id/1013/100/100" class="people-image">
+            <div class="name">{{assignedPerson.name}}</div>
+        </div>
+    </div>
+
+    <div class="messages-right-panel">
+        <div class="messages-right-header">
+            <div class="name">{{selectedChannel}}</div>
+        </div>
+        <perfect-scrollbar #scrollableElement>
+            <div class="messages-right-content" style="height: 30%;">
+                <ng-container *ngFor="let messageItem of currentMessage">
+                    <div *ngIf="messageItem.senderId === userId" class="message-reply-container">
+                        <div class="message-reply-content">
+                            {{messageItem.text}}
+                        </div>
+                        <div class="message-reply-date">{{messageItem.sent| date:'HH:mm'}}</div>
+                    </div>
+
+                    <div *ngIf="messageItem.senderId !== userId" class="message-own-container">
+                        <div class="message-own-content">{{messageItem.text}}
+                        </div>
+                        <div class="message-own-date">{{messageItem.sent| date:'HH:mm'}}</div>
+                    </div>
+                </ng-container>
+            </div>
+        </perfect-scrollbar>
+
+        <div class="messages-right-footer">
+            <input (keydown)="onKeydown($event)" class="new-message-input" placeholder="Type a message"
+                [(ngModel)]="actualMessage" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.flex{
+    display: flex;
+    justify-content: space-between;
+    butor-form-input{
+        width: 50%;
+        padding-right: 0.5rem;
+    }
+    ng-select{
+        width: 50%;
+        padding-left: 0.5rem;
+    }
+}

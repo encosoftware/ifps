@@ -1,0 +1,8 @@
+<!-- <ng-container *cdkPortal> -->
+  <ng-content></ng-content>
+  <div *ngIf="isOpen">
+    <div class="example-box" cdkDrag (cdkDragStarted)="elementDrag()">
+      <ng-container *ngTemplateOutlet="template"></ng-container>
+    </div>
+    </div>
+<!-- </ng-container> -->

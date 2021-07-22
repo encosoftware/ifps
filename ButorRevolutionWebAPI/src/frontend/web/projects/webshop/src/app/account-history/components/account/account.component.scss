@@ -1,0 +1,73 @@
+.account {
+    &-contact {
+        &-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &-column {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+        }
+    }
+
+    &-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0.4rem 0;
+
+        &-box {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            width: 30%;
+        }
+    }
+}
+
+.data {
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    width: 100%;
+}
+
+.right-p {
+    padding-right: 5.3rem;
+
+}
+
+.btn-account{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+:host /deep/ .input-white {
+     background-color: white !important;
+}
+
+.margin-r{
+    margin-right: 1rem;
+}
+
+:host /deep/ .ng-select {
+    .ng-select-container {
+        background-color: white;
+        .ng-value-container {
+            color: black;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.3rem;
+        }
+    }
+
+    .ng-dropdown-panel {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.3rem;
+        background-color: white;
+    }
+}

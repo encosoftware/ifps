@@ -1,0 +1,81 @@
+:host /deep/ .mat-tab-group {
+    padding: 0;
+    border-radius: 5px;
+    box-shadow: 0 0.3rem 1.4rem rgba(184, 179, 255, 0.24);
+    max-height: 74vh !important;
+  }
+
+  :host /deep/ .mat-tab-header{
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #E5E5E5 !important;
+    padding: 2rem 2.5rem;
+  }
+
+  :host /deep/ .mat-tab-label-content {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #BFBFBF;
+    opacity: 1;
+  }
+
+  :host /deep/ .mat-tab-label-active {
+    .mat-tab-label {
+      border: none !important;
+    }
+  
+    .mat-tab-label-content {
+      color: #4D41FF;
+      opacity: 1 !important;
+    }
+  }
+
+  :host /deep/ .mat-tab-label.mat-tab-disabled{
+        margin-left: auto !important;
+        padding-right: 0 !important;
+        button{
+          margin-left: 2rem !important;
+        }
+  }
+
+  :host /deep/ .mat-tab-body-wrapper {
+    box-shadow: none;
+    border-radius: 0;
+    
+  }
+
+  :host /deep/ .layout-body-bread{
+    margin-top: 0 !important; 
+  }
+
+  .offer-title-container{
+    display: flex;
+    .offer-title{
+      font-size: 1.8rem;
+      font-weight: 600;
+      padding-right: 4rem;
+      text-transform: uppercase;
+    }
+    .saved-text{
+      color: #B8B3FF;
+      font-size: 1.5rem;
+    }
+  }
+
+  .preview-dialog-container .mat-dialog-container {
+    padding: 0 !important;
+}
+
+.layout-body-bread {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-top: 3rem;
+  height: 100%;
+}
+
+:host /deep/ .panel-bottom{
+  max-height: 74vh !important;
+}
+

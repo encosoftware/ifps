@@ -1,0 +1,100 @@
+@import "../../../../../scss/variables";
+
+i{
+    padding-right: 10px;
+    color: #4D41FF;
+    font-size: 23px !important;
+}
+
+.disabled {
+  color: #D6D6D6;
+}
+
+.default {
+  color: $color-icons;
+}
+
+.declined {
+  color: $declined-icon-color;
+}
+
+.approved {
+  color: $approved-icon-color;
+}
+
+.datepicker-input{
+        border-radius: 6px;
+        margin-bottom: 0;
+        border: 1px solid #d6d6d6;
+        background-color: #f8f8f8;
+        width: 100%;
+        font-family: "Poppins", sans-serif;
+}
+
+
+
+.order-facilities-item-container{
+    height: 18rem;
+    background-color: white;
+    box-shadow: 0 0.3rem 1.4rem rgba(184, 179, 255, 0.24);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //cursor: pointer;
+  }
+  
+  .order-facilities-item-container:not(:nth-child(2)){
+    margin-top: 2rem;
+  }
+  
+  .order-facilities-container{
+    width: 100%;
+  }
+  
+  .order-facilities-name{
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  .order-facilities-message{
+    font-size: 1.3rem;
+    font-weight: normal;
+    font-style: italic;
+    color: #D6D6D6;
+  }
+  
+  i{
+    padding-right: 4vw;
+    color: #D6D6D6;
+    font-size: 9rem !important;
+  }
+  
+  .name-container{
+    display: flex;
+    align-items: center;
+  }
+  
+  .forms-title{
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  :host /deep/ .mat-tab-label-content {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: black;
+    opacity: 1;
+  }
+  
+  :host /deep/ .mat-tab-label-active {
+    .mat-tab-label {
+      border: none !important;
+    }
+  
+    .mat-tab-label-content {
+      color: #4D41FF;
+      opacity: 1 !important;
+    }
+  }
+  

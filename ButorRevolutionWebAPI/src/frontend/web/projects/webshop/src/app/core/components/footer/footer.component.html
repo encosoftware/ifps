@@ -1,0 +1,13 @@
+<div class="footer-content">
+  <div class="footer-content-columns">
+    <div class="footer-columns">
+      <span class="footer-list-header">Adatvédelmi nyilatkozat</span>
+    </div>
+    <div class="footer-columns">
+      <span class="footer-list-header">Általános szerződési feltételek</span>
+    </div>
+    <div *ngIf="loggedIn" class="footer-columns">
+     <a class="footer-list-element-link logout"  (click)="logout()">{{'Webshop.Footer.logout' | translate}}</a>
+    </div>
+  </div>
+</div>

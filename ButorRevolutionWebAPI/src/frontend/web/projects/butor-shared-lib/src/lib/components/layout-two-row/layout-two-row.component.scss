@@ -1,0 +1,34 @@
+@import "../../src/scss/variables";
+
+.panel-top {
+    width: 100%;
+    height: 20%;
+    display: initial;
+}
+
+.panel-bottom {
+    width: 100%;
+    height: 79%;
+    display: initial;
+}
+
+.layout-bread {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+.layout-body-bread {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+    height: 100%;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

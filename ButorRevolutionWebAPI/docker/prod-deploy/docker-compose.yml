@@ -1,0 +1,61 @@
+version: '3.7'
+
+services:
+
+  ifps.sqlserver:
+    image: registry.encosoft-dev.hu/butorrevolution/sqlserver:latest
+    container_name: ifps.sqlserver
+    networks:
+      - ifps-network
+
+  ifps.sales.api:
+    image: registry.encosoft-dev.hu/butorrevolution/sales-api:latest
+    container_name: ifps.sales.api
+    depends_on:
+      - ifps.sqlserver
+    networks:
+      - ifps-network
+      
+  ifps.sales.ui:
+    container_name: ifps.sales.ui
+    image: registry.encosoft-dev.hu/butorrevolution/sales-ui:latest
+    depends_on:
+      - ifps.sales.api
+    networks:
+      - ifps-network
+      
+  ifps.webshop.ui:
+    container_name: ifps.webshop.ui
+    image: registry.encosoft-dev.hu/butorrevolution/webshop-ui:latest
+    depends_on:
+      - ifps.sales.api
+    networks:
+      - ifps-network
+
+  ifps.factory.api:
+    image: registry.encosoft-dev.hu/butorrevolution/factory-api:latest
+    container_name: ifps.factory.api
+    depends_on:
+      - ifps.sqlserver
+    networks:
+      - ifps-network
+      
+  ifps.factory.ui:
+    container_name: ifps.factory.ui
+    image: registry.encosoft-dev.hu/butorrevolution/factory-ui:latest
+    depends_on:
+      - ifps.factory.api
+    networks:
+      - ifps-network
+
+  ifps.integration.api:
+    image: registry.encosoft-dev.hu/butorrevolution/integration-api:latest
+    container_name: ifps.integration.api
+    depends_on:
+      - ifps.sqlserver
+    networks:
+      - ifps-network
+
+
+networks:
+  ifps-network:

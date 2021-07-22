@@ -1,0 +1,15 @@
+:host /deep/ .table-standard tbody tr{
+    cursor: default;
+}
+
+:host /deep/ .table-standard thead tr th:nth-child(6) {
+    .form-group.filter .form-label {
+        white-space: normal;
+    }
+}
+
+:host /deep/ .table-standard thead tr th:nth-child(7) {
+    .form-group.filter .form-label {
+        white-space: normal;
+    }
+}

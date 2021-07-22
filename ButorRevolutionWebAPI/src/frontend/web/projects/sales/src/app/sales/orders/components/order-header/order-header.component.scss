@@ -1,0 +1,47 @@
+:host ::ng-deep .mat-tab-label-content {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: black !important;
+    opacity: 1;
+}
+
+:host ::ng-deep .mat-tab-label-active {
+    .mat-tab-label {
+      border: none !important;
+    }
+  
+    .mat-tab-label-content {
+      color: #4D41FF !important;
+      opacity: 1 !important;
+    }
+}
+
+.order-status {
+  font-size: 10px;
+  color: #4D41FF;
+  border: 0.5px solid #4D41FF;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+
+:host ::ng-deep .table-standard thead tr th {
+  padding-bottom: 0px;
+  padding-left: 1.4rem;
+}
+
+:host ::ng-deep .table-standard tbody td {
+  padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+  line-height: 3rem;
+}
+
+:host /deep/ .table-standard{
+  tbody{
+      tr{
+          &:hover td {
+              background-color: white;
+              cursor: default;
+          }
+      }
+  }
+}

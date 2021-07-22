@@ -1,0 +1,145 @@
+<ng-container *ngIf="!isLoading">
+  <h1 class="basket-main-name">Kosár</h1>
+  <div class="basket-container-basket">
+
+    <div class="basket">
+      <div class="basket-list">
+        <div class="basket-list-list">
+
+          <table cdk-table [dataSource]="basketDetails.orderedFurnitureUnits"
+            class="table-standard table-standard-no-bc">
+
+            <ng-container cdkColumnDef="product">
+              <th cdk-header-cell *cdkHeaderCellDef>
+                Termék
+              </th>
+              <td cdk-cell *cdkCellDef="let row">
+                <div class="basket-list-list-product">
+                  <img class="basket-list-list-product-img"
+                    [webshopImage]="row.furnitureUnitListDto.imageThumbnail" alt="">
+                  <div class="basket-list-list-product-description">
+                    <span class="basket-list-list-product-description-span">
+                      {{row.furnitureUnitListDto.code}}
+                    </span>
+                    <p class="basket-list-list-product-description-p">
+                      {{row.furnitureUnitListDto.description}}
+                    </p>
+                    <p class="basket-list-list-product-description-p">
+                      {{row.furnitureUnitListDto.depth}} x {{row.furnitureUnitListDto.width}} x
+                      {{row.furnitureUnitListDto.height}}
+                    </p>
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="Unitprice">
+              <th cdk-header-cell *cdkHeaderCellDef>
+                Egység ár
+              </th>
+              <td cdk-cell *cdkCellDef="let row">
+                <div class="left-price">
+                  {{row.furnitureUnitListDto.sellPrice.value}} {{row.furnitureUnitListDto.sellPrice.currency}}
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+              <th cdk-header-cell *cdkHeaderCellDef>
+                Mennyiség
+              </th>
+              <td cdk-cell *cdkCellDef="let row;let i = index">
+                <butor-form-input [classAddInput]="'input-white'" [classAddInputArrow]="'input-white'"
+                  [(ngModel)]="basketDetails.orderedFurnitureUnits[i].quantity" (ngModelChange)="update($event,i)"
+                  name="quantity" type="number" webshop="true"></butor-form-input>
+              </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="total">
+              <th cdk-header-cell *cdkHeaderCellDef>
+                Összeg
+              </th>
+              <td cdk-cell *cdkCellDef="let row">
+                <div class="left-price">
+                  {{row.furnitureUnitListDto.sellPrice.value * row.quantity}}
+                  {{row.furnitureUnitListDto.sellPrice.currency}}
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="delete">
+              <th cdk-header-cell *cdkHeaderCellDef>
+
+              </th>
+              <td cdk-cell *cdkCellDef="let row;let i = index">
+                <button class="btn danger-color" mat-button matRipple type="button"
+                  (click)="delete(row.furnitureUnitId)"><i class="icon icon-delete"></i></button>
+              </td>
+            </ng-container>
+
+
+            <tr cdk-header-row *cdkHeaderRowDef="['product', 'Unitprice', 'quantity', 'total', 'delete'];sticky:true;">
+            </tr>
+
+            <tr cdk-row
+              *cdkRowDef="let row;let i = index; columns: ['product', 'Unitprice', 'quantity', 'total', 'delete']; ">
+            </tr>
+          </table>
+          <button mat-button class="btn btn-border" type="button" [routerLink]="['/']">Vásárlás folytatása</button>
+        </div>
+        <div class="basket-list-total">
+          <h1 class="basket-list-total-header">Összeg</h1>
+          <div class="basket-list-total-cost">
+            <div class="basket-list-total-Subtotal">
+              <span>Részösszeg</span>
+              <span>{{basketDetails.subTotal.value}} {{basketDetails.subTotal.currency}}</span>
+            </div>
+            <div class="basket-list-total-delivery" *ngIf="select">
+              <span>Szállítási költség</span>
+              <span>{{select.price.value}} {{select.price.currency}}</span>
+            </div>
+            <hr>
+            <div class="basket-list-total-totalpay">
+              <span>Végső összeg</span>
+              <span>{{select ? (basketDetails.subTotal.value + select.price.value) : basketDetails.subTotal.value}}
+                {{basketDetails.subTotal.currency}}</span>
+            </div>
+            <button class="btn btn-primary" mat-button matRipple type="button" [routerLink]="['/purchase']"
+              *ngIf="loggedIn" (click)="updateCheckout()">Tovább</button>
+            <button class="btn btn-primary" mat-button matRipple type="button" [routerLink]="['/checkout']"
+              *ngIf="!loggedIn" (click)="updateCheckout()">Tovább</button>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="basket-delivery">
+        <h2 class="basket-delivery-title">Szállítási költség számítása</h2>
+        <p class="basket-delivery-p">Válassz a különböző szállítási módok közül:
+        </p>
+        <div class="basket-delivery-boxs">
+          <a class="basket-delivery-box" (click)="shippingChoose()" [class.choose]="choose">
+            <div class="basket-delivery-box-header">
+              <h3>Általános szállítás</h3>
+              <i class="icon icon-check_circle"></i>
+            </div>
+          </a>
+          <a class="basket-delivery-box" (click)="shippingChoose()" [class.choose]="!choose">
+            <div class="basket-delivery-box-header">
+              <h3>Bolti átvétel</h3>
+              <i class="icon icon-check_circle"></i>
+            </div>
+            <p class="basket-delivery-box-p">Fizess online és vedd át a boltban.</p>
+          </a>
+        </div>
+        <butor-form-field label="Távolság">
+          <div class="postal">
+            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="shipping" bindLabel="description"
+              bindValue="id" [clearable]="false" name="shipping" [(ngModel)]="selectedShipping" [disabled]="!choose" (change)="addShippingPrice()">
+            </ng-select>
+          </div>
+        </butor-form-field>
+      </div>
+    </div>
+  </div>
+</ng-container>

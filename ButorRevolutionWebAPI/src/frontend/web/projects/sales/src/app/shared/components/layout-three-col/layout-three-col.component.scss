@@ -1,0 +1,40 @@
+@import "../../../../scss/variables";
+
+.panel-1 {
+    width: 31%;
+    margin-right: 3.5%;
+}
+
+.panel-2 {
+    width: 31%;
+    height: 100%;
+
+}
+
+.panel-middle{
+    width: 31%;
+    margin-right: 3.5%;
+    height: 100%;
+}
+
+.layout-bread {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100vh;
+   
+}
+
+.layout-body-bread {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    margin-top: 3rem;
+    padding-bottom: $layout-body-bread-padding-btm;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

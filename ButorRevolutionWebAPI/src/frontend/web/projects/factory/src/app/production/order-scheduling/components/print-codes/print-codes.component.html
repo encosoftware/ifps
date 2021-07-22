@@ -1,0 +1,47 @@
+<button style="margin-bottom: 1rem;" mat-button matRipple class="btn btn-primary" (click)="printPdf()">
+  {{'OrderScheduling.printCodes.print' | translate}}
+</button>
+<mat-dialog-content>
+  <div class="d-flex" id="ccc">
+    <div class="flex-fill">
+      <div class="item-container" *ngFor="let item of cfcInformation | evenodd:'odd'">
+        <div class="component-code">{{ item.furnitureComponentCode }}</div>
+        <div class="row">
+          <div class="col">
+            <img [factoryImage]="item ? {
+              containerName: item.qrCode.containerName,
+              fileName: item.qrCode.fileName
+          }: undefined" width="175" height="175">
+          </div>
+          <div class="col">
+            <div class="foil-label">{{ item.workingNumber }}</div>
+            <div>{{'OrderScheduling.printCodes.Top' | translate}}<span class="foil-label">{{ item.topFoilCode }}</span></div>
+            <div>{{'OrderScheduling.printCodes.Bottom' | translate}}<span class="foil-label">{{ item.bottomFoilCode }}</span></div>
+            <div>{{'OrderScheduling.printCodes.Right' | translate}}<span class="foil-label">{{ item.rightFoilCode }}</span></div>
+            <div>{{'OrderScheduling.printCodes.Left' | translate}}<span class="foil-label">{{ item.leftFoilCode }}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-fill">
+      <div class="item-container" *ngFor="let item of cfcInformation | evenodd:'even'">
+        <div class="component-code">{{ item.furnitureComponentCode }}</div>
+        <div class="row">
+          <div class="col">
+            <img [factoryImage]="item ? {
+              containerName: item.qrCode.containerName,
+              fileName: item.qrCode.fileName
+          }: undefined" width="175" height="175">
+          </div>
+          <div class="col">
+            <div class="foil-label">{{ item.workingNumber }}</div>
+            <div>{{'OrderScheduling.printCodes.Top' | translate}}<span class="foil-label">{{ item.topFoilCode }}</span></div>
+            <div>{{'OrderScheduling.printCodes.Bottom' | translate}}<span class="foil-label">{{ item.bottomFoilCode }}</span></div>
+            <div>{{'OrderScheduling.printCodes.Right' | translate}}<span class="foil-label">{{ item.rightFoilCode }}</span></div>
+            <div>{{'OrderScheduling.printCodes.Left' | translate}}<span class="foil-label">{{ item.leftFoilCode }}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

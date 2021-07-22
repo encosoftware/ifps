@@ -1,0 +1,15 @@
+<button type="button" [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()" class="btn btn-hamburger">
+    <div class="btn-point"></div>
+    <div class="btn-point"></div>
+    <div class="btn-point"></div>
+</button>
+<mat-menu #menu="matMenu" class="hamburger-menu-list">
+    <div *ngFor="let item of model;let i = index;" class="hamburger-menu-list-item" (click)="clickHandler(item)" id="item{{i}}">
+        <div style="display: flex">
+            <i [style.color]="item.color" class={{item.icon}}></i>
+            <button [style.color]="item.color" [disabled]="item.isDisabled">
+                {{ item.text }}
+            </button>
+        </div>
+    </div>
+</mat-menu>

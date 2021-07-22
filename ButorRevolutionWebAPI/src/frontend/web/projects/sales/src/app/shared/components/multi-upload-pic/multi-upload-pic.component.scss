@@ -1,0 +1,63 @@
+@import "../../../../scss/variables";
+
+.grid {
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    grid-row-gap: 9px;
+    justify-items: center;
+
+}
+
+.uploade {
+
+    border-radius: 5px;
+    display: flex;
+    position: relative;
+    &-caption{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        border-radius: 50%;
+        border: 1px solid red;
+        width: 3rem;
+        height: 3rem;
+        background-color: white;
+       
+    }
+    &-img {
+        border-radius: 5px;
+        width: 8.5rem;
+        height: 8.5rem;
+        object-position: center;
+        object-fit: cover;
+    }
+
+    &-label {
+        padding-top: 2rem;
+        padding-left: 1.3rem;
+
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: $color-btn-primary;
+        width: 100%;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+
+
+        &-input {
+            display: flex;
+            align-items: center;
+
+            i {
+                margin-right: 0.9rem;
+                font-size: 1.8rem;
+            }
+        }
+    }
+}

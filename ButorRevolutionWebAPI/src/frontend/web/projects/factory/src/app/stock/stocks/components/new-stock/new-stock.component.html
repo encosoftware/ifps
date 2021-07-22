@@ -1,0 +1,59 @@
+<div class="container">
+  <h3>{{title}}</h3>
+  <form [formGroup]="newStockForm">
+    <butor-form-field label="{{'Storages.name' | translate}}">
+      <butor-form-input name="name" formControlName="name"></butor-form-input>
+      <div *ngIf="submitted && f.name.errors" class="error">
+        <div *ngIf="f.name.errors.required">{{'Storages.nameReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+    <butor-form-field label="{{'Storages.address' | translate}}">
+    </butor-form-field>
+    <div class="row">
+      <div class="col-4">
+        <butor-form-field>
+          <ng-select name="countryId" formControlName="country" [items]="countries" highlightColor="#9575cd"
+            highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false" placeholder="Country">
+          </ng-select>
+          <div *ngIf="submitted && f.country.errors" class="error">
+            <div *ngIf="f.country.errors.required">{{'Storages.countReq' | translate}}</div>
+          </div>
+        </butor-form-field>
+      </div>
+      <div class="col-3">
+        <butor-form-field>
+          <butor-form-input name="postCode" formControlName="postCode" placeholder="Postcode"></butor-form-input>
+          <div *ngIf="submitted && f.postCode.errors" class="error">
+            <div *ngIf="f.postCode.errors.required">{{'Storages.postReq' | translate}}</div>
+          </div>
+        </butor-form-field>
+      </div>
+      <div class="col-5">
+        <butor-form-field>
+          <butor-form-input name="city" formControlName="city" placeholder="City">
+          </butor-form-input>
+          <div *ngIf="submitted && f.city.errors" class="error">
+            <div *ngIf="f.city.errors.required">{{'Storages.cityReq' | translate}}</div>
+          </div>
+        </butor-form-field>
+      </div>
+      <div class="col-12">
+        <butor-form-input name="address" formControlName="address" placeholder="Address">
+        </butor-form-input>
+        <div *ngIf="submitted && f.address.errors" class="error">
+          <div *ngIf="f.address.errors.required">{{'Storages.addReq' | translate}}</div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-end u-margin-top">
+        <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+          (click)="cancel()">{{'Storages.cancel' | translate}}</button>
+        <button class="btn btn-primary" mat-button matRipple
+          (click)="addNewStock()">{{'Storages.save' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

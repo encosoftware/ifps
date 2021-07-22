@@ -1,0 +1,1303 @@
+{
+    "breadcrumb": {
+        "back": "Vissza"
+    },
+    "errorM": {
+        "noRecord": "Nem található rekord"
+    },
+    "snackbar": {
+        "saved": "Mentve",
+        "deleted": "Törölve",
+        "error": "Váratlan hiba történt!",
+        "success": "Sikeres művelet",
+        "basicInfoInvalid": "Általános információ űrlap hibás",
+        "workingInfoInvalid": "Munkainformációs űrlap hibás",
+        "claimsInvalid": "Jogosultságok űrlap hibás!",
+        "diffDays": "Többnapos esemény nem megengedett",
+        "wrongStatus": "Esemény létrehozása a rendelés státusza miatt nem lehetséges!",
+        "notExpand": "Üres verziózott dokumentum csoportok kinyitás nem lehetséges!",
+        "userCantDelete": "Felhasnáló nem törölhető, mert egy éppen folyamatban lévő megrendelés tartozik hozzá!"
+    },
+    "profile": {
+        "name": "Név",
+        "nameReq": "Név megadása kötelező",
+        "language": "Nyelv",
+        "languageReq": "Nyelv megadása kötelező",
+        "email": "Email",
+        "emailReq": "Email megadása kötelező",
+        "password": "Jelszó megváltoztatása",
+        "phone": "Telefonszám",
+        "phoneReq": "Telefonszám megadása kötelező",
+        "cancel": "Mégsem",
+        "save": "Mentés",
+        "address": "Cím",
+        "addressReq": "Cím megadása kötelező",
+        "city": "Város",
+        "cityReq": "Város kötelező",
+        "postcode": "Ir. szám",
+        "postcodeReq": "Irányítószám megadása kötelező",
+        "country": "Ország",
+        "countryReq": "Ország megadása kötelező",
+        "emailFormat": "Email formátuma hibás"
+    },
+    "email": {
+        "success": "Email elküldve!"
+    },
+    "login": {
+        "title": "Bejelentkezés",
+        "Email": "Email",
+        "Password": "Jelszó",
+        "forget": "Elfelejtetted a jelszavadat?",
+        "login": "Bejelentkezés",
+        "error": {
+            "wrongEmailPass": "Hibás email cím vagy jelszó!",
+            "name": "Név megadása kötelező",
+            "emailReq": "Email megadása kötelező",
+            "emailForm": "Email formátuma nem megfelelő",
+            "emailExist": "Email cím már létezik",
+            "password": "Jelszó megadása kötelező. Legalább 6 karakter, kis betűt, nagy betűt és számot tartalmaznia kell!",
+            "passwordMatch": "A megadott jelszavak nem egyeznek meg",
+            "reset": "Visszaállítja jelszavát?",
+            "forget": "Kérem adja meg email címét, amivel fiókját regisztrálta. Emailt küldünk Önnek, amivel elvégezheti a fiókjához tartozó jelszó visszaállítását."
+        },
+        "send": "Küldés"
+    },
+    "register": {
+        "title": "Regisztráció",
+        "name": "Név",
+        "Email": "Email",
+        "Password": "Jelszó",
+        "register": "Regisztráció"
+    },
+    "newPassword": {
+        "current": "Jelenlegi jelszó",
+        "new": "Új jelszó",
+        "again": "Új jelszó megismétlése",
+        "errorMessages": {
+            "required": "Jelszó megadása kötelező",
+            "confirmation": "A megerősítő jelszó nem egyezik"
+        },
+        "buttons": {
+            "cancel": "Mégsem",
+            "save": "Mentés"
+        }
+    },
+    "Menu": {
+        "Sales": {
+            "title": "Értékesítés",
+            "Dashboard": "Üzenőfal",
+            "Appointments": "Időpontok",
+            "MeetingRooms": "Tárgyalók",
+            "Orders": "Rendelések"
+        },
+        "Admin": {
+            "Users": "Felhasználók",
+            "Roles": "Szerepkörök",
+            "Venues": "Helyszínek",
+            "Companies": "Cégek",
+            "WebshopUnits": "Webshop bútorelemek",
+            "statiscs": "Statisztikák",
+            "Materials": {
+                "Title": "Anyagok",
+                "WorkTop": "Munkalap",
+                "Decorboards": "Dekorlapok",
+                "Foils": "Fóliák",
+                "Accessories": "Kiegészítők",
+                "Appliances": "Készülékek"
+            },
+            "Products": "Termékek",
+            "Categories": "Kategóriák",
+            "trends": "Trendek"
+        },
+        "Logout": "Kijelentkezés"
+    },
+    "Users": {
+        "title": "Felhasználók",
+        "buttons": {
+            "AddNewUser": "Új felhasználó hozzáadása",
+            "ClearFilter": "Szűrők törlése"
+        },
+        "FilterLabel": {
+            "Name": "Név",
+            "Role": "Szerepkör",
+            "Status": "Státusz",
+            "Company": "Cég",
+            "Email": "Email",
+            "Phone": "Telefonszám",
+            "AddedOn": "Hozáadva"
+        },
+        "NewUser": {
+            "title": "ÚJ FELHASZNÁLÓ",
+            "labels": {
+                "Name": "Név",
+                "Email": "Email",
+                "PhoneNumber": "Telefonszám",
+                "Role": "Szerepkör"
+            },
+            "Placeholders": {
+                "Name": "Írja ide a nevet",
+                "Email": "pelda@email.hu",
+                "PhoneNumber": "+3612223333",
+                "Role": "Kattintson a Szerkesztés gombra"
+            },
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Add": "Hozzáadás"
+            }
+        },
+        "EditUser": {
+            "title": "Felhasználó szerkesztése",
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Delete": "Törlés",
+                "Deactivate": "Deaktiválás",
+                "Activate": "Aktiválás",
+                "AddNewOrders": "Új megrendelés hozzáadása",
+                "Save": "Mentés"
+            },
+            "PanelHeader": {
+                "BasicInfo": "Alapadatok",
+                "Claims": "Jogosultságok",
+                "DaysOff": "Szabadnapok",
+                "Notification": "Értesítések",
+                "WorkingInfo": "Munkainformáció"
+            },
+            "updatePicture": {
+                "title": "Profilkép szerkesztése",
+                "upload": "Fájl feltöltése"
+            },
+            "BasicInfo": {
+                "labels": {
+                    "Name": "Név",
+                    "Roles": "Szerepkörök",
+                    "Company": "Cég",
+                    "PhoneNumber": "Telefonszám",
+                    "Email": "Email",
+                    "Address": "Lakcím",
+                    "Language": "Nyelv"
+                },
+                "placeholder": {
+                    "Name": "Írja ide a nevet",
+                    "Roles": "Kattintson a Szerkesztés gombra",
+                    "Company": "Válasszon",
+                    "PhoneNumber": "+3612223333",
+                    "Email": "pelda@email.hu",
+                    "Address": "Ország, Irányító, Város, Cím",
+                    "Language": "Válasszon"
+                }
+            },
+            "WorkingInfo": {
+                "labels": {
+                    "UserOffice": "Irodák",
+                    "Supervisors": "Felettesek",
+                    "Supervisees": "Ellenőrzöttek",
+                    "Groups": "Csoportok",
+                    "Discount": "Adható árengedmény",
+                    "WorkingHors": "Munkaórák"
+                },
+                "buttons": {
+                    "addNew": "Új hozzáadása"
+                }
+            },
+            "DaysOff": {
+                "buttons": {
+                    "Delete": "Törlés",
+                    "SickDay": "Betegszabadság",
+                    "DayOff": "Szabadnap"
+                },
+                "labels": {
+                    "Monday": "H",
+                    "Tuesday": "K",
+                    "Wednesday": "Sze",
+                    "Thursday": "Cs",
+                    "Friday": "P",
+                    "Saturday": "Szo",
+                    "Sunday": "V"
+                }
+            },
+            "Notification": {
+                "labels": {
+                    "ReciveNot": "Értesítés módja",
+                    "NotifAbout": "Értesítés témái"
+                }
+            }
+        }
+    },
+    "Statistics": {
+        "title": "Statisztikák",
+        "FilterLabel": {
+            "Name": "Név",
+            "numberOfOffers": "Ajánlatok",
+            "numberOfContracts": "Szerződések",
+            "efficiency": "Aláírási Hatékonyság",
+            "total": "Aláírt szerződések összbevétele",
+            "Person": "Személy",
+            "AddedOn": "Mettől",
+            "Addedto": "Meddig"
+        }
+    },
+    "Roles": {
+        "title": "Felhasználói Szerepkörök",
+        "buttons": {
+            "SaveAs": "Mentés másként",
+            "Save": "Mentés"
+        },
+        "PanelHeader": {
+            "Roles": "Szerepkörök",
+            "Claims": "Jogosultságok"
+        },
+        "SaveAs": {
+            "title": "Szerepkör mentése másként",
+            "category": "Kategória",
+            "name": "Név",
+            "cancel": "Mégsem"
+        }
+    },
+    "Venues": {
+        "title": "HELYSZÍNEK",
+        "buttons": {
+            "AddNewVenues": "Új helyszín hozzáadása",
+            "ClearFilter": "Szűrők törlése",
+            "Edit": "Szerkesztés",
+            "Delete": "Törlés"
+        },
+        "FilterLabel": {
+            "Name": "Név",
+            "Rooms": "Tárgyalók",
+            "Address": "Cím",
+            "Phone": "Telefonszám",
+            "Email": "EMAIL"
+        },
+        "NewVenues": {
+            "title": "Új helyszín",
+            "labels": {
+                "Name": "Név",
+                "PhoneNumber": "Telefonszám",
+                "Email": "Email",
+                "Address": "Cím"
+            },
+            "Placeholders": {
+                "Country": "Ország",
+                "Postcode": "Ir. szám",
+                "City": "Település",
+                "Address": "Cím"
+            },
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Add": "Hozzáadás",
+                "Edit": "Szerkesztés",
+                "Delete": "Törlés"
+            }
+        },
+        "EditVenue": {
+            "title": "Helyszín szerkesztése",
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Delete": "Törlés",
+                "Deactivate": "Deaktiválás",
+                "Activate": "Aktiválás",
+                "Save": "Mentés",
+                "addNew": "Új hozzáadása"
+            },
+            "PanelHeader": {
+                "BasicInfo": "Alapadatok",
+                "MeetingRooms": "Tárgyalók"
+            },
+            "basicInfo": {
+                "labels": {
+                    "Name": "Név",
+                    "PhoneNumber": "Telefonszám",
+                    "Email": "Email",
+                    "Address": "Cím",
+                    "OpeningHours": "Nyitvatartás",
+                    "AddNew": "Új hozzáadása"
+                }
+            },
+            "MeetingRooms": {
+                "buttons": {
+                    "AddNewRoom": "Új tárgyaló hozzáadása",
+                    "Edit": "Szerkesztés",
+                    "Delete": "Törlés"
+                },
+                "FilterLabel": {
+                    "Name": "Név",
+                    "location": "Helyszín"
+                }
+            },
+            "NewMeetingRoom": {
+                "title": "ÚJ TÁRGYALÓ",
+                "editTitle": "TÁRGYALÓ SZERKESZTÉSE",
+                "Name": "Név",
+                "Location": "Helyszín",
+                "buttons": {
+                    "cancel": "Mégsem",
+                    "add": "Hozzáad",
+                    "save": "Mentés"
+                }
+            }
+        }
+    },
+    "Companies": {
+        "title": "CÉGEK",
+        "buttons": {
+            "AddNewCompany": "Új cég hozzáadása",
+            "ClearFilter": "Szűrők törlése",
+            "Edit": "Szerkesztés",
+            "Delete": "Törlés"
+        },
+        "FilterLabel": {
+            "Name": "Név",
+            "Type": "Cég típusa",
+            "ContactPerson": "Kapcsolattartó",
+            "Email": "Email",
+            "Phone": "Telefonszám",
+            "hq": "Központ"
+        },
+        "NewCompany": {
+            "title": "ÚJ CÉG",
+            "labels": {
+                "Name": "Név",
+                "Type": "Típus",
+                "Taxnumber": "Adószám",
+                "Registernumber": "Regisztrációs szám",
+                "hq": "Központ"
+            },
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Add": "Hozzáadás"
+            }
+        },
+        "EditCompany": {
+            "title": "CÉG SZERKESZTÉSE",
+            "PanelHeader": {
+                "BasicInfo": "Alap adatok",
+                "Employees": "Alkalmazottak",
+                "Groups": "Csoportok"
+            },
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Save": "Mentés"
+            },
+            "basicInfo": {
+                "buttons": {
+                    "addNew": "Új hozzáadása"
+                },
+                "labels": {
+                    "Name": "Név",
+                    "Type": "Cég típusa",
+                    "Taxnumber": "Adószám",
+                    "Registernumber": "Regisztrációs szám",
+                    "ContactPerson": "Kapcsolattartó",
+                    "Email": "Email",
+                    "Phone": "Telefonszám",
+                    "hq": "Központ",
+                    "OpeningHours": "Nyitvatartás"
+                },
+                "placeholder": {
+                    "Name": "Írja ide a nevet",
+                    "Type": "Válasszon",
+                    "Contactperson": "Kezdje el írni a nevet...",
+                    "PhoneNumber": "+3612223333",
+                    "Email": "pelda@email.hu",
+                    "Address": "Ország, Irányító, Város, Cím"
+                }
+            },
+            "Employees": {
+                "FilterLabel": {
+                    "Name": "Név",
+                    "Role": "Szerepkör",
+                    "Email": "Email",
+                    "Phone": "Telefonszám",
+                    "WAGE": "Munkabér"
+                },
+                "Groups": {
+                    "FilterLabel": {
+                        "Name": "Név",
+                        "Members": "Tagok",
+                        "Type": "Típus"
+                    },
+                    "buttons": {
+                        "addNewGroup": "Új csoport hozzáadása",
+                        "deleteGroup": "Törlés"
+                    },
+                    "NewGroups": {
+                        "MainTitle": "Új csoport",
+                        "buttons": {
+                            "Add": "Hozzáadás",
+                            "Cancel": "Mégsem"
+                        },
+                        "labels": {
+                            "UserTeamType": "Csoport típusa",
+                            "Name": "Név",
+                            "Users": "Felhasználók"
+                        },
+                        "Placeholder": {
+                            "Name": "A csoport neve",
+                            "Users": "Kezdje el írni a nevet..."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Materials": {
+        "WorkTop": {
+            "title": "Munkalapok",
+            "FilterLabel": {
+                "CODE": "Kód",
+                "DESCRIPTION": "Leírás",
+                "CATEGORY": "Kategória",
+                "Size": "Méret (h/sz/v)",
+                "Transaction price": "Eladási  ár (%)",
+                "Purchasing price": "Beszerzései  ár"
+            },
+            "buttons": {
+                "ImportFile": "Beolvasás fájlból",
+                "AddnewWorkTop": "Új munkalap hozzáadása",
+                "ClearFilter": "Szűrők törlése"
+            },
+            "errorM": {
+                "noRecord": "Nem található rekord"
+            },
+            "newWorktop": {
+                "title": "Új Munkalap",
+                "editTitle": "Munkalap szerkesztése",
+                "buttons": {
+                    "Cancel": "Mégsem",
+                    "Save": "Mentés"
+                },
+                "labels": {
+                    "CODE": "Kód",
+                    "DESCRIPTION": "Leírás",
+                    "CATEGORY": "Kategória",
+                    "Picture": "Kép",
+                    "TransactionPrice": "Eladási ár (%)",
+                    "PurchasingPrice": "Beszerzései ár",
+                    "Fiberheading": "Szálirány",
+                    "Length": "Hosszúság",
+                    "Width": "Szélesség",
+                    "Thickness": "Vastagság"
+                },
+                "placeholder": {
+                    "picture": "Még nincs feltöltve kép."
+                }
+            }
+        },
+        "DECORBOARDS": {
+            "title": "Dekorlapok",
+            "FilterLabel": {
+                "CODE": "Kód",
+                "DESCRIPTION": "Leírás",
+                "CATEGORY": "Kategória",
+                "Size": "Méret (h/sz/v)",
+                "Transactionprice": "Eladási ár (%)",
+                "Purchasingprice": "Beszerzései ár"
+            },
+            "buttons": {
+                "ImportFile": "Beolvasás fájlból",
+                "Addnewdecorboard": "Új dekorlap hozzáadása",
+                "ClearFilter": "Szűrők törlése",
+                "Edit": "Szerkesztés",
+                "Delete": "Törlés"
+            },
+            "errorM": {
+                "noRecord": "Nem található rekord"
+            },
+            "newDecorboard": {
+                "title": "ÚJ DEKORLAP",
+                "editTitle": "Dekorlap szerkesztése",
+                "buttons": {
+                    "Cancel": "Mégsem",
+                    "Save": "Mentés"
+                },
+                "labels": {
+                    "CODE": "Kód",
+                    "DESCRIPTION": "Leírás",
+                    "CATEGORY": "Kategória",
+                    "Picture": "Kép",
+                    "Transactionprice": "Eladási ár (%)",
+                    "Purchasingprice": "Beszerzései ár",
+                    "Fiberheading": "Szálirány",
+                    "Length": "Hosszúság",
+                    "Width": "Szélesség",
+                    "Thickness": "Vastagság"
+                },
+                "placeholder": {
+                    "Picture": "Még nincs feltöltve kép."
+                }
+            }
+        },
+        "Foils": {
+            "title": "Fóliák",
+            "FilterLabel": {
+                "CODE": "Kód",
+                "DESCRIPTION": "Leírás",
+                "Thickness": "Vastagság",
+                "Transactionprice": "Eladási ár (%)",
+                "Purchasingprice": "Beszerzései ár"
+            },
+            "buttons": {
+                "ImportFile": "Beolvasás fájlból",
+                "Addnewfoil": "Új fólia hozzáadása",
+                "ClearFilter": "Szűrők törlése",
+                "Edit": "Szerkesztés",
+                "Delete": "Törlés"
+            },
+            "errorM": {
+                "noRecord": "Nem található rekord"
+            },
+            "newFoil": {
+                "title": "ÚJ FÓLIA",
+                "editTitle": "Fólia szerkesztése",
+                "buttons": {
+                    "Cancel": "Mégsem",
+                    "Save": "Mentés"
+                },
+                "labels": {
+                    "CODE": "Kód",
+                    "DESCRIPTION": "Leírás",
+                    "Picture": "Kép",
+                    "Transactionprice": "Eladási ár (%)",
+                    "Purchasingprice": "Beszerzései ár",
+                    "Thickness": "Vastagság"
+                },
+                "placeholder": {
+                    "Picture": "Még nincs feltöltve kép."
+                }
+            }
+        },
+        "ACCESSORIES": {
+            "title": "KIEGÉSZÍTŐK",
+            "FilterLabel": {
+                "CODE": "Kód",
+                "DESCRIPTION": "Leírás",
+                "STRUCTURALLY": "Szerkezetileg opcionális",
+                "MOUNTING": "Opcionálisan beszerelhető",
+                "CATEGORY": "Kategória",
+                "Transactionprice": "Eladási ár (%)",
+                "Purchasingprice": "Beszerzései ár"
+            },
+            "buttons": {
+                "ImportFile": "Beolvasás fájlból",
+                "Addnewaccessory": "Új kiegészítő hozzáadása",
+                "ClearFilter": "Szűrők törlése",
+                "Edit": "Szerkesztés",
+                "Delete": "Törlés"
+            },
+            "errorM": {
+                "noRecord": "Nem található rekord"
+            },
+            "NEWACCESSORY": {
+                "title": "ÚJ KIEGÉSZÍTŐ",
+                "editTitle": "Kiegészítő szerkesztése",
+                "buttons": {
+                    "Cancel": "Mégsem",
+                    "Save": "Mentés"
+                },
+                "labels": {
+                    "CODE": "Kód",
+                    "DESCRIPTION": "Leírás",
+                    "Category": "Kategória",
+                    "Picture": "Kép",
+                    "Transactionprice": "Eladási ár (%)",
+                    "Purchasingprice": "Beszerzései ár",
+                    "Properties": "Tulajdonságok",
+                    "Optional": "Opcionális",
+                    "RequiredForA": "Összeszereléshez szükséges"
+                },
+                "placeholder": {
+                    "Category": "Válasszon",
+                    "Picture": "Még nincs feltöltve kép."
+                }
+            }
+        },
+        "APPLIANCES": {
+            "title": "Készülékek",
+            "FilterLabel": {
+                "CODE": "Kód",
+                "DESCRIPTION": "Leírás",
+                "CATEGORY": "Kategória",
+                "Brand": "Márka",
+                "Netcost": "Nettó ár",
+                "sellprice": "Eladási ár"
+            },
+            "buttons": {
+                "ImportFile": "Beolvasás fájlból",
+                "AddNewAppliance": "Új készülék hozzáadása",
+                "ClearFilter": "Szűrők törlése",
+                "Edit": "Szerkesztés",
+                "Delete": "Törlés"
+            },
+            "errorM": {
+                "noRecord": "Nem található rekord"
+            },
+            "Newappliance": {
+                "title": "ÚJ KÉSZÜLÉK",
+                "editTitle": "Készülék szerkesztése",
+                "buttons": {
+                    "Cancel": "Mégsem",
+                    "Save": "Mentés"
+                },
+                "labels": {
+                    "CODE": "Kód",
+                    "DESCRIPTION": "Leírás",
+                    "CATEGORY": "Kategória",
+                    "Picture": "Kép",
+                    "Purchasingprice": "Beszerzései ár",
+                    "Brand": "Márka",
+                    "HanaCode": "Hana kód",
+                    "Sellprice": "Eladási ár"
+                },
+                "placeholder": {
+                    "Picture": "Még nincs feltöltve kép."
+                }
+            }
+        }
+    },
+    "products": {
+        "title": "TERMÉKEK",
+        "buttons": {
+            "LoadComponent": "Komponens betöltése",
+            "AddNewProducts": "Új termék hozzáadása",
+            "ClearFilter": "Szűrők törlése",
+            "Edit": "Szerkesztés",
+            "Delete": "Törlés",
+            "Cancel": "Mégsem",
+            "Save": "Mentés"
+        },
+        "FilterLabel": {
+            "CODE": "Kód",
+            "DESCRIPTION": "Leírás",
+            "CATEGORY": "Kategória",
+            "Size": "Méret (lh/sz/v)",
+            "MATERIALCOST": "Anyagár ",
+            "SELLPRICE": "Eladási ár"
+        },
+        "newProduct": {
+            "title": "Új bútorelem",
+            "labels": {
+                "Code": "Kód",
+                "Description": "Leírás",
+                "Category": "Kategória",
+                "Height": "Magasság",
+                "Width": "Szélesség",
+                "Depth": "Mélység",
+                "Picture": "Kép",
+                "furnitureUnitType": "Bútorelem típusa"
+            }
+        },
+        "editProducts": {
+            "title": "TERMÉK SZERKESZTÉSE",
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Save": "Mentés"
+            },
+            "basic": {
+                "title": "Alapadatok",
+                "labels": {
+                    "CODE": "Kód",
+                    "DESCRIPTION": "Leírás",
+                    "CATEGORY": "Kategória",
+                    "Picture": "Kép",
+                    "Height": "Magasság",
+                    "Width": "Szélesség",
+                    "Depth": "Mélység"
+                }
+            },
+            "Front": {
+                "title": "Előlap",
+                "buttons": {
+                    "addFront": "Előlap hozzáadása",
+                    "Edit": "Szerkesztés",
+                    "Delete": "Törlés"
+                },
+                "FilterLabel": {
+                    "Name": "Név",
+                    "CODE": "KÓD",
+                    "SIZE": "MÉRET",
+                    "AMOUNT": "MENNYISÉG",
+                    "EDGING": "Élzárás"
+                },
+                "AddFront": {
+                    "title": "Előlap hozzáadása",
+                    "labels": {
+                        "Name": "Név",
+                        "Materialcode": "Anyag kód",
+                        "Description": "Leírás",
+                        "Height": "Magasság",
+                        "Width": "Szélesség",
+                        "Amount": "Mennyiség",
+                        "Edging": "Oldalak",
+                        "allside": "Összes oldal",
+                        "Top": "Felső rész",
+                        "Bottom": "Alsó rész",
+                        "Right": "Jobb oldal",
+                        "Left": "Bal oldal"
+                    },
+                    "buttons": {
+                        "Cancel": "Mégsem",
+                        "Save": "Mentés"
+                    }
+                }
+            },
+            "Corpus": {
+                "title": "KORPUSZ",
+                "buttons": {
+                    "addcorpus": "Korpusz hozzáadás",
+                    "Edit": "Szerkesztés",
+                    "Delete": "Törlés"
+                },
+                "FilterLabel": {
+                    "Name": "Név",
+                    "CODE": "Kód",
+                    "SIZE": "Méret",
+                    "AMOUNT": "Mennyiség",
+                    "EDGING": "Élzárás"
+                },
+                "AddCorpus": {
+                    "title": "Korpusz hozzáadás",
+                    "labels": {
+                        "Name": "Név",
+                        "Materialcode": "Anyag kód",
+                        "Description": "Leírás",
+                        "Height": "Magasság",
+                        "Width": "Szélesség",
+                        "Amount": "Mennyiség",
+                        "Edging": "Élzárás",
+                        "allside": "Összes oldal",
+                        "Top": "Felső rész",
+                        "Bottom": "Alsó rész",
+                        "Right": "Jobb oldal",
+                        "Left": "Bal oldal"
+                    },
+                    "buttons": {
+                        "Cancel": "Mégsem",
+                        "Save": "Mentés"
+                    }
+                }
+            },
+            "Accessories": {
+                "title": "KIEGÉSZÍTŐK",
+                "buttons": {
+                    "addAccessories": "Kiegészítő hozzáadása",
+                    "Edit": "Szerkesztés",
+                    "Delete": "Törlés"
+                },
+                "FilterLabel": {
+                    "Name": "Név",
+                    "CODE": "KÓD",
+                    "SIZE": "MÉRET",
+                    "AMOUNT": "MENNYISÉG"
+                },
+                "AddAccessories": {
+                    "title": "Kiegészítő hozzáadása",
+                    "labels": {
+                        "Name": "Név",
+                        "Materialcode": "Anyag kód",
+                        "Picture": "Kép",
+                        "Amount": "Mennyiség"
+                    },
+                    "buttons": {
+                        "Cancel": "Mégsem",
+                        "Save": "Mentés"
+                    }
+                }
+            }
+        }
+    },
+    "Categories": {
+        "title": "KATEGÓRIÁK",
+        "buttons": {
+            "newSub": "Alkategória hozzáadása",
+            "Add": "Hozzáad",
+            "Edit": "Szerkesztés",
+            "Delete": "Törlés"
+        },
+        "PanelHeader": {
+            "Categories": "KATEGÓRIÁK",
+            "Subcat": "ALKATEGÓRIÁK"
+        },
+        "AddNewSub": {
+            "title": "Új alkategória",
+            "labels": {
+                "Parent": "Szülő",
+                "GB": "GB",
+                "HU": "HU"
+            },
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Save": "Mentés"
+            },
+            "error": {
+                "name": "Név megadása kötelező",
+                "parent": "Szülő kategória megadása kötelező"
+            }
+        },
+        "EditSub": {
+            "title": "Alkategória szerkesztése",
+            "labels": {
+                "Parent": "Szülő",
+                "GB": "GB",
+                "HU": "HU"
+            },
+            "buttons": {
+                "Cancel": "Mégsem",
+                "Save": "Mentés"
+            }
+        }
+    },
+    "Orders": {
+        "title": "Rendelések",
+        "buttons": {
+            "edit": "Szerkesztés",
+            "delete": "Törlés",
+            "onsiteSurvey": "Helyszín felmérve",
+            "shipped": "Kiszállítva",
+            "installation": "Telepítve"
+        },
+        "tableHeader": {
+            "orderId": "RENDELÉS NEVE",
+            "orderName": "RENDELÉS NEVE",
+            "workingNumber": "MUNKASZÁM",
+            "currentStatus": "AKTUÁLIS STÁTUSZ",
+            "statusDeadline": "STÁTUSZ HATÁRIDŐ",
+            "responsible": "FELELŐS",
+            "customer": "MEGRENDELŐ",
+            "sales": "ÉRTÉKESÍTŐ",
+            "createdOn": "LÉTREHOZVA",
+            "deadline": "HATÁRIDŐ",
+            "clearFilters": "Szűrők törlése",
+            "createNewOrder": "Új rendelés létrehozása",
+            "edit": "Szerkesztés",
+            "delete": "Törlés"
+        },
+        "newOrder": {
+            "title": "Új rendelés",
+            "customer": "Vásárló",
+            "orderName": "Rendelés neve",
+            "shippingAddress": "Szállítási cím",
+            "sales": "Eladó",
+            "deadline": "Határidő",
+            "cancel": "Mégsem",
+            "save": "Mentés",
+            "typeName": "Írjon be egy nevet",
+            "customerRequired": "Vásárló megadása kötelező",
+            "country": "Ország",
+            "postcode": "Irányítószám",
+            "postCodeRequired": "Irányítószám megadása kötelező",
+            "city": "Város",
+            "cityRequired": "Város megadása kötelező",
+            "address": "Cím",
+            "addressRequired": "Cím megadása kötelező",
+            "salesPersonRequired": "Eladó megadása kötelező",
+            "deadlineRequired": "Határidő megadása kötelező",
+            "chooseDate": "Válasszon egy dátumot",
+            "orderNameRequired": "Rendelés nevének megadása kötelező"
+        },
+        "editOrder": {
+            "title": "Rendelés szerkesztése",
+            "currentStatus": "Aktuális státusz",
+            "responsible": "Felelős",
+            "statusDeadline": "Státusz határidő",
+            "customer": "Vásárló",
+            "orderName": "Rendelés neve",
+            "shippingAddress": "Szállítási cím",
+            "sales": "Eladó",
+            "deadline": "Határidő",
+            "cancel": "Mégsem",
+            "save": "Mentés",
+            "placeholder": {
+                "date": "Válasszon dátumot",
+                "customer": "Gépeljen be nevet",
+                "country": "Ország",
+                "postcode": "Ir. szám",
+                "city": "Város",
+                "address": "Utca, házszám"
+            },
+            "error": {
+                "state": "Aktuális státusz megadása kötelező",
+                "deadline": "Státusz határidő megadása kötelező",
+                "customer": "Vásárló megadása kötelező",
+                "country": "Ország megadása kötelező",
+                "postcode": "Irányítószám megadása kötelező",
+                "city": "Város megadása kötelező",
+                "address": "Cím megadása kötelező",
+                "sales": "Eladó megadása kötelező"
+            }
+        },
+        "orderDetails": {
+            "buttons": {
+                "editOrder": "Rendelés szerkesztése",
+                "cancel": "Mégsem"
+            },
+            "forms": "Űrlap",
+            "offer": "Ajánlat",
+            "noOffer": "Nincs még ajánlat",
+            "contract": "Szerződés",
+            "noContract": "Nincs még szerződés",
+            "documents": "Dokumentumok",
+            "appointments": "Időpontok",
+            "messages": "Üzenetek",
+            "orderHistory": "Rendelés előzmények",
+            "done": "Kész",
+            "pending": "Függőben"
+        },
+        "preview": {
+            "sendToCustomer": "Vásárlónak küldés",
+            "producer": "Gyártó",
+            "name": "Név",
+            "headquarter": "Cím",
+            "contactPerson": "Kapcsolattartó",
+            "phone": "Telefonszám",
+            "customer": "Vásárló",
+            "shippingAddress": "Szállítási cím",
+            "code": "Azonosító",
+            "width": "Szélesség",
+            "depth": "Mélység",
+            "height": "Magasság",
+            "price": "Ár",
+            "quantity": "Mennyiség",
+            "subtotal": "Részösszeg",
+            "accessories": "Kiegészítők",
+            "appliances": "Készülékek"
+        },
+        "offerForm": {
+            "title": "Ajánlat űrlap",
+            "save": "Mentés",
+            "saved": "Mentve",
+            "shipping": "Szállítás",
+            "generalInformation": {
+                "title": "Általános adatok",
+                "products": "Termékek",
+                "requires": "Kitöltendő",
+                "customer": "Vásárló",
+                "description": "Leírás",
+                "private": "Magánszemély",
+                "companyRep": "Képviselő",
+                "budget": "Költségvetés",
+                "company": "Vállalat",
+                "saveOffer": "Ajánlat mentése",
+                "height": "Magasság",
+                "depth": "Mélység",
+                "TopCabinets": "Felsőszekrények",
+                "BaseCabinets": "Alsószekrények",
+                "TallCabinets": "Állószekrények",
+                "materials": {
+                    "outer": "Külső alapanyag",
+                    "inner": "Belső alapanyag",
+                    "backPanel": "Hátsó rész alapanyaga",
+                    "door": "Ajtó alapanyaga"
+                },
+                "error": {
+                    "HeightRequired": "Magasság megadása kötelező",
+                    "DepthRequired": "Mélység megadása kötelező",
+                    "OuterRequired": "Külső alapanyag megadása kötelező",
+                    "InnerRequired": "Belső alapanyag megadása kötelező",
+                    "BackRequired": "Hátsó rész alapanyagának megadása kötelező",
+                    "DoorRequired": "Ajtó alapanyagának megadása kötelező",
+                    "BudgetRequired": "Költségvetés megadása kötelező",
+                    "CurrencyRequired": "Pénznem megadása kötelező"
+                },
+                "placeholder": "Alapanyag"
+            },
+            "products": {
+                "title": "Termékek",
+                "preview": "Előnézet",
+                "addService": "Szolgáltatlás hozzáadása",
+                "saveOffer": "Ajánlat mentése",
+                "assembly": "Összeszerelés",
+                "installation": "Elhelyezés",
+                "vat": "ÁFA",
+                "subtotal": "Részösszeg",
+                "products": "Termékek",
+                "total": "Teljes összeg",
+                "distance": "Távolság",
+                "basicFee": "Alapdíj",
+                "services": "Szolgáltatások",
+                "tableHeader": {
+                    "name": "Név",
+                    "code": "Azonosító",
+                    "width": "Szélesség",
+                    "depth": "Mélység",
+                    "height": "Magasság",
+                    "price": "Ár",
+                    "quantity": "Mennyiség",
+                    "subtotal": "Részösszeg"
+                },
+                "buttons": {
+                    "addSe": "Szolgáltatás hozzáadása",
+                    "AddTopCabinet": "Felsőszekrény hozzáadása",
+                    "AddBaseCabinet": "Alsószekrény hozzáadása",
+                    "AddTallCabinet": "Állószekrény hozzáadása",
+                    "AddAppliance": "Háztartási gép hozzáadása"
+                },
+                "TopCabinets": "FELSŐSZEKRÉNYEK",
+                "BaseCabinets": "ALSÓSZEKRÉNYEK",
+                "TallCabinets": "ÁLLÓSZEKRÉNYEK",
+                "Appliances": "KONYHAI HÁZTARTÁSI NAGYGÉPEK",
+                "Accessories": "KIEGÉSZÍTŐK",
+                "NewProducts": {
+                    "Titles": {
+                        "Top": "Felsőszekrény hozzáadása",
+                        "Base": "Alsószekrény hozzáadása",
+                        "Tall": "Állószekrény hozzáadása",
+                        "Appliance": "Készülék hozzáadása"
+                    },
+                    "Cabinet": "Szekrény",
+                    "Quantity": "Mennyiség",
+                    "Buttons": {
+                        "Cancel": "Mégsem",
+                        "Save": "Mentés"
+                    },
+                    "ErrorMessages": {
+                        "CabinetError": "Szekrény kiválasztása kötelező!",
+                        "QuantityError": "Mennyiség megadása kötelező!"
+                    }
+                }
+            }
+        },
+        "ContractForm": {
+            "contract": "Szerződés",
+            "Buttons": {
+                "Cancel": "Mégsem",
+                "Save": "Mentés"
+            },
+            "title": "Szerződés",
+            "name": "Név",
+            "producer": "Gyártó",
+            "customer": "Ügyfél",
+            "financialDetails": "Pénzügyi részletek",
+            "vat": "ÁFA",
+            "netCost": "Nettó",
+            "taxNumber": "Adószám",
+            "bankAccount": "Bankszámla",
+            "correspondentAddress": "Levelezési cím",
+            "shippingAddress": "Kiszállítási cím",
+            "grossCost": "Bruttó",
+            "serviceCost": "Szolgáltatások költsége",
+            "firstPayment": "Első kifizetés",
+            "secondPayment": "Második kifizetés",
+            "dueOn": "esedékes",
+            "additional": "Kiegészítő megjegyzések",
+            "contractDate": "Szerződés dátuma"
+        },
+        "documents": {
+            "zipAndDownload": "Összes dokumentum tömörítése és letöltése",
+            "uploadNewVersion": "Új verzió feltöltése",
+            "upload": "Feltöltés",
+            "versionable": "Verziózott dokumentumok",
+            "documents": "Dokumentumok",
+            "files": "fájlok",
+            "approve": "Elfogad",
+            "approved": "Elfogadott",
+            "decline": "Elutasít",
+            "declined": "Elutasított",
+            "downloadAll": "Összes letöltése",
+            "Status": "Üres",
+            "uploadDocs": {
+                "title": "Dokumentum feltöltése",
+                "folder": "Választott mappa",
+                "type": "Dokumentum típusa",
+                "files": "Fájlok",
+                "message": "Még nincs feltöltött fájl.",
+                "buttons": {
+                    "upload": "Fájl feltöltése",
+                    "cancel": "Mégsem",
+                    "save": "Mentés"
+                }
+            }
+        },
+        "appointments": {
+            "new": "Új időpont hozzáadása",
+            "notes": "Megjegyzés",
+            "NewAppointment": {
+                "Title": "Új időpont",
+                "AppointmentModal": {
+                    "Name": "Megnevezés",
+                    "Type": "Típus",
+                    "Time": "Idő",
+                    "Order": "Rendelés",
+                    "Customer": "Ügyfél",
+                    "CustomerDropdown": {
+                        "Label": "Kiválasztás"
+                    },
+                    "Participant": "Felelős",
+                    "Venue": "Helyszín",
+                    "MeetingRoom": "Tárgyaló",
+                    "NewAddress": "Új cím",
+                    "NewAddressValues": {
+                        "Country": "Ország",
+                        "Postcode": "Ir. szám",
+                        "City": "Település",
+                        "Address": "Cím"
+                    },
+                    "Notes": "Megjegyzés",
+                    "Buttons": {
+                        "Cancel": "Mégsem",
+                        "Save": "Mentés"
+                    },
+                    "ErrorMessages": {
+                        "NameError": "Időpont megnevezése kötelező",
+                        "TypeError": "Típus kötelező",
+                        "TimeError": "Érvénytelen dátumok",
+                        "CustomerError": "Ügyfél kiválasztása kötelező",
+                        "ParticipantError": "Felelős megadása kötelező",
+                        "VenueError": "Helyszín megadása kötelező",
+                        "CountryError": "Ország kiválasztása kötelező",
+                        "PostcodeError": "Irányítószám megadása kötelező",
+                        "CityError": "Település megadása kötelező",
+                        "AddressError": "Cím megadása kötelező",
+                        "MeetingRoomError": "Tárgyaló megadása kötelező",
+                        "OrderError": "Megrendelés megadása kötelező"
+                    }
+                }
+            },
+            "EditAppointment": {
+                "Title": "Időpont szerkesztése"
+            }
+        },
+        "messages": {
+            "title": "ÜZENETEK",
+            "assignedPeople": "EMBEREK",
+            "download": "Összes üzenet letöltése"
+        },
+        "orderHistory": {
+            "detailedView": "Részletes nézet",
+            "status": "STÁTUSZ",
+            "doneBy": "KÉSZÍTETTE",
+            "closingDate": "TELJESÍTÉS DÁTUMA",
+            "deadline": "HATÁRIDŐ",
+            "date": "DÁTUM",
+            "action": "ESEMÉNY"
+        }
+    },
+    "WebshopFurnitureUnits": {
+        "title": "WEBSHOP BÚTORELEMEK",
+        "Labels": {
+            "code": "Kód",
+            "description": "Leírás",
+            "price": "Ár",
+            "newUnit": "Új webshop bútorelem",
+            "editUnit": "Webshop bútorelem szerkesztése",
+            "furnitureUnit": "Bútorelem",
+            "noRecord": "Nem található rekord"
+        },
+        "Buttons": {
+            "addNewUnits": "Új webshop bútorelem hozzáadása",
+            "clearFilters": "Szűrők törlése",
+            "cancel": "Mégse",
+            "save": "Mentés"
+        }
+    },
+    "Trends": {
+        "title": "TRENDEK",
+        "from": "Mettől",
+        "to": "Meddig",
+        "maxItems": "Maximum elemek száma",
+        "corpuses": "Korpuszok",
+        "fronts": "Előlapok",
+        "furnitureUnits": "Bútorelemek",
+        "name": "NÉV",
+        "code": "KÓD",
+        "description": "LEÍRÁS",
+        "category": "KATEGÓRIA",
+        "ordersCount": "RENDELÉSEK SZÁMA"
+    },
+    "Appointments": {
+        "Buttons": {
+            "Edit": "Szerkesztés",
+            "Delete": "Törlés",
+            "Cancel": "Mégsem",
+            "Save": "Mentés"
+        },
+        "Notes": "Megjegyzés",
+        "Title": "Időpontok",
+        "Today": "Ma",
+        "ShowWeekends": "Hétvégék mutatása",
+        "HideWeekends": "Hétvégék elrejtése",
+        "NewAppointment": {
+            "Title": "Új időpont"
+        },
+        "EditAppointment": {
+            "Title": "Időpont szerkesztése"
+        },
+        "AppointmentModal": {
+            "Name": "Megnevezés",
+            "Type": "Típus",
+            "Time": "Idő",
+            "Order": "Rendelés",
+            "Customer": "Ügyfél",
+            "CustomerDropdown": {
+                "Label": "Kiválasztás"
+            },
+            "Participant": "Felelős",
+            "Venue": "Helyszín",
+            "MeetingRoom": "Tárgyaló",
+            "NewAddress": "Új cím",
+            "NewAddressValues": {
+                "Country": "Ország",
+                "Postcode": "Ir. szám",
+                "City": "Település",
+                "Address": "Cím"
+            },
+            "Notes": "Megjegyzés"
+        }
+    },
+    "Dashboard": {
+        "unansweredMessages": "Megválaszolatlan üzenet",
+        "appointmentsToday": "Mai időpontok",
+        "myTickets": "Saját jegyeim",
+        "allTickets": "Összes jegyek",
+        "orderId": "Rendelés neve",
+        "status": "Státusz",
+        "customer": "Vásárló"
+    },
+    "MeetingRooms": {
+        "title": "Tárgyalók",
+        "name": "Név",
+        "status": "Státusz",
+        "StatusValue": {
+            "Booked": "Foglalt",
+            "Available": "Elérhető"
+        },
+        "Today": "Ma",
+        "ShowWeekends": "Hétvégék mutatása",
+        "HideWeekends": "Hétvégék elrejtése",
+        "Notes": "Megjegyzés",
+        "venue": "Helyszín"
+    },
+    "Hamburger": {
+        "edit": "Szerkesztés",
+        "delete": "Törlés"
+    },
+    "CustomerOrders": {
+        "nextDay": "Következő nap",
+        "nextWeek": "Kövektkező hét",
+        "nextMonth": "Következő hónap",
+        "nextYear": "Következő év",
+        "lastDay": "Tegnap",
+        "lastWeek": "Előző hét",
+        "lastMonth": "Előző hónap",
+        "lastYear": "Előző év",
+        "OfferForm": {
+            "producer": "Gyártó",
+            "customer": "Vásárló",
+            "name": "Név",
+            "headquarter": "Cím",
+            "contactPerson": "Kapcsolattartó",
+            "phone": "Telefonszám",
+            "shippingAddress": "Szállítási cím",
+            "wallCabinet": "Fali szekrények",
+            "baseAndTall": "Alap és Magas Szekrények",
+            "appliances": "Készülékek",
+            "accessories": "Kiegészítők",
+            "shipping": "Szállítás",
+            "assembly": "Összeszerelés",
+            "subtotal": "Részösszeg",
+            "total": "Teljes összeg"
+        }
+    },
+    "Picture": {
+        "UploadButton": "Feltöltés"
+    }
+}

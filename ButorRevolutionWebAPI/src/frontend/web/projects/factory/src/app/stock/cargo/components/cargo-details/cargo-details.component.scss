@@ -1,0 +1,53 @@
+.cargo-details-container{
+    background-color: white;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 3px 14px rgba(184, 179, 255, 0.24);
+    max-height: 74vh;
+
+    .cargo-id{
+        padding: 5rem;
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    .cargo-maindata-container{
+        border-bottom: 1px solid #E5E5E5;
+        padding: 0 5rem 4rem 5rem;
+        .col{
+            .data-type-title{
+                padding-bottom: 1.5rem;
+                font-size: 1.8rem;
+                font-weight: 600;
+            }
+
+            div{
+                padding-bottom: 1rem;
+            }
+        }
+    }
+
+    .u-button-padding{
+       padding: 2rem 2.5rem 3rem 2.5rem;
+    }
+}
+
+:host /deep/ .table-standard{
+    thead{
+        tr {
+            th {
+                background-color: white;
+            }
+        }
+    }
+
+    tbody{
+        tr{
+            &:hover td {
+                background-color: white;
+                cursor: default;
+            }
+        }
+    }
+  }

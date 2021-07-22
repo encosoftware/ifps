@@ -1,0 +1,181 @@
+<h1 class="purchase-main-name">Vásárlás, mint {{!loggedIn ? 'vendég': userName}}</h1>
+<form #f="ngForm" (submit)="purchase(f)" *ngIf="isLoading">
+  <div class="purchase">
+    <div class="purchase-list">
+      <div class="purchase-list-list">
+        <ul class="purchase-list-list-ul">
+          <li class="purchase-list-list-item">
+            <h2>1. Kapcsolattartási információk</h2>
+            <hr>
+            <div class="purchase-list-contact">
+              <div class="purchase-list-contact-row">
+                <div class="purchase-list-contact-column right-p">
+                  <butor-form-field label="Név">
+                    <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="userName" name="name" required>
+                    </butor-form-input>
+                  </butor-form-field>
+                </div>
+                <div class="purchase-list-contact-column">
+                  <butor-form-field label="Email">
+                    <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="email" name="email" required>
+                    </butor-form-input>
+                  </butor-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="purchase-terms">
+              <div class="purchase-terms-check">
+                <butor-form-checkbox [(ngModel)]="emailSend" name="emailSend">
+                </butor-form-checkbox>
+                <p>
+                  Szeretném, ha a FurnitureRevolution megkeresne egyedi ajánlatokkal, kedvezményekkel.
+                  Ezekről az emailekről bármikor leiratkozhatok.
+                </p>
+              </div>
+              <div class="purchase-terms-check">
+                <butor-form-checkbox [(ngModel)]="termsCond" name="termsCond">
+                </butor-form-checkbox>
+                <p>Elfogadom az Adatvédelmi Nyilatkozatot. Kérjük alaposan olvasd át az Adatvédelmi Nyilatkozatot és az Általános szerződési feltételeket.</p>
+              </div>
+            </div>
+          </li>
+          <li class="purchase-list-list-item">
+            <h2>2. Számlázási adatok</h2>
+            <hr>
+            <div class="purchase-list-contact-row bottom-p">
+              <div class="purchase-terms-check">
+                <butor-form-checkbox [(ngModel)]="myself" name="shopping" [label]="'A cégem számára vásárolok'">
+                </butor-form-checkbox>
+              </div>
+            </div>
+            <div class="purchase-list-contact-row">
+              <div class="purchase-list-contact-column right-p">
+                <butor-form-field label="Irányítószám">
+                  <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="postalCode" name="postalCode" required>
+                  </butor-form-input>
+                </butor-form-field>
+              </div>
+              <div class="purchase-list-contact-column right-p">
+                <butor-form-field label="Ország">
+                  <ng-select [items]="countries" bindLabel="name"
+                    bindValue="id" name="parent" [multiple]="false" [clearable]="false" [(ngModel)]="country" required> </ng-select>
+                </butor-form-field>
+              </div>
+              <div class="purchase-list-contact-column">
+                <butor-form-field label="Város">
+                  <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="city" name="city" required>
+                  </butor-form-input>
+                </butor-form-field>
+              </div>
+            </div>
+            <div class="purchase-list-contact-row">
+              <div class="purchase-list-contact-column">
+                <butor-form-field label="Cím">
+                  <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="address" name="address" required>
+                  </butor-form-input>
+                </butor-form-field>
+              </div>
+            </div>
+            <div class="purchase-list-contact-row">
+              <div class="purchase-list-contact-column">
+                <butor-form-field label="Megjegyzés">
+                  <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="note" name="note">
+                  </butor-form-input>
+                </butor-form-field>
+              </div>
+            </div>
+            <div class="purchase-list-contact-row" *ngIf="myself">
+              <div class="purchase-list-contact-column">
+                <butor-form-field label="Adószám">
+                  <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="taxNumber" name="taxNumber">
+                  </butor-form-input>
+                </butor-form-field>
+              </div>
+            </div>
+          </li>
+          <li class="purchase-list-list-item">
+            <h2>3. Szállítási cím</h2>
+            <hr>
+            <div class="purchase-list-contact-row bottom-p">
+              <div class="purchase-terms-check">
+                <butor-form-checkbox [(ngModel)]="billingSame" name="delivery"
+                  [label]="'Nem egyezik meg a számlázási információkkal'">
+                </butor-form-checkbox>
+              </div>
+            </div>
+            <div class="purchase-list-contact-row ">
+              <div class="purchase-list-contact-column">
+              </div>
+            </div>
+            <ng-container *ngIf="billingSame">
+              <div class="purchase-list-contact-row">
+                <div class="purchase-list-contact-column right-p">
+                  <butor-form-field label="Irányítószám">
+                    <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="postalCodeElse" required
+                      name="postalCodeElse">
+                    </butor-form-input>
+                  </butor-form-field>
+                </div>
+                <div class="purchase-list-contact-column right-p">
+                  <butor-form-field label="Ország">
+                    <ng-select [items]="countries"
+                      bindLabel="name" bindValue="id" name="parent" [multiple]="false" [clearable]="false" [(ngModel)]="countryElse" required>
+                    </ng-select>
+                  </butor-form-field>
+                </div>
+                <div class="purchase-list-contact-column">
+                  <butor-form-field label="Város">
+                    <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="cityElse" name="cityElse" required>
+                    </butor-form-input>
+                  </butor-form-field>
+                </div>
+              </div>
+              <div class="purchase-list-contact-row">
+                <div class="purchase-list-contact-column">
+                  <butor-form-field label="Cím">
+                    <butor-form-input [classAddInput]="'input-white-contact'" [(ngModel)]="addressElse" required
+                      name="addressElse">
+                    </butor-form-input>
+                  </butor-form-field>
+                </div>
+              </div>
+            </ng-container>
+          </li>
+          <li class="purchase-list-list-item">
+            <h2>4. Fizetési információk</h2>
+            <hr>
+            <div>
+              <p>Számlaszám: 12393502-11041544-00000000</p>
+              <p>Számlatulajdonos: FurnitureRevolution</p>
+              <p>Számlavezető Bank neve: Bútor Takarékszövetkezet</p>
+              <p>Közlemény: A megrendelésed száma</p>
+            </div>
+          </li>
+        </ul>
+        <button mat-button class="btn btn-primary" type="submit" [disabled]="!f.valid && termsCond">Vásárlás megerősítése</button>
+      </div>
+      <div class="purchase-list-total">
+        <h1 class="purchase-list-total-header">Total</h1>
+        <div class="purchase-list-total-cost">
+          <div class="purchase-list-total-Subtotal">
+            <span>Részösszeg</span>
+            <span>{{basketDetails ? basketDetails.subTotal.value : 0}}
+              {{basketDetails ? basketDetails.subTotal.currency : 'HUF'}}</span>
+
+          </div>
+          <div class="purchase-list-total-delivery">
+            <span>Szállítási díj</span>
+            <span>{{basketDetails ? basketDetails.delieveryPrice.value : 0}}
+              {{basketDetails ? basketDetails.delieveryPrice.currency : 'HUF'}}</span>
+          </div>
+          <hr>
+          <div class="purchase-list-total-totalpay">
+            <span>Teljes összeg</span>
+            <span>{{basketDetails ? (basketDetails.subTotal.value + basketDetails.delieveryPrice.value) : (basketDetails ? basketDetails.subTotal.value : 0)}}
+              {{basketDetails? basketDetails.subTotal.currency : 'HUF'}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

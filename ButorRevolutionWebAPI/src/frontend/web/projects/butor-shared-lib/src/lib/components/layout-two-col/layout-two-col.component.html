@@ -1,0 +1,16 @@
+<div *ngIf="!isLoading" class="layout-bread">
+  <div *ngIf="actions" class="d-flex justify-content-between">
+    <h3>{{title}}</h3>
+    <div class="d-flex">
+      <ng-container [cdkPortalOutlet]="actions.content"></ng-container>
+    </div>
+  </div>
+  <div class="layout-body-bread">
+    <div class="panel-1">
+      <ng-container [cdkPortalOutlet]="right.rightContent"></ng-container>
+    </div>
+    <div class="panel-2">
+      <ng-container [cdkPortalOutlet]="left.leftContent"></ng-container>
+    </div>
+  </div>
+</div>

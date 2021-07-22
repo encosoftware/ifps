@@ -1,0 +1,613 @@
+@font-face {
+    font-family: "Icons";
+    src: url('projects/sales/src/scss/font/Icons.eot');
+    src: url('projects/sales/src/scss/font/Icons.eot?#iefix') format('eot'),
+        url('projects/sales/src/scss/font/Icons.woff') format('woff'),
+        url('projects/sales/src/scss/font/Icons.ttf') format('truetype'),
+        url('projects/sales/src/scss/font/Icons.svg#Icons') format('svg');
+}
+
+
+.icon:before {
+    font-family: "Icons";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+    text-decoration: none;
+    text-transform: none;
+    font-size: inherit;
+}
+
+
+
+.icon-403:before {
+    content: "\E001";
+}
+
+
+.icon-404:before {
+    content: "\E002";
+}
+
+
+.icon-add:before {
+    content: "\E003";
+}
+
+
+.icon-appointments_active:before {
+    content: "\E004";
+}
+
+
+.icon-appointments_inactive:before {
+    content: "\E005";
+}
+
+
+.icon-blackarrow_black_down:before {
+    content: "\E006";
+}
+
+
+.icon-blackarrow_black_left:before {
+    content: "\E007";
+}
+
+
+.icon-blackarrow_black_right:before {
+    content: "\E008";
+}
+
+
+.icon-blackarrow_black_up:before {
+    content: "\E009";
+}
+
+
+.icon-cargo_active:before {
+    content: "\E00A";
+}
+
+
+.icon-cargo_inactive:before {
+    content: "\E00B";
+}
+
+
+.icon-categories:before {
+    content: "\E00C";
+}
+
+
+.icon-cells_active:before {
+    content: "\E00D";
+}
+
+
+.icon-cells_inactive:before {
+    content: "\E00E";
+}
+
+
+.icon-checked:before {
+    content: "\E00F";
+}
+
+
+.icon-check_circle:before {
+    content: "\E010";
+}
+
+
+.icon-clear:before {
+    content: "\E011";
+}
+
+
+.icon-companies_active:before {
+    content: "\E012";
+}
+
+
+.icon-companies_inactive:before {
+    content: "\E013";
+}
+
+
+.icon-dashboard_active:before {
+    content: "\E014";
+}
+
+
+.icon-dashboard_inactive:before {
+    content: "\E015";
+}
+
+
+.icon-date:before {
+    content: "\E016";
+}
+
+
+.icon-deactivate:before {
+    content: "\E017";
+}
+
+
+.icon-deactivate_small:before {
+    content: "\E018";
+}
+
+
+.icon-delete:before {
+    content: "\E019";
+}
+
+
+.icon-doc:before {
+    content: "\E01A";
+}
+
+
+.icon-edit:before {
+    content: "\E01B";
+}
+
+
+.icon-exclamation-point:before {
+    content: "\E01C";
+}
+
+
+.icon-handshake:before {
+    content: "\E01D";
+}
+
+
+.icon-appointmentsicon_appointments_active:before {
+    content: "\E01E";
+}
+
+
+.icon-appointmentsicon_appointments_inactive:before {
+    content: "\E01F";
+}
+
+
+.icon-assemblyicon_assembly_active:before {
+    content: "\E020";
+}
+
+
+.icon-assemblyicon_assembly_inactive:before {
+    content: "\E021";
+}
+
+
+.icon-cargoicon_cargo_active:before {
+    content: "\E022";
+}
+
+
+.icon-cargoicon_cargo_inactive:before {
+    content: "\E023";
+}
+
+
+.icon-categoriesicon_categories_active:before {
+    content: "\E024";
+}
+
+
+.icon-categoriesicon_categories_inactive:before {
+    content: "\E025";
+}
+
+
+.icon-cellsicon_cells_active:before {
+    content: "\E026";
+}
+
+
+.icon-cellsicon_cells_inactive:before {
+    content: "\E027";
+}
+
+
+.icon-cncicon_cnc_active:before {
+    content: "\E028";
+}
+
+
+.icon-cncicon_cnc_inactive:before {
+    content: "\E029";
+}
+
+
+.icon-companiesicon_companies_active:before {
+    content: "\E02A";
+}
+
+
+.icon-companiesicon_companies_inactive:before {
+    content: "\E02B";
+}
+
+
+.icon-cuttingsicon_cuttings_active:before {
+    content: "\E02C";
+}
+
+
+.icon-cuttingsicon_cuttings_inactive:before {
+    content: "\E02D";
+}
+
+
+.icon-dashboardicon_dashboard_active:before {
+    content: "\E02E";
+}
+
+
+.icon-dashboardicon_dashboard_inactive:before {
+    content: "\E02F";
+}
+
+
+.icon-edge bandingicon_edge banding_active:before {
+    content: "\E030";
+}
+
+
+.icon-edge bandingicon_edge banding_inactive:before {
+    content: "\E031";
+}
+
+
+.icon-inspectionicon_inspection_active:before {
+    content: "\E032";
+}
+
+
+.icon-inspectionicon_inspection_inactive:before {
+    content: "\E033";
+}
+
+
+.icon-log outicon_log out_active:before {
+    content: "\E034";
+}
+
+
+.icon-log-outicon_log-out_inactive:before {
+    content: "\E035";
+}
+
+
+.icon-materialsicon_materials_active:before {
+    content: "\E036";
+}
+
+
+.icon-materialsicon_materials_inactive:before {
+    content: "\E037";
+}
+
+
+.icon-meetingroomesicon_meetingroomes_active:before {
+    content: "\E038";
+}
+
+
+.icon-meetingroomesicon_meetingroomes_inactive:before {
+    content: "\E039";
+}
+
+
+.icon-order schedulingicon_order scheduling_active:before {
+    content: "\E03A";
+}
+
+
+.icon-order schedulingicon_order scheduling_inactive:before {
+    content: "\E03B";
+}
+
+
+.icon-ordersicon_orders_active:before {
+    content: "\E03C";
+}
+
+
+.icon-ordersicon_orders_inactive:before {
+    content: "\E03D";
+}
+
+
+.icon-productsicon_products_active:before {
+    content: "\E03E";
+}
+
+
+.icon-productsicon_products_inactive:before {
+    content: "\E03F";
+}
+
+
+.icon-required materialsicon_required materials_active:before {
+    content: "\E040";
+}
+
+
+.icon-required materialsicon_required materials_inactive:before {
+    content: "\E041";
+}
+
+
+.icon-rolesicon_roles_active:before {
+    content: "\E042";
+}
+
+
+.icon-rolesicon_roles_inactive:before {
+    content: "\E043";
+}
+
+
+.icon-stocked itemsicon_stocked items_active:before {
+    content: "\E044";
+}
+
+
+.icon-stocked itemsicon_stocked items_inactive:before {
+    content: "\E045";
+}
+
+
+.icon-stocksicon_stocks_active:before {
+    content: "\E046";
+}
+
+
+.icon-stocksicon_stocks_inactive:before {
+    content: "\E047";
+}
+
+
+.icon-usersicon_users_active:before {
+    content: "\E048";
+}
+
+
+.icon-usersicon_users_inactive:before {
+    content: "\E049";
+}
+
+
+.icon-venuesicon_venues_active:before {
+    content: "\E04A";
+}
+
+
+.icon-venuesicon_venues_inactive:before {
+    content: "\E04B";
+}
+
+
+.icon-jpg:before {
+    content: "\E04C";
+}
+
+
+.icon-kotojel:before {
+    content: "\E04D";
+}
+
+
+.icon-label-delete:before {
+    content: "\E04E";
+}
+
+
+.icon-materials_active:before {
+    content: "\E04F";
+}
+
+
+.icon-materials_inactive:before {
+    content: "\E050";
+}
+
+
+.icon-backmaterial_back_panel:before {
+    content: "\E051";
+}
+
+
+.icon-material_door:before {
+    content: "\E052";
+}
+
+
+.icon-material_inner:before {
+    content: "\E053";
+}
+
+
+.icon-material_outer:before {
+    content: "\E054";
+}
+
+
+.icon-meetingroomes_active:before {
+    content: "\E055";
+}
+
+
+.icon-meetingroomes_inactive:before {
+    content: "\E056";
+}
+
+
+.icon-menu:before {
+    content: "\E057";
+}
+
+
+.icon-menu_clicked:before {
+    content: "\E058";
+}
+
+
+.icon-menu_inactive:before {
+    content: "\E059";
+}
+
+
+.icon-mixed:before {
+    content: "\E05A";
+}
+
+
+.icon-orders_active:before {
+    content: "\E05B";
+}
+
+
+.icon-orders_inactive:before {
+    content: "\E05C";
+}
+
+
+.icon-pdf:before {
+    content: "\E05D";
+}
+
+
+.icon-photo-placeholder:before {
+    content: "\E05E";
+}
+
+
+.icon-photoplaceholder:before {
+    content: "\E05F";
+}
+
+
+.icon-png:before {
+    content: "\E060";
+}
+
+
+.icon-POI:before {
+    content: "\E061";
+}
+
+
+.icon-production_active:before {
+    content: "\E062";
+}
+
+
+.icon-production_inactive:before {
+    content: "\E063";
+}
+
+
+.icon-products:before {
+    content: "\E064";
+}
+
+
+.icon-radio_off:before {
+    content: "\E065";
+}
+
+
+.icon-radio_on:before {
+    content: "\E066";
+}
+
+
+.icon-roles_active:before {
+    content: "\E067";
+}
+
+
+.icon-roles_inactive:before {
+    content: "\E068";
+}
+
+
+.icon-search:before {
+    content: "\E069";
+}
+
+
+.icon-stocks_active:before {
+    content: "\E06A";
+}
+
+
+.icon-stocks_inactive:before {
+    content: "\E06B";
+}
+
+
+.icon-time:before {
+    content: "\E06C";
+}
+
+
+.icon-trolley:before {
+    content: "\E06D";
+}
+
+
+.icon-unchecked:before {
+    content: "\E06E";
+}
+
+
+.icon-upload:before {
+    content: "\E06F";
+}
+
+
+.icon-users_active:before {
+    content: "\E070";
+}
+
+
+.icon-users_inactive:before {
+    content: "\E071";
+}
+
+
+.icon-venues_active:before {
+    content: "\E072";
+}
+
+
+.icon-venues_inactive:before {
+    content: "\E073";
+}
+
+
+.icon-view:before {
+    content: "\E074";
+}
+
+
+.icon-xls:before {
+    content: "\E075";
+}
+
+
+.icon-shall-not-passyou_shall_not_pass_sign:before {
+    content: "\E076";
+}

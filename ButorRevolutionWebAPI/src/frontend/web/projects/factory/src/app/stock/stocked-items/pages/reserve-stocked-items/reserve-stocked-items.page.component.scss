@@ -1,0 +1,33 @@
+.table-standard tbody tr{
+    height: 3.5rem;
+}
+:host /deep/ .table-standard thead tr th[cdk-header-cell]{
+    background-color: white;
+}
+
+.stocked-item-title{
+    font-weight: 600;
+    font-size: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.stocked-item-table-name{
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.stocked-item-table-container{
+    height: 70%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 14px rgba(184, 179, 255, 0.24);
+}
+
+.u-button-padding{
+    padding: 2rem;
+}
+
+.stocked-item-order-dropdown-container{
+    max-width: 40rem;
+    padding-bottom: 2rem;
+}

@@ -1,0 +1,115 @@
+@import "../../../../../scss/variables";
+
+.events {
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  margin: 3px;
+  padding: 7px 9px;
+  line-height: 25px;
+  background-color: #F8F7FF;
+  border-radius: 5px;
+  border: 1px solid #E6E4FF;
+  position: relative;
+  z-index: 900;
+  overflow: hidden;
+
+  &_title {
+    font-family: $font-family-primary;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+  &_subtitle {
+    font-size: 1.3rem;
+    font-weight: normal;
+    color: #B8B3FF;
+  }
+}
+
+.appointment-title-action{
+  padding-bottom: 0.9rem;
+}
+
+.date {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.3rem;
+  margin-right: 2.75rem;
+}
+
+.calendar-page {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.3rem;
+  margin-right: 2.75rem;
+}
+
+.tooltipBox{
+  position: absolute !important;
+  background-color: $color-white-primary;
+  border-radius: 30px;
+  border: 1px solid $color-input-border;
+  padding: 1rem;
+  top:0;
+  right: -200px !important;
+  cursor: default;
+}
+
+.appointment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.2rem;
+    border-bottom: 1px solid #e5e5e5;
+  &-header {
+      display: flex;
+      flex-direction: column;
+    .day {
+        font-size:2.5rem;
+        font-weight: 600; 
+        display: flex;
+        justify-content: center;
+    }
+    .month {
+        color:$color-message;
+        font-size: 1.3rem;
+        font-weight: 400;
+        display: flex;
+        justify-content: center;
+    }
+    .time {
+        font-size: 1.3rem;
+        font-weight: 400;
+        display: flex;
+        justify-content: center;
+    }
+  }
+  &_body {
+    &-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    &-author {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+    &-address {
+        font-size: 1.3rem;
+        font-weight: 400;
+        i{
+            color: rgba(77, 65, 255, 1);
+            font-size: inherit;
+            margin-right: 1.3rem;
+        }
+    }
+    &-note {
+        font-size: 1.3rem;
+        font-weight: 400;
+        i{
+            color: rgba(77, 65, 255, 1);
+            font-size: inherit;
+            margin-right: 1.3rem;
+        }
+    }
+  }
+}

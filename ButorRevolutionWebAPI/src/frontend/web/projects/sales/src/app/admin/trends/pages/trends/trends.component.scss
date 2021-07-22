@@ -1,0 +1,40 @@
+:host /deep/ .table-standard thead tr th {
+    background-color: white;
+}
+
+:host /deep/ .mat-tab-body-wrapper {
+    height: 73vh;
+  
+  }
+  
+  :host /deep/ .mat-tab-body.mat-tab-body-active {
+    height: 100%;
+  
+  }
+
+  .datepicker-input{
+    border-radius: 6px;
+    margin-bottom: 0;
+    border: 1px solid #d6d6d6;
+    width: 20rem;
+    font-family: "Poppins", sans-serif;
+    margin-right: 1rem;
+}
+
+.filter-label{
+    padding-right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.bottom-padding{
+    padding-bottom: 3rem;
+}
+
+:host /deep/ .input-control {
+  background-color: white;
+}
+
+.ps__rail-x {
+  display: inline-block;
+}

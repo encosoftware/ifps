@@ -1,0 +1,10 @@
+<input style="display: none;" #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" multiple>
+<div class="grid">
+  <figure class="uploade" *ngFor="let item of ImagesView;let i = index">
+    <img class="uploade-img" alt="" [src]="item">
+    <figcaption *ngIf="ImagesView.length > 1" class="uploade-caption" (click)="deletePic(i)"><i class="icon icon-delete"></i> </figcaption>
+  </figure>
+</div>
+<div class="uploade-label">
+  <a class="uploade-label-input" (click)="fileInput.click()"><i class="icon icon-upload"></i>{{'Picture.UploadButton' | translate}}</a>
+</div>

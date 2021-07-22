@@ -1,0 +1,29 @@
+.dialog-title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-bottom: 2rem;
+}
+
+.big-bottom-padding{
+    padding-bottom: 1rem;
+}
+
+.small-bottom-padding{
+    padding-bottom: 1rem;
+}
+
+.mat-dialog-actions {
+    display: block;
+}
+
+.translation-container:not(:last-child){
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.16);
+    padding-bottom: 3rem;
+}
+
+.language-value{
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 15px 0px; 
+}

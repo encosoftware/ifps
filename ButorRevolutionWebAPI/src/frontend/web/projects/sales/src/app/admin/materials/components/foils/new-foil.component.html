@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="dialog-title">
+        {{ title }}
+    </div>
+    <form [formGroup]="foilForm">
+        <div class="row">
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.Foils.newFoil.labels.CODE' | translate}}">
+                    <butor-form-input [(ngModel)]="foil.code" formControlName="code" #codeInput name="code">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.Foils.newFoil.labels.DESCRIPTION' | translate}}">
+                    <butor-form-input [(ngModel)]="foil.description" formControlName="description" name="description">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.Foils.newFoil.labels.Picture' | translate}}">
+                    <butor-upload-pic [name]="foil.picture.fileName" [folder]="foil.picture.containerName"
+                        (nameOutput)="getFileName($event)" (folderOutput)="getFolderName($event)" *ngIf="!isLoading">
+                    </butor-upload-pic>
+                </butor-form-field>
+            </div>
+            <div class="col-6">
+                <butor-form-field label="{{'Materials.Foils.newFoil.labels.Thickness' | translate}}">
+                    <butor-form-input name="thickness" type="number" [(ngModel)]="foil.thickness"
+                        formControlName="thickness" append="mm">
+                    </butor-form-input>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.Foils.newFoil.labels.Purchasingprice' | translate}}">
+                    <div class="row">
+                        <div class="col-9">
+                            <butor-form-input name="purchasingPrice" type="number" [(ngModel)]="foil.purchasingPrice"
+                                formControlName="purchasingPrice">
+                            </butor-form-input>
+                        </div>
+                        <div class="col-3">
+                            <ng-select name="currency" formControlName="currency" [items]="currencies"
+                                highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="options" bindValue="value"
+                                [clearable]="false" [(ngModel)]="selectedCurrency" (change)="currencyChange()">
+                            </ng-select>
+                        </div>
+                    </div>
+                </butor-form-field>
+                <butor-form-field label="{{'Materials.Foils.newFoil.labels.Transactionprice' | translate}}">
+                    <butor-form-input name="transactionPrice" type="number" [(ngModel)]="foil.transactionPrice"
+                        formControlName="transactionPrice" append="%">
+                    </butor-form-input>
+                </butor-form-field>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <button mat-button matRipple class="btn btn-text-only u-margin-btn-right"
+                    (click)="cancel()">{{'Materials.Foils.newFoil.buttons.Cancel' | translate}}</button>
+                <button mat-button matRipple class="btn btn-primary u-margin-btn-right" [disabled]="foilForm.invalid || !foil.picture.fileName"
+                    (click)="addNewFoil()">{{'Materials.Foils.newFoil.buttons.Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

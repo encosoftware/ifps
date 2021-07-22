@@ -1,0 +1,30 @@
+<div class="production__container">
+  <h1>{{'OrderScheduling.ProductionStatus.Title' | translate}}</h1>
+  <div class="production-section">
+    <i class="icon icon-cuttingsicon_cuttings_active logo cuttings"></i>
+    <h3 class="production-section-header">{{'OrderScheduling.ProductionStatus.Cutting' | translate}}</h3>
+    <i class="icon checked"
+    [ngClass]="{'icon-check_circle':(cutting===100),'icon-clear':(cutting &lt; 100)}"
+    ></i>
+    <mat-progress-bar mode="determinate" [value]="cutting"></mat-progress-bar>
+    <div class="production-section-percentage">{{cutting}} %</div>
+  </div>
+  <div class="production-section">
+    <i class="icon icon-cncicon_cnc_active logo cnc"></i>
+    <h3 class="production-section-header">{{'OrderScheduling.ProductionStatus.Cnc' | translate}}</h3>
+    <i class="icon checked"
+    [ngClass]="{'icon-check_circle':(cnc===100),'icon-clear':(cnc &lt; 100)}"
+    ></i>
+    <mat-progress-bar mode="determinate" [value]="cnc"></mat-progress-bar>
+    <div class="production-section-percentage">{{cnc}} %</div>
+  </div>
+  <div class="production-section">
+    <i class="icon icon-edge-bandingicon_edge-banding_active logo edgbanding"></i>
+    <h3 class="production-section-header">{{'OrderScheduling.ProductionStatus.Edging' | translate}}</h3>
+    <i class="icon checked"
+    [ngClass]="{'icon-check_circle':(edgbanding===100),'icon-clear':(edgbanding &lt; 100)}"
+    ></i>
+    <mat-progress-bar mode="determinate" [value]="edgbanding"></mat-progress-bar>
+    <div class="production-section-percentage">{{edgbanding}} %</div>
+  </div>
+</div>

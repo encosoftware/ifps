@@ -1,0 +1,11 @@
+<ng-container>
+  <label class="form__checkbox-group" (click)="$event.stopPropagation()">
+    <input class="form__checkbox-input" type="checkbox" (change)="onCheckboxChange($event.target.checked)"
+    [checked]="value" [disabled]="disabled" >
+    <span [ngClass]="{ 'form__checkbox-button-line': typeBox === 'line','form__checkbox-button': typeBox === 'pipe' }"></span>
+    <span class="form__checkbox-label">{{label}}</span>
+  </label>
+</ng-container>
+
+
+<!-- need to add (click)="$event.stopPropagation()" on the mat panel!!!! -->

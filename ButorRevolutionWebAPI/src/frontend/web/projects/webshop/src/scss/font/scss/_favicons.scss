@@ -1,0 +1,563 @@
+@font-face {
+    font-family: "Icons";
+    src: url('projects/webshop/src/scss/font/Icons.eot');
+    src: url('projects/webshop/src/scss/font/Icons.eot?#iefix') format('eot'),
+        url('projects/webshop/src/scss/font/Icons.woff') format('woff'),
+        url('projects/webshop/src/scss/font/Icons.ttf') format('truetype'),
+        url('projects/webshop/src/scss/font/Icons.svg#Icons') format('svg');
+}
+
+
+.icon:before {
+    font-family: "Icons";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+    text-decoration: none;
+    text-transform: none;
+    font-size: inherit;
+}
+
+
+
+.icon-403:before {
+    content: "\E001";
+}
+
+
+.icon-404:before {
+    content: "\E002";
+}
+
+
+.icon-add:before {
+    content: "\E003";
+}
+
+
+.icon-appointments_active:before {
+    content: "\E004";
+}
+
+
+.icon-appointments_inactive:before {
+    content: "\E005";
+}
+
+
+.icon-blackarrow_black_down:before {
+    content: "\E006";
+}
+
+
+.icon-blackarrow_black_left:before {
+    content: "\E007";
+}
+
+
+.icon-blackarrow_black_right:before {
+    content: "\E008";
+}
+
+
+.icon-blackarrow_black_up:before {
+    content: "\E009";
+}
+
+
+.icon-cargo_active:before {
+    content: "\E00A";
+}
+
+
+.icon-cargo_inactive:before {
+    content: "\E00B";
+}
+
+
+.icon-categories:before {
+    content: "\E00C";
+}
+
+
+.icon-cells_active:before {
+    content: "\E00D";
+}
+
+
+.icon-cells_inactive:before {
+    content: "\E00E";
+}
+
+
+.icon-checked:before {
+    content: "\E00F";
+}
+
+
+.icon-check_circle:before {
+    content: "\E010";
+}
+
+
+.icon-clear:before {
+    content: "\E011";
+}
+
+
+.icon-companies_active:before {
+    content: "\E012";
+}
+
+
+.icon-companies_inactive:before {
+    content: "\E013";
+}
+
+
+.icon-dashboard_active:before {
+    content: "\E014";
+}
+
+
+.icon-dashboard_inactive:before {
+    content: "\E015";
+}
+
+
+.icon-date:before {
+    content: "\E016";
+}
+
+
+.icon-deactivate:before {
+    content: "\E017";
+}
+
+
+.icon-deactivate_small:before {
+    content: "\E018";
+}
+
+
+.icon-delete:before {
+    content: "\E019";
+}
+
+
+.icon-doc:before {
+    content: "\E01A";
+}
+
+
+.icon-edit:before {
+    content: "\E01B";
+}
+
+
+.icon-exclamation-point:before {
+    content: "\E01C";
+}
+
+
+.icon-handshake:before {
+    content: "\E01D";
+}
+
+
+.icon-icon_appointments:before {
+    content: "\E01E";
+}
+
+
+.icon-icon_assembly:before {
+    content: "\E01F";
+}
+
+
+.icon-icon_cargo:before {
+    content: "\E020";
+}
+
+
+.icon-icon_categories:before {
+    content: "\E021";
+}
+
+
+.icon-icon_cells:before {
+    content: "\E022";
+}
+
+
+.icon-icon_cnc:before {
+    content: "\E023";
+}
+
+
+.icon-icon_companies:before {
+    content: "\E024";
+}
+
+
+.icon-icon_cuttings:before {
+    content: "\E025";
+}
+
+
+.icon-icon_dashboard:before {
+    content: "\E026";
+}
+
+
+.icon-icon_edgebanding:before {
+    content: "\E027";
+}
+
+
+.icon-icon_general expences:before {
+    content: "\E028";
+}
+
+
+.icon-icon_general fees:before {
+    content: "\E029";
+}
+
+
+.icon-icon_inspection:before {
+    content: "\E02A";
+}
+
+
+.icon-icon_log out:before {
+    content: "\E02B";
+}
+
+
+.icon-icon_materials:before {
+    content: "\E02C";
+}
+
+
+.icon-icon_meetingroomes:before {
+    content: "\E02D";
+}
+
+
+.icon-icon_order scheduling:before {
+    content: "\E02E";
+}
+
+
+.icon-icon_orders:before {
+    content: "\E02F";
+}
+
+
+.icon-icon_products:before {
+    content: "\E030";
+}
+
+
+.icon-icon_required materials:before {
+    content: "\E031";
+}
+
+
+.icon-icon_roles:before {
+    content: "\E032";
+}
+
+
+.icon-icon_stocked items:before {
+    content: "\E033";
+}
+
+
+.icon-icon_stocks:before {
+    content: "\E034";
+}
+
+
+.icon-icon_supply expences:before {
+    content: "\E035";
+}
+
+
+.icon-icon_users:before {
+    content: "\E036";
+}
+
+
+.icon-icon_venues:before {
+    content: "\E037";
+}
+
+
+.icon-icon_wage costs:before {
+    content: "\E038";
+}
+
+
+.icon-icon_workstations:before {
+    content: "\E039";
+}
+
+
+.icon-jpg:before {
+    content: "\E03A";
+}
+
+
+.icon-kotojel:before {
+    content: "\E03B";
+}
+
+
+.icon-label delete:before {
+    content: "\E03C";
+}
+
+
+.icon-label-delete:before {
+    content: "\E03D";
+}
+
+
+.icon-logo-03:before {
+    content: "\E03E";
+}
+
+
+.icon-materials_active:before {
+    content: "\E03F";
+}
+
+
+.icon-materials_inactive:before {
+    content: "\E040";
+}
+
+
+.icon-backmaterial_back_panel:before {
+    content: "\E041";
+}
+
+
+.icon-material_door:before {
+    content: "\E042";
+}
+
+
+.icon-material_inner:before {
+    content: "\E043";
+}
+
+
+.icon-material_outer:before {
+    content: "\E044";
+}
+
+
+.icon-meetingroomes_active:before {
+    content: "\E045";
+}
+
+
+.icon-meetingroomes_inactive:before {
+    content: "\E046";
+}
+
+
+.icon-menu:before {
+    content: "\E047";
+}
+
+
+.icon-menu_clicked:before {
+    content: "\E048";
+}
+
+
+.icon-menu_inactive:before {
+    content: "\E049";
+}
+
+
+.icon-mixed:before {
+    content: "\E04A";
+}
+
+
+.icon-orders_active:before {
+    content: "\E04B";
+}
+
+
+.icon-orders_inactive:before {
+    content: "\E04C";
+}
+
+
+.icon-payment_americanex:before {
+    content: "\E04D";
+}
+
+
+.icon-payment_apple-pay:before {
+    content: "\E04E";
+}
+
+
+.icon-payment_google-pay:before {
+    content: "\E04F";
+}
+
+
+.icon-payment_mastercard:before {
+    content: "\E050";
+}
+
+
+.icon-payment_paypal:before {
+    content: "\E051";
+}
+
+
+.icon-payment_visa:before {
+    content: "\E052";
+}
+
+
+.icon-pdf:before {
+    content: "\E053";
+}
+
+
+.icon-photo-placeholder:before {
+    content: "\E054";
+}
+
+
+.icon-photoplaceholder:before {
+    content: "\E055";
+}
+
+
+.icon-png:before {
+    content: "\E056";
+}
+
+
+.icon-POI:before {
+    content: "\E057";
+}
+
+
+.icon-production_active:before {
+    content: "\E058";
+}
+
+
+.icon-production_inactive:before {
+    content: "\E059";
+}
+
+
+.icon-products:before {
+    content: "\E05A";
+}
+
+
+.icon-radio_off:before {
+    content: "\E05B";
+}
+
+
+.icon-radio_on:before {
+    content: "\E05C";
+}
+
+
+.icon-roles_active:before {
+    content: "\E05D";
+}
+
+
+.icon-roles_inactive:before {
+    content: "\E05E";
+}
+
+
+.icon-search:before {
+    content: "\E05F";
+}
+
+
+.icon-stocks_active:before {
+    content: "\E060";
+}
+
+
+.icon-stocks_inactive:before {
+    content: "\E061";
+}
+
+
+.icon-time:before {
+    content: "\E062";
+}
+
+
+.icon-trolley:before {
+    content: "\E063";
+}
+
+
+.icon-unchecked:before {
+    content: "\E064";
+}
+
+
+.icon-upload:before {
+    content: "\E065";
+}
+
+
+.icon-users_active:before {
+    content: "\E066";
+}
+
+
+.icon-users_inactive:before {
+    content: "\E067";
+}
+
+
+.icon-venues_active:before {
+    content: "\E068";
+}
+
+
+.icon-venues_inactive:before {
+    content: "\E069";
+}
+
+
+.icon-view:before {
+    content: "\E06A";
+}
+
+
+.icon-xls:before {
+    content: "\E06B";
+}
+
+
+.icon-shall-not-passyou_shall_not_pass_sign:before {
+    content: "\E06C";
+}

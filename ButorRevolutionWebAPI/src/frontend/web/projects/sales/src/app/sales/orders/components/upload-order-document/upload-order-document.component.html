@@ -1,0 +1,55 @@
+<form [formGroup]="uploadDocumentOrderForm">
+    <div class="container">
+        <h3>{{'Orders.documents.uploadDocs.title' | translate}}</h3>
+
+        <butor-form-field label="{{'Orders.documents.uploadDocs.folder' | translate}}">
+            <div>
+                {{folder.folderName}}
+            </div>
+        </butor-form-field>
+
+        <butor-form-field label="{{'Orders.documents.uploadDocs.type' | translate}}">
+            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="folder.supportedTypes"
+                bindLabel="translation" bindValue="typeId" formControlName="documentType" [clearable]="false">
+            </ng-select>
+        </butor-form-field>
+        <div class="file-label">
+            {{'Orders.documents.uploadDocs.files' | translate}}
+        </div>
+        <ng-container *ngIf="files.length > 0">
+            <div *ngFor="let file of files" class="uploaded-file-container">
+                <i class="icon icon-pdf large-icon"></i>
+                <div class="upload-progress-container">
+                    <div class="d-flex justify-content-between">
+                        <div><b>{{file.name}}</b></div>
+                        <i *ngIf="file.percentage === 100" (click)="deleteFile(file.name)"
+                            class="icon icon-clear delete-icon"></i>
+                    </div>
+                    <mat-progress-bar mode="determinate" value="{{file.percentage}}"></mat-progress-bar>
+                    <div class="d-flex justify-content-between upload-data-container">
+                        <div>{{file.currentSize}} KB of {{file.totalSize}} KB</div>
+                        <div>{{file.percentage}}%</div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <div *ngIf="files.length === 0" class="empty-file-label">
+            {{'Orders.documents.uploadDocs.message' | translate}}
+        </div>
+        <input style="display: none;" #fileInput type="file" (change)="onFileSelected($event)">
+        <div class="flex">
+            <div class="upload-label-input" (click)="fileInput.click()"><i class="icon icon-upload"></i> {{'Orders.documents.uploadDocs.buttons.upload' | translate}}</div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-end u-margin-top">
+                    <button mat-button class="btn btn-text-only u-margin-btn-right" (click)="cancel()">{{'Orders.documents.uploadDocs.buttons.cancel' | translate}}</button>
+                    <button mat-button class="btn btn-primary"
+                        [disabled]="uploadDocumentOrderForm.invalid || files.length !== fileResults.length || fileResults.length === 0"
+                        (click)="save()">{{'Orders.documents.uploadDocs.buttons.save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

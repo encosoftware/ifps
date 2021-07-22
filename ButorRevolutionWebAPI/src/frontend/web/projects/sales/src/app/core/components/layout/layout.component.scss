@@ -1,0 +1,27 @@
+.layout {
+  & {
+    display: flex;
+    height: 100%;
+  }
+  &-menu {
+    width: 19%;
+    height: 100%;
+
+    &-close {
+      width: 4%;
+      height: 100%;
+    }
+  }
+  &-content {
+    flex-direction: column;
+    width: 81%;
+    height: 100vh;
+    padding: 0.9rem 4rem 0 4rem;
+    &-close {
+      flex-direction: column;
+      width: 96%;
+      height: 100vh;
+      padding: 0.9rem 4rem 0 4rem;
+    }
+  }
+}

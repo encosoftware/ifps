@@ -1,0 +1,92 @@
+<ng-container *ngIf="!isLoading">
+  <h1 class="units-main-name" #myanchor>{{'Webshop.Units.units' | translate}}</h1>
+  <div class="units-menu">
+    <div class="units-menu-left">
+      <a class="units-menu-option padding-right" [matMenuTriggerFor]="price" (menuOpened)="togglePrice()"
+        (menuClosed)="togglePrice()" [ngClass]="{'black':openMenuPrice,'blue':!openMenuPrice}">
+        <span>{{'Webshop.Units.price' | translate}}</span>
+        <i [ngClass]="{'icon-blackarrow_black_up':openMenuPrice,'icon-blackarrow_black_down':!openMenuPrice}"
+          class="icon" style="font-size: 0.5rem"></i>
+      </a>
+      <mat-menu #price="matMenu">
+        <div class="units-menu-material" (click)="$event.stopPropagation()">
+          <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+            (userChangeEnd)="setValueFilter()"></ng5-slider>
+          <butor-form-field>
+            <div style="display: flex;">
+              <butor-form-input [classAddInput]="'input-height'" [(ngModel)]="minValue" name="min"></butor-form-input>
+              <span style="padding: 0 2rem;font-size: 2rem;">-</span>
+              <butor-form-input [classAddInput]="'input-height'" [(ngModel)]="maxValue" name="max"></butor-form-input>
+            </div>
+
+          </butor-form-field>
+        </div>
+      </mat-menu>
+      <!-- <a class="units-menu-option" [matMenuTriggerFor]="menu" (menuOpened)="toggleMaterial()" (menuClosed)="toggleMaterial()"
+        [ngClass]="{'black':openMenuMat,'blue':!openMenuMat}"
+        > 
+      <span>Material</span>
+      <i [ngClass]="{'icon-blackarrow_black_up':openMenuMat,'icon-blackarrow_black_down':!openMenuMat}" class="icon"
+      style="font-size: 0.5rem"></i>
+    </a>
+    <mat-menu #menu="matMenu" >
+      <div class="units-menu-material" (click) = "$event.stopPropagation()">
+        <butor-form-checkbox [label]="'Wood'">
+        </butor-form-checkbox>
+      </div>
+    </mat-menu> -->
+    </div>
+    <div class="units-menu-right">
+
+      <a class="units-menu-option" [matMenuTriggerFor]="menu" (menuOpened)="toggleSortby()"
+        (menuClosed)="toggleSortby()" [ngClass]="{'black':openMenuSortby,'blue':!openMenuSortby}">
+        <span>{{'Webshop.Units.sortBy' | translate}}</span>
+        <i [ngClass]="{'icon-blackarrow_black_up':openMenuSortby,'icon-blackarrow_black_down':!openMenuSortby}"
+          class="icon" style="font-size: 0.5rem"></i>
+      </a>
+      <mat-menu #menu="matMenu">
+        <div class="units-menu-sortby" (click)="$event.stopPropagation()">
+          <div class="units-menu-sortby-elements" [class.choose]="choose === 'height'" (click)="sortby('height')">
+            <span class="units-menu-sortby-elements-span">{{'Webshop.Units.price' | translate}}:
+              {{'Webshop.Units.lowToHeight' | translate}}</span>
+            <i class="icon icon-check_circle"></i>
+          </div>
+          <div class="units-menu-sortby-elements" [class.choose]="choose === 'low'" (click)="sortby('low')">
+            <span class="units-menu-sortby-elements-span">{{'Webshop.Units.price' | translate}}:
+              {{'Webshop.Units.heightToLow' | translate}}</span>
+            <i class="icon icon-check_circle"></i>
+          </div>
+          <div class="units-menu-sortby-elements" (click)="sortby('clear')">
+            <span class="units-menu-sortby-elements-span">{{'Webshop.Units.clear' | translate}}</span>
+          </div>
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="units-wrapper">
+    <div class="units">
+      <figure *ngFor="let units of unitsList.items" class="sub-units">
+        <div class="sub-units-box" [routerLink]="['/details',units.furnitureUnitId]">
+          <img [webshopImage]="units.image" class="sub-units-images">
+        </div>
+        <figcaption class="sub-units-name">
+          <h2 class="sub-units-title">{{units.code}}</h2>
+          <p class="sub-units-description">{{units.description}} {{units.depth}}x{{units.height}}x{{units.width}}</p>
+          <p class="sub-units-price">{{units.price.value}} {{units.price.currency}}</p>
+        </figcaption>
+      </figure>
+      <a class="scroll-top" (click)="scroll()" *ngIf="!scrollTo">
+        <i class="icon icon-blackarrow_black_up"></i>
+      </a>
+    </div>
+  </div>
+  <div class="units-pager" *ngIf="search">
+    <span class="units-pager-count">
+      {{showedItemsCount}}/{{filter.totalCount}}
+    </span>
+    <button *ngIf="loadMoreIsShow" mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="loadMore()">
+      {{'Webshop.Units.loadMore' | translate}}
+    </button>
+  </div>
+
+</ng-container>

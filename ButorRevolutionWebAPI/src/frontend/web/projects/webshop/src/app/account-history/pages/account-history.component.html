@@ -1,0 +1,12 @@
+<mat-tab-group class="tab-group left" disableRipple mat-stretch-tabs animationDuration="0ms">
+    <mat-tab label="{{'Webshop.Account.account' | translate}}">
+        <perfect-scrollbar>
+            <app-account></app-account>
+        </perfect-scrollbar>
+    </mat-tab>
+    <mat-tab label="{{'Webshop.Account.orders' | translate}}" *ngIf="(orders.length > 0)">
+        <perfect-scrollbar>
+            <app-orders [items]="orders"></app-orders>
+        </perfect-scrollbar>
+    </mat-tab>
+</mat-tab-group>

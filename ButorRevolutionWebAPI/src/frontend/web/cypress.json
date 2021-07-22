@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:4201/",
+  "waitForAnimations": true,
+  "reporter": "mocha-multi-reporters",
+  "reporterOptions": {
+    "configFile": "reporter-config.json"
+  }
+}
+

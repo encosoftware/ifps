@@ -1,0 +1,102 @@
+<div class="inspection-details-container">
+    <perfect-scrollbar>
+        <table cdk-table [dataSource]="products" class="table-standard" #table>
+
+            <ng-container cdkColumnDef="description">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Inspection.Details.Description' | translate }}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <b>{{row.description}}</b>
+                </td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="code">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Inspection.Details.Code' | translate }}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.code}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="cellName">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Inspection.Details.Cell' | translate }}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.cellName}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="cellMeta">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Inspection.Details.CellMeta' | translate }}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.cellMeta}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="quantity">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                    <butor-form-field label="{{'Inspection.Details.Quantity' | translate }}" cType='filter'>
+                    </butor-form-field>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">{{row.quantity}}</td>
+            </ng-container>
+
+            <ng-container cdkColumnDef="correct">
+                <th cdk-header-cell *cdkHeaderCellDef>
+                </th>
+                <td cdk-cell *cdkCellDef="let row">
+                    <div class="d-flex">
+                        <div class="checkbox-group-container">
+                            <label class="inspection-checkbox-group" (click)="$event.stopPropagation()">
+                                <input class="inspection-checkbox-input" type="checkbox"
+                                    [checked]="row.isCorrect === true"
+                                    (change)="onCorrectChange($event.target.checked, row)" [disabled]="closed === true">
+                                <span class="inspection-checkbox-correct"></span>
+                            </label>
+                        </div>
+
+                        <div class="checkbox-group-container">
+                            <label class="inspection-checkbox-group" (click)="$event.stopPropagation()">
+                                <input class="inspection-checkbox-input" type="checkbox"
+                                    [checked]="row.isCorrect === false"
+                                    (change)="onWrongChange($event.target.checked, row)" [disabled]="closed === true">
+                                <span class="inspection-checkbox-wrong"></span>
+                            </label>
+                        </div>
+
+                        <div *ngIf="row.isCorrect === false" class="missing-container">
+                            <div class="missing-label">{{'Inspection.Details.Missing' | translate }} </div>
+                            <div class="missing-input-container">
+                                <input class="missing-input" [(ngModel)]="row.missing" type="number"
+                                    [disabled]="closed === true" (change)="canCloseInspection = false" />
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr cdk-header-row
+                *cdkHeaderRowDef="['description', 'code', 'cellName', 'cellMeta', 'quantity', 'correct'];sticky:true;">
+            </tr>
+
+            <tr cdk-row
+                *cdkRowDef="let row; columns: ['description', 'code', 'cellName', 'cellMeta', 'quantity', 'correct']">
+            </tr>
+
+        </table>
+        <div class="d-flex justify-content-end u-padding">
+            <button *ngIf="closed === false" mat-button matRipple class="btn btn-text-only u-margin-btn-right"
+                (click)="cancel()">{{'Inspection.Details.Cancel' | translate }}</button>
+            <button *ngIf="closed === true" mat-button matRipple class="btn btn-text-only u-margin-btn-right"
+                (click)="cancel()">{{'Inspection.Details.Back' | translate }}</button>
+            <button *ngIf="closed === false" mat-button matRipple class="btn btn-primary u-margin-btn-right"
+                (click)="saveCargos()" [disabled]="isEmptyInputField()">{{'Inspection.Details.Save' | translate }}</button>
+            <button *ngIf="canCloseInspection === true && closed === false" mat-button matRipple
+                class="btn btn-border u-margin-btn-right" (click)="closeCargos()">{{'Inspection.Details.Close' | translate }}</button>
+        </div>
+    </perfect-scrollbar>
+</div>

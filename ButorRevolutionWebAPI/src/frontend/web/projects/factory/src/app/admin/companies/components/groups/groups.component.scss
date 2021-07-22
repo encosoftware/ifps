@@ -1,0 +1,14 @@
+:host /deep/ .table-standard{
+    tbody{
+        tr{
+            &:hover td {
+                background-color: white;
+                cursor: default;
+            }
+        }
+    }
+  }
+
+  .asd:not(:first-child)::before {
+      content: ', '
+  }

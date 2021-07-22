@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'MaterialPackage.Title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewMaterialPackage()"
+      *factoryClaims="claimPolicyEnum[11]">{{'MaterialPackage.NewButton' | translate}}
+    </button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="materialPackageForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+        <!-- Code Definition -->
+        <ng-container cdkColumnDef="code">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'MaterialPackage.TableHeader.Code' | translate}}" cType='filter'>
+              <butor-form-input name="code" formControlName="code"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+        </ng-container>
+        <!-- Description Definition -->
+        <ng-container cdkColumnDef="description">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'MaterialPackage.TableHeader.Description' | translate}}" cType='filter'>
+              <butor-form-input name="description" formControlName="description"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.description}} </td>
+        </ng-container>
+        <!-- SupplierName Definition -->
+        <ng-container cdkColumnDef="supplierName">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'MaterialPackage.TableHeader.SupplierName' | translate}}" cType='filter'>
+              <butor-form-input formControlName="supplierName"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.supplierName}} </td>
+        </ng-container>
+        <!-- Size Definition -->
+        <ng-container cdkColumnDef="size">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'MaterialPackage.TableHeader.Size' | translate}}" cType='filter'>
+              <butor-form-input formControlName="size" type="number"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.size}} </td>
+        </ng-container>
+        <!-- Price Definition -->
+        <ng-container cdkColumnDef="price">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'MaterialPackage.TableHeader.Price' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.price}} {{row.currency}} </td>
+        </ng-container>
+        <!-- clearFilter Definition -->
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'MaterialPackage.TableHeader.ClearFilter' | translate}}</a> </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <factory-btn-hamburger>
+              <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[11]" textColor="#4D41FF"
+                iconClass="icon icon-deactivate" [buttonText]="'MaterialPackage.Edit' | translate"
+                (click)="this.editMaterialPackage(row.id)">
+              </factory-btn-hamburger-inside>
+              <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[12]" textColor="#FF4141"
+                iconClass="icon icon-delete" [buttonText]="'MaterialPackage.Delete' | translate"
+                (click)="deleteMaterial(row.id)">
+              </factory-btn-hamburger-inside>
+            </factory-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['code', 'description', 'supplierName', 'price', 'size', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row *cdkRowDef="let row; columns: ['code', 'description', 'supplierName','price','size', 'clearFilter']"
+          (click)="editMaterialPackage(row.id)">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!hasError && dataSource.items.length === 0" class="no-data-row">
+        {{'MaterialPackage.TableHeader.NoRecords' | translate}}</div>
+
+    </form>
+  </perfect-scrollbar>
+</div>

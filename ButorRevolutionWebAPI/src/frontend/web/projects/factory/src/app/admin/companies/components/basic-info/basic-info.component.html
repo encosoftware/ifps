@@ -1,0 +1,86 @@
+<div [formGroup]="form">
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.Name' | translate}}">
+    <butor-form-input formControlName="name"></butor-form-input>
+  </butor-form-field>
+
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.Type' | translate}}">
+    <ng-select formControlName="companyType" [items]="companyTypesList" highlightColor="#9575cd"
+      highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false">
+    </ng-select>
+  </butor-form-field>
+
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.Taxnumber' | translate}}">
+    <butor-form-input formControlName="taxNumber"></butor-form-input>
+  </butor-form-field>
+
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.Registernumber' | translate}}">
+    <butor-form-input formControlName="registerNumber"></butor-form-input>
+  </butor-form-field>
+
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.Phone' | translate}}">
+    <butor-form-input formControlName="phone">
+    </butor-form-input>
+  </butor-form-field>
+
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.Email' | translate}}">
+    <butor-form-input formControlName="email">
+    </butor-form-input>
+  </butor-form-field>
+
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.hq' | translate}}">
+    <div class="row">
+      <div class="col-4">
+        <butor-form-field>
+          <ng-select formControlName="companyCountry" [items]="countries" highlightColor="#9575cd"
+            highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false" placeholder="Country">
+          </ng-select>
+        </butor-form-field>
+      </div>
+      <div class="col-3">
+        <butor-form-field>
+          <butor-form-input formControlName="companyPostCode" placeholder="Postcode"></butor-form-input>
+        </butor-form-field>
+      </div>
+      <div class="col-5">
+        <butor-form-field>
+          <butor-form-input formControlName="companyCity" placeholder="City">
+          </butor-form-input>
+        </butor-form-field>
+      </div>
+      <div class="col-12">
+        <butor-form-field>
+          <butor-form-input formControlName="companyAddress" placeholder="Address"></butor-form-input>
+        </butor-form-field>
+      </div>
+    </div>
+  </butor-form-field>
+
+  <butor-form-field label="{{'Companies.EditCompany.basicInfo.labels.OpeningHours' | translate}}" formGroupName="openingHours">
+    <div style="padding-top: 1rem;" class="row" *ngFor="let openingHour of openingForm.controls; let openIndex = index"
+      [formArrayName]="openIndex">
+      <div class="col-4">
+        <ng-select formControlName="openingDays" [items]="dayTypes" highlightColor="#9575cd" highlightTextColor="#fff"
+          bindLabel="translation" bindValue="id" [clearable]="false">
+        </ng-select>
+      </div>
+      <div class="col-3">
+        <ng-select formControlName="openingHour" [items]="timesList" highlightColor="#9575cd" highlightTextColor="#fff"
+          bindLabel="name" bindValue="name" [clearable]="false">
+        </ng-select>
+      </div>
+      <div class="col-3">
+        <ng-select formControlName="closingHour" [items]="timesList" highlightColor="#9575cd" highlightTextColor="#fff"
+          bindLabel="name" bindValue="name" [clearable]="false">
+        </ng-select>
+      </div>
+      <div class="col-1">
+        <i class="icon icon-clear red-check-circle" (click)="deleteOpeningHour(openIndex)" style="cursor: pointer;"></i>
+      </div>
+    </div>
+    <div class="row">
+      <button mat-button matRipple class="btn col-3"
+        (click)="addNewOpeningHours()">{{'Companies.EditCompany.basicInfo.buttons.addNew' | translate}}</button>
+    </div>
+  </butor-form-field>
+
+</div>

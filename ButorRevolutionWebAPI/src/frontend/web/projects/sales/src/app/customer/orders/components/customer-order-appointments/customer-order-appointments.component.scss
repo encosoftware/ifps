@@ -1,0 +1,72 @@
+.appointments-buttons-container{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem;
+}
+
+.appointment-item-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    padding-left: 0;
+    border-bottom: 2px solid rgba(184, 179, 255, 0.24);
+
+    .order-appointment-date-container{
+        width: 15%;
+        .order-appointment-date-day{
+            font-size: 2.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .order-appointment-date-month{
+            color: #B8B3FF;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+
+    .order-appointment-date-time{
+        width: 15%;
+        display: flex;
+        align-items: center;
+        font-size: 1.3rem;
+    }
+
+    .order-appointment-details-container{
+        width: 35%;
+        .order-appointment-title{
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .order-appointment-person{
+            font-size: 1.3rem;
+            color: #4D41FF;
+            font-weight: 600;
+            padding-bottom: 5px;
+        }
+        .order-appointment-location{
+            font-size: 1.3rem;
+        }
+    }
+
+    .order-appointment-notes{
+        width: 30%;
+        font-size: 1.3rem;
+    }
+
+    .order-appointment-hamburger{
+        width: 5%;
+        display: flex;
+        align-items: center;
+    }
+
+    i{
+        color: #4D41FF;
+        font-size: 1.5rem;
+        padding-right: 0.5rem;
+    }
+}

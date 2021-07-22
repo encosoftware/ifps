@@ -1,0 +1,104 @@
+<form [formGroup]="newOrderForm" *ngIf="!isLoading">
+    <div class="container">
+        <h3>{{'Orders.newOrder.title' | translate}}</h3>
+        <butor-form-field label="{{'Orders.newOrder.customer' | translate}}">
+            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="customers" bindLabel="name"
+                bindValue="id" formControlName="customerId" name="customerId" (search)="searchCustomers($event.term)"
+                (change)="onChange($event)" (scrollToEnd)="scrollCustomer()" placeholder="{{'Orders.newOrder.typeName' | translate}}"
+                [clearable]="false"></ng-select>
+            <div *ngIf="submitted && f.customerId.errors" class="error">
+                <div *ngIf="f.customerId.errors.required">{{'Orders.newOrder.customerRequired' | translate}}</div>
+            </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.newOrder.orderName' | translate}}">
+            <butor-form-input name="orderName" formControlName="orderName"></butor-form-input>
+            <div *ngIf="submitted && f.orderName.errors" class="error">
+                <div *ngIf="f.orderName.errors.required">
+                    {{'Orders.newOrder.orderNameRequired' | translate}}</div>
+            </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.newOrder.shippingAddress' | translate}}">
+        </butor-form-field>
+        <div class="row" formGroupName="address">
+            <div class="col-4">
+                <butor-form-field>
+                    <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="countries"
+                        bindLabel="translation" bindValue="id" formControlName="countryId" name="countryId"
+                        [clearable]="false" placeholder="{{'Orders.newOrder.country' | translate}}"></ng-select>
+                </butor-form-field>
+            </div>
+            <div class="col-3">
+                <butor-form-field>
+                    <butor-form-input formControlName="postCode" name="postCode"
+                        placeholder="{{'Orders.newOrder.postcode' | translate}}">
+                    </butor-form-input>
+                    <div *ngIf="submitted && f.address.controls.postCode.errors" class="error">
+                        <div *ngIf="f.address.controls.postCode.errors.required">
+                            {{'Orders.newOrder.postCodeRequired' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-5">
+                <butor-form-field>
+                    <butor-form-input formControlName="city" name="city"
+                        placeholder="{{'Orders.newOrder.city' | translate}}"></butor-form-input>
+                    <div *ngIf="submitted && f.address.controls.city.errors" class="error">
+                        <div *ngIf="f.address.controls.city.errors.required">
+                            {{'Orders.newOrder.cityRequired' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+            <div class="col-12">
+                <butor-form-field>
+                    <butor-form-input formControlName="address" name="address"
+                        placeholder="{{'Orders.newOrder.address' | translate}}"></butor-form-input>
+                    <div *ngIf="submitted && f.address.controls.address.errors" class="error">
+                        <div *ngIf="f.address.controls.address.errors.required">
+                            {{'Orders.newOrder.addressRequired' | translate}}</div>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+        <butor-form-field label="{{'Orders.newOrder.sales' | translate}}">
+            <ng-select highlightColor="#9575cd" highlightTextColor="#fff" [items]="sales" bindLabel="name"
+                bindValue="id" formControlName="salesId" name="salesId" [clearable]="false"
+                (search)="searchSales($event.term)" (scrollToEnd)="scrollSales()"></ng-select>
+            <div *ngIf="submitted && f.salesId.errors" class="error">
+                <div *ngIf="f.salesId.errors.required">{{'Orders.newOrder.salesPersonRequired' | translate}}</div>
+            </div>
+        </butor-form-field>
+        <butor-form-field label="{{'Orders.newOrder.deadline' | translate}}">
+        </butor-form-field>
+        <div class="row">
+            <div class="col-5">
+                <butor-form-field>
+                    <div style="display: flex;">
+
+                        <div style="display: flex;">
+                            <i class="icon icon-appointments_active" (click)="picker.open()"></i>
+                            <input matInput class="datepicker-input" name='deadline' formControlName="deadline"
+                                [matDatepicker]="picker" placeholder="{{'Orders.newOrder.chooseDate' | translate}}"
+                                (click)="picker.open()" [min]="dateMin">
+
+                        </div>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </div>
+                </butor-form-field>
+            </div>
+        </div>
+        <div *ngIf="submitted && f.deadline.errors" class="error">
+            <div *ngIf="f.deadline.errors.required">{{'Orders.newOrder.deadlineRequired' | translate}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-end u-margin-top">
+                    <button mat-button class="btn btn-text-only u-margin-btn-right"
+                        (click)="cancel()">{{'Orders.newOrder.cancel' | translate}}</button>
+                    <button mat-button class="btn btn-primary"
+                        (click)="save()">{{'Orders.newOrder.save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+<ng-container *ngIf="!isLoading">
+  <div class="products-info">
+    <app-image-slider [images]="detailsList.image" [sliderConfig]="sliderConfig"></app-image-slider>
+    <div class="products-info-details">
+      <h2 class="products-info-details-name">{{detailsList.name}}</h2>
+      <p class="products-info-details-size"> ({{detailsList.depth}}x{{detailsList.height}}x{{detailsList.width}})</p>
+      <h3 class="products-info-details-price">{{detailsList.price.value}} {{detailsList.price.currency}}</h3>
+      <p class="products-info-details-content">
+        {{detailsList.description}}</p>
+      <form>
+        <div class="products-basket-choosen">
+          <butor-form-input [classAddInput]="'whiteNumberInput'" [classAddInputArrow]="'whiteNumberInput'" [(ngModel)]="quantity"
+            name="quantity" type="number" webshop="true"></butor-form-input>
+          <button class="btn btn-primary" mat-button matRipple type="button"
+            (click)="createBasket()">{{'Webshop.Units.addToBasket' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="product-like">
+    <h2>{{'Webshop.Units.alsoLike' | translate}}</h2>
+    <hr class="hr">
+    <app-image-slider-row [images]="recommendation" [sliderConfig]="sliderConfig"></app-image-slider-row>
+  </div>
+</ng-container>

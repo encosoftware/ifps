@@ -1,0 +1,58 @@
+<div class="container">
+    <h3>DUE RECURRING COSTS</h3>
+    <div class="period-container">
+        Period: {{fromDate | date:'dd MMMM y'}} - {{toDate | date:'dd MMMM y'}}
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <b>Name</b>
+        </div>
+        <div class="col-2">
+            <b>Amount</b>
+        </div>
+        <div class="col-2">
+            <b>Currency</b>
+        </div>
+    </div>
+    <form [formGroup]="recurringCostsForm">
+        <div formArrayName="costs">
+            <div class="row cost-item-container" *ngFor="let p of CostForm; let i = index"
+                [formGroupName]="i">
+                <div class="col-6">
+                    <butor-form-input formControlName="name"></butor-form-input>
+                    <div *ngIf="submitted && p.controls.name.errors" class="error">
+                        <div *ngIf="p.controls.name.errors.required">Name is required</div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <butor-form-input formControlName="amount"></butor-form-input>
+                    <div *ngIf="submitted && p.controls.amount.errors" class="error">
+                        <div *ngIf="p.controls.amount.errors.required">Amount is required</div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <ng-select formControlName="currency" [items]="currencies" highlightColor="#9575cd"
+                        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+                    </ng-select>
+                    <div *ngIf="submitted && p.controls.currency.errors" class="error">
+                        <div *ngIf="p.controls.currency.errors.required">Currency is required</div>
+                    </div>
+                </div>
+                <!-- <label for="name">name:</label>
+                <input formControlName="name" id="name" type="text">
+                <div *ngIf="p.controls.name.dirty">
+                    <div *ngIf="p.hasError('required', 'name')">Required</div>
+                </div> -->
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-end u-margin-top">
+                <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+                    (click)="cancel()">Cancel</button>
+                <button class="btn btn-primary" mat-button matRipple (click)="save()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

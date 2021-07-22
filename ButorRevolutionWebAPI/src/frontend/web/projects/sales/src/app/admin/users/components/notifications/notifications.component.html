@@ -1,0 +1,17 @@
+<div [formGroup]="notificationsForm">
+        <div class="container-fluid">
+                <div class="row" *ngFor="let module of model; let i = index;" [formArrayName]="i">
+                        <div class="col">
+                                <label class="input-label">{{module.label}} </label>
+                                <ul class="check-list" formGroupName="notifications">
+                                        <ng-container *ngFor="let list of module.notifications; let j = index;" [formArrayName]="j">
+                                                <li>
+                                                        <butor-form-checkbox [label]="list.name" formControlName="isChecked"></butor-form-checkbox>
+
+                                                </li>
+                                        </ng-container>
+                                </ul>
+                        </div>
+                </div>
+        </div>
+</div>

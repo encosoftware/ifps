@@ -1,0 +1,8 @@
+<div class="layout">
+  <div [ngClass]="isOpenMenu ? 'layout-menu' : 'layout-menu-close'">
+    <butor-menu (isMenuOpenOutPut)="isMenuOpen($event)"></butor-menu>
+  </div>
+  <div [ngClass]="isOpenMenu ? 'layout-content' : 'layout-content-close'">
+    <router-outlet *butorMyRefreshOnChange="translate.onLangChange | async"></router-outlet>
+  </div>
+</div>

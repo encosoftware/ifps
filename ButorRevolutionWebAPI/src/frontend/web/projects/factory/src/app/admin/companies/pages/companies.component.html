@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Companies.title' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="addNewCompany()"
+      *factoryClaims="claimPolicyEnum[5]">{{'Companies.buttons.AddNewCompany' | translate}}
+    </button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="companiesForm" class="scroll-form">
+      <table *ngIf="!isLoading" cdk-table [dataSource]="dataSource.items" class="table-standard" #table>
+        <!-- Name Definition -->
+        <ng-container cdkColumnDef="name">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Companies.FilterLabel.Name' | translate}}" cType='filter'>
+              <butor-form-input formControlName="name"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+        <!-- Company Type Definition -->
+        <ng-container cdkColumnDef="companyType">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Companies.FilterLabel.Type' | translate}}" cType='filter'>
+              <ng-select formControlName="companyType" [items]="companyTypesList" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="translation" bindValue="id" [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.companyType}} </td>
+        </ng-container>
+        <!-- Contact Person Definition -->
+        <ng-container cdkColumnDef="contactPerson">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Companies.FilterLabel.ContactPerson' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.contactPerson.name}} </td>
+        </ng-container>
+        <!-- Phone Definition -->
+        <ng-container cdkColumnDef="phone">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Companies.FilterLabel.Phone' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.contactPerson.phoneNumber}} </td>
+        </ng-container>
+        <!-- Email Definition -->
+        <ng-container cdkColumnDef="email">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Companies.FilterLabel.Email' | translate}}" cType='filter'>
+              <butor-form-input formControlName="email"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.contactPerson.email}} </td>
+        </ng-container>
+        <!-- Headquarters Definition -->
+        <ng-container cdkColumnDef="address">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Companies.FilterLabel.hq' | translate}}" cType='filter'>
+              <butor-form-input formControlName="address"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.address.postCode}} {{row.address.city}}, {{row.address.address}}
+          </td>
+        </ng-container>
+        <!-- clearFilter Definition -->
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'Companies.buttons.ClearFilter' | translate}}</a> </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <factory-btn-hamburger>
+              <factory-btn-hamburger-inside textColor="#4D41FF" iconClass="icon icon-edit"
+                [buttonText]="translate.instant('Companies.buttons.Edit')"
+                (click)="this.router.navigate(['/admin/companies/edit/' + row.id])" *factoryClaims="claimPolicyEnum[5]">
+              </factory-btn-hamburger-inside>
+              <factory-btn-hamburger-inside *factoryClaims="claimPolicyEnum[6]" textColor="#FF4141"
+                iconClass="icon icon-delete" [buttonText]="translate.instant('Companies.buttons.Delete')"
+                (click)="deleteCompany(row.id)"></factory-btn-hamburger-inside>
+            </factory-btn-hamburger>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['name', 'companyType', 'contactPerson', 'phone', 'email', 'address', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row
+          *cdkRowDef="let row; columns: ['name', 'companyType', 'contactPerson', 'phone', 'email', 'address','clearFilter']"
+          [routerLink]="['/admin/companies/edit/', row.id]">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+      <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">{{'errorM.noRecord' | translate}}</div>
+
+    </form>
+  </perfect-scrollbar>
+</div>

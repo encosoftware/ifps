@@ -1,0 +1,37 @@
+<div class="container">
+  <h3>{{title}}</h3>
+  <form [formGroup]="newCellForm">
+    <butor-form-field label="{{'Cells.stock' | translate}}">
+      <ng-select name="stock" formControlName="stock" [items]="stocks" highlightColor="#9575cd"
+        highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false" placeholder="Stock">
+      </ng-select>
+      <div *ngIf="submitted && f.stock.errors" class="error">
+        <div *ngIf="f.stock.errors.required">{{'Cells.stockReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+
+    <butor-form-field label="{{'Cells.name' | translate}}">
+      <butor-form-input name="name" formControlName="name"></butor-form-input>
+      <div *ngIf="submitted && f.name.errors" class="error">
+        <div *ngIf="f.name.errors.required">{{'Cells.nameReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+
+    <butor-form-field label="{{'Cells.description' | translate}}">
+      <butor-form-input name="description" formControlName="description"></butor-form-input>
+      <div *ngIf="submitted && f.description.errors" class="error">
+        <div *ngIf="f.description.errors.required">{{'Cells.descReq' | translate}}</div>
+      </div>
+    </butor-form-field>
+  </form>
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-end u-margin-top">
+        <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple
+          (click)="cancel()">{{'Cells.cancel' | translate}}</button>
+        <button class="btn btn-primary" mat-button matRipple
+          (click)="addNewCell()">{{'Cells.save' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

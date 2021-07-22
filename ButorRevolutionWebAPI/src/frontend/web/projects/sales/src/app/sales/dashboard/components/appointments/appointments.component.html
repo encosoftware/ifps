@@ -1,0 +1,15 @@
+<div class="appointment" *ngFor="let appointment of appointmentsDataSource">
+  <div class="appointment-header">
+    <div class="day">{{appointment.currentDay}}</div>
+    <div class="month">{{appointment.currentMonth}}</div>
+    <div class="time">{{appointment.fromHour}}:{{appointment.fromMinute}} -
+      {{appointment.toHour}}:{{appointment.toMinute}}</div>
+  </div>
+  <div class="appointment_body">
+    <div class="appointment_body-title">{{appointment.subject}}</div>
+    <div class="appointment_body-author">{{appointment.customerName}}</div>
+    <div class="appointment_body-address"><i class="icon icon-POI"></i>{{appointment.address.postCode}}
+      {{appointment.address.city}}, {{appointment.address.address}}</div>
+    <div class="appointment_body-note"><i class="icon icon-menu"></i>Notes: {{appointment.notes}}</div>
+  </div>
+</div>

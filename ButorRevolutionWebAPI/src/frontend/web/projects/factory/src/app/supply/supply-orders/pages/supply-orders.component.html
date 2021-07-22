@@ -1,0 +1,145 @@
+<div class="d-flex justify-content-between u-margin-top">
+  <h3>{{'Orders.RequiredMaterials' | translate}}</h3>
+  <div class="d-flex justify-content-between">
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="downloadCsv()"
+      *factoryClaims="claimPolicyEnum[31]">
+      {{'csvDownload' | translate}}
+    </button>
+    <button mat-button matRipple class="btn btn-primary u-margin-btn-right" (click)="createCargo()"
+      *factoryClaims="claimPolicyEnum[31]">
+      {{'Orders.tableHeader.createCargo' | translate}} ({{checkedOrders.length}})
+    </button>
+  </div>
+</div>
+
+<div class="scroll-container">
+  <perfect-scrollbar>
+    <form [formGroup]="supplyFiltersForm" class="scroll-form">
+      <table cdk-table [dataSource]="dataSource.items" class="table-standard">
+
+        <ng-container cdkColumnDef="checkbox">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <div class="table-checkbox-container">
+              <label *ngIf="checkedOrders.length || actualSupplier" class="label-checkbox checkbox-header"
+                (click)="$event.stopPropagation()" style="margin: 0 auto;">
+                <div class="boxCheck" (click)="toggleAll($event)" [ngClass]="dataSource.items | supplyCheckboxPipe">
+                </div>
+              </label>
+            </div>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <label *ngIf="row.supplier | supplierCheckBox : actualSupplier" class="label-checkbox checkbox-header"
+              (click)="$event.stopPropagation()">
+              <div class="boxCheck" (click)="toggleOrder(row.id ,$event)" [ngClass]="row.isChecked ? 'c' : 'a'">
+              </div>
+            </label>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="orderId">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Orders.tableHeader.orderName' | translate}}" cType='filter'>
+              <butor-form-input name="orderId" formControlName="orderId"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> <b>{{row.orderId}}</b> </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="workingNumber">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Orders.tableHeader.workingNumber' | translate}}" cType='filter'>
+              <butor-form-input name="workingNumber" formControlName="workingNumber"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.workingNumber}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="material">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Orders.tableHeader.material' | translate}}" cType='filter'>
+              <ng-select formControlName="material" [items]="materialsDropdown" highlightColor="#9575cd"
+                highlightTextColor="#fff" bindLabel="name" bindValue="name" [clearable]="false">
+              </ng-select>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.material}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="name">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Orders.tableHeader.name' | translate}}" cType='filter'>
+              <butor-form-input formControlName="name"></butor-form-input>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            {{row.name}}</td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="amount">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Orders.tableHeader.amount' | translate}}" cType='filter'>
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.amount}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="supplier">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Orders.tableHeader.supplier' | translate}}" cType='filter'>
+              <!-- <ng-select formControlName="supplier" [items]="supplierDropdown" highlightColor="#9575cd"
+              highlightTextColor="#fff" bindLabel="name" bindValue="id" [clearable]="false">
+            </ng-select> -->
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row">
+            <form>
+              <ng-select [items]="row.supplier" highlightColor="#9575cd" highlightTextColor="#fff" bindLabel="name"
+                bindValue="id" [clearable]="false" name="sup" [(ngModel)]="actualSupplier"
+                (ngModelChange)="cargoChange()">
+              </ng-select>
+            </form>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="deadline">
+          <th cdk-header-cell *cdkHeaderCellDef>
+            <butor-form-field label="{{'Orders.tableHeader.deadline' | translate}}" cType='filter'>
+              <!-- <ng-select formControlName="deadline" [items]="mockSupply" highlightColor="#9575cd"
+              highlightTextColor="#fff" bindLabel="orderId" bindValue="id" [clearable]="false">
+            </ng-select> -->
+            </butor-form-field>
+          </th>
+          <td cdk-cell *cdkCellDef="let row"> {{row.deadline}} </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="clearFilter">
+          <th cdk-header-cell *cdkHeaderCellDef> <a class="btns btns-icon-a" (click)="clearFilter()"><i
+                class="icon icon-clear"></i>{{'Orders.tableHeader.clearFilters' | translate}}</a> </th>
+          <td cdk-cell *cdkCellDef="let row">
+          </td>
+        </ng-container>
+
+        <tr cdk-header-row
+          *cdkHeaderRowDef="['checkbox', 'orderId', 'workingNumber','material', 'name', 'amount', 'supplier', 'deadline', 'clearFilter'];sticky:true;">
+        </tr>
+
+        <tr cdk-row
+          *cdkRowDef="let row; columns: ['checkbox', 'orderId', 'workingNumber','material', 'name', 'amount', 'supplier', 'deadline', 'clearFilter']">
+        </tr>
+
+      </table>
+
+      <mat-paginator [hidePageSize]="true" [length]="dataSource.totalCount" [pageSize]="dataSource.pageSize"
+        [pageIndex]="dataSource.pageIndex"
+        [ngStyle]="{'display': (!hasError &&  dataSource.items.length  > 0) ? 'block' : 'none' }" #paginator>
+      </mat-paginator>
+
+
+
+      <div *ngIf="!isLoading && hasError" class="no-data-row">{{ error }}</div>
+      <div *ngIf="!isLoading && !hasError && dataSource.items.length === 0" class="no-data-row">
+        {{'Orders.NoRecords' | translate}}</div>
+    </form>
+
+  </perfect-scrollbar>
+</div>

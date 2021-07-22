@@ -1,0 +1,41 @@
+<form [formGroup]="newMeetingRoomForm" (ngSubmit)="onSubmit()">
+
+    <mat-dialog-content>
+        <div *ngIf="!data" class="dialog-title">
+            {{'Venues.EditVenue.NewMeetingRoom.title' | translate}}
+        </div>
+        <div *ngIf="data" class="dialog-title">
+            {{'Venues.EditVenue.NewMeetingRoom.editTitle' | translate}}
+        </div>
+        <div class="translation-container">
+            <label class="input-label big-bottom-padding">{{'Venues.EditVenue.NewMeetingRoom.Name' | translate}}
+                <input type="text" class="input-control" formControlName="name" name="name">
+                <div *ngIf="submitted && f.name.errors" class="error">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                </div>
+            </label>
+            <label class="input-label big-bottom-padding">{{'Venues.EditVenue.NewMeetingRoom.Location' | translate}}
+                <input type="text" class="input-control" formControlName="location" name="location">
+                <div *ngIf="submitted && f.location.errors" class="error">
+                    <div *ngIf="f.location.errors.required">Location is required</div>
+                </div>
+            </label>
+
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-text-only u-margin-btn-right" mat-button matRipple (click)="cancel()"
+                        type="button">{{'Venues.EditVenue.NewMeetingRoom.buttons.cancel' | translate}}</button>
+                    <button *ngIf="!data" class="btn btn-primary" mat-button matRipple
+                        type="submit">{{'Venues.EditVenue.NewMeetingRoom.buttons.add' | translate}}</button>
+                    <button *ngIf="data" class="btn btn-primary" mat-button matRipple
+                        type="submit">{{'Venues.EditVenue.NewMeetingRoom.buttons.save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-actions>
+
+</form>

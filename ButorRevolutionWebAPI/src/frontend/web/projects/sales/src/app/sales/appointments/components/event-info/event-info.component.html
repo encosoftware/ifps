@@ -1,0 +1,8 @@
+
+<div class="events">
+  <div class="events_title"> {{event.title}}</div>
+  <div class="events_subtitle"> {{event.subTitle}}</div>
+</div>
+<ng-container *ngIf="isOpen">
+  <ng-template [ngTemplateOutlet]="detailsTemplate" [ngTemplateOutletContext]="{ event: event }"></ng-template>
+</ng-container>

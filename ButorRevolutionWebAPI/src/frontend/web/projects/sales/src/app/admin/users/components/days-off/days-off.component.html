@@ -1,0 +1,41 @@
+<div class="table-action">
+    <span class="table-date">
+        <span>
+            {{ yearMonth | uppercase }}
+        </span>
+        <a class="calendar-page" (click)="previusMonth()">
+            <i class="icon icon-blackarrow_black_left"></i>
+        </a>
+        <a class="calendar-page" (click)="nextMonth()">
+            <i class="icon icon-blackarrow_black_right"></i>
+        </a>
+    </span>
+    <div class="table-action-btn">
+        <button class="btn btn-text-only u-margin-btn-right danger-color" mat-button matRipple type="button"
+            (click)="deleteSelect()">{{'Users.EditUser.DaysOff.buttons.Delete' | translate}}</button>
+        <button class="btn btn-primary-lightblue u-margin-btn-right" mat-button matRipple (click)="sickLeave()"
+            type="button">{{'Users.EditUser.DaysOff.buttons.SickDay' | translate}}</button>
+        <button class="btn btn-primary-green" mat-button matRipple (click)="dayOff()"
+            type="button">{{'Users.EditUser.DaysOff.buttons.DayOff' | translate}}</button>
+    </div>
+</div>
+<div role="table" class="calendar">
+    <div role="rowgroup" class="calendar-rowgroup">
+        <div role="row" class="calendar-row">
+            <span role="columnheader" class="calendar-header" *ngFor="let item of dayNames;trackBy: trackByFn">
+                {{item}}
+            </span>
+        </div>
+    </div>
+    <div role="rowgroup" class="calendar-rowgroup" *ngIf="loadingInit">
+        <div role="row" class="calendar-row" *ngFor="let item of weeks;let j = index;">
+            <ng-container *ngFor="let date of item;let i = index;">
+                <butor-calendar-day role="cell" class="calendar-cell" [date]="date"
+                    [isSickLeave]="model.sickLeave | include: date" [isDayOff]="model.daysOff | include: date"
+                    [isSelected]="selectedDates | include: date:'select'" (selectDate)="selectDay($event)">
+                </butor-calendar-day>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

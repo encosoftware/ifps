@@ -1,0 +1,352 @@
+.billing-section {
+    background-color: #F8F8F8;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    &-total {
+        &-price {
+            text-align: right;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: #000000;
+            opacity: 1;
+        }
+    }
+    &-prices {
+        &-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &-name {
+            font-size: 1.5rem;
+            letter-spacing: 0;
+            color: #000000;
+            opacity: 1;
+            line-height: 2.3rem;
+            &-total{
+                font-weight: 900;
+                font-size: 1.5rem;
+                letter-spacing: 0;
+                color: #000000;
+                opacity: 1;
+                line-height: 2.3rem;
+            }
+        }
+
+        &-price {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0;
+            color: #000000;
+            opacity: 1;
+            &-total{
+                text-align: right;
+                font-size: 2.5rem;
+                font-weight: 700;
+                letter-spacing: 0;
+                color: #000000;
+                opacity: 1;
+            }
+        }
+
+        &-total {
+            &-price {
+                font-size: 1.5rem;
+                font-weight: 700;
+                letter-spacing: 0;
+                color: #000000;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.basket {
+    &-container-basket {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 80%;
+        margin-bottom: 10.7rem;
+        height: 50rem;
+
+    }
+
+    &-main-name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 4.3rem;
+    }
+
+    &-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &-list {
+            width: 100%;
+            padding-bottom: 10rem;
+
+
+            table {
+                margin-bottom: 4rem;
+            }
+
+            &-product {
+                display: flex;
+
+                &-img {
+                    width: 10rem;
+                    height: 10rem;
+                    background-color: #ffffff;
+                    margin-right: 3.3rem;
+                    border-radius: 5px;
+                }
+
+                &-description {
+                    width: 15.6rem;
+
+                    &-span {
+                        font-weight: 700;
+                        font-size: 1.4rem;
+                        color: rgba(77, 65, 255, 1);
+                        line-height: 2.1rem;
+                    }
+
+                    &-p {
+                        font-weight: 300;
+                        font-size: 1.4rem;
+                        color: rgba(0, 29, 45, 1);
+                        line-height: 2.1rem;
+                    }
+                }
+            }
+        }
+
+        &-total {
+            min-width: 33.6rem;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.09);
+            border-radius: 5px;
+            padding: 2.8rem;
+            margin-left: 7rem;
+            height: fit-content;
+
+            &-header {
+                font-size: 2.5rem;
+                line-height: 3.8rem;
+                color: rgba(0, 29, 45, 1);
+                font-weight: 700;
+                padding-bottom: 2.8rem;
+            }
+
+            &-promo {
+                line-height: 2.1rem;
+                font-size: 1.4rem;
+                padding-bottom: 3.7rem;
+
+                &-label {
+                    display: flex;
+                    flex-direction: row;
+
+                    :host /deep/ .mat-button-wrapper {
+
+                        font-size: 3rem;
+                        font-weight: 300;
+
+                    }
+
+                    butor-form-input {
+                        flex: 11;
+                    }
+
+                    button {
+                        margin-left: 1.3rem;
+                        width: 3.6rem;
+                        height: 3.6rem;
+                        flex: 1;
+                    }
+                }
+            }
+
+            &-Subtotal {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding-bottom: 0.8rem;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            &-Coupon {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding-bottom: 0.8rem;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            &-cost {
+                height: fit-content;
+
+                button {
+                    width: 100%;
+                }
+            }
+
+            &-delivery {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding-bottom: 2.1rem;
+                color: rgba(0, 0, 0, 1);
+
+            }
+
+            &-totalpay {
+                display: flex;
+                justify-content: space-between;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                padding: 2rem 0;
+                font-weight: 700;
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+
+    &-delivery {
+        margin-bottom: 23rem;
+
+        &-title {
+            text-transform: uppercase;
+        }
+
+        h2 {
+            line-height: 2.7rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 1);
+            padding-bottom: 1.5rem;
+        }
+
+        &-p {
+            line-height: 2.1rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 1);
+            padding-bottom: 4.3rem;
+        }
+
+        &-boxs {
+            display: flex;
+
+        }
+
+        &-box {
+            border: 1px solid rgba(214, 214, 214, 1);
+            border-radius: 5px;
+            padding: 2.6rem 3.1rem;
+            margin-right: 2rem;
+            max-width: 30rem;
+            cursor: pointer;
+
+            h3 {
+                font-size: 1.5rem;
+                line-height: 2.3rem;
+                font-weight: 700;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            &-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                i {
+                    color: rgba(77, 65, 255, 1);
+                    font-size: 2rem;
+                    line-height: 2rem;
+                    display: none;
+                }
+            }
+
+            &-p {
+                font-size: 1.4rem;
+                line-height: 2.1rem;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+
+}
+
+:host /deep/ .input-white {
+    &-total {
+        background-color: white !important;
+    }
+
+    &-post {
+        max-width: 20rem;
+        background-color: white !important;
+        height: 4rem;
+
+    }
+
+    background-color: white !important;
+    max-width: 5rem;
+}
+
+
+.postal {
+    display: flex;
+
+    ng-select {
+        width: 10rem !important;
+        padding: 0;
+
+    }
+
+    button {
+        margin-left: 2.3rem;
+    }
+}
+
+.left-price {
+    display: flex;
+    justify-content: center;
+}
+
+.choose {
+    background-color: white;
+
+    .basket-delivery-box-header {
+        i {
+            display: inline-block;
+        }
+    }
+}
+
+
+.input-arrow {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem;
+    line-height: 1rem;
+    border-top: 1px solid rgba(230, 228, 255, 1);
+    border-right: 1px solid rgba(230, 228, 255, 1);
+    border-bottom: 1px solid rgba(230, 228, 255, 1);
+    padding: 0.55rem;
+    //  border-top-left-radius:5px ;
+    border-top-right-radius: 5px;
+    //  border-bottom-left-radius:5px ;
+    border-bottom-right-radius: 5px;
+}
